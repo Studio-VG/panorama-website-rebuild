@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  /* Signature accent: warm brass/bronze, evoking anodized aluminum hardware
+     and the warm Tbilisi light. Anchored on the site's existing #C29B38. */
+  --color-brass-50: #fbf6ea;
+  --color-brass-100: #f5e9cc;
+  --color-brass-200: #ead39c;
+  --color-brass-300: #debb6e;
+  --color-brass-400: #d2a64c;
+  --color-brass-500: #c29b38;
+  --color-brass-600: #a67f2e;
+  --color-brass-700: #866526;
+  --color-brass-800: #6b5020;
+  --color-brass-900: #57401c;
+  --color-brass-950: #2f210e;
+
+  /* Secondary accent: a cool glass-edge teal, used sparingly against dark
+     surfaces (links, small badges) so brass keeps doing the heavy lifting. */
+  --color-glass-50: #eff7f6;
+  --color-glass-100: #dceeec;
+  --color-glass-200: #baddd9;
+  --color-glass-300: #8fc5c0;
+  --color-glass-400: #64a9a3;
+  --color-glass-500: #4a8d87;
+  --color-glass-600: #3a716c;
+  --color-glass-700: #305b57;
+  --color-glass-800: #294947;
+  --color-glass-900: #233d3b;
+
+  /* Deep neutral for dark sections - anthracite rather than pure black,
+     matching the RAL 7016 "Anthracite Matt" finish Panorama's own profiles
+     ship in, instead of a generic near-black. */
+  --color-ink-800: #1f2225;
+  --color-ink-900: #16181b;
+  --color-ink-950: #0e1012;
+
+  --font-display: 'Noto Serif Georgian', 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans Georgian', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    background-color: #0e1012;
+    color: #16181b;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid #c29b38;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom architectural scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #a67f2e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #866526;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #866526 0%, #a67f2e 50%, #d2a64c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gold-gradient-text-light {
+  background: linear-gradient(135deg, #ead39c 0%, #d2a64c 45%, #a67f2e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/*
+ * Mullion texture: a thin, glass-grid hairline pattern used as the site's
+ * recurring structural motif (echoing the aluminum bars between glass
+ * panes) instead of generic decorative gradients. Applied at low opacity
+ * as a section-divider background.
+ */
+.mullion-grid {
+  background-image:
+    linear-gradient(to right, rgba(194, 155, 56, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(194, 155, 56, 0.14) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.mullion-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
