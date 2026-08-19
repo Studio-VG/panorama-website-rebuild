@@ -1,4 +1,5 @@
 import { FAQItem, ShowroomLocation, TestimonialItem } from '../types';
+import { publicAsset } from '../lib/publicAsset';
 
 export const showroomsData: ShowroomLocation[] = [
   {
@@ -23,7 +24,7 @@ export const showroomsData: ShowroomLocation[] = [
       ru: 'Понедельник — Суббота: 10:00 — 19:00',
     },
     coordinates: { lat: 41.7225, lng: 44.7554 },
-    image: '/user-listings/slot-4.jpg',
+    image: publicAsset('/user-listings/slot-4.jpg'),
   },
   {
     id: 'batumi-branch',
@@ -46,7 +47,7 @@ export const showroomsData: ShowroomLocation[] = [
       ru: 'Понедельник — Суббота: 10:00 — 18:30',
     },
     coordinates: { lat: 41.6434, lng: 41.6399 },
-    image: '/user-listings/slot-3.jpg',
+    image: publicAsset('/user-listings/slot-3.jpg'),
   },
 ];
 

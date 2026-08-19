@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ArrowRight, Sliders } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../i18n/translations';
+import { publicAsset } from '../lib/publicAsset';
 
 interface HeroProps {
   currentLang: Language;
@@ -92,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src="/user-listings/slot-1.jpg"
+          src={publicAsset('/user-listings/slot-1.jpg')}
           alt=""
           className="w-full h-full object-cover object-center opacity-15 scale-105"
         />

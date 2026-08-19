@@ -1,4 +1,5 @@
 import { SystemListing } from '../types';
+import { publicAsset } from '../lib/publicAsset';
 
 /**
  * PRICING NOTE FOR THE SITE OWNER:
@@ -22,7 +23,7 @@ export const CATALOG: SystemListing[] = [
     category: 'glazing',
     name: { ka: 'შემინული ტერასა', en: 'Glazed Terrace', ru: 'Остекленная терраса' },
     tagline: { ka: 'სისტემა #01', en: 'System #01', ru: 'Система #01' },
-    image: '/user-listings/slot-1.jpg',
+    image: publicAsset('/user-listings/slot-1.jpg'),
     specs: {
       profileWidth: 'Slimline 20\u201345mm',
       thermalInsulation: 'Uw = 0.9\u20131.3 W/m\u00b2K',
@@ -59,7 +60,7 @@ export const CATALOG: SystemListing[] = [
     category: 'shading',
     name: { ka: 'მზისგან დამცავი ჟალუზი', en: 'Sunscreen Screens', ru: 'Солнцезащитные жалюзи' },
     tagline: { ka: 'სისტემა #02', en: 'System #02', ru: 'Система #02' },
-    image: '/user-listings/slot-2.jpg',
+    image: publicAsset('/user-listings/slot-2.jpg'),
     specs: {
       profileWidth: 'Compact box 90\u2013140mm',
       thermalInsulation: 'Blocks up to 85% of solar heat gain',
@@ -96,7 +97,7 @@ export const CATALOG: SystemListing[] = [
     category: 'sliding',
     name: { ka: 'პანორამული სლაიდერი', en: 'Panoramic Slider', ru: 'Панорамный слайдер' },
     tagline: { ka: 'სისტემა #03', en: 'System #03', ru: 'Система #03' },
-    image: '/user-listings/slot-3.jpg',
+    image: publicAsset('/user-listings/slot-3.jpg'),
     specs: {
       profileWidth: 'Ultra-slim 25\u201360mm',
       thermalInsulation: 'Uw = 0.85\u20131.1 W/m\u00b2K',
@@ -133,7 +134,7 @@ export const CATALOG: SystemListing[] = [
     category: 'facade',
     name: { ka: 'შემინული ოფისი', en: 'Glazed Office Partitions', ru: 'Остеклённый офис' },
     tagline: { ka: 'სისტემა #04', en: 'System #04', ru: 'Система #04' },
-    image: '/user-listings/slot-4.jpg',
+    image: publicAsset('/user-listings/slot-4.jpg'),
     specs: {
       profileWidth: 'Frameless / slim 45\u201360mm',
       thermalInsulation: 'N/A (interior partition)',
@@ -170,7 +171,7 @@ export const CATALOG: SystemListing[] = [
     category: 'glazing',
     name: { ka: 'შემინული აბაზანა', en: 'Glazed Shower Cabins', ru: 'Остеклённая душевая' },
     tagline: { ka: 'სისტემა #05', en: 'System #05', ru: 'Система #05' },
-    image: '/user-listings/slot-5.jpg',
+    image: publicAsset('/user-listings/slot-5.jpg'),
     specs: {
       profileWidth: 'Frameless, SUS304 stainless hardware',
       thermalInsulation: 'N/A',
@@ -207,7 +208,7 @@ export const CATALOG: SystemListing[] = [
     category: 'screen',
     name: { ka: 'მწერებისგან დამცავი ბადე', en: 'Insect Screens', ru: 'Москитная сетка' },
     tagline: { ka: 'სისტემა #06', en: 'System #06', ru: 'Система #06' },
-    image: '/user-listings/slot-6.jpg',
+    image: publicAsset('/user-listings/slot-6.jpg'),
     specs: {
       profileWidth: 'Slim 25\u201335mm aluminum',
       thermalInsulation: 'N/A',

@@ -1,9 +1,10 @@
 import { TikTokVideoItem } from '../types';
+import { publicAsset } from '../lib/publicAsset';
 
 export const TIKTOK_VIDEOS: TikTokVideoItem[] = [
   {
     id: 1,
-    thumbnail: '/tiktok/video-1.jpg',
+    thumbnail: publicAsset('/tiktok/video-1.jpg'),
     url: 'https://www.tiktok.com/@panorama_glass/video/7614863385661803797',
     title: {
       ka: 'გილიოტინის სისტემა',
@@ -13,7 +14,7 @@ export const TIKTOK_VIDEOS: TikTokVideoItem[] = [
   },
   {
     id: 2,
-    thumbnail: '/tiktok/video-2.jpg',
+    thumbnail: publicAsset('/tiktok/video-2.jpg'),
     url: 'https://www.tiktok.com/@panorama_glass/video/7661964183474326804',
     title: {
       ka: 'შემინული ოფისი',
@@ -23,7 +24,7 @@ export const TIKTOK_VIDEOS: TikTokVideoItem[] = [
   },
   {
     id: 3,
-    thumbnail: '/tiktok/video-3.jpg',
+    thumbnail: publicAsset('/tiktok/video-3.jpg'),
     url: 'https://www.tiktok.com/@panorama_glass/video/7520131410779278610',
     title: {
       ka: 'პანორამული ვიტრაჟი',

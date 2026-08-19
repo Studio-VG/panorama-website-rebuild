@@ -3,6 +3,7 @@ import { Play, ExternalLink } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../i18n/translations';
 import { TIKTOK_VIDEOS } from '../data/tiktok';
+import { publicAsset } from '../lib/publicAsset';
 
 const TikTokIcon: React.FC<{ className?: string }> = ({ className = 'w-5 h-5' }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -83,7 +84,7 @@ export const SocialMediaShowcase: React.FC<SocialMediaShowcaseProps> = ({ curren
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = `/tiktok/video-${video.id}.jpg`;
+                    (e.target as HTMLImageElement).src = publicAsset(`/tiktok/video-${video.id}.jpg`);
                   }}
                 />
 
