@@ -95,10 +95,10 @@ export const Hero: React.FC<HeroProps> = ({
         <img
           src={publicAsset('/user-listings/slot-1.jpg')}
           alt=""
-          className="w-full h-full object-cover object-center opacity-15 scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-[center_72%] scale-105 opacity-50 lg:opacity-35"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/90"></div>
-        <div className="absolute inset-0 mullion-grid opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-white/35 to-white/65 lg:bg-gradient-to-r lg:from-white/70 lg:via-white/45 lg:to-white/55"></div>
+        <div className="absolute inset-0 mullion-grid opacity-25 lg:opacity-40"></div>
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[300px] bg-brass-400/10 blur-[120px] rounded-full pointer-events-none"></div>
         <div className="absolute top-1/3 right-1/4 translate-x-1/2 w-[400px] h-[300px] bg-glass-500/10 blur-[120px] rounded-full pointer-events-none"></div>
       </div>
