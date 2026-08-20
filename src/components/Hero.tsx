@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img
-          src={publicAsset('/user-listings/slot-1.jpg')}
+          src={publicAsset('/hero-bg.jpg')}
           alt=""
           className="absolute inset-0 w-full h-full object-cover object-[center_72%] scale-105 opacity-50 lg:opacity-35"
         />
