@@ -1,107 +1,91 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { SystemsSection } from './components/SystemsSection';
-import { SocialMediaShowcase } from './components/SocialMediaShowcase';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { Language } from './types';
+import { useEffect, useState } from "react";
+import { LeadDetail } from "./components/LeadDetail";
+import { LeadForm } from "./components/LeadForm";
+import { LeadList } from "./components/LeadList";
 
-const SECTION_IDS = ['home', 'systems', 'contact'];
+type Route =
+  | { name: "list" }
+  | { name: "new" }
+  | { name: "detail"; id: string }
+  | { name: "edit"; id: string };
+
+function parseRoute(pathname: string): Route {
+  const parts = pathname.split("/").filter(Boolean);
+  if (parts.length === 2 && parts[0] === "leads" && parts[1] === "new") return { name: "new" };
+  if (parts.length === 3 && parts[0] === "leads" && parts[2] === "edit") {
+    return { name: "edit", id: decodeURIComponent(parts[1]) };
+  }
+  if (parts.length === 2 && parts[0] === "leads") {
+    return { name: "detail", id: decodeURIComponent(parts[1]) };
+  }
+  return { name: "list" };
+}
+
+function navigate(path: string) {
+  window.history.pushState({}, "", path);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+}
 
 export default function App() {
-  const [currentLang, setCurrentLang] = useState<Language>('ka');
-  const [activeSection, setActiveSection] = useState<string>('home');
-  const [openListingId, setOpenListingId] = useState<string | undefined>(undefined);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [route, setRoute] = useState<Route>(() => parseRoute(window.location.pathname));
 
   useEffect(() => {
-    const handleScrollSpy = () => {
-      const scrollPosition = window.scrollY + 200;
-      for (const section of SECTION_IDS) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-      if (window.scrollY < 200) setActiveSection('home');
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('scroll', handleScrollSpy, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScrollSpy);
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    const sync = () => setRoute(parseRoute(window.location.pathname));
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
   }, []);
 
-  const scrollToSection = useCallback((sectionId: string) => {
-    setActiveSection(sectionId);
-    if (sectionId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    const elem = document.getElementById(sectionId);
-    if (elem) elem.scrollIntoView({ behavior: 'smooth' });
-  }, []);
-
-  const handleSelectProductFromFooter = useCallback((productId: string) => {
-    setOpenListingId(productId);
-    scrollToSection('systems');
-  }, [scrollToSection]);
-
-  const handleOpenListingHandled = useCallback(() => setOpenListingId(undefined), []);
+  useEffect(() => {
+    const title =
+      route.name === "new"
+        ? "Add lead · Advisor CRM"
+        : route.name === "edit"
+          ? "Edit lead · Advisor CRM"
+          : route.name === "detail"
+            ? "Lead · Advisor CRM"
+            : "Leads · Advisor CRM";
+    document.title = title;
+  }, [route]);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-brass-500 selection:text-white font-sans antialiased overflow-x-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[45]"
-        style={{
-          background: `radial-gradient(550px circle at ${mousePos.x}px ${mousePos.y}px, hsla(38, 75%, 55%, 0.07), hsla(176, 30%, 45%, 0.04), transparent 70%)`,
-        }}
-      />
-
-      <Navbar
-        currentLang={currentLang}
-        onLangChange={setCurrentLang}
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-        onRequestQuote={() => scrollToSection('contact')}
-      />
-
-      <main id="home" className="relative z-10">
-        <Hero
-          currentLang={currentLang}
-          onExploreCatalog={() => scrollToSection('systems')}
-          onRequestSurvey={() => scrollToSection('contact')}
-        />
-
-        <SystemsSection
-          currentLang={currentLang}
-          openListingId={openListingId}
-          onOpenListingHandled={handleOpenListingHandled}
-        />
-
-        <SocialMediaShowcase currentLang={currentLang} />
-
-        <ContactSection currentLang={currentLang} />
+    <div className="min-h-screen bg-slate-100 text-slate-900">
+      <header className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+          <a href="/" onClick={(event) => { event.preventDefault(); navigate("/"); }} className="flex items-center gap-3">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-900 text-sm font-semibold text-white">A</span>
+            <span>
+              <span className="block text-sm font-semibold leading-tight">Advisor CRM</span>
+              <span className="block text-xs text-slate-500">Internal lead desk</span>
+            </span>
+          </a>
+          {route.name !== "list" && (
+            <a href="/" onClick={(event) => { event.preventDefault(); navigate("/"); }} className="text-sm font-medium text-slate-600 hover:text-slate-900">
+              All leads
+            </a>
+          )}
+        </div>
+      </header>
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        {route.name === "list" && <LeadList onOpen={(id) => navigate(`/leads/${encodeURIComponent(id)}`)} />}
+        {route.name === "new" && (
+          <LeadForm mode="create" onCancel={() => navigate("/")} onSaved={() => navigate("/")} />
+        )}
+        {route.name === "detail" && (
+          <LeadDetail
+            id={route.id}
+            onBack={() => navigate("/")}
+            onEdit={() => navigate(`/leads/${encodeURIComponent(route.id)}/edit`)}
+          />
+        )}
+        {route.name === "edit" && (
+          <LeadForm
+            mode="edit"
+            leadId={route.id}
+            onCancel={() => navigate(`/leads/${encodeURIComponent(route.id)}`)}
+            onSaved={() => navigate(`/leads/${encodeURIComponent(route.id)}`)}
+          />
+        )}
       </main>
-
-      <Footer
-        currentLang={currentLang}
-        onNavigate={scrollToSection}
-        onSelectProduct={handleSelectProductFromFooter}
-      />
     </div>
   );
 }
