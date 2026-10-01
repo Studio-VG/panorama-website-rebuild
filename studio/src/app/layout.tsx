@@ -1,13 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { JsonLd } from "@/components/JsonLd";
-import { localizeSettings } from "@/lib/content";
+import { HtmlLang } from "@/components/HtmlLang";
 import { isLocale, type Locale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
-import { businessJsonLd, siteUrl } from "@/lib/seo";
+import { siteUrl } from "@/lib/seo";
 import { getStore } from "@/lib/store";
 import "./globals.css";
 
@@ -56,18 +53,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = await requestLocale();
-  const copy = messages[lang];
-  const { settings } = getStore();
-  const view = localizeSettings(settings, lang);
 
   return (
     <html lang={lang} className={`${display.variable} ${sans.variable}`}>
       <body>
-        <a className="skip" href="#content">{copy.nav.skip}</a>
-        <SiteHeader name={settings.name} logo={settings.logoUrl} lang={lang} labels={copy.nav} />
-        <main id="content">{children}</main>
-        <SiteFooter settings={view} lang={lang} labels={copy.footer} days={copy.days} closed={copy.closed} />
-        <JsonLd data={businessJsonLd({ ...settings, tagline: view.tagline }, lang)} />
+        <HtmlLang />
+        {children}
       </body>
     </html>
   );
