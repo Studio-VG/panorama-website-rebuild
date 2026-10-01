@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Collar study">
+  <rect width="800" height="800" fill="#e7e1d6"/>
+  <rect x="36" y="36" width="728" height="728" fill="none" stroke="#161616" stroke-width="3"/>
+  <path d="M140 250c40-90 480-90 520 0v70c-80 40-440 40-520 0z" fill="#141414"/>
+  <path d="M210 250c20-40 360-40 380 0" fill="none" stroke="#c6a15b" stroke-width="6"/>
+  <g fill="#141414">
+    <path d="M180 420h70l-35 90z"/>
+    <path d="M300 400h50v140h-50z"/>
+    <path d="M390 430l80 0 20 110h-50z"/>
+    <path d="M530 400h90l-30 150h-40z"/>
+  </g>
+  <g fill="none" stroke="#141414" stroke-width="10">
+    <path d="M160 640h480"/>
+    <path d="M200 680h400"/>
+  </g>
+</svg>

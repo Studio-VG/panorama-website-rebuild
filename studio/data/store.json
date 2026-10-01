@@ -1,0 +1,219 @@
+{
+  "settings": {
+    "name": "ByVasoVasiko",
+    "tagline": "Custom Japanese tattoo art.",
+    "heroLead": "Irezumi and new traditional work on İstiklal, with guest artists from other countries and room for gatherings such as the Marmaris Tattoo Festival.",
+    "officialName": "Vaso Vasiko",
+    "officialNameNote": "The existing site (vasovasiko.com) presents the practice as Vaso Vasiko. Google lists the business as byvasovasiko. ByVasoVasiko is the temporary name on this site until it is changed here.",
+    "phone": "+90 533 203 67 40",
+    "phoneAlt": "+49 163 787 99 67",
+    "email": "termin@vasovasiko.com",
+    "address": "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye",
+    "hours": [
+      {
+        "day": "Monday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Thursday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Friday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Saturday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Sunday",
+        "hours": "Closed"
+      }
+    ],
+    "latitude": 41.029831,
+    "longitude": 28.975299,
+    "googleBusinessUrl": "https://maps.app.goo.gl/peS5AiSXgxieLkbs7",
+    "portfolioUrl": "https://www.vasovasiko.com/portfolio",
+    "instagramUrl": "https://www.instagram.com/vasovasiko/",
+    "facebookUrl": "https://www.facebook.com/vasovasiko",
+    "whatsappUrl": "https://wa.me/905332036740",
+    "websiteUrl": "https://www.vasovasiko.com/",
+    "logoUrl": "/brand/logo.png",
+    "about": "ByVasoVasiko is the temporary name for the Japanese tattoo studio on the third floor of Demirhan Apartment, on İstiklal Caddesi in Asmalı Mescit. The practice behind it is Vasil Kurakhchishvili, known as Vaso Vasiko. He was born in Georgia in 1980 and has been tattooing since 2000. Most of that career has been in Turkey, with collaborations in European studios since 2015.\n\nThe bench is built around custom Japanese tattooing — irezumi — and new traditional work planned so it still reads years later. He has also worked in black and grey, geometric, colour, new school, and old school. Japanese and new traditional stay at the centre because those structures tend to age cleanly. Needles are single-use, paints follow European standards, and the room is run to ordinary studio hygiene. Sponsors named on the existing site include Cheyenne Tattoo Equipment, Radiant Tattoo Ink, Aloe Tattoo, and Onyx Tattoo Supply.\n\nFinished tattoos are published as concept plates on the existing portfolio: koi, tiger, samurai and snake, flowers, stork, hannya, fu dog, and dragon. This site does not reproduce those photographs. The pictures here are original studies in the same themes.\n\nGoogle lists the business as byvasovasiko, open Monday to Saturday, with a 4.7 rating from 22 public reviews. The studio hosts visiting artists and is connected to gatherings such as the Marmaris Tattoo Festival, which the existing partners page lists as Marmaris Tattoo Convention. Other names on that partners page include Fat Fugu, Radiant Tattoo Ink, Bad Baboon Tattoo Studio, Yakuza Collective, and CAV Shoes."
+  },
+  "artists": [
+    {
+      "id": "artist-vaso",
+      "slug": "vaso-vasiko",
+      "name": "Vaso Vasiko",
+      "styles": [
+        "Japanese irezumi",
+        "New traditional",
+        "Full sleeves"
+      ],
+      "blurb": "Vasil Kurakhchishvili, tattooing since 2000. Japanese and new traditional custom work, mostly made in Istanbul, with European studio collaborations since 2015.",
+      "history": "Vasil Kurakhchishvili was born in Georgia in 1980 and has tattooed since 2000 under the name Vaso Vasiko. Most of that work has been done in Turkey. Since 2015 he has also worked with studios in Europe. Across a long bench practice he has used black and grey, geometric, colour, new school, old school, new traditional, and Japanese. The styles he stays with are Japanese and new traditional, because a tattoo should still look considered years after it is healed.\n\nThe existing portfolio presents finished pieces as concepts rather than as a multi-artist roster: full sleeves around koi, tiger, samurai and snake, koi and flower, stork, hannya, and fu dog, plus Japanese panels of dragon, hannya and dragon, and koi. The plates on this page are original studies of those themes. They are not photographs of his tattoos. The archive of finished work stays on the existing portfolio.",
+      "photo": "/art/portrait-vaso.jpg",
+      "photoAlt": "Original illustrated portrait used for Vaso Vasiko. It is not a photograph of the artist.",
+      "portfolio": [
+        {
+          "id": "vaso-koi",
+          "src": "/art/plate-koi.jpg",
+          "alt": "Original koi and peony study in black, vermillion, and gold on warm paper.",
+          "caption": "Koi study, for a full-sleeve concept"
+        },
+        {
+          "id": "vaso-dragon",
+          "src": "/art/plate-dragon.jpg",
+          "alt": "Original dragon and cloud study with black scales and a vermillion eye.",
+          "caption": "Dragon study"
+        },
+        {
+          "id": "vaso-hannya",
+          "src": "/art/plate-hannya.jpg",
+          "alt": "Original hannya mask and peony study in traditional linework.",
+          "caption": "Hannya and peony study"
+        },
+        {
+          "id": "vaso-tiger",
+          "src": "/art/plate-tiger.jpg",
+          "alt": "Original tiger moving through waves and bamboo.",
+          "caption": "Tiger and wave study"
+        },
+        {
+          "id": "vaso-shishi",
+          "src": "/art/plate-shishi.jpg",
+          "alt": "Original shishi guardian lion study among peony leaves.",
+          "caption": "Fu dog (shishi) study"
+        }
+      ]
+    },
+    {
+      "id": "artist-fahriye",
+      "slug": "fahriye-kayihan",
+      "name": "Fahriye Kayıhan",
+      "styles": [
+        "Japanese florals",
+        "Peony",
+        "Waves"
+      ],
+      "blurb": "Named in public Google reviews for Japanese work at the studio, especially floral pieces. The existing site does not publish a separate biography.",
+      "history": "Fahriye Kayıhan is named in public Google reviews by people who were tattooed at the studio. They describe Japanese work, a careful sitting, and pieces that stay close to classical flowers. vasovasiko.com is written as one artist’s site and does not give her a separate page, so this profile stays inside what those reviews actually say.\n\nThe pictures are original peony, crane, and wave studies in the studio palette. Replace them from the admin panel with photographs of her work when you want this portfolio to show healed tattoos.",
+      "photo": "/art/portrait-fahriye.jpg",
+      "photoAlt": "Original illustrated portrait used for Fahriye Kayıhan. It is not a photograph of the artist.",
+      "portfolio": [
+        {
+          "id": "fahriye-peony",
+          "src": "/art/plate-peony.jpg",
+          "alt": "Original peony blossom study with black outlines and vermillion petals.",
+          "caption": "Peony study"
+        },
+        {
+          "id": "fahriye-crane",
+          "src": "/art/plate-crane.jpg",
+          "alt": "Original crane in flight over stylized water.",
+          "caption": "Crane over water"
+        },
+        {
+          "id": "fahriye-waves",
+          "src": "/art/plate-waves.svg",
+          "alt": "Original wave and spray study in black ink with a vermillion accent.",
+          "caption": "Wave study"
+        }
+      ]
+    },
+    {
+      "id": "artist-ahmet",
+      "slug": "ahmet-amo",
+      "name": "Ahmet (Mr Amo)",
+      "styles": [
+        "Black and grey",
+        "Custom blackwork",
+        "Neck pieces"
+      ],
+      "blurb": "Named in public Google reviews as Ahmet, also called Mr Amo, for patient custom work and neck tattoos.",
+      "history": "Google reviews name Ahmet, called Mr Amo by clients, for custom work done with a lot of patience, including neck tattoos. The existing portfolio does not list him on his own. This profile is here so the roster matches names the public already uses, and so the studio can edit it when someone joins or leaves.\n\nThe plates are original blackwork studies, not photographs of his tattoos.",
+      "photo": "/art/portrait-ahmet.jpg",
+      "photoAlt": "Original illustrated portrait used for Ahmet. It is not a photograph of the artist.",
+      "portfolio": [
+        {
+          "id": "ahmet-blackwork",
+          "src": "/art/plate-blackwork.jpg",
+          "alt": "Original blackwork study of heavy bands and negative-space geometry.",
+          "caption": "Blackwork band study"
+        },
+        {
+          "id": "ahmet-collar",
+          "src": "/art/plate-collar.svg",
+          "alt": "Original collar-shaped blackwork study with a single gold line.",
+          "caption": "Collar study"
+        }
+      ]
+    },
+    {
+      "id": "24e070b1-7878-4297-8796-d7ea83730b01",
+      "slug": "nami-test",
+      "name": "Nami Test",
+      "styles": [
+        "Tebori",
+        "Waves"
+      ],
+      "blurb": "Edited blurb for Nami Test.",
+      "history": "This history was written in the admin to prove create and edit.",
+      "photo": "/art/placeholder-portrait.svg",
+      "photoAlt": "Portrait of Nami Test",
+      "portfolio": []
+    }
+  ],
+  "events": [
+    {
+      "id": "event-osaka",
+      "slug": "guest-spot-visiting-irezumi-artist",
+      "title": "Guest spot — visiting irezumi artist",
+      "startDate": "2026-11-12",
+      "endDate": "2026-11-16",
+      "description": "The studio hosts guest artists from other countries. This November week is a seeded example for a visiting irezumi artist from Japan. A named guest for these dates was not published on the studio news pages — those posts were empty or placeholder text — so replace the name, dates, and picture here when the real guest is confirmed.",
+      "guest": "Visiting artist from Osaka",
+      "country": "Japan",
+      "image": "/art/event-guest.jpg",
+      "imageAlt": "Original illustration of a dim studio with a painted wave screen, used for the Japan guest spot.",
+      "featured": true
+    },
+    {
+      "id": "event-marmaris",
+      "slug": "marmaris-tattoo-festival",
+      "title": "Marmaris Tattoo Festival",
+      "startDate": "2025-10-03",
+      "endDate": "2025-10-05",
+      "description": "The Marmaris Tattoo Festival — also called the Marmari Tattoo Festival in conversation, and listed on the existing partners page as Marmaris Tattoo Convention — is an international gathering in Marmaris, Turkey. The last publicly announced edition ran 3–5 October 2025 at Green Nature Diamond Hotel, with artists from many countries, competitions, and walk-up work. A 2026 date was not on the studio news pages. Update this entry when the next edition is confirmed.",
+      "guest": "Studio at the festival",
+      "country": "Turkey",
+      "image": "/art/event-marmaris.jpg",
+      "imageAlt": "Original dusk illustration of a seaside gathering rendered as Japanese waves, for the Marmaris Tattoo Festival.",
+      "featured": true
+    },
+    {
+      "id": "event-hamburg",
+      "slug": "guest-spot-visiting-artist-from-germany",
+      "title": "Guest spot — visiting artist from Germany",
+      "startDate": "2026-03-18",
+      "endDate": "2026-03-22",
+      "description": "A seeded example of a European guest week. The studio has collaborated with European studios since 2015. A named guest for this week was not published, so edit or remove this entry in the admin panel.",
+      "guest": "Visiting artist from Hamburg",
+      "country": "Germany",
+      "image": "/art/event-hamburg.svg",
+      "imageAlt": "Original ink drawing of harbour water reduced to waves and a gold horizon, for the Germany guest spot.",
+      "featured": false
+    }
+  ],
+  "inquiries": []
+}
