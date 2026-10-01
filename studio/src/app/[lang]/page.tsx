@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
-import { SectionPrelude } from "@/components/SectionPrelude";
 import { SocialLinks } from "@/components/SocialLinks";
 import { StudioImage } from "@/components/StudioImage";
 import { localizeArtist, localizeEvent, localizeSettings } from "@/lib/content";
@@ -82,20 +81,11 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <SectionPrelude />
-
-      <section className="section paper prelude-kicker">
-        <div className="shell">
-          <p className="kicker">{copy.home.artistsKicker}</p>
-        </div>
-      </section>
-
-      <SectionPrelude />
-
-      <section className="section paper prelude-heading" aria-labelledby="artists-heading">
+      <section className="section paper" aria-labelledby="artists-heading">
         <div className="shell">
           <div className="section-head">
             <div>
+              <p className="kicker">{copy.home.artistsKicker}</p>
               <h2 id="artists-heading">{copy.home.artistsTitle}</h2>
               <p>{copy.home.artistsLead}</p>
             </div>
