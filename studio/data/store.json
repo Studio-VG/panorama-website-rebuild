@@ -158,20 +158,6 @@
           "caption": "Collar study"
         }
       ]
-    },
-    {
-      "id": "24e070b1-7878-4297-8796-d7ea83730b01",
-      "slug": "nami-test",
-      "name": "Nami Test",
-      "styles": [
-        "Tebori",
-        "Waves"
-      ],
-      "blurb": "Edited blurb for Nami Test.",
-      "history": "This history was written in the admin to prove create and edit.",
-      "photo": "/art/placeholder-portrait.svg",
-      "photoAlt": "Portrait of Nami Test",
-      "portfolio": []
     }
   ],
   "events": [
