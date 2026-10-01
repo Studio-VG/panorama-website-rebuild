@@ -206,6 +206,13 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
 }
 
 .section { padding: 3.2rem 0; }
+.prelude-kicker { padding: 1.15rem 0; }
+.prelude-heading { padding-top: 1.15rem; }
+.section-prelude { width: 100%; }
+.section-prelude img {
+  width: 100%;
+  height: auto;
+}
 .section-head {
   display: flex;
   justify-content: space-between;
