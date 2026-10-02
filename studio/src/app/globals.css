@@ -19,14 +19,40 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background:
-    radial-gradient(1200px 500px at 10% -10%, rgba(196, 69, 45, 0.18), transparent 50%),
-    var(--sumi);
+  background: var(--sumi);
   color: var(--paper);
   font-family: var(--sans);
   font-weight: 400;
   line-height: 1.6;
   min-height: 100vh;
+}
+.site-canvas {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+}
+.site-canvas::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--sumi);
+  background-image: url("/art/site-bg-tall.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+}
+.hero,
+.portfolio-hero,
+.section:not(.paper),
+.site-footer {
+  background-color: rgba(20, 17, 14, 0.72);
+}
+@media (min-width: 861px) {
+  .site-canvas::before {
+    background-image: url("/art/site-bg-wide.png");
+  }
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
