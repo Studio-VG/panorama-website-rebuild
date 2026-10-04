@@ -255,33 +255,6 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
   background: var(--paper);
   color: var(--ink);
 }
-.paper.home-artists {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: transparent;
-}
-.paper.home-artists::before {
-  content: "";
-  position: absolute;
-  inset: -24px;
-  z-index: -2;
-  background: #e6d3b4 url("/art/artists-paper.png") center / cover no-repeat;
-  filter: blur(2px);
-  transform: scale(1.05);
-}
-.paper.home-artists::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgba(244, 239, 228, 0.28);
-  pointer-events: none;
-}
-.home-artists .artist-card {
-  background: #fff;
-  box-shadow: 0 12px 28px rgba(28, 22, 18, 0.16);
-}
 .paper .section-head p, .paper .muted { color: var(--muted); }
 .kicker {
   color: var(--vermillion-deep);
