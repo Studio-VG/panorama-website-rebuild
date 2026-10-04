@@ -206,23 +206,23 @@ function map_point(string $query): ?array
     return $points[$key];
 }
 
-function dark_map_document(float $lat, float $lng, int $zoom = 16): string
+function dark_map_document(float $lat, float $lng, int $zoom = 15): string
 {
     $zoom = max(12, min(18, $zoom));
     $latJson = json_encode($lat);
     $lngJson = json_encode($lng);
-    return '<!doctype html><meta charset="utf-8"><style>'
-        . 'html,body{margin:0;height:100%;background:#1c1c1c;overflow:hidden}'
-        . 'img{position:absolute;width:256px;height:256px}'
-        . '.pin{position:absolute;left:50%;top:50%;z-index:2;width:16px;height:16px;margin:-16px 0 0 -8px;background:#e24b3b;border:2px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}'
-        . '.attr{position:absolute;right:4px;bottom:2px;z-index:2;color:#c8c8c8;font:10px/1.2 sans-serif;text-shadow:0 1px 2px #000}'
-        . 'a{color:#ddd}</style><div id="root"></div><div class="pin"></div>'
-        . '<div class="attr">&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a></div><script>'
-        . 'const lat=' . $latJson . ', lng=' . $lngJson . ', z=' . $zoom . ';'
-        . 'function world(lat,lng,z){const n=2**z;const x=(lng+180)/360*n;const s=Math.sin(lat*Math.PI/180);const y=(1-Math.log((1+s)/(1-s))/(2*Math.PI))/2*n;return [x,y];}'
-        . 'function draw(){const w=document.documentElement.clientWidth||320;const h=document.documentElement.clientHeight||210;const [fx,fy]=world(lat,lng,z);const left=w/2-fx*256;const top=h/2-fy*256;const root=document.getElementById("root");root.replaceChildren();const n=2**z;const subs="abcd";let i=0;'
-        . 'for(let x=Math.floor(-left/256)-1;x<=Math.ceil((w-left)/256)+1;x++){for(let y=Math.floor(-top/256)-1;y<=Math.ceil((h-top)/256)+1;y++){if(x<0||y<0||x>=n||y>=n)continue;const img=document.createElement("img");img.alt="";img.src="https://"+subs[i++%4]+".basemaps.cartocdn.com/dark_all/"+z+"/"+x+"/"+y+".png";img.style.left=(left+x*256)+"px";img.style.top=(top+y*256)+"px";root.appendChild(img);}}}'
-        . 'draw();addEventListener("resize", draw);</script>';
+    return '<!doctype html><html><head><meta charset="utf-8">'
+        . '<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">'
+        . '<style>html,body,#m{margin:0;height:100%;background:#1c1c1c}'
+        . '.pin{width:14px;height:14px;background:#e24b3b;border:2px solid #fff;border-radius:50%;box-sizing:border-box}'
+        . '</style></head><body><div id="m"></div>'
+        . '<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script><script>'
+        . 'const lat=' . $latJson . ', lng=' . $lngJson . ';'
+        . 'const map=new maplibregl.Map({container:"m",style:"https://tiles.openfreemap.org/styles/dark",center:[lng,lat],zoom:' . $zoom . '});'
+        . 'map.on("load",()=>map.resize());'
+        . 'const pin=document.createElement("div");pin.className="pin";'
+        . 'new maplibregl.Marker({element:pin}).setLngLat([lng,lat]).addTo(map);'
+        . '</script></body></html>';
 }
 
 function location_fold(string $value): string
