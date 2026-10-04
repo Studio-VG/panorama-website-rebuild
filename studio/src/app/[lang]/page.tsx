@@ -57,7 +57,7 @@ export default async function HomePage({ params }: Props) {
             <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>
             <Link className="btn btn-ghost" href={`/${lang}/artists`}>{copy.home.allArtists}</Link>
           </div>
-          <SocialLinks settings={settings} portfolio={copy.footer.portfolio} newTab={copy.footer.newTab} />
+          <SocialLinks settings={settings} newTab={copy.footer.newTab} />
         </div>
         <div className="hero-art frame">
           <StudioImage src="/art/hero-back.jpg" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />
@@ -133,7 +133,7 @@ export default async function HomePage({ params }: Props) {
           </div>
           <div className="panel">
             <h3>{copy.home.online}</h3>
-            <SocialLinks settings={settings} portfolio={copy.footer.portfolio} newTab={copy.footer.newTab} />
+            <SocialLinks settings={settings} newTab={copy.footer.newTab} />
             <StudioMap address={settings.address} />
           </div>
         </div>

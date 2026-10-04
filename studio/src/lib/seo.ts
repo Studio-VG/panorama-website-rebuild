@@ -89,7 +89,7 @@ export function businessJsonLd(settings: Settings, lang: Locale = "en") {
       longitude: settings.longitude,
     },
     hasMap: settings.googleBusinessUrl,
-    sameAs: [settings.instagramUrl, settings.facebookUrl, settings.portfolioUrl, settings.websiteUrl].filter(Boolean),
+    sameAs: [settings.instagramUrl, settings.facebookUrl, settings.websiteUrl].filter(Boolean),
     openingHoursSpecification: settings.hours.flatMap((entry) => {
       const range = parseHours(entry);
       if (!range) return [];

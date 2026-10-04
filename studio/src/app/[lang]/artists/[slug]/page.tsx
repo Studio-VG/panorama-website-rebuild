@@ -55,11 +55,6 @@ export default async function ArtistPage({ params }: Props) {
           {localized ? <Paragraphs text={view.history} /> : null}
           <div className="actions">
             <Link className="btn" href={`/${lang}/book?artist=${encodeURIComponent(view.name)}`}>{copy.artistPage.request}</Link>
-            {artist.slug === "vaso-vasiko" ? (
-              <a className="btn btn-ghost" href={settings.portfolioUrl} target="_blank" rel="noopener noreferrer">
-                {copy.artistPage.portfolio}<span className="sr-only"> ({copy.footer.newTab})</span>
-              </a>
-            ) : null}
           </div>
         </div>
       </div>

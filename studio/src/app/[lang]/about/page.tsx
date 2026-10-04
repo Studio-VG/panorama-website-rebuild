@@ -46,11 +46,6 @@ export default async function AboutPage({ params }: Props) {
                 {copy.about.publicName}: {settings.officialName}. {studio.officialNameNote}
               </p>
             ) : null}
-            <p>
-              <a href={settings.portfolioUrl} target="_blank" rel="noopener noreferrer">
-                {copy.about.portfolio}<span className="sr-only"> ({copy.footer.newTab})</span>
-              </a>
-            </p>
           </div>
           <div className="panel">
             <h2>{copy.about.reach} {settings.name}</h2>
@@ -61,7 +56,7 @@ export default async function AboutPage({ params }: Props) {
               {settings.email ? <li><span>{copy.about.email}</span><a href={`mailto:${settings.email}`}>{settings.email}</a></li> : null}
               {settings.whatsappUrl ? <li><span>{copy.about.whatsapp}</span><a href={settings.whatsappUrl}>{copy.about.whatsapp}</a></li> : null}
             </ul>
-            <SocialLinks settings={settings} portfolio={copy.footer.portfolio} newTab={copy.footer.newTab} />
+            <SocialLinks settings={settings} newTab={copy.footer.newTab} />
             <h3>{copy.about.hours}</h3>
             <ul className="hours">
               {settings.hours.map((entry) => (

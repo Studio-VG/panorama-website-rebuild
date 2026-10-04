@@ -687,7 +687,6 @@ function business_json_ld(array $settings, string $lang): array
     $same = array_values(array_filter([
         $settings['instagramUrl'] ?? '',
         $settings['facebookUrl'] ?? '',
-        $settings['portfolioUrl'] ?? '',
         $settings['websiteUrl'] ?? '',
     ]));
     $hours = [];

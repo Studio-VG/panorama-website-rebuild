@@ -1,10 +1,9 @@
 import type { Settings } from "@/lib/types";
 
-export function SocialLinks({ settings, portfolio, newTab }: { settings: Settings; portfolio: string; newTab: string }) {
+export function SocialLinks({ settings, newTab }: { settings: Settings; newTab: string }) {
   const links = [
     ["Instagram", settings.instagramUrl],
     ["Facebook", settings.facebookUrl],
-    [portfolio, settings.portfolioUrl],
   ];
   return (
     <ul className="tags">

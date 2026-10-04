@@ -221,7 +221,6 @@ function social_links(array $settings, array $copy): string
     $links = [
         ['Instagram', $settings['instagramUrl'] ?? ''],
         ['Facebook', $settings['facebookUrl'] ?? ''],
-        [$copy['footer']['portfolio'], $settings['portfolioUrl'] ?? ''],
     ];
     $html = '<ul class="tags">';
     foreach ($links as [$label, $href]) {
@@ -394,11 +393,8 @@ function render_artist(string $lang, array $store, array $copy, string $slug): v
     if ($localized) {
         $body .= paragraphs($view['history']);
     }
-    $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book?artist=' . rawurlencode($view['name']) . '">' . h($copy['artistPage']['request']) . '</a>';
-    if ($artist['slug'] === 'vaso-vasiko') {
-        $body .= '<a class="btn btn-ghost" href="' . h($settings['portfolioUrl']) . '" target="_blank" rel="noopener noreferrer">' . h($copy['artistPage']['portfolio']) . '<span class="sr-only"> (' . h($copy['footer']['newTab']) . ')</span></a>';
-    }
-    $body .= '</div></div></div><section class="section" aria-labelledby="work-heading"><div class="shell"><h2 id="work-heading">' . h($copy['artistPage']['work']) . '</h2><div class="gallery">';
+    $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book?artist=' . rawurlencode($view['name']) . '">' . h($copy['artistPage']['request']) . '</a></div></div></div>';
+    $body .= '<section class="section" aria-labelledby="work-heading"><div class="shell"><h2 id="work-heading">' . h($copy['artistPage']['work']) . '</h2><div class="gallery">';
     foreach ($view['portfolio'] as $image) {
         $body .= '<figure><div class="frame plate-frame"><img src="' . h($image['src']) . '" alt="' . h($image['alt']) . '"></div>';
         if (!empty($image['caption'])) {
@@ -537,7 +533,7 @@ function render_about(string $lang, array $store, array $studio, array $copy): v
     if (!empty($settings['officialName'])) {
         $body .= '<p class="note">' . h($copy['about']['publicName']) . ': ' . h($settings['officialName']) . '. ' . h($studio['officialNameNote']) . '</p>';
     }
-    $body .= '<p><a href="' . h($settings['portfolioUrl']) . '" target="_blank" rel="noopener noreferrer">' . h($copy['about']['portfolio']) . '<span class="sr-only"> (' . h($copy['footer']['newTab']) . ')</span></a></p></div>';
+    $body .= '</div>';
     $body .= '<div class="panel"><h2>' . h($copy['about']['reach']) . ' ' . h($settings['name']) . '</h2><ul class="contact-list">';
     $body .= '<li><span>' . h($copy['about']['address']) . '</span><span>' . h($settings['address']) . '</span></li>';
     $body .= '<li><span>' . h($copy['about']['phone']) . '</span><a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></li>';
