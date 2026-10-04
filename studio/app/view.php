@@ -180,12 +180,16 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
 function studio_map(string $address, string $class = 'map-frame map-compact', string $queryText = ''): string
 {
     $place = trim($address) !== '' ? $address : 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye';
+    $queryText = trim($queryText) !== '' ? $queryText : 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul';
+    $point = map_point($queryText);
+    if ($point) {
+        return '<iframe class="' . h($class) . ' map-dark" title="' . h($place) . '" srcdoc="' . h(dark_map_document($point['lat'], $point['lng'])) . '"></iframe>';
+    }
     $query = http_build_query([
-        'q' => trim($queryText) !== '' ? $queryText : 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul',
+        'q' => $queryText,
         'z' => '19',
         'hl' => 'en',
         'output' => 'embed',
-        'color_scheme' => 'dark',
     ]);
     return '<iframe class="' . h($class) . '" title="' . h($place) . '" src="https://maps.google.com/maps?' . h($query) . '" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 }

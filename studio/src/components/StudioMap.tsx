@@ -1,3 +1,5 @@
+import { darkMapDocument, mapPoint } from "@/lib/mapPoint";
+
 const STUDIO_ADDRESS = "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye";
 export const STUDIO_ADDRESS_FULL = "Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye";
 export const STUDIO_MAPS_LINK = "https://maps.app.goo.gl/peS5AiSXgxieLkbs7";
@@ -9,12 +11,11 @@ export function studioMapSrc(query = STUDIO_MAP_QUERY) {
     z: "19",
     hl: "en",
     output: "embed",
-    color_scheme: "dark",
   });
   return `https://maps.google.com/maps?${params.toString()}`;
 }
 
-export function StudioMap({
+export async function StudioMap({
   address = STUDIO_ADDRESS,
   mapQuery = STUDIO_MAP_QUERY,
   className = "map-frame map-compact",
@@ -24,12 +25,22 @@ export function StudioMap({
   className?: string;
 }) {
   const place = address.trim() || STUDIO_ADDRESS;
+  const point = await mapPoint(mapQuery);
+  if (!point) {
+    return (
+      <iframe
+        className={className}
+        title={place}
+        src={studioMapSrc(mapQuery)}
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    );
+  }
   return (
     <iframe
-      className={className}
+      className={`${className} map-dark`}
       title={place}
-      src={studioMapSrc(mapQuery)}
-      referrerPolicy="no-referrer-when-downgrade"
+      srcDoc={darkMapDocument(point.lat, point.lng)}
     />
   );
 }

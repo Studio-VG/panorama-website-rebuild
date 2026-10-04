@@ -176,6 +176,55 @@ function with_locations(array $store): array
     return $store;
 }
 
+function map_point(string $query): ?array
+{
+    static $points = [];
+    $key = trim($query);
+    if ($key === '') {
+        return null;
+    }
+    if (isset($points[$key])) {
+        return $points[$key];
+    }
+    $url = 'https://maps.google.com/maps?' . http_build_query([
+        'q' => $key,
+        'z' => '19',
+        'hl' => 'en',
+        'output' => 'embed',
+    ]);
+    $context = stream_context_create(['http' => ['timeout' => 5, 'header' => "User-Agent: Mozilla/5.0\r\n"]]);
+    $html = @file_get_contents($url, false, $context);
+    if (!is_string($html) || !preg_match('/\[(-?\d+\.\d+),(-?\d+\.\d+)\]/', $html, $match)) {
+        return null;
+    }
+    $lat = (float) $match[1];
+    $lng = (float) $match[2];
+    if (abs($lat) > 90 || abs($lng) > 180) {
+        return null;
+    }
+    $points[$key] = ['lat' => $lat, 'lng' => $lng];
+    return $points[$key];
+}
+
+function dark_map_document(float $lat, float $lng, int $zoom = 16): string
+{
+    $zoom = max(12, min(18, $zoom));
+    $latJson = json_encode($lat);
+    $lngJson = json_encode($lng);
+    return '<!doctype html><meta charset="utf-8"><style>'
+        . 'html,body{margin:0;height:100%;background:#1c1c1c;overflow:hidden}'
+        . 'img{position:absolute;width:256px;height:256px}'
+        . '.pin{position:absolute;left:50%;top:50%;z-index:2;width:16px;height:16px;margin:-16px 0 0 -8px;background:#e24b3b;border:2px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}'
+        . '.attr{position:absolute;right:4px;bottom:2px;z-index:2;color:#c8c8c8;font:10px/1.2 sans-serif;text-shadow:0 1px 2px #000}'
+        . 'a{color:#ddd}</style><div id="root"></div><div class="pin"></div>'
+        . '<div class="attr">&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a></div><script>'
+        . 'const lat=' . $latJson . ', lng=' . $lngJson . ', z=' . $zoom . ';'
+        . 'function world(lat,lng,z){const n=2**z;const x=(lng+180)/360*n;const s=Math.sin(lat*Math.PI/180);const y=(1-Math.log((1+s)/(1-s))/(2*Math.PI))/2*n;return [x,y];}'
+        . 'function draw(){const w=document.documentElement.clientWidth||320;const h=document.documentElement.clientHeight||210;const [fx,fy]=world(lat,lng,z);const left=w/2-fx*256;const top=h/2-fy*256;const root=document.getElementById("root");root.replaceChildren();const n=2**z;const subs="abcd";let i=0;'
+        . 'for(let x=Math.floor(-left/256)-1;x<=Math.ceil((w-left)/256)+1;x++){for(let y=Math.floor(-top/256)-1;y<=Math.ceil((h-top)/256)+1;y++){if(x<0||y<0||x>=n||y>=n)continue;const img=document.createElement("img");img.alt="";img.src="https://"+subs[i++%4]+".basemaps.cartocdn.com/dark_all/"+z+"/"+x+"/"+y+".png";img.style.left=(left+x*256)+"px";img.style.top=(top+y*256)+"px";root.appendChild(img);}}}'
+        . 'draw();addEventListener("resize", draw);</script>';
+}
+
 function location_fold(string $value): string
 {
     $value = mb_strtolower($value, 'UTF-8');

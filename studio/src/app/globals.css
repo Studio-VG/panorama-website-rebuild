@@ -329,6 +329,7 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
 .contact-list a { color: var(--vermillion-deep); }
 .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; }
 .map-frame { width: 100%; min-height: 320px; border: 0; background: var(--paper-2); }
+.map-frame.map-dark { background: #1c1c1c; }
 .map-frame.map-compact {
   width: min(100%, 260px);
   height: 160px;
