@@ -60,7 +60,7 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Guest tattoo artist in Istanbul", lead: "Guest tattoo artists in Istanbul, and the Marmari Tattoo Festival. Home shows only the featured dates." },
     eventPage: { request: "Request a sitting", all: "All events", other: "Other events", untranslated: "This event has not been translated yet." },
     about: { title: "Istiklal Street tattoo", publicName: "Public name", reach: "Reach", address: "Address", phone: "Phone", also: "Also listed", email: "Email", whatsapp: "WhatsApp", hours: "Hours", google: "Open the Google Business listing", booking: "Open the booking form", portfolio: "Existing portfolio" },
-    book: { title: "Tattoo appointment in Beyoğlu", lead: "Request a tattoo appointment in Beyoğlu. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp." },
+    book: { title: "Tattoo appointment", lead: "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp." },
     styles: {
       title: "Japanese tattoo in Istanbul",
       lead: "Japanese tattoo in Istanbul is the centre of the bench: irezumi and new traditional, plus the black and grey custom work done here.",
@@ -140,7 +140,7 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Misafir dövme sanatçısı", lead: "İstanbul’da misafir dövme sanatçısı günleri ve Marmari dövme festivali. Ana sayfa yalnızca öne çıkan tarihleri gösterir." },
     eventPage: { request: "Randevu iste", all: "Tüm etkinlikler", other: "Diğer etkinlikler", untranslated: "Bu etkinlik henüz çevrilmedi." },
     about: { title: "İstiklal dövme", publicName: "Kamuya açık ad", reach: "Ulaşın", address: "Adres", phone: "Telefon", also: "Ayrıca kayıtlı", email: "E-posta", whatsapp: "WhatsApp", hours: "Saatler", google: "Google Business kaydını aç", booking: "Randevu formunu aç", portfolio: "Mevcut portfolyo" },
-    book: { title: "Dövme randevu Beyoğlu", lead: "Beyoğlu’nda dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner." },
+    book: { title: "Dövme randevusu", lead: "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner." },
     styles: {
       title: "Japon dövmesi",
       lead: "Stüdyonun ortasında Japon dövmesi var: irezumi ve yeni traditional, yanında siyah-gri özel iş.",
@@ -220,7 +220,7 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Gasttätowierer in Istanbul", lead: "Gasttätowierer in Istanbul und das Marmari Tattoo Festival. Die Startseite zeigt nur die hervorgehobenen Daten." },
     eventPage: { request: "Sitzung anfragen", all: "Alle Termine", other: "Weitere Termine", untranslated: "Dieser Termin ist noch nicht übersetzt." },
     about: { title: "Tattoo an der Istiklal", publicName: "Öffentlicher Name", reach: "Erreichen", address: "Adresse", phone: "Telefon", also: "Außerdem genannt", email: "E-Mail", whatsapp: "WhatsApp", hours: "Zeiten", google: "Google-Business-Eintrag öffnen", booking: "Zum Terminformular", portfolio: "Bestehendes Portfolio" },
-    book: { title: "Tattoo-Termin in Beyoğlu", lead: "Einen Tattoo-Termin in Beyoğlu anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp." },
+    book: { title: "Tattoo-Termin", lead: "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp." },
     styles: {
       title: "Japanisches Tattoo in Istanbul",
       lead: "Japanisches Tattoo in Istanbul steht in der Mitte: Irezumi und New Traditional, dazu schwarz-graue Einzelstücke.",
@@ -300,7 +300,7 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Приглашённый тату-мастер в Стамбуле", lead: "Приглашённые тату-мастера в Стамбуле и фестиваль Marmari. На главной только отмеченные даты." },
     eventPage: { request: "Запросить сеанс", all: "Все события", other: "Другие события", untranslated: "Это событие ещё не переведено." },
     about: { title: "Тату на Истикляль", publicName: "Публичное имя", reach: "Связь", address: "Адрес", phone: "Телефон", also: "Также указан", email: "Почта", whatsapp: "WhatsApp", hours: "Часы", google: "Открыть карточку Google Business", booking: "Открыть форму записи", portfolio: "Существующее портфолио" },
-    book: { title: "Запись на тату в Бейоглу", lead: "Запись на тату в Бейоглу. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp." },
+    book: { title: "Запись на тату", lead: "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp." },
     styles: {
       title: "Японская татуировка в Стамбуле",
       lead: "В центре студии японская татуировка в Стамбуле: ирэдзуми и нью-традишнл, рядом чёрно-серые заказные вещи.",
