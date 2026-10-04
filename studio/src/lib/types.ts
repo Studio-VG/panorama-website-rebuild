@@ -69,9 +69,18 @@ export type Inquiry = {
   createdAt: string;
 };
 
+export type Location = {
+  id: string;
+  name: string;
+  address: string;
+  mapsUrl: string;
+  mapQuery: string;
+};
+
 export type Store = {
   settings: Settings;
   artists: Artist[];
   events: StudioEvent[];
   inquiries: Inquiry[];
+  locations: Location[];
 };

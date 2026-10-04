@@ -1,8 +1,9 @@
 import { telHref } from "@/lib/format";
+import { serviceNames } from "@/lib/locations";
 import type { Locale } from "@/lib/locale";
 import type { Messages } from "@/lib/messages";
-import type { Settings } from "@/lib/types";
-import { STUDIO_ADDRESS_FULL, STUDIO_MAPS_LINK, StudioMap } from "@/components/StudioMap";
+import type { Location, Settings } from "@/lib/types";
+import { StudioMap } from "@/components/StudioMap";
 
 function PinIcon() {
   return (
@@ -45,38 +46,43 @@ function FacebookIcon() {
   );
 }
 
-export function SiteFooter({ settings, lang, labels }: {
+export function SiteFooter({ settings, locations, lang, labels }: {
   settings: Settings;
+  locations: Location[];
   lang: Locale;
   labels: Messages["footer"];
 }) {
   const email = "termini@vasovasiko.com";
+  const many = locations.length > 1;
+  const names = serviceNames(locations, labels.germany);
   return (
     <footer className="site-footer" data-lang={lang}>
       <div className="shell">
         <section className="location-panel" aria-label={labels.location}>
           <h2 className="location-heading"><PinIcon />{labels.location}</h2>
-          <div className="location-grid">
-            <div className="map-card">
-              <StudioMap address={STUDIO_ADDRESS_FULL} className="map-frame map-card-frame" />
-              <div className="map-card-body">
-                <a className="map-open" href={STUDIO_MAPS_LINK} target="_blank" rel="noopener noreferrer">
-                  <PinIcon />
-                  {labels.openMaps}
-                  <span className="sr-only"> ({labels.newTab})</span>
-                </a>
-                <address>{STUDIO_ADDRESS_FULL}</address>
-                <a className="map-directions" href={STUDIO_MAPS_LINK} target="_blank" rel="noopener noreferrer">
-                  {labels.directions}
-                  <span className="sr-only"> ({labels.newTab})</span>
-                </a>
+          <div className={many ? "location-grid locations-many" : "location-grid"}>
+            {locations.map((place) => (
+              <div className="map-card" key={place.id}>
+                {many ? <h3 className="place-name">{place.name}</h3> : null}
+                <StudioMap address={place.address} mapQuery={place.mapQuery} className="map-frame map-card-frame" />
+                <div className="map-card-body">
+                  <a className="map-open" href={place.mapsUrl} target="_blank" rel="noopener noreferrer">
+                    <PinIcon />
+                    {labels.openMaps}
+                    <span className="sr-only"> ({labels.newTab})</span>
+                  </a>
+                  <address>{place.address}</address>
+                  <a className="map-directions" href={place.mapsUrl} target="_blank" rel="noopener noreferrer">
+                    {labels.directions}
+                    <span className="sr-only"> ({labels.newTab})</span>
+                  </a>
+                </div>
               </div>
-            </div>
+            ))}
             <div className="service-col">
               <h3>{labels.serviceArea}</h3>
               <ul className="service-list">
-                <li><PinIcon />{labels.istanbul}</li>
-                <li><PinIcon />{labels.germany}</li>
+                {names.map((name, index) => <li key={`${name}-${index}`}><PinIcon />{name}</li>)}
               </ul>
               <div className="contact-rows">
                 <p><PhoneIcon /><a href={telHref(settings.phone)}>{settings.phone}</a></p>
@@ -97,7 +103,7 @@ export function SiteFooter({ settings, lang, labels }: {
               </div>
             </div>
           </div>
-          <p className="location-line">{labels.areaLine}</p>
+          <p className="location-line">{names.join(" • ")}</p>
         </section>
       </div>
       <div className="shell"><p className="fine">{labels.note}</p></div>

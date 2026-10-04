@@ -18,7 +18,7 @@ export default async function LangLayout({
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const copy = messages[lang];
-  const { settings } = getStore();
+  const { settings, locations } = getStore();
   const view = localizeSettings(settings, lang);
 
   return (
@@ -26,7 +26,7 @@ export default async function LangLayout({
       <a className="skip" href="#content">{copy.nav.skip}</a>
       <SiteHeader name={settings.name} logo={settings.logoUrl} lang={lang} labels={copy.nav} />
       <main id="content">{children}</main>
-      <SiteFooter settings={view} lang={lang} labels={copy.footer} />
+      <SiteFooter settings={view} locations={locations} lang={lang} labels={copy.footer} />
       <JsonLd data={businessJsonLd({ ...settings, tagline: view.tagline }, lang)} />
     </div>
   );

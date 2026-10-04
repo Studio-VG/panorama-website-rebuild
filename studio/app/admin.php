@@ -39,7 +39,7 @@ function handle_admin(string $method, string $path): void
 function admin_tab(): string
 {
     $tab = (string) ($_GET['tab'] ?? $_POST['tab'] ?? 'settings');
-    return in_array($tab, ['settings', 'artists', 'events', 'inquiries'], true) ? $tab : 'settings';
+    return in_array($tab, ['settings', 'artists', 'events', 'inquiries', 'locations'], true) ? $tab : 'settings';
 }
 
 function admin_post(string $path): never
@@ -71,6 +71,9 @@ function admin_post(string $path): never
     }
     if ($path === '/admin/events') {
         admin_save_event();
+    }
+    if ($path === '/admin/locations') {
+        admin_save_location();
     }
     if ($path === '/admin/inquiries') {
         $id = text_field($_POST['id'] ?? '', 80);
@@ -488,7 +491,7 @@ function admin_shell(array $store, string $tab, string $error, string $notice): 
         $html .= '<p class="form-error" role="status">' . h(store_write_message()) . '</p>';
     }
     $html .= '<div class="tabs" role="tablist" aria-label="Admin sections">';
-    foreach (['settings', 'artists', 'events', 'inquiries'] as $item) {
+    foreach (['settings', 'artists', 'events', 'inquiries', 'locations'] as $item) {
         $current = $item === $tab ? ' aria-current="page"' : '';
         $html .= '<a class="btn btn-ink" role="tab" href="/admin?tab=' . h($item) . '"' . $current . '>' . h(ucfirst($item)) . '</a>';
     }
@@ -505,6 +508,8 @@ function admin_shell(array $store, string $tab, string $error, string $notice): 
         $html .= admin_artists_form($store['artists']);
     } elseif ($tab === 'events') {
         $html .= admin_events_form($store['events']);
+    } elseif ($tab === 'locations') {
+        $html .= admin_locations_form($store['locations'] ?? []);
     } else {
         $html .= admin_inquiries($store['inquiries'] ?? []);
     }
@@ -636,6 +641,106 @@ function admin_events_form(array $events): string
     if ($current) {
         $html .= '<label class="check" for="event-confirm"><input id="event-confirm" type="checkbox" name="confirm_delete" value="1"> Confirm delete</label>';
         $html .= '<button class="btn danger" name="action" value="delete" type="submit">Delete event</button>';
+    }
+    return $html . '</form></div>';
+}
+
+function location_from(array $input, ?array $existing): array
+{
+    $name = text_field($input['name'] ?? '', 80);
+    $address = text_field($input['address'] ?? '', 300);
+    $maps = text_field($input['mapsUrl'] ?? '', 400);
+    $query = text_field($input['mapQuery'] ?? '', 300);
+    if (mb_strlen($name) < 2) {
+        return ['error' => 'A location name is required.'];
+    }
+    if (mb_strlen($address) < 8) {
+        return ['error' => 'Add the full address.'];
+    }
+    if (!preg_match('#^https?://#i', $maps)) {
+        return ['error' => 'Add a Google Maps link.'];
+    }
+    if (mb_strlen($query) < 8) {
+        return ['error' => 'Add the map query for the pin.'];
+    }
+    if (preg_match('#^https?://#i', $query)) {
+        return ['error' => 'The map query should be the street, not a link.'];
+    }
+    return ['location' => [
+        'id' => $existing['id'] ?? bin2hex(random_bytes(8)),
+        'name' => $name,
+        'address' => $address,
+        'mapsUrl' => $maps,
+        'mapQuery' => $query,
+    ]];
+}
+
+function admin_save_location(): never
+{
+    $store = store_load();
+    $id = text_field($_POST['id'] ?? '', 80);
+    $existing = null;
+    foreach ($store['locations'] ?? [] as $place) {
+        if ($id !== '' && ($place['id'] ?? '') === $id) {
+            $existing = $place;
+            break;
+        }
+    }
+    if (($_POST['action'] ?? '') === 'delete') {
+        if (!$existing) {
+            throw new RuntimeException('Choose a location to remove.');
+        }
+        $store['locations'] = array_values(array_filter(
+            $store['locations'] ?? [],
+            static fn (array $place): bool => ($place['id'] ?? '') !== $id
+        ));
+        store_save($store);
+        redirect('/admin?tab=locations&notice=location-removed');
+    }
+    $result = location_from($_POST, $existing);
+    if (isset($result['error'])) {
+        throw new RuntimeException($result['error']);
+    }
+    if ($existing) {
+        foreach ($store['locations'] as $index => $place) {
+            if (($place['id'] ?? '') === $id) {
+                $store['locations'][$index] = $result['location'];
+            }
+        }
+    } else {
+        $store['locations'][] = $result['location'];
+    }
+    store_save($store);
+    redirect('/admin?tab=locations&id=' . rawurlencode($result['location']['id']) . '&notice=location-saved');
+}
+
+function admin_locations_form(array $locations): string
+{
+    $selected = text_field($_GET['id'] ?? '', 80);
+    $current = null;
+    foreach ($locations as $place) {
+        if (($place['id'] ?? '') === $selected) {
+            $current = $place;
+            break;
+        }
+    }
+    $html = '<div class="admin-grid"><div>';
+    $html .= '<a class="list-btn" id="add-location" href="/admin?tab=locations"' . ($current ? '' : ' aria-current="true"') . '>Add location</a>';
+    foreach ($locations as $place) {
+        $on = $current && ($current['id'] ?? '') === ($place['id'] ?? '') ? ' aria-current="true"' : '';
+        $html .= '<a class="list-btn" href="/admin?tab=locations&amp;id=' . h($place['id']) . '"' . $on . '>' . h($place['name']) . '</a>';
+    }
+    $html .= '</div><form method="post" action="/admin/locations">';
+    $html .= '<input type="hidden" name="id" value="' . h($current['id'] ?? '') . '">';
+    $html .= '<input type="hidden" name="tab" value="locations">';
+    $html .= '<p>Germany stays in the service area until a saved location uses that name. The map query is the street for the pin, not a share link.</p>';
+    $html .= '<label for="location-name">Name<input id="location-name" name="name" value="' . h($current['name'] ?? '') . '" required></label>';
+    $html .= '<label for="location-address">Full address<textarea id="location-address" name="address" required>' . h($current['address'] ?? '') . '</textarea></label>';
+    $html .= '<label for="location-maps">Google Maps link<input id="location-maps" name="mapsUrl" value="' . h($current['mapsUrl'] ?? '') . '" required></label>';
+    $html .= '<label for="location-query">Map query<textarea id="location-query" name="mapQuery" required>' . h($current['mapQuery'] ?? '') . '</textarea></label>';
+    $html .= '<button class="btn btn-ink" id="location-save" name="action" value="save" type="submit">' . ($current ? 'Save location' : 'Add location') . '</button>';
+    if ($current) {
+        $html .= '<button class="btn danger" id="location-remove" name="action" value="delete" type="submit">Remove location</button>';
     }
     return $html . '</form></div>';
 }

@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import type { Artist, Inquiry, PortfolioImage, Settings, Store, StudioEvent } from "./types";
+import type { Artist, Inquiry, Location, PortfolioImage, Settings, Store, StudioEvent } from "./types";
 import { slugify } from "./format";
 
 function text(value: unknown, max: number) {
@@ -175,6 +175,28 @@ export function inquiryFrom(body: unknown): { inquiry?: Inquiry; error?: string 
       artist: artist || "No preference",
       message,
       createdAt: new Date().toISOString(),
+    },
+  };
+}
+
+export function locationFrom(body: unknown, existing?: Location): { location?: Location; error?: string } {
+  const input = (body ?? {}) as Partial<Location>;
+  const name = text(input.name, 80);
+  const address = text(input.address, 300);
+  const mapsUrl = text(input.mapsUrl, 400);
+  const mapQuery = text(input.mapQuery, 300);
+  if (name.length < 2) return { error: "A location name is required." };
+  if (address.length < 8) return { error: "Add the full address." };
+  if (!/^https?:\/\//i.test(mapsUrl)) return { error: "Add a Google Maps link." };
+  if (mapQuery.length < 8) return { error: "Add the map query for the pin." };
+  if (/^https?:\/\//i.test(mapQuery)) return { error: "The map query should be the street, not a link." };
+  return {
+    location: {
+      id: existing?.id || text(input.id, 80) || randomUUID(),
+      name,
+      address,
+      mapsUrl,
+      mapQuery,
     },
   };
 }

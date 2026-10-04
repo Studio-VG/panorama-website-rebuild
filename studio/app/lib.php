@@ -128,7 +128,73 @@ function content_tables(): array
 function seed_store(): array
 {
     $data = json_decode((string) file_get_contents(studio_root() . '/data/store.json'), true);
-    return is_array($data) ? $data : ['settings' => [], 'artists' => [], 'events' => [], 'inquiries' => []];
+    return is_array($data) ? $data : ['settings' => [], 'artists' => [], 'events' => [], 'inquiries' => [], 'locations' => []];
+}
+
+function istanbul_location(): array
+{
+    return [
+        'id' => 'loc-istanbul',
+        'name' => 'Istanbul',
+        'address' => 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye',
+        'mapsUrl' => 'https://maps.app.goo.gl/peS5AiSXgxieLkbs7',
+        'mapQuery' => 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul',
+    ];
+}
+
+function studio_locations(array $store): array
+{
+    $items = $store['locations'] ?? [];
+    $clean = [];
+    if (is_array($items)) {
+        foreach ($items as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+            $name = trim((string) ($item['name'] ?? ''));
+            $address = trim((string) ($item['address'] ?? ''));
+            $maps = trim((string) ($item['mapsUrl'] ?? ''));
+            $query = trim((string) ($item['mapQuery'] ?? ''));
+            if ($name === '' || $address === '' || $maps === '' || $query === '') {
+                continue;
+            }
+            $clean[] = [
+                'id' => trim((string) ($item['id'] ?? '')) ?: bin2hex(random_bytes(8)),
+                'name' => $name,
+                'address' => $address,
+                'mapsUrl' => $maps,
+                'mapQuery' => $query,
+            ];
+        }
+    }
+    return $clean === [] ? [istanbul_location()] : $clean;
+}
+
+function with_locations(array $store): array
+{
+    $store['locations'] = studio_locations($store);
+    return $store;
+}
+
+function location_service_names(array $locations, string $germany): array
+{
+    $names = [];
+    $replaced = false;
+    foreach ($locations as $place) {
+        $name = trim((string) ($place['name'] ?? ''));
+        if ($name === '') {
+            continue;
+        }
+        $names[] = $name;
+        $lower = mb_strtolower($name);
+        if ($lower === mb_strtolower($germany) || $lower === 'germany') {
+            $replaced = true;
+        }
+    }
+    if (!$replaced) {
+        $names[] = $germany;
+    }
+    return $names;
 }
 
 function store_mode(): string
@@ -183,7 +249,7 @@ function store_load(): array
     } else {
         $loaded = seed_store();
     }
-    $slot = with_event_slugs($loaded);
+    $slot = with_locations(with_event_slugs($loaded));
     return $slot;
 }
 

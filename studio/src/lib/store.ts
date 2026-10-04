@@ -2,7 +2,8 @@ import fs from "fs";
 import path from "path";
 import defaultStore from "../../data/store.json";
 import { slugify } from "./format";
-import type { Store } from "./types";
+import { ISTANBUL_LOCATION } from "./locations";
+import type { Location, Store } from "./types";
 
 const file = path.join(process.cwd(), "data", "store.json");
 
@@ -29,10 +30,26 @@ function withEventSlugs(store: Store): Store {
   return store;
 }
 
+function withLocations(store: Store): Store {
+  const raw = Array.isArray(store.locations) ? store.locations : [];
+  const locations = raw.map((item) => {
+    const place = item as Partial<Location>;
+    return {
+      id: String(place.id || "").trim(),
+      name: String(place.name || "").trim(),
+      address: String(place.address || "").trim(),
+      mapsUrl: String(place.mapsUrl || "").trim(),
+      mapQuery: String(place.mapQuery || "").trim(),
+    };
+  }).filter((place) => place.name && place.address && place.mapsUrl && place.mapQuery);
+  store.locations = locations.length > 0 ? locations : [{ ...ISTANBUL_LOCATION }];
+  return store;
+}
+
 export function getStore(): Store {
   ensure();
   const parsed = JSON.parse(fs.readFileSync(file, "utf8")) as Store;
-  return withEventSlugs(parsed);
+  return withLocations(withEventSlugs(parsed));
 }
 
 export function saveStore(store: Store) {

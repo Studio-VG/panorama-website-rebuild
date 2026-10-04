@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import type { Artist, PortfolioImage, Settings, Store, StudioEvent } from "@/lib/types";
+import type { Artist, Location, PortfolioImage, Settings, Store, StudioEvent } from "@/lib/types";
 
-type Tab = "settings" | "artists" | "events" | "inquiries";
+type Tab = "settings" | "artists" | "events" | "inquiries" | "locations";
 type Session = Store & { authenticated: true };
 
 const emptyArtist = {
@@ -110,7 +110,7 @@ export function AdminApp() {
         <h1>Studio admin</h1>
         <p>Changes are saved in <code>data/store.json</code> and stay after a restart. Uploaded images go to <code>data/uploads</code>.</p>
         <div className="tabs" role="tablist" aria-label="Admin sections">
-          {(["settings", "artists", "events", "inquiries"] as Tab[]).map((item) => (
+          {(["settings", "artists", "events", "inquiries", "locations"] as Tab[]).map((item) => (
             <button key={item} className="btn btn-ink" type="button" role="tab" aria-selected={tab === item} onClick={() => { setTab(item); setMessage(""); setError(""); }}>
               {item[0].toUpperCase() + item.slice(1)}
             </button>
@@ -123,6 +123,7 @@ export function AdminApp() {
         {tab === "artists" ? <ArtistsForm artists={store.artists} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
         {tab === "events" ? <EventsForm events={store.events} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
         {tab === "inquiries" ? <Inquiries inquiries={store.inquiries} onDone={async (text) => { setMessage(text); await reload(); }} /> : null}
+        {tab === "locations" ? <LocationsForm locations={store.locations} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
       </div>
     </section>
   );
@@ -454,6 +455,84 @@ function EventsForm({ events, onDone, onError }: { events: StudioEvent[]; onDone
         {selected !== "new" ? (
           <button className="btn danger" id="event-delete" type="button" onClick={() => void remove()}>
             {confirming ? "Confirm delete" : "Delete event"}
+          </button>
+        ) : null}
+      </form>
+    </div>
+  );
+}
+
+const emptyLocation = { name: "", address: "", mapsUrl: "", mapQuery: "" };
+
+function LocationsForm({ locations, onDone, onError }: { locations: Location[]; onDone: (text: string) => Promise<void>; onError: (text: string) => void }) {
+  const [selected, setSelected] = useState<string>("new");
+  const [confirming, setConfirming] = useState(false);
+  const [draft, setDraft] = useState(emptyLocation);
+
+  useEffect(() => {
+    if (selected === "new") {
+      setDraft(emptyLocation);
+      return;
+    }
+    const place = locations.find((item) => item.id === selected);
+    if (!place) return;
+    setDraft({ name: place.name, address: place.address, mapsUrl: place.mapsUrl, mapQuery: place.mapQuery });
+  }, [selected, locations]);
+
+  async function save(event: FormEvent) {
+    event.preventDefault();
+    onError("");
+    const response = await fetch(selected === "new" ? "/api/admin/locations" : `/api/admin/locations/${selected}`, {
+      method: selected === "new" ? "POST" : "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(draft),
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) return onError(body.error || "Could not save the location.");
+    setSelected(body.location.id);
+    await onDone(selected === "new" ? "Location added." : "Location updated.");
+  }
+
+  async function remove() {
+    if (!confirming) {
+      setConfirming(true);
+      return;
+    }
+    const response = await fetch(`/api/admin/locations/${selected}`, { method: "DELETE" });
+    if (!response.ok) return onError("Could not remove the location.");
+    setSelected("new");
+    setConfirming(false);
+    await onDone("Location removed.");
+  }
+
+  return (
+    <div className="admin-grid">
+      <div>
+        <button className="list-btn" id="add-location" type="button" aria-current={selected === "new"} onClick={() => { setSelected("new"); setConfirming(false); }}>Add location</button>
+        {locations.map((place) => (
+          <button className="list-btn" type="button" key={place.id} aria-current={selected === place.id} onClick={() => { setSelected(place.id); setConfirming(false); }}>
+            {place.name}
+          </button>
+        ))}
+      </div>
+      <form onSubmit={save}>
+        <p>Germany stays in the service area until a saved location uses that name. The map query is the street for the pin, not a share link.</p>
+        <label htmlFor="location-name">Name
+          <input id="location-name" value={draft.name} onChange={(event) => setDraft({ ...draft, name: event.target.value })} required />
+        </label>
+        <label htmlFor="location-address">Full address
+          <textarea id="location-address" value={draft.address} onChange={(event) => setDraft({ ...draft, address: event.target.value })} required />
+        </label>
+        <label htmlFor="location-maps">Google Maps link
+          <input id="location-maps" value={draft.mapsUrl} onChange={(event) => setDraft({ ...draft, mapsUrl: event.target.value })} required />
+        </label>
+        <label htmlFor="location-query">Map query
+          <textarea id="location-query" value={draft.mapQuery} onChange={(event) => setDraft({ ...draft, mapQuery: event.target.value })} required />
+        </label>
+        <button className="btn btn-ink" id="location-save" type="submit">{selected === "new" ? "Add location" : "Save location"}</button>
+        {selected !== "new" ? (
+          <button className="btn danger" id="location-remove" type="button" onClick={() => void remove()}>
+            {confirming ? "Confirm remove" : "Remove location"}
           </button>
         ) : null}
       </form>

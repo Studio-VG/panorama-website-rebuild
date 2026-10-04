@@ -201,5 +201,14 @@
       "featured": false
     }
   ],
+  "locations": [
+    {
+      "id": "loc-istanbul",
+      "name": "Istanbul",
+      "address": "Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye",
+      "mapsUrl": "https://maps.app.goo.gl/peS5AiSXgxieLkbs7",
+      "mapQuery": "Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul"
+    }
+  ],
   "inquiries": []
 }
