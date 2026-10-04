@@ -436,8 +436,8 @@ textarea { min-height: 140px; resize: vertical; }
 }
 .contact-rows { color: var(--gold-2); }
 .contact-rows a { color: inherit; text-decoration: none; }
-.location-social { display: flex; gap: 0.7rem; }
-.location-social a { color: var(--gold-2); display: inline-flex; }
+.location-social { display: flex; gap: 1rem; flex-wrap: wrap; }
+.location-social a { color: var(--gold-2); display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; font-weight: 600; }
 .location-line {
   text-align: center;
   margin: 0.95rem 0 0.15rem;

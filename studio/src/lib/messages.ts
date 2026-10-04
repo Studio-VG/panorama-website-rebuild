@@ -41,7 +41,7 @@ export const messages: Record<Locale, Messages> = {
     status: { Upcoming: "Upcoming", Past: "Past", Now: "Now", featured: "Featured on home" },
     home: {
       heroTitle: "Best tattoo artists",
-      intro: "A tattoo studio in Istanbul, on Istiklal Street in Beyoğlu. The artists also work in Germany.",
+      intro: "A professional tattoo studio in Germany and Istanbul, Turkey.",
       eventsKicker: "Special events",
       eventsTitle: "Guests and gatherings",
       eventsLead: "Visiting artists from other countries, and days such as the Marmari Tattoo Festival.",
@@ -121,7 +121,7 @@ export const messages: Record<Locale, Messages> = {
     status: { Upcoming: "Yaklaşan", Past: "Geçmiş", Now: "Şimdi", featured: "Ana sayfada" },
     home: {
       heroTitle: "En iyi dövme sanatçıları",
-      intro: "İstiklal’de, Beyoğlu’nda bir İstanbul dövme stüdyosu. Sanatçılar Almanya’da da çalışıyor.",
+      intro: "Almanya ve İstanbul, Türkiye’de profesyonel bir dövme stüdyosu.",
       eventsKicker: "Özel etkinlikler",
       eventsTitle: "Misafirler ve buluşmalar",
       eventsLead: "Başka ülkelerden misafir dövme sanatçıları ve Marmari dövme festivali gibi günler.",
@@ -201,7 +201,7 @@ export const messages: Record<Locale, Messages> = {
     status: { Upcoming: "Kommend", Past: "Vergangen", Now: "Jetzt", featured: "Auf der Startseite" },
     home: {
       heroTitle: "Die besten Tätowierer",
-      intro: "Ein Tattoo-Studio in Istanbul, an der Istiklal in Beyoğlu. Die Künstler arbeiten auch in Deutschland.",
+      intro: "Ein professionelles Tattoo-Studio in Deutschland und Istanbul, Türkei.",
       eventsKicker: "Besondere Termine",
       eventsTitle: "Gäste und Treffen",
       eventsLead: "Gasttätowierer aus anderen Ländern und Tage wie das Marmari Tattoo Festival.",
@@ -281,7 +281,7 @@ export const messages: Record<Locale, Messages> = {
     status: { Upcoming: "Скоро", Past: "Прошло", Now: "Сейчас", featured: "На главной" },
     home: {
       heroTitle: "Лучшие тату-мастера",
-      intro: "Тату-студия в Стамбуле, на улице Истикляль в Бейоглу. Мастера также работают в Германии.",
+      intro: "Профессиональная тату-студия в Германии и Стамбуле, Турция.",
       eventsKicker: "Особые даты",
       eventsTitle: "Гости и встречи",
       eventsLead: "Приглашённые мастера из других стран и дни вроде фестиваля Marmari.",

@@ -215,8 +215,8 @@ function site_footer(string $lang, array $settings, array $copy): string
         $html .= '<p><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.2 3.4h2.2l1.1 3.2-1.6 1a12 12 0 0 0 5.5 5.5l1-1.6 3.2 1.1v2.2c0 .8-.6 1.5-1.4 1.6A14.6 14.6 0 0 1 5.6 4.8c.1-.8.8-1.4 1.6-1.4z"/></svg><a href="' . h(tel_href($settings['phoneAlt'])) . '">' . h($settings['phoneAlt']) . '</a></p>';
     }
     $html .= '<p><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.5 6.2h17v11.6h-17V6.2zm8.5 6.4 7-4.4H5l7 4.4z"/></svg><a href="mailto:' . h($email) . '">' . h($email) . '</a></p></div>';
-    $html .= '<div class="location-social"><a href="' . h($settings['instagramUrl']) . '" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 3.5h8A4.5 4.5 0 0 1 20.5 8v8a4.5 4.5 0 0 1-4.5 4.5H8A4.5 4.5 0 0 1 3.5 16V8A4.5 4.5 0 0 1 8 3.5zm8 1.6H8A2.9 2.9 0 0 0 5.1 8v8A2.9 2.9 0 0 0 8 18.9h8a2.9 2.9 0 0 0 2.9-2.9V8A2.9 2.9 0 0 0 16 5.1zM12 8.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8zm4.35-2.55a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z"/></svg></a>';
-    $html .= '<a href="' . h($settings['facebookUrl']) . '" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 20.5v-7.2h2.4l.4-2.8h-2.8V8.8c0-.8.2-1.4 1.4-1.4H17V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.4v2.8h2.4v7.1h2.9z"/></svg></a></div></div></div>';
+    $html .= '<div class="location-social"><a href="https://www.instagram.com/vasovasiko/" target="_blank" rel="noopener noreferrer"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 3.5h8A4.5 4.5 0 0 1 20.5 8v8a4.5 4.5 0 0 1-4.5 4.5H8A4.5 4.5 0 0 1 3.5 16V8A4.5 4.5 0 0 1 8 3.5zm8 1.6H8A2.9 2.9 0 0 0 5.1 8v8A2.9 2.9 0 0 0 8 18.9h8a2.9 2.9 0 0 0 2.9-2.9V8A2.9 2.9 0 0 0 16 5.1zM12 8.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8zm4.35-2.55a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z"/></svg>Instagram</a>';
+    $html .= '<a href="https://www.facebook.com/vasovasiko" target="_blank" rel="noopener noreferrer"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 20.5v-7.2h2.4l.4-2.8h-2.8V8.8c0-.8.2-1.4 1.4-1.4H17V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.4v2.8h2.4v7.1h2.9z"/></svg>Facebook</a></div></div></div>';
     $html .= '<p class="location-line">' . h($labels['areaLine']) . '</p></section></div>';
     $html .= '<div class="shell"><p class="fine">' . h($labels['note']) . '</p></div></footer>';
     return $html;
@@ -305,8 +305,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     $body .= '<h1>' . h($copy['home']['heroTitle']) . '</h1>';
     $body .= '<p class="lede">' . h($studio['tagline']) . '</p><p>' . h($copy['home']['intro']) . '</p><p>' . h($studio['heroLead']) . '</p>';
     $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a>';
-    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/artists">' . h($copy['home']['allArtists']) . '</a></div>';
-    $body .= social_links($settings, $copy) . '</div>';
+    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/artists">' . h($copy['home']['allArtists']) . '</a></div></div>';
     $body .= '<div class="hero-art frame"><img src="/art/hero-back.jpg" alt="' . h($copy['home']['heroAlt']) . '"></div></section>';
 
     $body .= '<section class="section paper home-artists" aria-labelledby="artists-heading"><div class="shell"><div class="section-head"><div>';

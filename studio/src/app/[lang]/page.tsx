@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
-import { SocialLinks } from "@/components/SocialLinks";
 import { StudioImage } from "@/components/StudioImage";
 import { localizeArtist, localizeEvent, localizeSettings } from "@/lib/content";
 import { eventStatus } from "@/lib/format";
@@ -56,7 +55,6 @@ export default async function HomePage({ params }: Props) {
             <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>
             <Link className="btn btn-ghost" href={`/${lang}/artists`}>{copy.home.allArtists}</Link>
           </div>
-          <SocialLinks settings={settings} newTab={copy.footer.newTab} />
         </div>
         <div className="hero-art frame">
           <StudioImage src="/art/hero-back.jpg" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />

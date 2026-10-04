@@ -84,12 +84,14 @@ export function SiteFooter({ settings, lang, labels }: {
                 <p><MailIcon /><a href={`mailto:${email}`}>{email}</a></p>
               </div>
               <div className="location-social">
-                <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <a href="https://www.instagram.com/vasovasiko/" target="_blank" rel="noopener noreferrer">
                   <InstagramIcon />
+                  Instagram
                   <span className="sr-only"> ({labels.newTab})</span>
                 </a>
-                <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <a href="https://www.facebook.com/vasovasiko" target="_blank" rel="noopener noreferrer">
                   <FacebookIcon />
+                  Facebook
                   <span className="sr-only"> ({labels.newTab})</span>
                 </a>
               </div>
