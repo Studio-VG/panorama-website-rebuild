@@ -37,24 +37,28 @@ export function SiteHeader({
             <small>{labels.kicker}</small>
           </span>
         </Link>
-        <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen((value) => !value)}>
-          {open ? labels.close : labels.menu}
-        </button>
-        <ul id="site-menu" className={open ? "nav-links open" : "nav-links"}>
-          {onAdmin ? null : links.map(([href, label]) => (
-            <li key={href}><Link href={href} onClick={() => setOpen(false)}>{label}</Link></li>
-          ))}
-          {onAdmin ? null : <li><Link className="btn" href={`/${lang}/book`} onClick={() => setOpen(false)}>{labels.book}</Link></li>}
-          <li>
-            <nav className="langs" aria-label={labels.languages}>
-              {locales.map((code) => (
-                <Link key={code} href={switchLocale(onAdmin ? "/en" : pathname, code)} hrefLang={code} lang={code} aria-current={code === lang && !onAdmin ? "page" : undefined}>
-                  {code.toUpperCase()}
-                </Link>
+        {onAdmin ? null : (
+          <>
+            <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen((value) => !value)}>
+              {open ? labels.close : labels.menu}
+            </button>
+            <ul id="site-menu" className={open ? "nav-links open" : "nav-links"}>
+              {links.map(([href, label]) => (
+                <li key={href}><Link href={href} onClick={() => setOpen(false)}>{label}</Link></li>
               ))}
-            </nav>
-          </li>
-        </ul>
+              <li><Link className="btn" href={`/${lang}/book`} onClick={() => setOpen(false)}>{labels.book}</Link></li>
+              <li>
+                <nav className="langs" aria-label={labels.languages}>
+                  {locales.map((code) => (
+                    <Link key={code} href={switchLocale(pathname, code)} hrefLang={code} lang={code} aria-current={code === lang ? "page" : undefined}>
+                      {code.toUpperCase()}
+                    </Link>
+                  ))}
+                </nav>
+              </li>
+            </ul>
+          </>
+        )}
       </div>
     </header>
   );

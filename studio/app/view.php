@@ -159,21 +159,21 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
     $html = '<header class="site-header"><div class="shell header-inner">';
     $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
     $html .= '<span><span class="brand-name">' . h($settings['name']) . '</span><small>' . h($copy['nav']['kicker']) . '</small></span></a>';
-    $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">' . h($copy['nav']['menu']) . '</button>';
-    $html .= '<ul id="site-menu" class="nav-links">';
     if ($publicNav) {
+        $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">' . h($copy['nav']['menu']) . '</button>';
+        $html .= '<ul id="site-menu" class="nav-links">';
         foreach ($links as [$href, $label]) {
             $html .= '<li><a href="' . h($href) . '">' . h($label) . '</a></li>';
         }
-        $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li>';
+        $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li><li>';
+        $html .= '<nav class="langs" aria-label="' . h($copy['nav']['languages']) . '">';
+        foreach (locales() as $code) {
+            $current = $code === $lang ? ' aria-current="page"' : '';
+            $html .= '<a href="' . h(switch_locale($path, $code)) . '" hrefLang="' . h($code) . '" lang="' . h($code) . '"' . $current . '>' . h(strtoupper($code)) . '</a>';
+        }
+        $html .= '</nav></li></ul>';
     }
-    $html .= '<li>';
-    $html .= '<nav class="langs" aria-label="' . h($copy['nav']['languages']) . '">';
-    foreach (locales() as $code) {
-        $current = $code === $lang ? ' aria-current="page"' : '';
-        $html .= '<a href="' . h(switch_locale($path, $code)) . '" hrefLang="' . h($code) . '" lang="' . h($code) . '"' . $current . '>' . h(strtoupper($code)) . '</a>';
-    }
-    $html .= '</nav></li></ul></div></header>';
+    $html .= '</div></header>';
     return $html;
 }
 
