@@ -179,38 +179,46 @@ function site_header(string $lang, array $settings, array $copy): string
     return $html;
 }
 
-function studio_map(string $address): string
+function studio_map(string $address, string $class = 'map-frame map-compact'): string
 {
-    $place = trim($address) !== '' ? $address : 'Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye';
+    $place = trim($address) !== '' ? $address : 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye';
     $query = http_build_query([
         'q' => 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul',
         'z' => '19',
         'hl' => 'en',
         'output' => 'embed',
     ]);
-    return '<iframe class="map-frame map-compact" title="' . h($place) . '" src="https://maps.google.com/maps?' . h($query) . '" width="260" height="160" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    return '<iframe class="' . h($class) . '" title="' . h($place) . '" src="https://maps.google.com/maps?' . h($query) . '" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+}
+
+function loc_pin(): string
+{
+    return '<svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#e24b3b" d="M12 2.2c-4 0-7.2 3.1-7.2 7.1 0 5.3 7.2 12.5 7.2 12.5s7.2-7.2 7.2-12.5c0-4-3.2-7.1-7.2-7.1z"/><circle cx="12" cy="9.2" r="2.6" fill="#fff"/></svg>';
 }
 
 function site_footer(string $lang, array $settings, array $copy): string
 {
-    $path = request_path();
-    $home = (bool) preg_match('#^/(en|tr|de|ru)$#', $path);
-    $html = '<footer class="site-footer" data-lang="' . h($lang) . '"><div class="shell footer-grid"><div>';
-    $html .= '<p class="footer-title">' . h($settings['name']) . '</p><p>' . h($settings['tagline']) . '</p>';
-    if (!$home) {
-        $html .= '<address>' . h($settings['address']) . '</address>';
-    }
-    $html .= studio_map($settings['address'] ?? '') . '</div><div><p class="footer-title">' . h($copy['footer']['reach']) . '</p>';
-    $html .= '<p><a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></p>';
+    $address = 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye';
+    $maps = 'https://maps.app.goo.gl/peS5AiSXgxieLkbs7';
+    $email = 'termini@vasovasiko.com';
+    $labels = $copy['footer'];
+    $html = '<footer class="site-footer" data-lang="' . h($lang) . '"><div class="shell"><section class="location-panel" aria-label="' . h($labels['location']) . '">';
+    $html .= '<h2 class="location-heading">' . loc_pin() . h($labels['location']) . '</h2><div class="location-grid"><div class="map-card">';
+    $html .= studio_map($address, 'map-frame map-card-frame');
+    $html .= '<div class="map-card-body"><a class="map-open" href="' . h($maps) . '" target="_blank" rel="noopener noreferrer">' . loc_pin() . h($labels['openMaps']) . '</a>';
+    $html .= '<address>' . h($address) . '</address>';
+    $html .= '<a class="map-directions" href="' . h($maps) . '" target="_blank" rel="noopener noreferrer">' . h($labels['directions']) . '</a></div></div>';
+    $html .= '<div class="service-col"><h3>' . h($labels['serviceArea']) . '</h3><ul class="service-list">';
+    $html .= '<li>' . loc_pin() . h($labels['istanbul']) . '</li><li>' . loc_pin() . h($labels['germany']) . '</li></ul><div class="contact-rows">';
+    $html .= '<p><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.2 3.4h2.2l1.1 3.2-1.6 1a12 12 0 0 0 5.5 5.5l1-1.6 3.2 1.1v2.2c0 .8-.6 1.5-1.4 1.6A14.6 14.6 0 0 1 5.6 4.8c.1-.8.8-1.4 1.6-1.4z"/></svg><a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></p>';
     if (!empty($settings['phoneAlt'])) {
-        $html .= '<p><a href="' . h(tel_href($settings['phoneAlt'])) . '">' . h($settings['phoneAlt']) . '</a></p>';
+        $html .= '<p><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.2 3.4h2.2l1.1 3.2-1.6 1a12 12 0 0 0 5.5 5.5l1-1.6 3.2 1.1v2.2c0 .8-.6 1.5-1.4 1.6A14.6 14.6 0 0 1 5.6 4.8c.1-.8.8-1.4 1.6-1.4z"/></svg><a href="' . h(tel_href($settings['phoneAlt'])) . '">' . h($settings['phoneAlt']) . '</a></p>';
     }
-    if (!empty($settings['email'])) {
-        $html .= '<p><a href="mailto:' . h($settings['email']) . '">' . h($settings['email']) . '</a></p>';
-    }
-    $html .= '<p><a href="' . h($settings['instagramUrl']) . '" target="_blank" rel="noopener noreferrer">Instagram</a></p>';
-    $html .= '<p><a href="' . h($settings['facebookUrl']) . '" target="_blank" rel="noopener noreferrer">Facebook</a></p>';
-    $html .= '</div></div><div class="shell"><p class="fine">' . h($copy['footer']['note']) . '</p></div></footer>';
+    $html .= '<p><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.5 6.2h17v11.6h-17V6.2zm8.5 6.4 7-4.4H5l7 4.4z"/></svg><a href="mailto:' . h($email) . '">' . h($email) . '</a></p></div>';
+    $html .= '<div class="location-social"><a href="' . h($settings['instagramUrl']) . '" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 3.5h8A4.5 4.5 0 0 1 20.5 8v8a4.5 4.5 0 0 1-4.5 4.5H8A4.5 4.5 0 0 1 3.5 16V8A4.5 4.5 0 0 1 8 3.5zm8 1.6H8A2.9 2.9 0 0 0 5.1 8v8A2.9 2.9 0 0 0 8 18.9h8a2.9 2.9 0 0 0 2.9-2.9V8A2.9 2.9 0 0 0 16 5.1zM12 8.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 1.6A2.2 2.2 0 1 0 14.2 12 2.2 2.2 0 0 0 12 9.8zm4.35-2.55a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z"/></svg></a>';
+    $html .= '<a href="' . h($settings['facebookUrl']) . '" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 20.5v-7.2h2.4l.4-2.8h-2.8V8.8c0-.8.2-1.4 1.4-1.4H17V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.4v2.8h2.4v7.1h2.9z"/></svg></a></div></div></div>';
+    $html .= '<p class="location-line">' . h($labels['areaLine']) . '</p></section></div>';
+    $html .= '<div class="shell"><p class="fine">' . h($labels['note']) . '</p></div></footer>';
     return $html;
 }
 
@@ -328,7 +336,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
 
     $body .= '<section class="section" aria-labelledby="visit-heading"><div class="shell">';
     $body .= '<p class="eyebrow">' . h($copy['about']['title']) . '</p><h2 id="visit-heading">' . h($copy['home']['visitTitle']) . '</h2>';
-    $body .= '<address>' . h($settings['address']) . '</address><ul class="hours">';
+    $body .= '<ul class="hours">';
     foreach ($settings['hours'] as $entry) {
         $hours = preg_match('/closed/i', $entry['hours']) ? $copy['closed'] : $entry['hours'];
         $body .= '<li><span>' . h($copy['days'][$entry['day']] ?? $entry['day']) . '</span><span>' . h($hours) . '</span></li>';

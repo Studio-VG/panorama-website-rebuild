@@ -115,7 +115,6 @@ export default async function HomePage({ params }: Props) {
         <div className="shell">
           <p className="eyebrow">{copy.about.title}</p>
           <h2 id="visit-heading">{copy.home.visitTitle}</h2>
-          <address>{settings.address}</address>
           <ul className="hours">
             {settings.hours.map((entry) => (
               <li key={entry.day}>

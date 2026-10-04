@@ -383,6 +383,66 @@ textarea { min-height: 140px; resize: vertical; }
 .check { display: flex; align-items: center; gap: 0.6rem; }
 .check input { width: auto; min-height: 0; }
 
+.location-panel {
+  background: #1a1612;
+  border: 1px solid rgba(198, 161, 91, 0.32);
+  border-radius: 18px;
+  padding: 1.15rem 1.2rem 1rem;
+}
+.location-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  font-size: 1.45rem;
+}
+.loc-icon { width: 18px; height: 18px; flex: 0 0 18px; }
+.location-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.2rem;
+  align-items: start;
+}
+.map-card {
+  background: #241e19;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.map-frame.map-card-frame {
+  width: 100%;
+  height: 210px;
+  min-height: 210px;
+  max-height: 210px;
+  display: block;
+}
+.map-card-body { padding: 0.8rem 0.95rem 1rem; display: grid; gap: 0.35rem; }
+.map-open, .map-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--gold-2);
+  text-decoration: none;
+  font-weight: 600;
+}
+.map-card address { font-style: normal; color: #ddd4c6; margin: 0; }
+.service-col h3 { margin: 0 0 0.55rem; font-size: 1.25rem; }
+.service-list, .contact-rows { list-style: none; padding: 0; margin: 0 0 0.85rem; }
+.service-list li, .contact-rows p {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.28rem 0;
+}
+.contact-rows { color: var(--gold-2); }
+.contact-rows a { color: inherit; text-decoration: none; }
+.location-social { display: flex; gap: 0.7rem; }
+.location-social a { color: var(--gold-2); display: inline-flex; }
+.location-line {
+  text-align: center;
+  margin: 0.95rem 0 0.15rem;
+  letter-spacing: 0.06em;
+}
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 2.4rem 0 2rem;
@@ -433,7 +493,7 @@ textarea { min-height: 140px; resize: vertical; }
     align-items: flex-start;
   }
   .nav-links.open { display: flex; }
-  .hero, .portfolio-hero, .split, .event-card, .footer-grid, .admin-grid, .artist-grid, .style-grid, .gallery {
+  .hero, .portfolio-hero, .split, .event-card, .footer-grid, .location-grid, .admin-grid, .artist-grid, .style-grid, .gallery {
     grid-template-columns: 1fr;
   }
   .section-head { flex-direction: column; align-items: start; }
