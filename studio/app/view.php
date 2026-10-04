@@ -183,8 +183,8 @@ function studio_map(string $address): string
 {
     $place = trim($address) !== '' ? $address : 'Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye';
     $query = http_build_query([
-        'q' => $place,
-        'z' => '17',
+        'q' => 'Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul',
+        'z' => '19',
         'hl' => 'en',
         'output' => 'embed',
     ]);
