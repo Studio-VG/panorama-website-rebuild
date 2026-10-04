@@ -30,10 +30,6 @@ function render_public(string $lang, array $rest, string $method): void
         render_event($lang, $store, $copy, $rest[1]);
         return;
     }
-    if ($page === 'styles' && count($rest) === 1) {
-        render_styles($lang, $settings, $copy);
-        return;
-    }
     if ($page === 'about' && count($rest) === 1) {
         if ($method === 'POST') {
             handle_inquiry($lang);
@@ -156,7 +152,6 @@ function site_header(string $lang, array $settings, array $copy): string
     $path = request_path();
     $links = [
         ["/$lang/artists", $copy['nav']['artists']],
-        ["/$lang/styles", $copy['nav']['styles']],
         ["/$lang/events", $copy['nav']['events']],
         ["/$lang/about", $copy['nav']['about']],
         ["/$lang/faq", $copy['nav']['faq']],
@@ -511,22 +506,6 @@ function render_event(string $lang, array $store, array $copy, string $slug): vo
     ], $body, [$ld]);
 }
 
-function render_styles(string $lang, array $settings, array $copy): void
-{
-    $body = '<section class="section paper"><div class="shell"><p class="kicker">' . h($settings['name']) . '</p><h1>' . h($copy['styles']['title']) . '</h1>';
-    $body .= '<p class="muted">' . h($copy['styles']['lead']) . '</p><div class="style-grid" style="margin-top:1.2rem">';
-    foreach ($copy['styles']['items'] as $item) {
-        $body .= '<article class="style-card"><h2>' . h($item['title']) . '</h2><p>' . h($item['body']) . '</p></article>';
-    }
-    $body .= '</div><p><a href="/' . h($lang) . '/artists">' . h($copy['styles']['more']) . '</a></p></div></section>';
-    layout($lang, [
-        'path' => '/styles',
-        'title' => $copy['seo']['stylesTitle'],
-        'description' => $copy['seo']['stylesDescription'],
-        'image' => '/art/plate-koi.jpg',
-    ], $body);
-}
-
 function render_about(string $lang, array $store, array $studio, array $copy): void
 {
     $settings = $store['settings'];
@@ -613,7 +592,7 @@ function render_robots(): void
 function render_sitemap(): void
 {
     $store = public_store();
-    $paths = ['/', '/artists', '/events', '/about', '/book', '/styles', '/faq'];
+    $paths = ['/', '/artists', '/events', '/about', '/book', '/faq'];
     foreach ($store['artists'] as $artist) {
         $paths[] = '/artists/' . $artist['slug'];
     }
