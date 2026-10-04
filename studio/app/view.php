@@ -193,16 +193,14 @@ function studio_map(string $address): string
 
 function site_footer(string $lang, array $settings, array $copy): string
 {
+    $path = request_path();
+    $home = (bool) preg_match('#^/(en|tr|de|ru)$#', $path);
     $html = '<footer class="site-footer" data-lang="' . h($lang) . '"><div class="shell footer-grid"><div>';
     $html .= '<p class="footer-title">' . h($settings['name']) . '</p><p>' . h($settings['tagline']) . '</p>';
-    $html .= '<address>' . h($settings['address']) . '</address>';
-    $html .= studio_map($settings['address'] ?? '') . '</div><div>';
-    $html .= '<p class="footer-title">' . h($copy['footer']['hours']) . '</p><ul class="hours">';
-    foreach ($settings['hours'] as $entry) {
-        $hours = preg_match('/closed/i', $entry['hours']) ? $copy['closed'] : $entry['hours'];
-        $html .= '<li><span>' . h($copy['days'][$entry['day']] ?? $entry['day']) . '</span><span>' . h($hours) . '</span></li>';
+    if (!$home) {
+        $html .= '<address>' . h($settings['address']) . '</address>';
     }
-    $html .= '</ul></div><div><p class="footer-title">' . h($copy['footer']['reach']) . '</p>';
+    $html .= studio_map($settings['address'] ?? '') . '</div><div><p class="footer-title">' . h($copy['footer']['reach']) . '</p>';
     $html .= '<p><a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></p>';
     if (!empty($settings['phoneAlt'])) {
         $html .= '<p><a href="' . h(tel_href($settings['phoneAlt'])) . '">' . h($settings['phoneAlt']) . '</a></p>';
@@ -328,7 +326,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     }
     $body .= '</div></div></section>';
 
-    $body .= '<section class="section" aria-labelledby="visit-heading"><div class="shell split"><div>';
+    $body .= '<section class="section" aria-labelledby="visit-heading"><div class="shell">';
     $body .= '<p class="eyebrow">' . h($copy['about']['title']) . '</p><h2 id="visit-heading">' . h($copy['home']['visitTitle']) . '</h2>';
     $body .= '<address>' . h($settings['address']) . '</address><ul class="hours">';
     foreach ($settings['hours'] as $entry) {
@@ -336,10 +334,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
         $body .= '<li><span>' . h($copy['days'][$entry['day']] ?? $entry['day']) . '</span><span>' . h($hours) . '</span></li>';
     }
     $body .= '</ul><div class="actions"><a class="btn" href="/' . h($lang) . '/about">' . h($copy['nav']['about']) . '</a>';
-    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div><div class="panel">';
-    $body .= '<h3>' . h($copy['home']['online']) . '</h3>' . social_links($settings, $copy);
-    $body .= studio_map($settings['address'] ?? '');
-    $body .= '</div></div></section>';
+    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></section>';
 
     layout($lang, [
         'path' => '/',

@@ -2,14 +2,13 @@ import { telHref } from "@/lib/format";
 import type { Locale } from "@/lib/locale";
 import type { Messages } from "@/lib/messages";
 import type { Settings } from "@/lib/types";
+import { FooterAddress } from "@/components/FooterAddress";
 import { StudioMap } from "@/components/StudioMap";
 
-export function SiteFooter({ settings, lang, labels, days, closed }: {
+export function SiteFooter({ settings, lang, labels }: {
   settings: Settings;
   lang: Locale;
   labels: Messages["footer"];
-  days: Record<string, string>;
-  closed: string;
 }) {
   return (
     <footer className="site-footer" data-lang={lang}>
@@ -17,19 +16,8 @@ export function SiteFooter({ settings, lang, labels, days, closed }: {
         <div>
           <p className="footer-title">{settings.name}</p>
           <p>{settings.tagline}</p>
-          <address>{settings.address}</address>
+          <FooterAddress address={settings.address} />
           <StudioMap address={settings.address} />
-        </div>
-        <div>
-          <p className="footer-title">{labels.hours}</p>
-          <ul className="hours">
-            {settings.hours.map((entry) => (
-              <li key={entry.day}>
-                <span>{days[entry.day] || entry.day}</span>
-                <span>{/closed/i.test(entry.hours) ? closed : entry.hours}</span>
-              </li>
-            ))}
-          </ul>
         </div>
         <div>
           <p className="footer-title">{labels.reach}</p>

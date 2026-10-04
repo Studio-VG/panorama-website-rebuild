@@ -11,7 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <a className="skip" href="#content">{copy.nav.skip}</a>
       <SiteHeader name={settings.name} logo={settings.logoUrl} lang="en" labels={copy.nav} />
       <main id="content">{children}</main>
-      <SiteFooter settings={settings} lang="en" labels={copy.footer} days={copy.days} closed={copy.closed} />
+      <SiteFooter settings={settings} lang="en" labels={copy.footer} />
     </>
   );
 }

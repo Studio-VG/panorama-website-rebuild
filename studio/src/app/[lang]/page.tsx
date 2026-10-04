@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
 import { SocialLinks } from "@/components/SocialLinks";
 import { StudioImage } from "@/components/StudioImage";
-import { StudioMap } from "@/components/StudioMap";
 import { localizeArtist, localizeEvent, localizeSettings } from "@/lib/content";
 import { eventStatus } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
@@ -113,28 +112,21 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section className="section" aria-labelledby="visit-heading">
-        <div className="shell split">
-          <div>
-            <p className="eyebrow">{copy.about.title}</p>
-            <h2 id="visit-heading">{copy.home.visitTitle}</h2>
-            <address>{settings.address}</address>
-            <ul className="hours">
-              {settings.hours.map((entry) => (
-                <li key={entry.day}>
-                  <span>{copy.days[entry.day] || entry.day}</span>
-                  <span>{/closed/i.test(entry.hours) ? copy.closed : entry.hours}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="actions">
-              <Link className="btn" href={`/${lang}/about`}>{copy.nav.about}</Link>
-              <Link className="btn btn-ghost" href={`/${lang}/book`}>{copy.nav.book}</Link>
-            </div>
-          </div>
-          <div className="panel">
-            <h3>{copy.home.online}</h3>
-            <SocialLinks settings={settings} newTab={copy.footer.newTab} />
-            <StudioMap address={settings.address} />
+        <div className="shell">
+          <p className="eyebrow">{copy.about.title}</p>
+          <h2 id="visit-heading">{copy.home.visitTitle}</h2>
+          <address>{settings.address}</address>
+          <ul className="hours">
+            {settings.hours.map((entry) => (
+              <li key={entry.day}>
+                <span>{copy.days[entry.day] || entry.day}</span>
+                <span>{/closed/i.test(entry.hours) ? copy.closed : entry.hours}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="actions">
+            <Link className="btn" href={`/${lang}/about`}>{copy.nav.about}</Link>
+            <Link className="btn btn-ghost" href={`/${lang}/book`}>{copy.nav.book}</Link>
           </div>
         </div>
       </section>

@@ -389,7 +389,7 @@ textarea { min-height: 140px; resize: vertical; }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 1.5rem;
 }
 .site-footer a { color: var(--gold-2); }
