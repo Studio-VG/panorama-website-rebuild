@@ -259,7 +259,7 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
   inset: -24px;
   z-index: -2;
   background: #e6d3b4 url("/art/artists-paper.png") center / cover no-repeat;
-  filter: blur(5px);
+  filter: blur(2px);
   transform: scale(1.05);
 }
 .paper.home-artists::after {
@@ -267,7 +267,7 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(244, 239, 228, 0.78);
+  background: rgba(244, 239, 228, 0.28);
   pointer-events: none;
 }
 .home-artists .artist-card {
