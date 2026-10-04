@@ -212,6 +212,7 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
 .hero-art {
   position: relative;
   min-height: 420px;
+  height: 100%;
   box-shadow: var(--shadow);
 }
 .langs {

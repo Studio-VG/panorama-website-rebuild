@@ -112,7 +112,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     $path = $meta['path'];
     $title = $meta['absolute'] ?? (($meta['title'] ?? $settings['name']) . ' · ' . $settings['name']);
     $description = clip($meta['description'] ?? '');
-    $image = $meta['image'] ?? '/art/hero-artist.png';
+    $image = $meta['image'] ?? '/art/hero-back.jpg';
     $canonical = $path === '/' ? site_url() . '/' . $lang : site_url() . '/' . $lang . $path;
     $status = $meta['status'] ?? 200;
     http_response_code($status);
@@ -302,7 +302,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a>';
     $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/artists">' . h($copy['home']['allArtists']) . '</a></div>';
     $body .= social_links($settings, $copy) . '</div>';
-    $body .= '<div class="hero-art frame"><img src="/art/hero-artist.png" alt="' . h($copy['home']['heroAlt']) . '"></div></section>';
+    $body .= '<div class="hero-art frame"><img src="/art/hero-back.jpg" alt="' . h($copy['home']['heroAlt']) . '"></div></section>';
 
     $body .= '<section class="section paper home-artists" aria-labelledby="artists-heading"><div class="shell"><div class="section-head"><div>';
     $body .= '<p class="kicker">' . h($copy['home']['artistsKicker']) . '</p>';
@@ -346,7 +346,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
         'path' => '/',
         'absolute' => $settings['name'] . ' · ' . $copy['seo']['homeTitle'],
         'description' => $copy['seo']['homeDescription'],
-        'image' => '/art/hero-artist.png',
+        'image' => '/art/hero-back.jpg',
     ], $body);
 }
 
