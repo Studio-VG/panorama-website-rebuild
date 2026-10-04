@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Paragraphs } from "@/components/Paragraphs";
 import { SocialLinks } from "@/components/SocialLinks";
+import { StudioMap } from "@/components/StudioMap";
 import { localizeSettings } from "@/lib/content";
 import { telHref } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
@@ -32,7 +33,6 @@ export default async function AboutPage({ params }: Props) {
   const copy = messages[lang];
   const { settings, artists } = getStore();
   const studio = localizeSettings(settings, lang);
-  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(settings.address)}&z=16&output=embed`;
   return (
     <section className="section paper">
       <div className="shell">
@@ -75,13 +75,8 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </div>
         <div className="split" style={{ marginTop: "1.5rem" }}>
-          <iframe className="map-frame" title={`${copy.about.address}: ${settings.address}`} src={mapSrc} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+          <StudioMap address={settings.address} />
           <div>
-            <p>
-              <a href={settings.googleBusinessUrl} target="_blank" rel="noopener noreferrer">
-                {copy.about.google}<span className="sr-only"> ({copy.footer.newTab})</span>
-              </a>
-            </p>
             <InquiryForm artists={artists} labels={copy.form} />
           </div>
         </div>

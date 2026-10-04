@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
 import { SocialLinks } from "@/components/SocialLinks";
 import { StudioImage } from "@/components/StudioImage";
+import { StudioMap } from "@/components/StudioMap";
 import { localizeArtist, localizeEvent, localizeSettings } from "@/lib/content";
 import { eventStatus } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
@@ -63,25 +64,7 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="events-heading">
-        <div className="shell">
-          <div className="section-head">
-            <div>
-              <p className="kicker" style={{ color: "var(--gold-2)" }}>{copy.home.eventsKicker}</p>
-              <h2 id="events-heading">{copy.home.eventsTitle}</h2>
-              <p>{copy.home.eventsLead}</p>
-            </div>
-            <Link className="btn btn-ghost" href={`/${lang}/events`}>{copy.home.allEvents}</Link>
-          </div>
-          <div className="event-list">
-            {featured.map((event) => (
-              <EventCard key={event.id} event={event} lang={lang} statusLabels={copy.status} heading="h3" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section paper" aria-labelledby="artists-heading">
+      <section className="section paper home-artists" aria-labelledby="artists-heading">
         <div className="shell">
           <div className="section-head">
             <div>
@@ -111,6 +94,24 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
+      <section className="section" aria-labelledby="events-heading">
+        <div className="shell">
+          <div className="section-head">
+            <div>
+              <p className="kicker" style={{ color: "var(--gold-2)" }}>{copy.home.eventsKicker}</p>
+              <h2 id="events-heading">{copy.home.eventsTitle}</h2>
+              <p>{copy.home.eventsLead}</p>
+            </div>
+            <Link className="btn btn-ghost" href={`/${lang}/events`}>{copy.home.allEvents}</Link>
+          </div>
+          <div className="event-list">
+            {featured.map((event) => (
+              <EventCard key={event.id} event={event} lang={lang} statusLabels={copy.status} heading="h3" />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section" aria-labelledby="visit-heading">
         <div className="shell split">
           <div>
@@ -133,11 +134,7 @@ export default async function HomePage({ params }: Props) {
           <div className="panel">
             <h3>{copy.home.online}</h3>
             <SocialLinks settings={settings} portfolio={copy.footer.portfolio} newTab={copy.footer.newTab} />
-            <p>
-              <a href={settings.googleBusinessUrl} target="_blank" rel="noopener noreferrer">
-                {copy.home.listing}<span className="sr-only"> ({copy.footer.newTab})</span>
-              </a>
-            </p>
+            <StudioMap address={settings.address} />
           </div>
         </div>
       </section>

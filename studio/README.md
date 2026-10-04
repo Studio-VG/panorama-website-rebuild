@@ -10,29 +10,35 @@ From this directory:
 
 ```bash
 cd studio
-npm install
-npm run dev
+php -S 127.0.0.1:8080 -t public router.php
 ```
 
-Open http://localhost:3001
+Open http://127.0.0.1:8080/en
 
-```bash
-npm run build
-npm run start
-```
+`scripts/open-preview.sh` starts that PHP server and a Cloudflare tunnel, then prints a public https URL.
+
+## Deploy on Vercel
+
+Set the project **Root Directory** to `studio`. The repository root `vercel.json` belongs to the Panorama site and is not this app.
+
+`studio/vercel.json` uses the `vercel-php@0.9.0` runtime (PHP 8.5). Vercel serves files that exist on disk first, including everything in `public/`, then sends other paths to `api/index.php`. Clean URLs such as `/en/artists` are handled by that front controller.
 
 ## Demo admin
 
-- URL: http://localhost:3001/admin
+- URL: http://127.0.0.1:8080/admin
 - Password: `byvaso-demo`
 
 Set `ADMIN_PASSWORD` before any public deployment. See `.env.example`. When the variable is unset, the app uses this same demo password so a local preview works without copying the env file. Do not use the demo password in production.
 
 ## Where the name, tagline, and contact details live
 
-They are not copied into the pages. Every page reads `data/store.json`.
+They are not copied into the pages. Every page reads the studio record.
 
-Change them in **Admin → Studio settings** (name, tagline, official-name note, address, phones, email, hours, map coordinates, Google Business link, Instagram, Facebook, portfolio link, logo, and the about story). Saving writes `data/store.json`, which survives a server restart. Uploaded photos are stored in `data/uploads/`.
+Change them in **Admin → Studio settings** (name, tagline, official-name note, address, phones, email, hours, map coordinates, Google Business link, Instagram, Facebook, portfolio link, logo, and the about story).
+
+On a normal PHP server, saving writes `data/store.json`, which survives a restart. Uploaded photos are stored in `data/uploads/` and served at `/api/media/{name}`.
+
+On Vercel the filesystem is read-only, so the JSON file cannot keep edits. If `DATABASE_URL` is a `postgres://` or `mysql://` URL, admin saves go to a separate `studio_document` table (one JSON document). Uploaded images are stored in that same record and served from `/api/media`. If `DATABASE_URL` is not set, the site still renders the seeded `data/store.json`, and admin explains that saves need a database.
 
 The public listing name **Vaso Vasiko** is stored as `officialName`, with a note in `officialNameNote`. It is not used as the site title.
 
@@ -62,7 +68,7 @@ Platform headers `x-vercel-ip-country` and `cf-ipcountry` are used when present.
 
 Admin stays in English at `/admin`.
 
-English copy for artists, events, and the about text is what you edit in admin (`data/store.json`). Turkish, German, and Russian for the seeded records live in `src/lib/content.ts` and `src/lib/messages.ts`. A record you add in admin appears in the other languages with a short “not translated yet” line until a translation is added there.
+English copy for artists, events, and the about text is what you edit in admin (`data/store.json`). Turkish, German, and Russian for the seeded records live in `data/copy.json` and `data/messages.json`. A record you add in admin appears in the other languages from the English fields until a translation is added there.
 
 ## Search phrases
 

@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/book",
     "/styles",
-    "/aftercare",
     "/faq",
     ...artists.map((artist) => `/artists/${artist.slug}`),
     ...events.map((event) => `/events/${event.slug}`),
