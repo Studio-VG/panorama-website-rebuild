@@ -185,6 +185,7 @@ function studio_map(string $address, string $class = 'map-frame map-compact', st
         'z' => '19',
         'hl' => 'en',
         'output' => 'embed',
+        'color_scheme' => 'dark',
     ]);
     return '<iframe class="' . h($class) . '" title="' . h($place) . '" src="https://maps.google.com/maps?' . h($query) . '" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 }

@@ -9,6 +9,7 @@ export function studioMapSrc(query = STUDIO_MAP_QUERY) {
     z: "19",
     hl: "en",
     output: "embed",
+    color_scheme: "dark",
   });
   return `https://maps.google.com/maps?${params.toString()}`;
 }
