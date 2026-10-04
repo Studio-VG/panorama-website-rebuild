@@ -458,7 +458,6 @@ function admin_page(string $tab, string $error): void
         echo admin_shell($store, $tab, $error, $notice);
     }
     echo '</main>';
-    echo site_footer('en', $settings, $copy);
     echo '</div></body></html>';
 }
 
