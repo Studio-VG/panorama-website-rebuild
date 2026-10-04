@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     absoluteTitle: `${settings.name} · ${copy.seo.homeTitle}`,
     description: copy.seo.homeDescription,
     path: "/",
-    image: "/art/hero-koi.jpg",
+    image: "/art/hero-artist.png",
     imageAlt: copy.home.heroAlt,
   });
 }
@@ -48,7 +48,7 @@ export default async function HomePage({ params }: Props) {
       <section className="shell hero">
         <div className="hero-copy">
           <p className="eyebrow">{copy.nav.kicker}</p>
-          <h1>{settings.name}</h1>
+          <h1>{copy.home.heroTitle}</h1>
           <p className="lede">{studio.tagline}</p>
           <p>{copy.home.intro}</p>
           <p>{studio.heroLead}</p>
@@ -59,7 +59,7 @@ export default async function HomePage({ params }: Props) {
           <SocialLinks settings={settings} portfolio={copy.footer.portfolio} newTab={copy.footer.newTab} />
         </div>
         <div className="hero-art frame">
-          <StudioImage src="/art/hero-koi.jpg" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />
+          <StudioImage src="/art/hero-artist.png" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />
         </div>
       </section>
 

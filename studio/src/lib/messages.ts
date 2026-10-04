@@ -6,7 +6,7 @@ export type Messages = {
   days: Record<string, string>;
   closed: string;
   status: { Upcoming: string; Past: string; Now: string; featured: string };
-  home: { intro: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
+  home: { heroTitle: string; intro: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
   artistsPage: { title: string; lead: string };
   artistPage: { work: string; request: string; portfolio: string; untranslated: string };
   eventsPage: { title: string; lead: string };
@@ -40,6 +40,7 @@ export const messages: Record<Locale, Messages> = {
     closed: "Closed",
     status: { Upcoming: "Upcoming", Past: "Past", Now: "Now", featured: "Featured on home" },
     home: {
+      heroTitle: "Best tattoo artists",
       intro: "A tattoo studio in Istanbul, on Istiklal Street in Beyoğlu.",
       eventsKicker: "Special events",
       eventsTitle: "Guests and gatherings",
@@ -52,7 +53,7 @@ export const messages: Record<Locale, Messages> = {
       visitTitle: "Write, call, or come up",
       online: "Also online",
       listing: "Open the Google listing",
-      heroAlt: "Koi rising through waves, for the tattoo studio in Istanbul",
+      heroAlt: "A tattoo artist working on a client's leg in the studio",
     },
     artistsPage: { title: "Tattoo shop in Beyoğlu", lead: "The tattoo shop in Beyoğlu, above Istiklal Street in Asmalı Mescit. Open a portrait for the history and the plates." },
     artistPage: { work: "Work", request: "Request this artist", portfolio: "Existing portfolio", untranslated: "This profile has not been translated yet." },
@@ -119,6 +120,7 @@ export const messages: Record<Locale, Messages> = {
     closed: "Kapalı",
     status: { Upcoming: "Yaklaşan", Past: "Geçmiş", Now: "Şimdi", featured: "Ana sayfada" },
     home: {
+      heroTitle: "En iyi dövme sanatçıları",
       intro: "İstiklal’de, Beyoğlu’nda bir İstanbul dövme stüdyosu.",
       eventsKicker: "Özel etkinlikler",
       eventsTitle: "Misafirler ve buluşmalar",
@@ -131,7 +133,7 @@ export const messages: Record<Locale, Messages> = {
       visitTitle: "Yazın, arayın ya da çıkın",
       online: "Çevrimiçi",
       listing: "Google kaydını aç",
-      heroAlt: "Dalgalar arasında yükselen koi, İstanbul dövme stüdyosu için",
+      heroAlt: "Stüdyoda bir müşterinin bacağına dövme yapan sanatçı",
     },
     artistsPage: { title: "Beyoğlu dövme", lead: "Asmalı Mescit’te, İstiklal üzerindeki Beyoğlu dövme stüdyosu. Portreye girince tarih ve desenler açılır." },
     artistPage: { work: "İşler", request: "Bu sanatçıyı iste", portfolio: "Mevcut portfolyo", untranslated: "Bu profil henüz çevrilmedi." },
@@ -198,6 +200,7 @@ export const messages: Record<Locale, Messages> = {
     closed: "Geschlossen",
     status: { Upcoming: "Kommend", Past: "Vergangen", Now: "Jetzt", featured: "Auf der Startseite" },
     home: {
+      heroTitle: "Die besten Tätowierer",
       intro: "Ein Tattoo-Studio in Istanbul, an der Istiklal in Beyoğlu.",
       eventsKicker: "Besondere Termine",
       eventsTitle: "Gäste und Treffen",
@@ -210,7 +213,7 @@ export const messages: Record<Locale, Messages> = {
       visitTitle: "Schreiben, anrufen oder heraufkommen",
       online: "Auch online",
       listing: "Google-Eintrag öffnen",
-      heroAlt: "Koi in Wellen, für das Tattoo-Studio in Istanbul",
+      heroAlt: "Ein Tätowierer arbeitet im Studio am Bein eines Kunden",
     },
     artistsPage: { title: "Tattoo-Studio Beyoğlu", lead: "Das Tattoo-Studio in Beyoğlu, über der Istiklal in Asmalı Mescit. Ein Porträt öffnet die Geschichte und die Blätter." },
     artistPage: { work: "Arbeiten", request: "Diesen Künstler anfragen", portfolio: "Bestehendes Portfolio", untranslated: "Dieses Profil ist noch nicht übersetzt." },
@@ -277,6 +280,7 @@ export const messages: Record<Locale, Messages> = {
     closed: "Закрыто",
     status: { Upcoming: "Скоро", Past: "Прошло", Now: "Сейчас", featured: "На главной" },
     home: {
+      heroTitle: "Лучшие тату-мастера",
       intro: "Тату-студия в Стамбуле, на улице Истикляль в Бейоглу.",
       eventsKicker: "Особые даты",
       eventsTitle: "Гости и встречи",
@@ -289,7 +293,7 @@ export const messages: Record<Locale, Messages> = {
       visitTitle: "Напишите, позвоните или поднимитесь",
       online: "Ещё онлайн",
       listing: "Открыть карточку в Google",
-      heroAlt: "Карп кои в волнах, для тату-студии в Стамбуле",
+      heroAlt: "Тату-мастер делает татуировку на ноге клиента в студии",
     },
     artistsPage: { title: "Тату в Бейоглу", lead: "Тату-студия в Бейоглу, над Истикляль в Асмалы Месджит. Портрет открывает историю и листы." },
     artistPage: { work: "Работы", request: "Запросить этого мастера", portfolio: "Существующее портфолио", untranslated: "Этот профиль ещё не переведён." },
