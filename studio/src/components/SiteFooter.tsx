@@ -1,5 +1,5 @@
 import { telHref } from "@/lib/format";
-import { serviceNames } from "@/lib/locations";
+import { serviceGroups } from "@/lib/locations";
 import type { Locale } from "@/lib/locale";
 import type { Messages } from "@/lib/messages";
 import type { Location, Settings } from "@/lib/types";
@@ -54,7 +54,7 @@ export function SiteFooter({ settings, locations, lang, labels }: {
 }) {
   const email = "termini@vasovasiko.com";
   const many = locations.length > 1;
-  const names = serviceNames(locations, labels.germany);
+  const groups = serviceGroups(locations, labels);
   return (
     <footer className="site-footer" data-lang={lang}>
       <div className="shell">
@@ -82,8 +82,18 @@ export function SiteFooter({ settings, locations, lang, labels }: {
             <div className="service-col">
               <h3>{labels.serviceArea}</h3>
               <ul className="service-list">
-                {names.map((name, index) => <li key={`${name}-${index}`}><PinIcon />{name}</li>)}
+                {groups.map((group) => (
+                  <li className="service-city" key={group.key}>
+                    <span className="city-name"><PinIcon />{group.label}</span>
+                    {group.venues.length > 0 ? (
+                      <ul className="venue-list">
+                        {group.venues.map((venue) => <li key={venue}>{venue}</li>)}
+                      </ul>
+                    ) : null}
+                  </li>
+                ))}
               </ul>
+              <h3>{labels.contact}</h3>
               <div className="contact-rows">
                 <p><PhoneIcon /><a href={telHref(settings.phone)}>{settings.phone}</a></p>
                 {settings.phoneAlt ? <p><PhoneIcon /><a href={telHref(settings.phoneAlt)}>{settings.phoneAlt}</a></p> : null}
@@ -103,7 +113,7 @@ export function SiteFooter({ settings, locations, lang, labels }: {
               </div>
             </div>
           </div>
-          <p className="location-line">{names.join(" • ")}</p>
+          <p className="location-line">{groups.map((group) => group.label).join(" • ")}</p>
         </section>
       </div>
       <div className="shell"><p className="fine">{labels.note}</p></div>

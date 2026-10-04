@@ -413,13 +413,17 @@ textarea { min-height: 140px; resize: vertical; }
 }
 .map-card address { font-style: normal; color: #ddd4c6; margin: 0; }
 .service-col h3 { margin: 0 0 0.55rem; font-size: 1.25rem; }
-.service-list, .contact-rows { list-style: none; padding: 0; margin: 0 0 0.85rem; }
-.service-list li, .contact-rows p {
+.service-col h3 + .contact-rows, .service-list + h3 { margin-top: 1.15rem; }
+.service-list, .contact-rows, .venue-list { list-style: none; padding: 0; margin: 0 0 0.85rem; }
+.service-list > li { display: block; margin: 0.55rem 0; }
+.city-name, .contact-rows p {
   display: flex;
   align-items: center;
   gap: 0.45rem;
   margin: 0.28rem 0;
 }
+.venue-list { margin: 0.15rem 0 0.2rem 1.65rem; }
+.venue-list li { margin: 0.18rem 0; color: #ddd4c6; }
 .contact-rows { color: var(--gold-2); }
 .contact-rows a { color: inherit; text-decoration: none; }
 .location-social { display: flex; gap: 1rem; flex-wrap: wrap; }

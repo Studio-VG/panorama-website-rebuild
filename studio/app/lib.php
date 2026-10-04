@@ -176,25 +176,80 @@ function with_locations(array $store): array
     return $store;
 }
 
-function location_service_names(array $locations, string $germany): array
+function location_fold(string $value): string
 {
-    $names = [];
-    $replaced = false;
+    $value = mb_strtolower($value, 'UTF-8');
+    return str_replace(['i̇', 'ı', 'ü', 'ö', 'ä', 'ß'], ['i', 'i', 'u', 'o', 'a', 'ss'], $value);
+}
+
+function location_is_place_word(string $value): bool
+{
+    $folded = location_fold(trim($value));
+    if ($folded === '') {
+        return true;
+    }
+    $words = ['germany', 'deutschland', 'almanya', 'германия', 'turkey', 'turkei', 'turkiye', 'турция', 'istanbul', 'стамбул', 'dusseldorf', 'дюссельдорф'];
+    return in_array($folded, $words, true);
+}
+
+function location_city_key(array $place): string
+{
+    $hay = location_fold((string) ($place['address'] ?? '') . ' ' . (string) ($place['name'] ?? ''));
+    if (preg_match('/dusseldorf|дюссельдорф/u', $hay)) {
+        return 'dusseldorf';
+    }
+    if (preg_match('/istanbul|стамбул/u', $hay)) {
+        return 'istanbul';
+    }
+    return '';
+}
+
+function location_venue_label(string $name): string
+{
+    $name = trim($name);
+    if (location_is_place_word($name)) {
+        return '';
+    }
+    $label = preg_replace('/\s+[-–—]\s+.*$/u', '', $name) ?? $name;
+    $label = preg_replace('/\s+by\s+\S+$/iu', '', $label) ?? $label;
+    $label = preg_replace('/\b(düsseldorf|dusseldorf|duesseldorf|istanbul|i̇stanbul|ıstanbul|germany|deutschland|almanya|türkiye|turkey|türkei)\b/iu', '', $label) ?? $label;
+    $label = trim((string) preg_replace('/\s+/u', ' ', $label));
+    $label = trim($label, " ,.-–—");
+    if (preg_match('/^(.+?)\s+hotel$/iu', $label, $match)) {
+        $label = trim($match[1]);
+    }
+    return location_is_place_word($label) ? '' : $label;
+}
+
+function location_service_groups(array $locations, array $labels): array
+{
+    $known = [
+        'istanbul' => (string) ($labels['istanbul'] ?? 'Istanbul'),
+        'dusseldorf' => (string) ($labels['dusseldorf'] ?? 'Düsseldorf'),
+    ];
+    $groups = [];
+    $index = [];
     foreach ($locations as $place) {
+        $key = location_city_key($place);
         $name = trim((string) ($place['name'] ?? ''));
-        if ($name === '') {
+        $label = $key !== '' ? $known[$key] : $name;
+        if ($key === '' && location_is_place_word($label)) {
             continue;
         }
-        $names[] = $name;
-        $lower = mb_strtolower($name);
-        if ($lower === mb_strtolower($germany) || $lower === 'germany') {
-            $replaced = true;
+        $groupKey = $key !== '' ? $key : location_fold($label);
+        if (!isset($index[$groupKey])) {
+            $index[$groupKey] = count($groups);
+            $groups[] = ['key' => $groupKey, 'label' => $label, 'venues' => []];
+        }
+        if ($key === '') {
+            continue;
+        }
+        $venue = location_venue_label($name);
+        if ($venue !== '' && !in_array($venue, $groups[$index[$groupKey]]['venues'], true)) {
+            $groups[$index[$groupKey]]['venues'][] = $venue;
         }
     }
-    if (!$replaced) {
-        $names[] = $germany;
-    }
-    return $names;
+    return $groups;
 }
 
 function store_mode(): string
