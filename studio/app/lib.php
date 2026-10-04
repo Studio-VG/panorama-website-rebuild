@@ -234,6 +234,7 @@ function store_load(): array
 {
     $slot = &store_cache_slot();
     if ($slot !== null) {
+        $slot = with_locations($slot);
         return $slot;
     }
     $mode = store_mode();

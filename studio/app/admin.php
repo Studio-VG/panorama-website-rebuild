@@ -509,7 +509,7 @@ function admin_shell(array $store, string $tab, string $error, string $notice): 
     } elseif ($tab === 'events') {
         $html .= admin_events_form($store['events']);
     } elseif ($tab === 'locations') {
-        $html .= admin_locations_form($store['locations'] ?? []);
+        $html .= admin_locations_form(studio_locations($store));
     } else {
         $html .= admin_inquiries($store['inquiries'] ?? []);
     }

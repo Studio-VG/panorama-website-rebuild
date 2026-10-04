@@ -55,7 +55,14 @@ export function AdminApp() {
       setReady(true);
       return;
     }
-    setStore(await response.json());
+    const data = await response.json();
+    setStore({
+      ...data,
+      artists: Array.isArray(data.artists) ? data.artists : [],
+      events: Array.isArray(data.events) ? data.events : [],
+      inquiries: Array.isArray(data.inquiries) ? data.inquiries : [],
+      locations: Array.isArray(data.locations) ? data.locations : [],
+    });
     setAuthed(true);
     setReady(true);
     router.refresh();
@@ -123,7 +130,7 @@ export function AdminApp() {
         {tab === "artists" ? <ArtistsForm artists={store.artists} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
         {tab === "events" ? <EventsForm events={store.events} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
         {tab === "inquiries" ? <Inquiries inquiries={store.inquiries} onDone={async (text) => { setMessage(text); await reload(); }} /> : null}
-        {tab === "locations" ? <LocationsForm locations={store.locations} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
+        {tab === "locations" ? <LocationsForm locations={Array.isArray(store.locations) ? store.locations : []} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
       </div>
     </section>
   );
@@ -463,8 +470,10 @@ function EventsForm({ events, onDone, onError }: { events: StudioEvent[]; onDone
 }
 
 const emptyLocation = { name: "", address: "", mapsUrl: "", mapQuery: "" };
+const noLocations: Location[] = [];
 
-function LocationsForm({ locations, onDone, onError }: { locations: Location[]; onDone: (text: string) => Promise<void>; onError: (text: string) => void }) {
+function LocationsForm({ locations, onDone, onError }: { locations?: Location[]; onDone: (text: string) => Promise<void>; onError: (text: string) => void }) {
+  const places = Array.isArray(locations) ? locations : noLocations;
   const [selected, setSelected] = useState<string>("new");
   const [confirming, setConfirming] = useState(false);
   const [draft, setDraft] = useState(emptyLocation);
@@ -474,10 +483,10 @@ function LocationsForm({ locations, onDone, onError }: { locations: Location[]; 
       setDraft(emptyLocation);
       return;
     }
-    const place = locations.find((item) => item.id === selected);
+    const place = places.find((item) => item.id === selected);
     if (!place) return;
     setDraft({ name: place.name, address: place.address, mapsUrl: place.mapsUrl, mapQuery: place.mapQuery });
-  }, [selected, locations]);
+  }, [selected, places]);
 
   async function save(event: FormEvent) {
     event.preventDefault();
@@ -509,7 +518,7 @@ function LocationsForm({ locations, onDone, onError }: { locations: Location[]; 
     <div className="admin-grid">
       <div>
         <button className="list-btn" id="add-location" type="button" aria-current={selected === "new"} onClick={() => { setSelected("new"); setConfirming(false); }}>Add location</button>
-        {locations.map((place) => (
+        {places.map((place) => (
           <button className="list-btn" type="button" key={place.id} aria-current={selected === place.id} onClick={() => { setSelected(place.id); setConfirming(false); }}>
             {place.name}
           </button>
