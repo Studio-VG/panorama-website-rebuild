@@ -269,6 +269,7 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
   gap: 1rem;
 }
 .artist-grid { grid-template-columns: repeat(3, 1fr); }
+.artists-more { display: flex; justify-content: center; margin-top: 1.6rem; }
 .event-list { gap: 1.25rem; }
 .style-grid { grid-template-columns: repeat(3, 1fr); }
 .faq-list { gap: 0.75rem; }

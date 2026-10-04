@@ -318,8 +318,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
 
     $body .= '<section class="section paper home-artists" aria-labelledby="artists-heading"><div class="shell"><div class="section-head"><div>';
     $body .= '<p class="kicker">' . h($copy['home']['artistsKicker']) . '</p>';
-    $body .= '<h2 id="artists-heading">' . h($copy['home']['artistsTitle']) . '</h2><p>' . h($copy['home']['artistsLead']) . '</p></div>';
-    $body .= '<a class="btn btn-ink" href="/' . h($lang) . '/artists">' . h($copy['home']['allArtists']) . '</a></div><div class="artist-grid">';
+    $body .= '<h2 id="artists-heading">' . h($copy['home']['artistsTitle']) . '</h2><p>' . h($copy['home']['artistsLead']) . '</p></div></div><div class="artist-grid">';
     foreach ($store['artists'] as $artist) {
         $view = localize_artist($artist, $lang);
         $body .= '<a class="artist-card" href="/' . h($lang) . '/artists/' . h($artist['slug']) . '">';
@@ -330,7 +329,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
         }
         $body .= '</ul></div></a>';
     }
-    $body .= '</div></div></section>';
+    $body .= '</div><div class="artists-more"><a class="btn btn-ink" href="/' . h($lang) . '/artists">' . h($copy['home']['allArtists']) . '</a></div></div></section>';
 
     $body .= '<section class="section" aria-labelledby="events-heading"><div class="shell"><div class="section-head"><div>';
     $body .= '<p class="kicker" style="color:var(--gold-2)">' . h($copy['home']['eventsKicker']) . '</p>';
@@ -348,8 +347,8 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
         $hours = preg_match('/closed/i', $entry['hours']) ? $copy['closed'] : $entry['hours'];
         $body .= '<li><span>' . h($copy['days'][$entry['day']] ?? $entry['day']) . '</span><span>' . h($hours) . '</span></li>';
     }
-    $body .= '</ul><div class="actions"><a class="btn" href="/' . h($lang) . '/about">' . h($copy['nav']['about']) . '</a>';
-    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></section>';
+    $body .= '</ul><div class="actions"><a class="btn btn-ghost" href="/' . h($lang) . '/about">' . h($copy['nav']['about']) . '</a>';
+    $body .= '<a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></section>';
 
     layout($lang, [
         'path' => '/',

@@ -69,7 +69,6 @@ export default async function HomePage({ params }: Props) {
               <h2 id="artists-heading">{copy.home.artistsTitle}</h2>
               <p>{copy.home.artistsLead}</p>
             </div>
-            <Link className="btn btn-ink" href={`/${lang}/artists`}>{copy.home.allArtists}</Link>
           </div>
           <div className="artist-grid">
             {artists.map((artist) => {
@@ -87,6 +86,9 @@ export default async function HomePage({ params }: Props) {
                 </Link>
               );
             })}
+          </div>
+          <div className="artists-more">
+            <Link className="btn btn-ink" href={`/${lang}/artists`}>{copy.home.allArtists}</Link>
           </div>
         </div>
       </section>
@@ -122,8 +124,8 @@ export default async function HomePage({ params }: Props) {
             ))}
           </ul>
           <div className="actions">
-            <Link className="btn" href={`/${lang}/about`}>{copy.nav.about}</Link>
-            <Link className="btn btn-ghost" href={`/${lang}/book`}>{copy.nav.book}</Link>
+            <Link className="btn btn-ghost" href={`/${lang}/about`}>{copy.nav.about}</Link>
+            <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>
           </div>
         </div>
       </section>
