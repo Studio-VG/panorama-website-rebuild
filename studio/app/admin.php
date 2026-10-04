@@ -450,7 +450,7 @@ function admin_page(string $tab, string $error): void
     echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap">';
     echo '<link rel="stylesheet" href="/studio.css">';
     echo '</head><body><div class="site-canvas"><!-- studio-php -->';
-    echo site_header('en', $settings, $copy);
+    echo site_header('en', $settings, $copy, false);
     echo '<main id="content">';
     if ($tab === 'login' || !is_admin()) {
         echo admin_login($error);

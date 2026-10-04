@@ -41,10 +41,10 @@ export function SiteHeader({
           {open ? labels.close : labels.menu}
         </button>
         <ul id="site-menu" className={open ? "nav-links open" : "nav-links"}>
-          {links.map(([href, label]) => (
+          {onAdmin ? null : links.map(([href, label]) => (
             <li key={href}><Link href={href} onClick={() => setOpen(false)}>{label}</Link></li>
           ))}
-          <li><Link className="btn" href={`/${lang}/book`} onClick={() => setOpen(false)}>{labels.book}</Link></li>
+          {onAdmin ? null : <li><Link className="btn" href={`/${lang}/book`} onClick={() => setOpen(false)}>{labels.book}</Link></li>}
           <li>
             <nav className="langs" aria-label={labels.languages}>
               {locales.map((code) => (

@@ -147,7 +147,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     echo '</div></body></html>';
 }
 
-function site_header(string $lang, array $settings, array $copy): string
+function site_header(string $lang, array $settings, array $copy, bool $publicNav = true): string
 {
     $path = request_path();
     $links = [
@@ -161,10 +161,13 @@ function site_header(string $lang, array $settings, array $copy): string
     $html .= '<span><span class="brand-name">' . h($settings['name']) . '</span><small>' . h($copy['nav']['kicker']) . '</small></span></a>';
     $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">' . h($copy['nav']['menu']) . '</button>';
     $html .= '<ul id="site-menu" class="nav-links">';
-    foreach ($links as [$href, $label]) {
-        $html .= '<li><a href="' . h($href) . '">' . h($label) . '</a></li>';
+    if ($publicNav) {
+        foreach ($links as [$href, $label]) {
+            $html .= '<li><a href="' . h($href) . '">' . h($label) . '</a></li>';
+        }
+        $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li>';
     }
-    $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li><li>';
+    $html .= '<li>';
     $html .= '<nav class="langs" aria-label="' . h($copy['nav']['languages']) . '">';
     foreach (locales() as $code) {
         $current = $code === $lang ? ' aria-current="page"' : '';
