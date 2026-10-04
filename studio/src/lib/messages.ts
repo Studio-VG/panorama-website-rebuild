@@ -35,7 +35,7 @@ const daysEn = { Monday: "Monday", Tuesday: "Tuesday", Wednesday: "Wednesday", T
 export const messages: Record<Locale, Messages> = {
   en: {
     nav: { artists: "Artists", styles: "Styles", events: "Events", about: "About", faq: "FAQ", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "Irezumi studio", skip: "Skip to content" },
-    footer: { hours: "Hours", reach: "Reach the studio", note: "Portraits and plates on this site are original illustrations. Finished tattoos are on the existing portfolio.", google: "Google Business", portfolio: "Existing portfolio", aftercare: "Aftercare", admin: "Studio admin", newTab: "opens in a new tab" },
+    footer: { hours: "Hours", reach: "Reach the studio", note: "Portraits and plates on this site are original illustrations.", google: "Google Business", portfolio: "Existing portfolio", aftercare: "Aftercare", admin: "Studio admin", newTab: "opens in a new tab" },
     days: daysEn,
     closed: "Closed",
     status: { Upcoming: "Upcoming", Past: "Past", Now: "Now", featured: "Featured on home" },
@@ -115,7 +115,7 @@ export const messages: Record<Locale, Messages> = {
   },
   tr: {
     nav: { artists: "Sanatçılar", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "Irezumi stüdyosu", skip: "İçeriğe geç" },
-    footer: { hours: "Saatler", reach: "Stüdyoya ulaşın", note: "Bu sitedeki portreler ve desenler özgün çizimlerdir. Bitmiş dövmeler mevcut portfolyodadır.", google: "Google Business", portfolio: "Mevcut portfolyo", aftercare: "Bakım", admin: "Stüdyo yönetimi", newTab: "yeni sekmede açılır" },
+    footer: { hours: "Saatler", reach: "Stüdyoya ulaşın", note: "Bu sitedeki portreler ve desenler özgün çizimlerdir.", google: "Google Business", portfolio: "Mevcut portfolyo", aftercare: "Bakım", admin: "Stüdyo yönetimi", newTab: "yeni sekmede açılır" },
     days: { Monday: "Pazartesi", Tuesday: "Salı", Wednesday: "Çarşamba", Thursday: "Perşembe", Friday: "Cuma", Saturday: "Cumartesi", Sunday: "Pazar" },
     closed: "Kapalı",
     status: { Upcoming: "Yaklaşan", Past: "Geçmiş", Now: "Şimdi", featured: "Ana sayfada" },
@@ -195,7 +195,7 @@ export const messages: Record<Locale, Messages> = {
   },
   de: {
     nav: { artists: "Künstler", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "Irezumi-Studio", skip: "Zum Inhalt" },
-    footer: { hours: "Zeiten", reach: "Studio erreichen", note: "Porträts und Blätter auf dieser Seite sind eigene Zeichnungen. Fertige Tattoos stehen im bestehenden Portfolio.", google: "Google Business", portfolio: "Bestehendes Portfolio", aftercare: "Pflege", admin: "Studio-Admin", newTab: "öffnet sich in einem neuen Tab" },
+    footer: { hours: "Zeiten", reach: "Studio erreichen", note: "Porträts und Blätter auf dieser Seite sind eigene Zeichnungen.", google: "Google Business", portfolio: "Bestehendes Portfolio", aftercare: "Pflege", admin: "Studio-Admin", newTab: "öffnet sich in einem neuen Tab" },
     days: { Monday: "Montag", Tuesday: "Dienstag", Wednesday: "Mittwoch", Thursday: "Donnerstag", Friday: "Freitag", Saturday: "Samstag", Sunday: "Sonntag" },
     closed: "Geschlossen",
     status: { Upcoming: "Kommend", Past: "Vergangen", Now: "Jetzt", featured: "Auf der Startseite" },
@@ -275,7 +275,7 @@ export const messages: Record<Locale, Messages> = {
   },
   ru: {
     nav: { artists: "Мастера", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Студия ирэдзуми", skip: "К содержанию" },
-    footer: { hours: "Часы", reach: "Связаться", note: "Портреты и листы на этом сайте — собственные рисунки. Готовые тату опубликованы в существующем портфолио.", google: "Google Business", portfolio: "Существующее портфолио", aftercare: "Уход", admin: "Админка", newTab: "откроется в новой вкладке" },
+    footer: { hours: "Часы", reach: "Связаться", note: "Портреты и листы на этом сайте — собственные рисунки.", google: "Google Business", portfolio: "Существующее портфолио", aftercare: "Уход", admin: "Админка", newTab: "откроется в новой вкладке" },
     days: { Monday: "Понедельник", Tuesday: "Вторник", Wednesday: "Среда", Thursday: "Четверг", Friday: "Пятница", Saturday: "Суббота", Sunday: "Воскресенье" },
     closed: "Закрыто",
     status: { Upcoming: "Скоро", Past: "Прошло", Now: "Сейчас", featured: "На главной" },

@@ -184,11 +184,11 @@ function studio_map(string $address): string
     $place = trim($address) !== '' ? $address : 'Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye';
     $query = http_build_query([
         'q' => $place,
-        'z' => '16',
+        'z' => '17',
+        'hl' => 'en',
         'output' => 'embed',
-        'share' => 'https://share.google/Q8HK91VK6P6WKsPhe',
     ]);
-    return '<iframe class="map-frame map-compact" title="' . h($place) . '" src="https://maps.google.com/maps?' . h($query) . '" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    return '<iframe class="map-frame map-compact" title="' . h($place) . '" src="https://maps.google.com/maps?' . h($query) . '" width="260" height="160" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 }
 
 function site_footer(string $lang, array $settings, array $copy): string
