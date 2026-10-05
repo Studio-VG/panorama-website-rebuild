@@ -362,6 +362,7 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
 .artist-card h2, .style-card h2, .panel h2, .event-card h3 { font-size: 1.65rem; }
 .contact-list { list-style: none; padding: 0; margin: 0 0 1rem; }
 .contact-list a { color: var(--vermillion-deep); }
+.reach-card .contact-list a { color: #fff; }
 .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; }
 .map-frame { width: 100%; min-height: 320px; border: 0; background: var(--paper-2); }
 .map-frame.map-dark { background: #1c1c1c; }
