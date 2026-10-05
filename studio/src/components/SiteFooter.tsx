@@ -63,14 +63,15 @@ export function SiteFooter({ settings, locations, lang, labels }: {
           <div className={many ? "location-grid locations-many" : "location-grid"}>
             {locations.map((place) => (
               <div className="map-card" key={place.id}>
-                {many ? <h3 className="place-name">{place.name}</h3> : null}
-                <StudioMap address={place.address} mapQuery={place.mapQuery} className="map-frame map-card-frame" />
+                <div className="map-stage">
+                  <StudioMap address={place.address} mapQuery={place.mapQuery} className="map-frame map-card-frame" />
+                  <div className="map-pin">
+                    <span className="pin-ring" aria-hidden="true" />
+                    <span className="pin-ring pin-ring-late" aria-hidden="true" />
+                    <span className="pin-badge">{place.name}</span>
+                  </div>
+                </div>
                 <div className="map-card-body">
-                  <a className="map-open" href={place.mapsUrl} target="_blank" rel="noopener noreferrer">
-                    <PinIcon />
-                    {labels.openMaps}
-                    <span className="sr-only"> ({labels.newTab})</span>
-                  </a>
                   <address>{place.address}</address>
                   <a className="map-directions" href={place.mapsUrl} target="_blank" rel="noopener noreferrer">
                     {labels.directions}

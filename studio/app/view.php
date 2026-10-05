@@ -209,13 +209,11 @@ function site_footer(string $lang, array $settings, array $copy): string
     $html = '<footer class="site-footer" data-lang="' . h($lang) . '"><div class="shell"><section class="location-panel" aria-label="' . h($labels['location']) . '">';
     $html .= '<h2 class="location-heading">' . loc_pin() . h($labels['location']) . '</h2><div class="location-grid' . ($many ? ' locations-many' : '') . '">';
     foreach ($locations as $place) {
-        $html .= '<div class="map-card">';
-        if ($many) {
-            $html .= '<h3 class="place-name">' . h($place['name']) . '</h3>';
-        }
+        $html .= '<div class="map-card"><div class="map-stage">';
         $html .= studio_map($place['address'], 'map-frame map-card-frame', $place['mapQuery']);
-        $html .= '<div class="map-card-body"><a class="map-open" href="' . h($place['mapsUrl']) . '" target="_blank" rel="noopener noreferrer">' . loc_pin() . h($labels['openMaps']) . '</a>';
-        $html .= '<address>' . h($place['address']) . '</address>';
+        $html .= '<div class="map-pin"><span class="pin-ring" aria-hidden="true"></span><span class="pin-ring pin-ring-late" aria-hidden="true"></span>';
+        $html .= '<span class="pin-badge">' . h($place['name']) . '</span></div></div>';
+        $html .= '<div class="map-card-body"><address>' . h($place['address']) . '</address>';
         $html .= '<a class="map-directions" href="' . h($place['mapsUrl']) . '" target="_blank" rel="noopener noreferrer">' . h($labels['directions']) . '</a></div></div>';
     }
     $html .= '<div class="service-col"><h3>' . h($labels['serviceArea']) . '</h3><ul class="service-list">';

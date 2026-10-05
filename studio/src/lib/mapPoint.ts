@@ -36,11 +36,9 @@ export function darkMapDocument(lat: number, lng: number, zoom = 15) {
 <style>
   html,body{margin:0;height:100%;background:#2b2b2b;overflow:hidden}
   img{position:absolute;width:256px;height:256px}
-  .pin{position:absolute;left:50%;top:50%;z-index:3;width:14px;height:14px;margin:-7px 0 0 -7px;background:#e24b3b;border:2px solid #fff;border-radius:50%;box-sizing:border-box}
   .credit{position:absolute;right:4px;bottom:2px;z-index:4;color:#c8c8c8;font:9px/1.2 sans-serif;text-shadow:0 1px 2px #000}
 </style>
 <div id="root"></div>
-<div class="pin"></div>
 <div class="credit">© Esri</div>
 <script>
 const lat=${safeLat}, lng=${safeLng}, z=${safeZoom};
