@@ -451,18 +451,19 @@ textarea { min-height: 140px; resize: vertical; }
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 18px;
-  height: 18px;
-  margin: 0 0 -9px -9px;
+  width: 34px;
+  height: 34px;
+  margin: 0 0 -17px -17px;
   border-radius: 50%;
-  background: rgba(226, 75, 59, 0.42);
+  border: 3px solid rgba(226, 75, 59, 0.9);
+  background: rgba(226, 75, 59, 0.28);
   animation: pin-beep 1.8s ease-out infinite;
   animation-delay: -0.7s;
 }
 .pin-ring-late { animation-delay: -1.6s; }
 @keyframes pin-beep {
-  0% { transform: scale(0.45); opacity: 0.85; }
-  100% { transform: scale(3.6); opacity: 0; }
+  0% { transform: scale(0.3); opacity: 0.95; }
+  100% { transform: scale(5.2); opacity: 0; }
 }
 .map-frame.map-card-frame {
   width: 100%;
