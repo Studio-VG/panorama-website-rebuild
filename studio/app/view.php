@@ -559,8 +559,7 @@ function render_about(string $lang, array $store, array $studio, array $copy): v
         $body .= '<li><span>' . h($copy['days'][$entry['day']] ?? $entry['day']) . '</span><span>' . h($hours) . '</span></li>';
     }
     $body .= '</ul><p><a href="/' . h($lang) . '/book">' . h($copy['about']['booking']) . '</a></p></div></div>';
-    $body .= '<div class="split" style="margin-top:1.5rem">' . studio_map($settings['address'] ?? '') . '<div>';
-    $body .= inquiry_form($store['artists'], $copy['form']) . '</div></div></div></section>';
+    $body .= '<div class="about-form">' . inquiry_form($store['artists'], $copy['form']) . '</div></div></section>';
     layout($lang, [
         'path' => '/about',
         'title' => $copy['seo']['aboutTitle'],

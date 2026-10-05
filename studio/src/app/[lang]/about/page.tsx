@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Paragraphs } from "@/components/Paragraphs";
 import { SocialLinks } from "@/components/SocialLinks";
-import { StudioMap } from "@/components/StudioMap";
 import { localizeSettings } from "@/lib/content";
 import { telHref } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
@@ -69,11 +68,8 @@ export default async function AboutPage({ params }: Props) {
             <p><Link href={`/${lang}/book`}>{copy.about.booking}</Link></p>
           </div>
         </div>
-        <div className="split" style={{ marginTop: "1.5rem" }}>
-          <StudioMap address={settings.address} />
-          <div>
-            <InquiryForm artists={artists} labels={copy.form} />
-          </div>
+        <div className="about-form">
+          <InquiryForm artists={artists} labels={copy.form} />
         </div>
       </div>
     </section>
