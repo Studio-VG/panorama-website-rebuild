@@ -429,7 +429,7 @@ textarea { min-height: 140px; resize: vertical; }
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
-.map-stage { position: relative; }
+.map-stage { position: relative; background: #0c0b0a; }
 .map-pin {
   position: absolute;
   left: 50%;
@@ -491,6 +491,8 @@ textarea { min-height: 140px; resize: vertical; }
   min-height: 210px;
   max-height: 210px;
   display: block;
+  background: #0c0b0a;
+  filter: contrast(1.22) brightness(0.52);
 }
 .map-card-body { padding: 0.85rem 0.95rem 1rem; display: grid; gap: 0.4rem; }
 .map-directions {
