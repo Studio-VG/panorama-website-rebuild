@@ -533,13 +533,13 @@ function render_event(string $lang, array $store, array $copy, string $slug): vo
 function render_about(string $lang, array $store, array $studio, array $copy): void
 {
     $settings = $store['settings'];
-    $body = '<section class="section paper"><div class="shell"><p class="kicker">' . h($settings['name']) . '</p><h1>' . h($copy['about']['title']) . '</h1><div class="split"><div>';
+    $body = '<section class="section about-page"><div class="shell"><p class="kicker">' . h($settings['name']) . '</p><h1>' . h($copy['about']['title']) . '</h1><div class="split"><div>';
     $body .= paragraphs($studio['about']);
     if (!empty($settings['officialName'])) {
         $body .= '<p class="note">' . h($copy['about']['publicName']) . ': ' . h($settings['officialName']) . '. ' . h($studio['officialNameNote']) . '</p>';
     }
     $body .= '</div>';
-    $body .= '<div class="panel"><h2>' . h($copy['about']['reach']) . ' ' . h($settings['name']) . '</h2><ul class="contact-list">';
+    $body .= '<div class="reach-card"><h2>' . h($copy['about']['reach']) . ' ' . h($settings['name']) . '</h2><ul class="contact-list">';
     $body .= '<li><span>' . h($copy['about']['address']) . '</span><span>' . h($settings['address']) . '</span></li>';
     $body .= '<li><span>' . h($copy['about']['phone']) . '</span><a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></li>';
     if (!empty($settings['phoneAlt'])) {

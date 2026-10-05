@@ -301,6 +301,18 @@ h3 { font-size: 1.7rem; margin: 0 0 0.4rem; }
   color: var(--ink);
   border-color: rgba(226, 190, 148, 0.8);
 }
+.reach-card {
+  padding: 1rem 1.1rem 1.2rem;
+  color: var(--paper);
+  background: rgba(128, 82, 48, 0.22);
+  border: 1px solid rgba(226, 190, 148, 0.55);
+  -webkit-backdrop-filter: blur(8px) saturate(1.25);
+  backdrop-filter: blur(8px) saturate(1.25);
+}
+.reach-card a { color: var(--gold-2); }
+.reach-card .hours li,
+.reach-card .contact-list li { border-bottom-color: rgba(226, 190, 148, 0.35); }
+.about-page .note { color: #e4d9c8; }
 .event-card img { aspect-ratio: 16/10; height: 100%; }
 .card-body, .style-card, .panel { padding: 1rem 1.1rem 1.2rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0.7rem 0 0; list-style: none; }

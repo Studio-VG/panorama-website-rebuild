@@ -33,7 +33,7 @@ export default async function AboutPage({ params }: Props) {
   const { settings, artists } = getStore();
   const studio = localizeSettings(settings, lang);
   return (
-    <section className="section paper">
+    <section className="section about-page">
       <div className="shell">
         <p className="kicker">{settings.name}</p>
         <h1>{copy.about.title}</h1>
@@ -46,7 +46,7 @@ export default async function AboutPage({ params }: Props) {
               </p>
             ) : null}
           </div>
-          <div className="panel">
+          <div className="reach-card">
             <h2>{copy.about.reach} {settings.name}</h2>
             <ul className="contact-list">
               <li><span>{copy.about.address}</span><span>{settings.address}</span></li>
