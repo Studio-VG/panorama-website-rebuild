@@ -571,10 +571,10 @@ function render_book(string $lang, array $store, array $copy): void
 {
     $settings = $store['settings'];
     $artist = text_field($_GET['artist'] ?? '', 120);
-    $body = '<section class="section paper"><div class="shell split"><div><p class="kicker">' . h($settings['name']) . '</p>';
+    $body = '<section class="section"><div class="shell split"><div><p class="kicker">' . h($settings['name']) . '</p>';
     $body .= '<h1>' . h($copy['book']['title']) . '</h1><p>' . h($copy['book']['lead']) . '</p><p>' . h($settings['address']) . '</p>';
     $body .= '<p><a href="mailto:' . h($settings['email']) . '">' . h($settings['email']) . '</a> · <a href="' . h($settings['whatsappUrl']) . '">' . h($copy['about']['whatsapp']) . '</a></p></div>';
-    $body .= '<div class="panel">' . inquiry_form($store['artists'], $copy['form'], $artist) . '</div></div></section>';
+    $body .= '<div class="book-form">' . inquiry_form($store['artists'], $copy['form'], $artist) . '</div></div></section>';
     layout($lang, [
         'path' => '/book',
         'title' => $copy['seo']['bookTitle'],

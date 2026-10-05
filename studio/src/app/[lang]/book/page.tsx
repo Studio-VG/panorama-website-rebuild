@@ -27,7 +27,7 @@ export default async function BookPage({ params, searchParams }: Props) {
   const copy = messages[lang];
   const { settings, artists } = getStore();
   return (
-    <section className="section paper">
+    <section className="section">
       <div className="shell split">
         <div>
           <p className="kicker">{settings.name}</p>
@@ -36,7 +36,7 @@ export default async function BookPage({ params, searchParams }: Props) {
           <p>{settings.address}</p>
           <p><a href={`mailto:${settings.email}`}>{settings.email}</a> · <a href={settings.whatsappUrl}>{copy.about.whatsapp}</a></p>
         </div>
-        <div className="panel">
+        <div className="book-form">
           <InquiryForm artists={artists} defaultArtist={artist} labels={copy.form} />
         </div>
       </div>
