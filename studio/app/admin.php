@@ -396,7 +396,7 @@ function settings_from(array $input, array $current): array
         'tagline' => $tagline !== '' ? $tagline : ($current['tagline'] ?? ''),
         'heroLead' => text_field($input['heroLead'] ?? '', 500),
         'officialName' => text_field($input['officialName'] ?? '', 80),
-        'officialNameNote' => text_field($input['officialNameNote'] ?? '', 600),
+        'officialNameNote' => text_field($input['officialNameNote'] ?? ($current['officialNameNote'] ?? ''), 600),
         'phone' => $phone,
         'phoneAlt' => text_field($input['phoneAlt'] ?? '', 40),
         'email' => $email,
@@ -405,11 +405,11 @@ function settings_from(array $input, array $current): array
         'latitude' => $latitude,
         'longitude' => $longitude,
         'googleBusinessUrl' => text_field($input['googleBusinessUrl'] ?? '', 300),
-        'portfolioUrl' => text_field($input['portfolioUrl'] ?? '', 300),
+        'portfolioUrl' => text_field($input['portfolioUrl'] ?? ($current['portfolioUrl'] ?? ''), 300),
         'instagramUrl' => text_field($input['instagramUrl'] ?? '', 300),
         'facebookUrl' => text_field($input['facebookUrl'] ?? '', 300),
         'whatsappUrl' => text_field($input['whatsappUrl'] ?? '', 300),
-        'websiteUrl' => text_field($input['websiteUrl'] ?? '', 300),
+        'websiteUrl' => text_field($input['websiteUrl'] ?? ($current['websiteUrl'] ?? ''), 300),
         'logoUrl' => $logo,
         'about' => text_field($input['about'] ?? '', 8000),
     ]];
@@ -528,7 +528,6 @@ function admin_settings_form(array $settings): string
     $html .= admin_field('setting-tagline', 'Tagline', 'tagline', $settings['tagline'] ?? '');
     $html .= '<label for="setting-lead">Home introduction<textarea id="setting-lead" name="heroLead">' . h($settings['heroLead'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-official', 'Official name (alternate, not the site title)', 'officialName', $settings['officialName'] ?? '');
-    $html .= '<label for="setting-note">Note about the official name<textarea id="setting-note" name="officialNameNote">' . h($settings['officialNameNote'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-address', 'Address', 'address', $settings['address'] ?? '');
     $html .= admin_field('setting-phone', 'Phone', 'phone', $settings['phone'] ?? '');
     $html .= admin_field('setting-phone-alt', 'Second phone', 'phoneAlt', $settings['phoneAlt'] ?? '');
@@ -542,17 +541,15 @@ function admin_settings_form(array $settings): string
     $html .= admin_field('setting-lat', 'Latitude', 'latitude', (string) ($settings['latitude'] ?? ''));
     $html .= admin_field('setting-lng', 'Longitude', 'longitude', (string) ($settings['longitude'] ?? ''));
     $html .= admin_field('setting-google', 'Google Business link', 'googleBusinessUrl', $settings['googleBusinessUrl'] ?? '');
-    $html .= admin_field('setting-portfolio', 'Existing portfolio link', 'portfolioUrl', $settings['portfolioUrl'] ?? '');
     $html .= admin_field('setting-instagram', 'Instagram', 'instagramUrl', $settings['instagramUrl'] ?? '');
     $html .= admin_field('setting-facebook', 'Facebook', 'facebookUrl', $settings['facebookUrl'] ?? '');
     $html .= admin_field('setting-whatsapp', 'WhatsApp link', 'whatsappUrl', $settings['whatsappUrl'] ?? '');
-    $html .= admin_field('setting-website', 'Existing website', 'websiteUrl', $settings['websiteUrl'] ?? '');
     $html .= '<input type="hidden" name="logoUrl" value="' . h($settings['logoUrl'] ?? '') . '">';
     $html .= '<label for="setting-logo">Replace logo<input id="setting-logo" name="logo" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"></label>';
     if (!empty($settings['logoUrl'])) {
         $html .= '<img src="' . h($settings['logoUrl']) . '" alt="" style="width:80px">';
     }
-    $html .= '<label for="setting-about">Studio story<textarea id="setting-about" name="about">' . h($settings['about'] ?? '') . '</textarea></label>';
+    $html .= '<label for="setting-about">About<textarea id="setting-about" name="about">' . h($settings['about'] ?? '') . '</textarea></label>';
     return $html . '<button class="btn btn-ink" type="submit">Save settings</button></form>';
 }
 

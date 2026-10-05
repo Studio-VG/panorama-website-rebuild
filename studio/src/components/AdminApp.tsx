@@ -171,9 +171,6 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
       <label htmlFor="setting-official">Official name (alternate, not the site title)
         <input id="setting-official" value={draft.officialName} onChange={(event) => set("officialName", event.target.value)} />
       </label>
-      <label htmlFor="setting-note">Note about the official name
-        <textarea id="setting-note" value={draft.officialNameNote} onChange={(event) => set("officialNameNote", event.target.value)} />
-      </label>
       <label htmlFor="setting-address">Address
         <textarea id="setting-address" value={draft.address} onChange={(event) => set("address", event.target.value)} required />
       </label>
@@ -208,9 +205,6 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
       <label htmlFor="setting-google">Google Business link
         <input id="setting-google" value={draft.googleBusinessUrl} onChange={(event) => set("googleBusinessUrl", event.target.value)} />
       </label>
-      <label htmlFor="setting-portfolio">Existing portfolio link
-        <input id="setting-portfolio" value={draft.portfolioUrl} onChange={(event) => set("portfolioUrl", event.target.value)} />
-      </label>
       <label htmlFor="setting-instagram">Instagram
         <input id="setting-instagram" value={draft.instagramUrl} onChange={(event) => set("instagramUrl", event.target.value)} />
       </label>
@@ -220,9 +214,6 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
       <label htmlFor="setting-whatsapp">WhatsApp link
         <input id="setting-whatsapp" value={draft.whatsappUrl} onChange={(event) => set("whatsappUrl", event.target.value)} />
       </label>
-      <label htmlFor="setting-website">Existing website
-        <input id="setting-website" value={draft.websiteUrl} onChange={(event) => set("websiteUrl", event.target.value)} />
-      </label>
       <label htmlFor="setting-logo">Replace logo
         <input id="setting-logo" type="file" accept="image/*" onChange={async (event) => {
           const file = event.target.files?.[0];
@@ -231,7 +222,7 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
         }} />
       </label>
       {draft.logoUrl ? <img src={draft.logoUrl} alt="Current studio logo" style={{ height: 64, width: 64, objectFit: "contain", background: "#14110e" }} /> : null}
-      <label htmlFor="setting-about">Studio story
+      <label htmlFor="setting-about">About
         <textarea id="setting-about" value={draft.about} onChange={(event) => set("about", event.target.value)} />
       </label>
       <button className="btn btn-ink" id="setting-save" type="submit">Save studio settings</button>
