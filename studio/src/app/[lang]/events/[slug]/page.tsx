@@ -8,7 +8,7 @@ import { eventIsLocalized, localizeEvent } from "@/lib/content";
 import { eventStatus, formatRange, telHref } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
-import { eventJsonLd, pageMetadata } from "@/lib/seo";
+import { eventJsonLd, istanbulAddress, pageMetadata } from "@/lib/seo";
 import { getStore } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
@@ -35,7 +35,7 @@ export default async function EventPage({ params }: Props) {
   const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
   const copy = messages[lang];
-  const { settings, events } = getStore();
+  const { settings, events, locations } = getStore();
   const event = events.find((item) => item.slug === slug);
   if (!event) notFound();
   const view = localizeEvent(event, lang);
@@ -60,7 +60,7 @@ export default async function EventPage({ params }: Props) {
           <p>
             {settings.name} · <a href={telHref(settings.phone)}>{settings.phone}</a>
           </p>
-          <address>{settings.address}</address>
+          <address>{istanbulAddress(settings, locations)}</address>
           <div className="actions">
             <Link className="btn" href={`/${lang}/book`}>{copy.eventPage.request}</Link>
             <Link className="btn btn-ghost" href={`/${lang}/events`}>{copy.eventPage.all}</Link>

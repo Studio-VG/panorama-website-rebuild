@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { parseHours } from "./format";
 import { locales, openGraphLocale, type Locale } from "./locale";
 import { getStore } from "./store";
-import type { Artist, Settings, StudioEvent } from "./types";
+import type { Artist, Location, Settings, StudioEvent } from "./types";
 
 export function siteUrl() {
   const configured = process.env.SITE_URL?.trim();
@@ -65,22 +65,48 @@ export function pageMetadata(options: {
   };
 }
 
-export function businessJsonLd(settings: Settings, lang: Locale = "en") {
+function countryCode(address: string) {
+  return /germany|düsseldorf|dusseldorf|duesseldorf/i.test(address) ? "DE" : "TR";
+}
+
+export function istanbulAddress(settings: Settings, locations: Location[]) {
+  const istanbul = locations.find((place) => countryCode(place.address) === "TR");
+  return istanbul?.address || settings.address;
+}
+
+function placeJson(place: Location, settings: Settings) {
+  const germany = countryCode(place.address) === "DE";
+  return {
+    "@type": "Place",
+    name: place.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: place.address,
+      addressCountry: germany ? "DE" : "TR",
+    },
+    telephone: germany ? settings.phoneAlt || "+49 163 787 99 67" : settings.phone || "+90 533 203 67 40",
+    hasMap: place.mapsUrl || undefined,
+  };
+}
+
+export function businessJsonLd(settings: Settings, locations: Location[] = [], lang: Locale = "en", description = "") {
+  const street = istanbulAddress(settings, locations);
   return {
     "@context": "https://schema.org",
     "@type": ["TattooParlor", "LocalBusiness"],
     "@id": `${siteUrl()}/#studio`,
     name: settings.name,
     alternateName: settings.officialName || undefined,
-    description: settings.tagline,
+    description: description || settings.tagline,
+    knowsAbout: ["Irezumi", "Japanese tattoo"],
     inLanguage: lang,
     url: `${siteUrl()}/${lang}`,
-    telephone: settings.phone,
-    email: settings.email || undefined,
+    telephone: settings.phone || "+90 533 203 67 40",
+    email: settings.email || "termini@vasovasiko.com",
     image: absoluteUrl(settings.logoUrl || "/brand/logo.png"),
     address: {
       "@type": "PostalAddress",
-      streetAddress: settings.address,
+      streetAddress: street,
       addressCountry: "TR",
     },
     geo: {
@@ -88,18 +114,52 @@ export function businessJsonLd(settings: Settings, lang: Locale = "en") {
       latitude: settings.latitude,
       longitude: settings.longitude,
     },
-    hasMap: settings.googleBusinessUrl,
+    areaServed: [
+      { "@type": "City", name: "Istanbul" },
+      { "@type": "City", name: "Düsseldorf" },
+    ],
+    location: locations.map((place) => placeJson(place, settings)),
+    contactPoint: [
+      settings.phone ? {
+        "@type": "ContactPoint",
+        telephone: settings.phone,
+        contactType: "reservations",
+        areaServed: "TR",
+      } : undefined,
+      settings.phoneAlt ? {
+        "@type": "ContactPoint",
+        telephone: settings.phoneAlt,
+        contactType: "reservations",
+        areaServed: "DE",
+      } : undefined,
+    ].filter(Boolean),
+    hasMap: settings.googleBusinessUrl || undefined,
     sameAs: [settings.instagramUrl, settings.facebookUrl, settings.websiteUrl].filter(Boolean),
     openingHoursSpecification: settings.hours.flatMap((entry) => {
       const range = parseHours(entry);
       if (!range) return [];
       return [{
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: entry.day,
+        dayOfWeek: `https://schema.org/${entry.day}`,
         opens: range.opens,
         closes: range.closes,
       }];
     }),
+  };
+}
+
+export function faqJsonLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
   };
 }
 
@@ -118,13 +178,14 @@ export function personJsonLd(artist: Artist, settings: Settings, lang: Locale) {
       "@type": "TattooParlor",
       name: settings.name,
       telephone: settings.phone,
-      address: settings.address,
+      address: istanbulAddress(settings, getStore().locations),
     },
   };
 }
 
 export function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale) {
   const awayFestival = event.slug === "marmaris-tattoo-festival" || /festival|convention|фестиваль/i.test(event.title);
+  const street = istanbulAddress(settings, getStore().locations);
   return {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -148,7 +209,7 @@ export function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale
           telephone: settings.phone,
           address: {
             "@type": "PostalAddress",
-            streetAddress: settings.address,
+            streetAddress: street,
             addressCountry: "TR",
           },
         },
@@ -157,7 +218,7 @@ export function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale
       "@type": "TattooParlor",
       name: settings.name,
       telephone: settings.phone,
-      address: settings.address,
+      address: street,
     },
     performer: event.guest ? { "@type": "Person", name: event.guest } : undefined,
   };

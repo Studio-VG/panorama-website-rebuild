@@ -694,7 +694,7 @@ function parse_hours(array $entry): ?array
     if (preg_match('/closed/i', $entry['hours'] ?? '')) {
         return null;
     }
-    if (!preg_match('/(\d{1,2}:\d{2})\s*[–-]\s*(\d{1,2}:\d{2})/', $entry['hours'] ?? '', $match)) {
+    if (!preg_match('/(\d{1,2}:\d{2})\s*[–-]\s*(\d{1,2}:\d{2})/u', $entry['hours'] ?? '', $match)) {
         return null;
     }
     return ['opens' => $match[1], 'closes' => $match[2]];
@@ -851,13 +851,29 @@ function json_ld(array $data): string
     return '<script type="application/ld+json">' . str_replace('<', '\\u003c', (string) $json) . '</script>';
 }
 
-function business_json_ld(array $settings, string $lang): array
+function address_country(string $address): string
+{
+    return preg_match('/germany|düsseldorf|dusseldorf|duesseldorf/iu', $address) ? 'DE' : 'TR';
+}
+
+function istanbul_street(array $settings, array $locations): string
+{
+    foreach ($locations as $place) {
+        $address = trim((string) ($place['address'] ?? ''));
+        if ($address !== '' && address_country($address) === 'TR') {
+            return $address;
+        }
+    }
+    return (string) ($settings['address'] ?? '');
+}
+
+function business_json_ld(array $settings, string $lang, array $locations = [], string $description = ''): array
 {
     $same = array_values(array_filter([
         $settings['instagramUrl'] ?? '',
         $settings['facebookUrl'] ?? '',
         $settings['websiteUrl'] ?? '',
-    ]));
+    ], static fn ($value): bool => is_string($value) && $value !== ''));
     $hours = [];
     foreach ($settings['hours'] ?? [] as $entry) {
         $range = parse_hours($entry);
@@ -866,37 +882,93 @@ function business_json_ld(array $settings, string $lang): array
         }
         $hours[] = [
             '@type' => 'OpeningHoursSpecification',
-            'dayOfWeek' => $entry['day'],
+            'dayOfWeek' => 'https://schema.org/' . $entry['day'],
             'opens' => $range['opens'],
             'closes' => $range['closes'],
         ];
     }
-    return [
+    $places = [];
+    foreach ($locations as $place) {
+        if (!is_array($place)) {
+            continue;
+        }
+        $address = trim((string) ($place['address'] ?? ''));
+        if ($address === '') {
+            continue;
+        }
+        $germany = address_country($address) === 'DE';
+        $item = [
+            '@type' => 'Place',
+            'name' => (string) ($place['name'] ?? ''),
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $address,
+                'addressCountry' => $germany ? 'DE' : 'TR',
+            ],
+            'telephone' => $germany
+                ? (($settings['phoneAlt'] ?? '') ?: '+49 163 787 99 67')
+                : (($settings['phone'] ?? '') ?: '+90 533 203 67 40'),
+        ];
+        if (!empty($place['mapsUrl'])) {
+            $item['hasMap'] = $place['mapsUrl'];
+        }
+        $places[] = $item;
+    }
+    $contacts = [];
+    if (!empty($settings['phone'])) {
+        $contacts[] = [
+            '@type' => 'ContactPoint',
+            'telephone' => $settings['phone'],
+            'contactType' => 'reservations',
+            'areaServed' => 'TR',
+        ];
+    }
+    if (!empty($settings['phoneAlt'])) {
+        $contacts[] = [
+            '@type' => 'ContactPoint',
+            'telephone' => $settings['phoneAlt'],
+            'contactType' => 'reservations',
+            'areaServed' => 'DE',
+        ];
+    }
+    $data = [
         '@context' => 'https://schema.org',
         '@type' => ['TattooParlor', 'LocalBusiness'],
         '@id' => site_url() . '/#studio',
         'name' => $settings['name'],
-        'alternateName' => $settings['officialName'] ?: null,
-        'description' => $settings['tagline'],
+        'description' => $description !== '' ? $description : ($settings['tagline'] ?? ''),
+        'knowsAbout' => ['Irezumi', 'Japanese tattoo'],
         'inLanguage' => $lang,
         'url' => site_url() . '/' . $lang,
-        'telephone' => $settings['phone'],
-        'email' => $settings['email'] ?: null,
-        'image' => absolute_url($settings['logoUrl'] ?: '/brand/logo.png'),
+        'telephone' => ($settings['phone'] ?? '') ?: '+90 533 203 67 40',
+        'email' => ($settings['email'] ?? '') ?: 'termini@vasovasiko.com',
+        'image' => absolute_url(($settings['logoUrl'] ?? '') ?: '/brand/logo.png'),
         'address' => [
             '@type' => 'PostalAddress',
-            'streetAddress' => $settings['address'],
+            'streetAddress' => istanbul_street($settings, $locations),
             'addressCountry' => 'TR',
         ],
         'geo' => [
             '@type' => 'GeoCoordinates',
-            'latitude' => $settings['latitude'],
-            'longitude' => $settings['longitude'],
+            'latitude' => $settings['latitude'] ?? null,
+            'longitude' => $settings['longitude'] ?? null,
         ],
-        'hasMap' => $settings['googleBusinessUrl'],
+        'areaServed' => [
+            ['@type' => 'City', 'name' => 'Istanbul'],
+            ['@type' => 'City', 'name' => 'Düsseldorf'],
+        ],
+        'location' => $places,
+        'contactPoint' => $contacts,
         'sameAs' => $same,
         'openingHoursSpecification' => $hours,
     ];
+    if (!empty($settings['officialName'])) {
+        $data['alternateName'] = $settings['officialName'];
+    }
+    if (!empty($settings['googleBusinessUrl'])) {
+        $data['hasMap'] = $settings['googleBusinessUrl'];
+    }
+    return $data;
 }
 
 function media_types(): array

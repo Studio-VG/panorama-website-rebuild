@@ -123,6 +123,7 @@ export default async function HomePage({ params }: Props) {
               </li>
             ))}
           </ul>
+          <p>{copy.home.facts}</p>
           <div className="actions">
             <Link className="btn btn-ghost" href={`/${lang}/about`}>{copy.nav.about}</Link>
             <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>

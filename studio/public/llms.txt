@@ -1,0 +1,38 @@
+# ByVasoVasiko
+
+ByVasoVasiko is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf.
+
+## Istanbul
+Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye
+Phone: +90 533 203 67 40
+
+## Düsseldorf
+Königsallee 45-47, 40212 Düsseldorf, Germany
+Phone: +49 163 787 99 67
+
+Email: termini@vasovasiko.com
+Hours: Monday to Saturday 10:00–20:00, Sunday closed
+Instagram: https://www.instagram.com/vasovasiko/
+Facebook: https://www.facebook.com/vasovasiko
+
+Book with the appointment form. The studio replies by email or WhatsApp.
+
+## Pages
+- /en
+- /en/about
+- /en/book
+- /en/faq
+- /en/artists
+- /en/events
+- /tr
+- /tr/about
+- /tr/book
+- /tr/faq
+- /de
+- /de/about
+- /de/book
+- /de/faq
+- /ru
+- /ru/about
+- /ru/book
+- /ru/faq

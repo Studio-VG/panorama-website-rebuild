@@ -133,7 +133,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     echo '<meta property="og:description" content="' . h($description) . '">';
     echo '<meta property="og:url" content="' . h($canonical) . '">';
     echo '<meta property="og:image" content="' . h(absolute_url($image)) . '">';
-    echo json_ld(business_json_ld($studio, $lang));
+    echo json_ld(business_json_ld($studio, $lang, studio_locations($store), (string) ($copy['home']['facts'] ?? '')));
     foreach ($extraLd as $block) {
         echo json_ld($block);
     }
@@ -359,7 +359,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
         $hours = preg_match('/closed/i', $entry['hours']) ? $copy['closed'] : $entry['hours'];
         $body .= '<li><span>' . h($copy['days'][$entry['day']] ?? $entry['day']) . '</span><span>' . h($hours) . '</span></li>';
     }
-    $body .= '</ul><div class="actions"><a class="btn btn-ghost" href="/' . h($lang) . '/about">' . h($copy['nav']['about']) . '</a>';
+    $body .= '</ul><p>' . h($copy['home']['facts']) . '</p><div class="actions"><a class="btn btn-ghost" href="/' . h($lang) . '/about">' . h($copy['nav']['about']) . '</a>';
     $body .= '<a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></section>';
 
     layout($lang, [
@@ -433,7 +433,7 @@ function render_artist(string $lang, array $store, array $copy, string $slug): v
         'jobTitle' => 'Tattoo artist',
         'knowsAbout' => $view['styles'],
         'url' => absolute_url("/$lang/artists/" . $artist['slug']),
-        'worksFor' => ['@id' => site_url() . '/#studio', '@type' => 'TattooParlor', 'name' => $settings['name'], 'telephone' => $settings['phone'], 'address' => $settings['address']],
+        'worksFor' => ['@id' => site_url() . '/#studio', '@type' => 'TattooParlor', 'name' => $settings['name'], 'telephone' => $settings['phone'], 'address' => istanbul_street($settings, studio_locations($store))],
     ];
     layout($lang, [
         'path' => '/artists/' . $artist['slug'],
@@ -485,7 +485,8 @@ function render_event(string $lang, array $store, array $copy, string $slug): vo
         $body .= '<p>' . h(implode(' · ', $who)) . '</p>';
     }
     $body .= '<p>' . h($view['description']) . '</p><p>' . h($settings['name']) . ' · <a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></p>';
-    $body .= '<address>' . h($settings['address']) . '</address><div class="actions">';
+    $street = istanbul_street($settings, studio_locations($store));
+    $body .= '<address>' . h($street) . '</address><div class="actions">';
     $body .= '<a class="btn" href="/' . h($lang) . '/book">' . h($copy['eventPage']['request']) . '</a>';
     $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/events">' . h($copy['eventPage']['all']) . '</a></div></div></div>';
     $others = [];
@@ -516,8 +517,8 @@ function render_event(string $lang, array $store, array $copy, string $slug): vo
         'eventStatus' => 'https://schema.org/EventScheduled',
         'location' => $away
             ? ['@type' => 'Place', 'name' => $view['country'] ? $view['title'] . ', ' . $view['country'] : $view['title'], 'address' => $view['country'] ?: null]
-            : ['@type' => 'Place', 'name' => $settings['name'], 'telephone' => $settings['phone'], 'address' => ['@type' => 'PostalAddress', 'streetAddress' => $settings['address'], 'addressCountry' => 'TR']],
-        'organizer' => ['@id' => site_url() . '/#studio', '@type' => 'TattooParlor', 'name' => $settings['name'], 'telephone' => $settings['phone'], 'address' => $settings['address']],
+            : ['@type' => 'Place', 'name' => $settings['name'], 'telephone' => $settings['phone'], 'address' => ['@type' => 'PostalAddress', 'streetAddress' => $street, 'addressCountry' => 'TR']],
+        'organizer' => ['@id' => site_url() . '/#studio', '@type' => 'TattooParlor', 'name' => $settings['name'], 'telephone' => $settings['phone'], 'address' => $street],
     ];
     if (!empty($view['guest'])) {
         $ld['performer'] = ['@type' => 'Person', 'name' => $view['guest']];
@@ -538,9 +539,17 @@ function render_about(string $lang, array $store, array $studio, array $copy): v
     if (!empty($settings['officialName'])) {
         $body .= '<p class="note">' . h($copy['about']['publicName']) . ': ' . h($settings['officialName']) . '. ' . h($studio['officialNameNote']) . '</p>';
     }
-    $body .= '</div>';
+    $body .= '<p>' . h($copy['home']['facts']) . '</p></div>';
+    $istanbul = '';
+    foreach (studio_locations($store) as $place) {
+        $hay = ($place['name'] ?? '') . ' ' . ($place['address'] ?? '');
+        if (preg_match('/istanbul|beyoğlu|beyoglu/iu', $hay)) {
+            $istanbul = $place['address'];
+            break;
+        }
+    }
     $body .= '<div class="reach-card"><h2>' . h($copy['about']['reach']) . ' ' . h($settings['name']) . '</h2><ul class="contact-list">';
-    $body .= '<li><span>' . h($copy['about']['address']) . '</span><span>' . h($settings['address']) . '</span></li>';
+    $body .= '<li><span>' . h($copy['about']['address']) . '</span><span>' . h($istanbul !== '' ? $istanbul : ($settings['address'] ?? '')) . '</span></li>';
     $body .= '<li><span>' . h($copy['about']['phone']) . '</span><a href="' . h(tel_href($settings['phone'])) . '">' . h($settings['phone']) . '</a></li>';
     if (!empty($settings['phoneAlt'])) {
         $body .= '<li><span>' . h($copy['about']['also']) . '</span><a href="' . h(tel_href($settings['phoneAlt'])) . '">' . h($settings['phoneAlt']) . '</a></li>';
@@ -561,7 +570,7 @@ function render_about(string $lang, array $store, array $studio, array $copy): v
     layout($lang, [
         'path' => '/about',
         'title' => $copy['seo']['aboutTitle'],
-        'description' => $copy['seo']['aboutDescription'] . ' ' . $settings['address'],
+        'description' => $copy['seo']['aboutDescription'],
     ], $body);
 }
 
@@ -570,7 +579,7 @@ function render_book(string $lang, array $store, array $copy): void
     $settings = $store['settings'];
     $artist = text_field($_GET['artist'] ?? '', 120);
     $body = '<section class="section"><div class="shell split"><div><p class="kicker">' . h($settings['name']) . '</p>';
-    $body .= '<h1>' . h($copy['book']['title']) . '</h1><p>' . h($copy['book']['lead']) . '</p><p>' . h($settings['address']) . '</p>';
+    $body .= '<h1>' . h($copy['book']['title']) . '</h1><p>' . h($copy['book']['lead']) . '</p><p>' . h(istanbul_street($settings, studio_locations($store))) . '</p>';
     $body .= '<p><a href="mailto:' . h($settings['email']) . '">' . h($settings['email']) . '</a> · <a href="' . h($settings['whatsappUrl']) . '">' . h($copy['about']['whatsapp']) . '</a></p></div>';
     $body .= '<div class="book-form">' . inquiry_form($store['artists'], $copy['form'], $artist) . '</div></div></section>';
     layout($lang, [
@@ -587,11 +596,22 @@ function render_faq(string $lang, array $settings, array $copy): void
         $body .= '<article class="panel"><h2>' . h($item['q']) . '</h2><p>' . h($item['a']) . '</p></article>';
     }
     $body .= '</div><p><a href="/' . h($lang) . '/about">' . h($copy['nav']['about']) . '</a> · <a href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></p></div></section>';
+    $faqLd = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => array_map(static function (array $item): array {
+            return [
+                '@type' => 'Question',
+                'name' => $item['q'],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $item['a']],
+            ];
+        }, $copy['faq']['items']),
+    ];
     layout($lang, [
         'path' => '/faq',
         'title' => $copy['seo']['faqTitle'],
         'description' => $copy['seo']['faqDescription'],
-    ], $body);
+    ], $body, [$faqLd]);
 }
 
 function render_not_found(string $lang, array $copy): void

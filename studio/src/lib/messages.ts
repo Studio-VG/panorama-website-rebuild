@@ -6,7 +6,7 @@ export type Messages = {
   days: Record<string, string>;
   closed: string;
   status: { Upcoming: string; Past: string; Now: string; featured: string };
-  home: { heroTitle: string; intro: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
+  home: { heroTitle: string; intro: string; facts: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
   artistsPage: { title: string; lead: string };
   artistPage: { work: string; request: string; portfolio: string; untranslated: string };
   eventsPage: { title: string; lead: string };
@@ -42,6 +42,7 @@ export const messages: Record<Locale, Messages> = {
     home: {
       heroTitle: "Best tattoo artists",
       intro: "A professional tattoo studio in Germany and Istanbul, Turkey.",
+      facts: "ByVasoVasiko is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf. The Istanbul address is Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. The Düsseldorf address is Königsallee 45-47, 40212 Düsseldorf, Germany. Phone +90 533 203 67 40 or +49 163 787 99 67. Email termini@vasovasiko.com. Hours are Monday to Saturday, 10:00–20:00, and Sunday is closed. To book, use the appointment form. The studio replies by email or WhatsApp.",
       eventsKicker: "Special events",
       eventsTitle: "Guests and gatherings",
       eventsLead: "Visiting artists from other countries, and days such as the Marmari Tattoo Festival.",
@@ -89,18 +90,18 @@ export const messages: Record<Locale, Messages> = {
         { q: "When is the design ready?", a: "After the project is agreed, the design is presented within about 20 working days. The sitting is booked once you approve it." },
         { q: "Do you host a guest tattoo artist?", a: "Yes. Guest spots from other countries are listed on the events page, and the featured ones also appear on the home page." },
         { q: "What about the Marmari Tattoo Festival?", a: "The studio takes part in the Marmari Tattoo Festival in Marmaris. The last announced edition was 3–5 October 2025. The next dates are updated on the events page." },
-        { q: "Where is the studio?", a: "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye. The map and hours are on the contact page." },
+        { q: "Where is the studio?", a: "ByVasoVasiko is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf. The Istanbul address is Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. The Düsseldorf address is Königsallee 45-47, 40212 Düsseldorf, Germany. Phone +90 533 203 67 40 or +49 163 787 99 67. Email termini@vasovasiko.com. Hours are Monday to Saturday, 10:00–20:00, and Sunday is closed. To book, use the appointment form. The studio replies by email or WhatsApp." },
       ],
     },
     form: { name: "Name", email: "Email", phone: "Phone", artist: "Preferred artist", message: "Idea, placement, and rough timing", send: "Send request", sending: "Sending…", ok: "Request received. The studio will reply by email or WhatsApp.", preference: "No preference", error: "The message could not be sent." },
     notFound: { title: "That page is not here", body: "Try the artists, the events, or the front page.", home: "Back home" },
     seo: {
       homeTitle: "Tattoo studio Istanbul",
-      homeDescription: "Tattoo studio in Istanbul, on Istiklal Street in Beyoğlu. Japanese work, custom pieces, and guest artists.",
+      homeDescription: "ByVasoVasiko does custom Japanese tattoo art, including irezumi, in Istanbul and Düsseldorf.",
       artistsTitle: "Tattoo shop Beyoğlu",
       artistsDescription: "Tattoo shop in Beyoğlu, on Istiklal Street in Asmalı Mescit. Artists, styles, and portfolios.",
       aboutTitle: "Istiklal Street tattoo",
-      aboutDescription: "Istiklal Street tattoo studio in Asmalı Mescit, Beyoğlu. Address, hours, phone, and map.",
+      aboutDescription: "ByVasoVasiko in Istanbul and Düsseldorf: addresses, phones, termini@vasovasiko.com, and hours.",
       bookTitle: "Tattoo appointment",
       bookDescription: "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp.",
       stylesTitle: "Japanese tattoo Istanbul",
@@ -110,7 +111,7 @@ export const messages: Record<Locale, Messages> = {
       aftercareTitle: "Aftercare",
       aftercareDescription: "How to look after a fresh tattoo, and when to call the studio.",
       faqTitle: "Questions",
-      faqDescription: "Booking a tattoo appointment in Beyoğlu, deposits, guest artists, and the Marmari Tattoo Festival.",
+      faqDescription: "Where ByVasoVasiko works in Istanbul and Düsseldorf, and how to book.",
     },
   },
   tr: {
@@ -122,6 +123,7 @@ export const messages: Record<Locale, Messages> = {
     home: {
       heroTitle: "En iyi dövme sanatçıları",
       intro: "Almanya ve İstanbul, Türkiye’de profesyonel bir dövme stüdyosu.",
+      facts: "ByVasoVasiko, irezumi dahil özel Japon dövmesi yapan bir stüdyodur. Stüdyo İstanbul ve Düsseldorf’ta çalışır. İstanbul adresi Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Düsseldorf adresi Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 veya +49 163 787 99 67. E-posta termini@vasovasiko.com. Saatler pazartesiden cumartesiye 10:00–20:00, pazar kapalıdır. Randevu için formu kullanın. Stüdyo e-posta ya da WhatsApp ile döner.",
       eventsKicker: "Özel etkinlikler",
       eventsTitle: "Misafirler ve buluşmalar",
       eventsLead: "Başka ülkelerden misafir dövme sanatçıları ve Marmari dövme festivali gibi günler.",
@@ -169,18 +171,18 @@ export const messages: Record<Locale, Messages> = {
         { q: "Tasarım ne zaman hazır?", a: "İş kararlaştırıldıktan sonra tasarım yaklaşık 20 iş günü içinde sunulur. Siz onaylayınca en yakın tarihe randevu yazılır." },
         { q: "Misafir dövme sanatçısı geliyor mu?", a: "Evet. Başka ülkelerden misafir günleri etkinlikler sayfasındadır. Öne çıkanlar ana sayfada da durur." },
         { q: "Marmari dövme festivali ne?", a: "Stüdyo, Marmaris’teki Marmari dövme festivaline katılır. Son duyurulan tarih 3–5 Ekim 2025’tir. Yeni tarih etkinlikler sayfasında güncellenir." },
-        { q: "Stüdyo nerede?", a: "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye. Harita ve saatler iletişim sayfasındadır." },
+        { q: "Stüdyo nerede?", a: "ByVasoVasiko, irezumi dahil özel Japon dövmesi yapan bir stüdyodur. Stüdyo İstanbul ve Düsseldorf’ta çalışır. İstanbul adresi Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Düsseldorf adresi Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 veya +49 163 787 99 67. E-posta termini@vasovasiko.com. Saatler pazartesiden cumartesiye 10:00–20:00, pazar kapalıdır. Randevu için formu kullanın. Stüdyo e-posta ya da WhatsApp ile döner." },
       ],
     },
     form: { name: "Ad", email: "E-posta", phone: "Telefon", artist: "Tercih edilen sanatçı", message: "Fikir, bölge ve kabaca zaman", send: "İsteği gönder", sending: "Gönderiliyor…", ok: "İstek alındı. Stüdyo e-posta ya da WhatsApp ile döner.", preference: "Fark etmez", error: "Mesaj gönderilemedi." },
     notFound: { title: "Bu sayfa yok", body: "Sanatçılara, etkinliklere ya da ana sayfaya bakın.", home: "Ana sayfa" },
     seo: {
       homeTitle: "İstanbul dövme stüdyosu",
-      homeDescription: "Beyoğlu’nda, İstiklal’de İstanbul dövme stüdyosu. Japon dövmesi, özel tasarım ve misafir sanatçılar.",
+      homeDescription: "ByVasoVasiko, İstanbul ve Düsseldorf’ta irezumi dahil özel Japon dövmesi yapar.",
       artistsTitle: "Beyoğlu dövme",
       artistsDescription: "Asmalı Mescit’te, İstiklal üzerinde Beyoğlu dövme stüdyosu. Sanatçılar ve portfolyolar.",
       aboutTitle: "İstiklal dövme",
-      aboutDescription: "Asmalı Mescit, Beyoğlu, İstiklal’de dövme stüdyosu. Adres, saatler, telefon ve harita.",
+      aboutDescription: "ByVasoVasiko İstanbul ve Düsseldorf’ta: adresler, telefonlar, termini@vasovasiko.com ve saatler.",
       bookTitle: "Dövme randevusu",
       bookDescription: "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner.",
       stylesTitle: "Japon dövmesi",
@@ -190,7 +192,7 @@ export const messages: Record<Locale, Messages> = {
       aftercareTitle: "Bakım",
       aftercareDescription: "Taze dövmenin bakımı ve stüdyoyu ne zaman arayacağınız.",
       faqTitle: "Sorular",
-      faqDescription: "Beyoğlu dövme randevusu, depozito, misafir sanatçı ve Marmari dövme festivali.",
+      faqDescription: "ByVasoVasiko’nun İstanbul ve Düsseldorf adresleri ve randevu.",
     },
   },
   de: {
@@ -202,6 +204,7 @@ export const messages: Record<Locale, Messages> = {
     home: {
       heroTitle: "Die besten Tätowierer",
       intro: "Ein professionelles Tattoo-Studio in Deutschland und Istanbul, Türkei.",
+      facts: "ByVasoVasiko ist ein Tattoo-Studio für japanische Tattoo-Kunst, einschließlich Irezumi. Das Studio arbeitet in Istanbul und Düsseldorf. Die Adresse in Istanbul ist Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Die Adresse in Düsseldorf ist Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 oder +49 163 787 99 67. E-Mail termini@vasovasiko.com. Geöffnet Montag bis Samstag, 10:00–20:00, sonntags geschlossen. Für einen Termin das Formular nutzen. Das Studio antwortet per E-Mail oder WhatsApp.",
       eventsKicker: "Besondere Termine",
       eventsTitle: "Gäste und Treffen",
       eventsLead: "Gasttätowierer aus anderen Ländern und Tage wie das Marmari Tattoo Festival.",
@@ -249,18 +252,18 @@ export const messages: Record<Locale, Messages> = {
         { q: "Wann ist der Entwurf fertig?", a: "Nach der Zusage kommt der Entwurf in etwa 20 Werktagen. Der Sitz wird gebucht, wenn Sie ihn freigeben." },
         { q: "Kommt ein Gasttätowierer?", a: "Ja. Gasttage aus anderen Ländern stehen auf der Terminseite. Hervorgehobene erscheinen auch auf der Startseite." },
         { q: "Was ist das Marmari Tattoo Festival?", a: "Das Studio nimmt am Marmari Tattoo Festival in Marmaris teil. Die letzte angekündigte Ausgabe war der 3.–5. Oktober 2025. Neue Daten stehen auf der Terminseite." },
-        { q: "Wo ist das Studio?", a: "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye. Karte und Zeiten sind auf der Kontaktseite." },
+        { q: "Wo ist das Studio?", a: "ByVasoVasiko ist ein Tattoo-Studio für japanische Tattoo-Kunst, einschließlich Irezumi. Das Studio arbeitet in Istanbul und Düsseldorf. Die Adresse in Istanbul ist Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Die Adresse in Düsseldorf ist Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 oder +49 163 787 99 67. E-Mail termini@vasovasiko.com. Geöffnet Montag bis Samstag, 10:00–20:00, sonntags geschlossen. Für einen Termin das Formular nutzen. Das Studio antwortet per E-Mail oder WhatsApp." },
       ],
     },
     form: { name: "Name", email: "E-Mail", phone: "Telefon", artist: "Wunschkünstler", message: "Idee, Stelle und grober Zeitpunkt", send: "Anfrage senden", sending: "Wird gesendet…", ok: "Anfrage angekommen. Das Studio antwortet per E-Mail oder WhatsApp.", preference: "Keine Vorgabe", error: "Die Nachricht konnte nicht gesendet werden." },
     notFound: { title: "Diese Seite gibt es nicht", body: "Sehen Sie bei den Künstlern, den Terminen oder auf der Startseite nach.", home: "Zur Startseite" },
     seo: {
       homeTitle: "Tattoo-Studio Istanbul",
-      homeDescription: "Tattoo-Studio in Istanbul, an der Istiklal in Beyoğlu. Japanische Arbeit, Einzelstücke und Gasttätowierer.",
+      homeDescription: "ByVasoVasiko macht japanische Tattoo-Kunst, einschließlich Irezumi, in Istanbul und Düsseldorf.",
       artistsTitle: "Tattoo-Studio Beyoğlu",
       artistsDescription: "Tattoo-Studio in Beyoğlu, an der Istiklal in Asmalı Mescit. Künstler und Mappen.",
       aboutTitle: "Tattoo an der Istiklal",
-      aboutDescription: "Tattoo-Studio an der Istiklal in Asmalı Mescit, Beyoğlu. Adresse, Zeiten, Telefon und Karte.",
+      aboutDescription: "ByVasoVasiko in Istanbul und Düsseldorf: Adressen, Telefone, termini@vasovasiko.com und Zeiten.",
       bookTitle: "Tattoo-Termin",
       bookDescription: "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp.",
       stylesTitle: "Japanisches Tattoo Istanbul",
@@ -270,7 +273,7 @@ export const messages: Record<Locale, Messages> = {
       aftercareTitle: "Nachsorge",
       aftercareDescription: "Pflege eines frischen Tattoos und wann Sie das Studio anrufen.",
       faqTitle: "Fragen",
-      faqDescription: "Tattoo-Termin in Beyoğlu, Anzahlung, Gasttätowierer und das Marmari Tattoo Festival.",
+      faqDescription: "Wo ByVasoVasiko in Istanbul und Düsseldorf arbeitet, und wie man bucht.",
     },
   },
   ru: {
@@ -282,6 +285,7 @@ export const messages: Record<Locale, Messages> = {
     home: {
       heroTitle: "Лучшие тату-мастера",
       intro: "Профессиональная тату-студия в Германии и Стамбуле, Турция.",
+      facts: "ByVasoVasiko — тату-студия заказной японской татуировки, включая ирэдзуми. Студия работает в Стамбуле и Дюссельдорфе. Адрес в Стамбуле: Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Адрес в Дюссельдорфе: Königsallee 45-47, 40212 Düsseldorf, Germany. Телефон +90 533 203 67 40 или +49 163 787 99 67. Почта termini@vasovasiko.com. Часы: понедельник–суббота 10:00–20:00, воскресенье закрыто. Для записи используйте форму. Студия отвечает почтой или в WhatsApp.",
       eventsKicker: "Особые даты",
       eventsTitle: "Гости и встречи",
       eventsLead: "Приглашённые мастера из других стран и дни вроде фестиваля Marmari.",
@@ -329,18 +333,18 @@ export const messages: Record<Locale, Messages> = {
         { q: "Когда готов эскиз?", a: "После договорённости эскиз показывают примерно за 20 рабочих дней. Сеанс ставят, когда вы его принимаете." },
         { q: "Бывает приглашённый мастер?", a: "Да. Гостевые дни из других стран есть на странице событий. Отмеченные видны и на главной." },
         { q: "Что за фестиваль Marmari?", a: "Студия участвует в фестивале Marmari в Мармарисе. Последние объявленные даты — 3–5 октября 2025. Новые даты обновляют на странице событий." },
-        { q: "Где студия?", a: "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye. Карта и часы — на странице контактов." },
+        { q: "Где студия?", a: "ByVasoVasiko — тату-студия заказной японской татуировки, включая ирэдзуми. Студия работает в Стамбуле и Дюссельдорфе. Адрес в Стамбуле: Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Адрес в Дюссельдорфе: Königsallee 45-47, 40212 Düsseldorf, Germany. Телефон +90 533 203 67 40 или +49 163 787 99 67. Почта termini@vasovasiko.com. Часы: понедельник–суббота 10:00–20:00, воскресенье закрыто. Для записи используйте форму. Студия отвечает почтой или в WhatsApp." },
       ],
     },
     form: { name: "Имя", email: "Почта", phone: "Телефон", artist: "Мастер", message: "Идея, место и примерное время", send: "Отправить запрос", sending: "Отправка…", ok: "Запрос получен. Студия ответит почтой или в WhatsApp.", preference: "Без предпочтения", error: "Сообщение не отправилось." },
     notFound: { title: "Такой страницы нет", body: "Загляните к мастерам, в события или на главную.", home: "На главную" },
     seo: {
       homeTitle: "Тату-студия Стамбул",
-      homeDescription: "Тату-студия в Стамбуле, на Истикляль в Бейоглу. Японская работа, заказные вещи и приглашённые мастера.",
+      homeDescription: "ByVasoVasiko делает японскую татуировку, включая ирэдзуми, в Стамбуле и Дюссельдорфе.",
       artistsTitle: "Тату Бейоглу",
       artistsDescription: "Тату-студия в Бейоглу, на Истикляль в Асмалы Месджит. Мастера и портфолио.",
       aboutTitle: "Тату на Истикляль",
-      aboutDescription: "Тату-студия на Истикляль в Асмалы Месджит, Бейоглу. Адрес, часы, телефон и карта.",
+      aboutDescription: "ByVasoVasiko в Стамбуле и Дюссельдорфе: адреса, телефоны, termini@vasovasiko.com и часы.",
       bookTitle: "Запись на тату",
       bookDescription: "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp.",
       stylesTitle: "Японская татуировка Стамбул",
@@ -350,7 +354,7 @@ export const messages: Record<Locale, Messages> = {
       aftercareTitle: "Уход",
       aftercareDescription: "Как ухаживать за свежей татуировкой и когда звонить в студию.",
       faqTitle: "Вопросы",
-      faqDescription: "Запись на тату в Бейоглу, задаток, приглашённый мастер и фестиваль Marmari.",
+      faqDescription: "Где ByVasoVasiko работает в Стамбуле и Дюссельдорфе, и как записаться.",
     },
   },
 };

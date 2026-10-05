@@ -4,7 +4,7 @@ import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { HtmlLang } from "@/components/HtmlLang";
 import { isLocale, type Locale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
-import { siteUrl } from "@/lib/seo";
+import { istanbulAddress, siteUrl } from "@/lib/seo";
 import { getStore } from "@/lib/store";
 import "./globals.css";
 
@@ -36,7 +36,7 @@ async function requestLocale(): Promise<Locale> {
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = await requestLocale();
-  const { settings } = getStore();
+  const { settings, locations } = getStore();
   const copy = messages[lang];
   return {
     metadataBase: new URL(siteUrl()),
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: { icon: settings.logoUrl || "/brand/favicon.png" },
     other: {
       "geo.position": `${settings.latitude};${settings.longitude}`,
-      "geo.placename": settings.address,
+      "geo.placename": istanbulAddress(settings, locations),
     },
   };
 }

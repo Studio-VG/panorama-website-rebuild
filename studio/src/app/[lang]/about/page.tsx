@@ -17,11 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const copy = messages[lang];
-  const { settings } = getStore();
   return pageMetadata({
     lang,
     title: copy.seo.aboutTitle,
-    description: `${copy.seo.aboutDescription} ${settings.address}`,
+    description: copy.seo.aboutDescription,
     path: "/about",
   });
 }
@@ -30,7 +29,8 @@ export default async function AboutPage({ params }: Props) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const copy = messages[lang];
-  const { settings, artists } = getStore();
+  const { settings, artists, locations } = getStore();
+  const istanbul = locations.find((place) => /istanbul|beyoğlu|beyoglu/i.test(`${place.name} ${place.address}`));
   const studio = localizeSettings(settings, lang);
   return (
     <section className="section about-page">
@@ -45,11 +45,12 @@ export default async function AboutPage({ params }: Props) {
                 {copy.about.publicName}: {settings.officialName}. {studio.officialNameNote}
               </p>
             ) : null}
+            <p>{copy.home.facts}</p>
           </div>
           <div className="reach-card">
             <h2>{copy.about.reach} {settings.name}</h2>
             <ul className="contact-list">
-              <li><span>{copy.about.address}</span><span>{settings.address}</span></li>
+              <li><span>{copy.about.address}</span><span>{istanbul?.address || settings.address}</span></li>
               <li><span>{copy.about.phone}</span><a href={telHref(settings.phone)}>{settings.phone}</a></li>
               {settings.phoneAlt ? <li><span>{copy.about.also}</span><a href={telHref(settings.phoneAlt)}>{settings.phoneAlt}</a></li> : null}
               {settings.email ? <li><span>{copy.about.email}</span><a href={`mailto:${settings.email}`}>{settings.email}</a></li> : null}

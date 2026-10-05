@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
-import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { faqJsonLd, pageMetadata } from "@/lib/seo";
 import { getStore } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }> };
@@ -40,6 +41,7 @@ export default async function FaqPage({ params }: Props) {
         </div>
         <p><Link href={`/${lang}/about`}>{copy.nav.about}</Link> · <Link href={`/${lang}/book`}>{copy.nav.book}</Link></p>
       </div>
+      <JsonLd data={faqJsonLd(copy.faq.items)} />
     </section>
   );
 }

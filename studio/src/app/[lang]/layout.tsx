@@ -27,7 +27,7 @@ export default async function LangLayout({
       <SiteHeader name={settings.name} logo={settings.logoUrl} lang={lang} labels={copy.nav} />
       <main id="content">{children}</main>
       <SiteFooter settings={view} locations={locations} lang={lang} labels={copy.footer} />
-      <JsonLd data={businessJsonLd({ ...settings, tagline: view.tagline }, lang)} />
+      <JsonLd data={businessJsonLd({ ...settings, tagline: view.tagline }, locations, lang, copy.home.facts)} />
     </div>
   );
 }
