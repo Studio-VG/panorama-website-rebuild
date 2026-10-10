@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { InquiryForm } from "@/components/InquiryForm";
 import { Paragraphs } from "@/components/Paragraphs";
 import { SocialLinks } from "@/components/SocialLinks";
+import { CLIENT_COOKIE, clientFromToken } from "@/lib/auth";
 import { localizeSettings } from "@/lib/content";
 import { telHref } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
@@ -29,8 +31,12 @@ export default async function AboutPage({ params }: Props) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const copy = messages[lang];
-  const { settings, artists, locations } = getStore();
+  const store = getStore();
+  const { settings, artists, locations } = store;
   const residents = artists.filter((artist) => !isGuest(artist)).map(publicArtist);
+  const token = (await cookies()).get(CLIENT_COOKIE)?.value;
+  const client = clientFromToken(token, store.clients || []);
+  const registerHref = `/${lang}/register?next=/${lang}/book`;
   const istanbul = locations.find((place) => /istanbul|beyoğlu|beyoglu/i.test(`${place.name} ${place.address}`));
   const studio = localizeSettings(settings, lang);
   return (
@@ -71,7 +77,14 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </div>
         <div className="about-form">
-          <InquiryForm artists={residents} labels={copy.form} />
+          {client ? (
+            <InquiryForm artists={residents} labels={copy.form} client={client} registerHref={registerHref} />
+          ) : (
+            <div className="book-form">
+              <p>{copy.book.needAccount}</p>
+              <p><Link className="btn" href={registerHref}>{copy.book.register}</Link></p>
+            </div>
+          )}
         </div>
       </div>
     </section>

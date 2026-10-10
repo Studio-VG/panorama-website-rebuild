@@ -1,5 +1,5 @@
 import { createHmac, timingSafeEqual } from "crypto";
-import type { Artist } from "./types";
+import type { Artist, ClientAccount } from "./types";
 
 export const ADMIN_COOKIE = "studio_admin";
 
@@ -66,6 +66,31 @@ export function guestCookieHeader(token: string) {
 
 export function clearGuestCookieHeader() {
   return `${GUEST_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0`;
+}
+
+export const CLIENT_COOKIE = "studio_account";
+
+export function clientSessionToken(id: string) {
+  const secret = process.env.ADMIN_SESSION_SECRET?.trim() || adminPassword();
+  const sig = createHmac("sha256", secret).update(`client:${id}`).digest("hex");
+  return `${id}.${sig}`;
+}
+
+export function clientCookieHeader(token: string) {
+  const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
+  return `${CLIENT_COOKIE}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${60 * 60 * 24 * 30}${secure}`;
+}
+
+export function clientFromToken(token: string | undefined, clients: ClientAccount[]) {
+  if (!token || !token.includes(".")) return null;
+  const id = token.slice(0, token.indexOf("."));
+  const client = clients.find((item) => item.id === id && item.emailVerified && item.phoneVerified);
+  if (!client) return null;
+  const expected = clientSessionToken(client.id);
+  const a = Buffer.from(token);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return null;
+  return timingSafeEqual(a, b) ? client : null;
 }
 
 export function guestFromToken(token: string | undefined, artists: Artist[]) {

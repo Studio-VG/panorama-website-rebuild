@@ -1,7 +1,7 @@
 import type { Locale } from "./locale";
 
 export type Messages = {
-  nav: { artists: string; guests: string; styles: string; events: string; about: string; faq: string; book: string; menu: string; close: string; languages: string; kicker: string; skip: string };
+  nav: { artists: string; guests: string; styles: string; events: string; about: string; faq: string; register: string; book: string; menu: string; close: string; languages: string; kicker: string; skip: string };
   footer: { hours: string; reach: string; note: string; google: string; portfolio: string; aftercare: string; admin: string; newTab: string; location: string; openMaps: string; directions: string; serviceArea: string; contact: string; istanbul: string; dusseldorf: string; germany: string; areaLine: string };
   days: Record<string, string>;
   closed: string;
@@ -12,7 +12,13 @@ export type Messages = {
   eventsPage: { title: string; lead: string };
   eventPage: { request: string; all: string; other: string; untranslated: string };
   about: { title: string; publicName: string; reach: string; address: string; phone: string; also: string; email: string; whatsapp: string; hours: string; google: string; booking: string; portfolio: string };
-  book: { title: string; lead: string };
+  book: { title: string; lead: string; needAccount: string; register: string };
+  register: {
+    title: string; lead: string; delivery: string; sent: string; name: string; email: string; phone: string;
+    send: string; sending: string; codesLead: string; emailCode: string; phoneCode: string;
+    confirm: string; confirming: string; expired: string; wrong: string; mismatch: string;
+    error: string; ok: string; signedIn: string; bookLink: string;
+  };
   styles: { title: string; lead: string; items: { title: string; body: string }[]; more: string };
   aftercare: { title: string; intro: string; sections: { title: string; body: string }[]; call: string };
   faq: { title: string; items: { q: string; a: string }[] };
@@ -40,7 +46,7 @@ const daysEn = { Monday: "Monday", Tuesday: "Tuesday", Wednesday: "Wednesday", T
 
 export const messages: Record<Locale, Messages> = {
   en: {
-    nav: { artists: "Artists", guests: "Guests", styles: "Styles", events: "Events", about: "About", faq: "FAQ", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "İstiklal, Istanbul", skip: "Skip to content" },
+    nav: { artists: "Artists", guests: "Guests", styles: "Styles", events: "Events", about: "About", faq: "FAQ", register: "Register", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "İstiklal, Istanbul", skip: "Skip to content" },
     footer: { hours: "Hours", reach: "Reach the studio", note: "Portraits and plates on this site are original illustrations.", google: "Google Business", portfolio: "Existing portfolio", aftercare: "Aftercare", admin: "Studio admin", newTab: "opens in a new tab", location: "Location", openMaps: "Open in Google Maps", directions: "Click for directions", serviceArea: "Service area", contact: "Contact", istanbul: "Istanbul", dusseldorf: "Düsseldorf", germany: "Germany", areaLine: "Istanbul • Düsseldorf" },
     days: daysEn,
     closed: "Closed",
@@ -67,7 +73,23 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Guest tattoo artist in Istanbul", lead: "Guest tattoo artists in Istanbul, and the Marmari Tattoo Festival. Home shows only the featured dates." },
     eventPage: { request: "Request a sitting", all: "All events", other: "Other events", untranslated: "This event has not been translated yet." },
     about: { title: "Istiklal Street tattoo", publicName: "Public name", reach: "Reach", address: "Address", phone: "Phone", also: "Also listed", email: "Email", whatsapp: "WhatsApp", hours: "Hours", google: "Open the Google Business listing", booking: "Open the booking form", portfolio: "Existing portfolio" },
-    book: { title: "Tattoo appointment", lead: "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp." },
+    book: { title: "Tattoo appointment", lead: "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp.", needAccount: "A booking is sent only from a client account whose email and phone are both confirmed.", register: "Register" },
+    register: {
+      title: "Client registration",
+      lead: "The account is created only after both codes are confirmed. Guest artists sign in on their own page, not here.",
+      delivery: "No email or text is sent. The studio keeps the unused codes until you enter them.",
+      sent: "The codes were sent. Enter both of them. A wrong or expired code does not create the account.",
+      name: "Name", email: "Email", phone: "Phone", send: "Continue", sending: "Saving…",
+      codesLead: "Enter the email code and the phone code. A wrong or expired code does not create the account.",
+      emailCode: "Email code", phoneCode: "Phone code", confirm: "Confirm codes", confirming: "Checking…",
+      expired: "That code has expired. Ask for new codes.",
+      wrong: "That code does not match. The account was not created.",
+      mismatch: "That email already has an account with a different phone.",
+      error: "Check the name, email, and phone.",
+      ok: "The account is ready.",
+      signedIn: "You are signed in as {name}.",
+      bookLink: "Continue to booking",
+    },
     styles: {
       title: "Japanese tattoo in Istanbul",
       lead: "Japanese tattoo in Istanbul is the centre of the bench: irezumi and new traditional, plus the black and grey custom work done here.",
@@ -137,7 +159,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   tr: {
-    nav: { artists: "Sanatçılar", guests: "Misafirler", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "İstiklal, İstanbul", skip: "İçeriğe geç" },
+    nav: { artists: "Sanatçılar", guests: "Misafirler", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", register: "Kayıt", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "İstiklal, İstanbul", skip: "İçeriğe geç" },
     footer: { hours: "Saatler", reach: "Stüdyoya ulaşın", note: "Bu sitedeki portreler ve desenler özgün çizimlerdir.", google: "Google Business", portfolio: "Mevcut portfolyo", aftercare: "Bakım", admin: "Stüdyo yönetimi", newTab: "yeni sekmede açılır", location: "Konum", openMaps: "Google Haritalar’da aç", directions: "Yol tarifi için tıklayın", serviceArea: "Hizmet bölgesi", contact: "İletişim", istanbul: "İstanbul", dusseldorf: "Düsseldorf", germany: "Almanya", areaLine: "İstanbul • Düsseldorf" },
     days: { Monday: "Pazartesi", Tuesday: "Salı", Wednesday: "Çarşamba", Thursday: "Perşembe", Friday: "Cuma", Saturday: "Cumartesi", Sunday: "Pazar" },
     closed: "Kapalı",
@@ -164,7 +186,23 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Misafir dövme sanatçısı", lead: "İstanbul’da misafir dövme sanatçısı günleri ve Marmari dövme festivali. Ana sayfa yalnızca öne çıkan tarihleri gösterir." },
     eventPage: { request: "Randevu iste", all: "Tüm etkinlikler", other: "Diğer etkinlikler", untranslated: "Bu etkinlik henüz çevrilmedi." },
     about: { title: "İstiklal dövme", publicName: "Kamuya açık ad", reach: "Ulaşın", address: "Adres", phone: "Telefon", also: "Ayrıca kayıtlı", email: "E-posta", whatsapp: "WhatsApp", hours: "Saatler", google: "Google Business kaydını aç", booking: "Randevu formunu aç", portfolio: "Mevcut portfolyo" },
-    book: { title: "Dövme randevusu", lead: "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner." },
+    book: { title: "Dövme randevusu", lead: "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner.", needAccount: "Randevu yalnızca e-postası ve telefonu doğrulanmış bir müşteri hesabından gönderilir.", register: "Kayıt ol" },
+    register: {
+      title: "Müşteri kaydı",
+      lead: "Hesap ancak iki kod da doğrulandıktan sonra oluşur. Misafir sanatçılar kendi sayfalarından girer, buradan değil.",
+      delivery: "E-posta veya kısa mesaj gönderilmez. Stüdyo kullanılmamış kodları siz girene kadar saklar.",
+      sent: "Kodlar gönderildi. İkisini de girin. Yanlış veya süresi dolmuş kod hesap oluşturmaz.",
+      name: "Ad", email: "E-posta", phone: "Telefon", send: "Devam", sending: "Kaydediliyor…",
+      codesLead: "E-posta kodunu ve telefon kodunu girin. Yanlış veya süresi dolmuş kod hesap oluşturmaz.",
+      emailCode: "E-posta kodu", phoneCode: "Telefon kodu", confirm: "Kodları doğrula", confirming: "Kontrol ediliyor…",
+      expired: "Bu kodun süresi doldu. Yeni kod isteyin.",
+      wrong: "Kod uyuşmuyor. Hesap oluşturulmadı.",
+      mismatch: "Bu e-posta farklı bir telefonla kayıtlı.",
+      error: "Adı, e-postayı ve telefonu kontrol edin.",
+      ok: "Hesap hazır.",
+      signedIn: "{name} olarak giriş yaptınız.",
+      bookLink: "Randevuya devam et",
+    },
     styles: {
       title: "Japon dövmesi",
       lead: "Stüdyonun ortasında Japon dövmesi var: irezumi ve yeni traditional, yanında siyah-gri özel iş.",
@@ -234,7 +272,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   de: {
-    nav: { artists: "Künstler", guests: "Gäste", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "İstiklal, Istanbul", skip: "Zum Inhalt" },
+    nav: { artists: "Künstler", guests: "Gäste", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", register: "Registrieren", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "İstiklal, Istanbul", skip: "Zum Inhalt" },
     footer: { hours: "Zeiten", reach: "Studio erreichen", note: "Porträts und Blätter auf dieser Seite sind eigene Zeichnungen.", google: "Google Business", portfolio: "Bestehendes Portfolio", aftercare: "Pflege", admin: "Studio-Admin", newTab: "öffnet sich in einem neuen Tab", location: "Standort", openMaps: "In Google Maps öffnen", directions: "Für die Route tippen", serviceArea: "Einsatzgebiet", contact: "Kontakt", istanbul: "Istanbul", dusseldorf: "Düsseldorf", germany: "Deutschland", areaLine: "Istanbul • Düsseldorf" },
     days: { Monday: "Montag", Tuesday: "Dienstag", Wednesday: "Mittwoch", Thursday: "Donnerstag", Friday: "Freitag", Saturday: "Samstag", Sunday: "Sonntag" },
     closed: "Geschlossen",
@@ -261,7 +299,23 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Gasttätowierer in Istanbul", lead: "Gasttätowierer in Istanbul und das Marmari Tattoo Festival. Die Startseite zeigt nur die hervorgehobenen Daten." },
     eventPage: { request: "Sitzung anfragen", all: "Alle Termine", other: "Weitere Termine", untranslated: "Dieser Termin ist noch nicht übersetzt." },
     about: { title: "Tattoo an der Istiklal", publicName: "Öffentlicher Name", reach: "Erreichen", address: "Adresse", phone: "Telefon", also: "Außerdem genannt", email: "E-Mail", whatsapp: "WhatsApp", hours: "Zeiten", google: "Google-Business-Eintrag öffnen", booking: "Zum Terminformular", portfolio: "Bestehendes Portfolio" },
-    book: { title: "Tattoo-Termin", lead: "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp." },
+    book: { title: "Tattoo-Termin", lead: "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp.", needAccount: "Eine Anfrage geht nur von einem Kundenkonto, dessen E-Mail und Telefon bestätigt sind.", register: "Registrieren" },
+    register: {
+      title: "Kundenregistrierung",
+      lead: "Das Konto entsteht erst, wenn beide Codes bestätigt sind. Gastkünstler melden sich auf ihrer eigenen Seite an, nicht hier.",
+      delivery: "Es geht keine E-Mail und keine SMS hinaus. Das Studio behält die unbenutzten Codes, bis Sie sie eingeben.",
+      sent: "Die Codes wurden gesendet. Geben Sie beide ein. Ein falscher oder abgelaufener Code legt kein Konto an.",
+      name: "Name", email: "E-Mail", phone: "Telefon", send: "Weiter", sending: "Speichern…",
+      codesLead: "Geben Sie den E-Mail-Code und den Telefon-Code ein. Ein falscher oder abgelaufener Code legt kein Konto an.",
+      emailCode: "E-Mail-Code", phoneCode: "Telefon-Code", confirm: "Codes bestätigen", confirming: "Prüfen…",
+      expired: "Dieser Code ist abgelaufen. Fordern Sie neue Codes an.",
+      wrong: "Der Code stimmt nicht. Das Konto wurde nicht angelegt.",
+      mismatch: "Diese E-Mail hat bereits ein Konto mit einer anderen Telefonnummer.",
+      error: "Prüfen Sie Name, E-Mail und Telefon.",
+      ok: "Das Konto ist bereit.",
+      signedIn: "Sie sind als {name} angemeldet.",
+      bookLink: "Weiter zur Anfrage",
+    },
     styles: {
       title: "Japanisches Tattoo in Istanbul",
       lead: "Japanisches Tattoo in Istanbul steht in der Mitte: Irezumi und New Traditional, dazu schwarz-graue Einzelstücke.",
@@ -331,7 +385,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   ru: {
-    nav: { artists: "Мастера", guests: "Гости", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Истикляль, Стамбул", skip: "К содержанию" },
+    nav: { artists: "Мастера", guests: "Гости", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", register: "Регистрация", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Истикляль, Стамбул", skip: "К содержанию" },
     footer: { hours: "Часы", reach: "Связаться", note: "Портреты и листы на этом сайте — собственные рисунки.", google: "Google Business", portfolio: "Существующее портфолио", aftercare: "Уход", admin: "Админка", newTab: "откроется в новой вкладке", location: "Где мы", openMaps: "Открыть в Google Картах", directions: "Нажмите, чтобы построить маршрут", serviceArea: "Где работаем", contact: "Контакты", istanbul: "Стамбул", dusseldorf: "Дюссельдорф", germany: "Германия", areaLine: "Стамбул • Дюссельдорф" },
     days: { Monday: "Понедельник", Tuesday: "Вторник", Wednesday: "Среда", Thursday: "Четверг", Friday: "Пятница", Saturday: "Суббота", Sunday: "Воскресенье" },
     closed: "Закрыто",
@@ -358,7 +412,23 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "Приглашённый тату-мастер в Стамбуле", lead: "Приглашённые тату-мастера в Стамбуле и фестиваль Marmari. На главной только отмеченные даты." },
     eventPage: { request: "Запросить сеанс", all: "Все события", other: "Другие события", untranslated: "Это событие ещё не переведено." },
     about: { title: "Тату на Истикляль", publicName: "Публичное имя", reach: "Связь", address: "Адрес", phone: "Телефон", also: "Также указан", email: "Почта", whatsapp: "WhatsApp", hours: "Часы", google: "Открыть карточку Google Business", booking: "Открыть форму записи", portfolio: "Существующее портфолио" },
-    book: { title: "Запись на тату", lead: "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp." },
+    book: { title: "Запись на тату", lead: "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp.", needAccount: "Запись отправляется только из аккаунта клиента, у которого подтверждены почта и телефон.", register: "Регистрация" },
+    register: {
+      title: "Регистрация клиента",
+      lead: "Аккаунт появляется только после подтверждения обоих кодов. Гостевые мастера входят на своей странице, не здесь.",
+      delivery: "Письмо и SMS не отправляются. Студия хранит неиспользованные коды, пока вы их не введёте.",
+      sent: "Коды отправлены. Введите оба. Неверный или просроченный код не создаёт аккаунт.",
+      name: "Имя", email: "Почта", phone: "Телефон", send: "Дальше", sending: "Сохранение…",
+      codesLead: "Введите код почты и код телефона. Неверный или просроченный код не создаёт аккаунт.",
+      emailCode: "Код почты", phoneCode: "Код телефона", confirm: "Подтвердить коды", confirming: "Проверка…",
+      expired: "Срок кода истёк. Запросите новые коды.",
+      wrong: "Код не совпал. Аккаунт не создан.",
+      mismatch: "Эта почта уже привязана к другому телефону.",
+      error: "Проверьте имя, почту и телефон.",
+      ok: "Аккаунт готов.",
+      signedIn: "Вы вошли как {name}.",
+      bookLink: "К записи",
+    },
     styles: {
       title: "Японская татуировка в Стамбуле",
       lead: "В центре студии японская татуировка в Стамбуле: ирэдзуми и нью-традишнл, рядом чёрно-серые заказные вещи.",
@@ -428,7 +498,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   ka: {
-    nav: { artists: "ოსტატები", guests: "სტუმრები", styles: "სტილები", events: "მოვლენები", about: "სტუდიის შესახებ", faq: "კითხვები", book: "ჩაწერა", menu: "მენიუ", close: "დახურვა", languages: "ენები", kicker: "İstiklal, Istanbul", skip: "შინაარსზე გადასვლა" },
+    nav: { artists: "ოსტატები", guests: "სტუმრები", styles: "სტილები", events: "მოვლენები", about: "სტუდიის შესახებ", faq: "კითხვები", register: "რეგისტრაცია", book: "ჩაწერა", menu: "მენიუ", close: "დახურვა", languages: "ენები", kicker: "İstiklal, Istanbul", skip: "შინაარსზე გადასვლა" },
     footer: { hours: "საათები", reach: "სტუდიასთან კავშირი", note: "ამ საიტის პორტრეტები და ფირფიტები ორიგინალი ილუსტრაციებია.", google: "Google Business", portfolio: "არსებული პორტფოლიო", aftercare: "მოვლა", admin: "სტუდიის ადმინი", newTab: "იხსნება ახალ ჩანართში", location: "მდებარეობა", openMaps: "Google Maps-ში გახსნა", directions: "მარშრუტისთვის დააწკაპუნეთ", serviceArea: "მომსახურების ზონა", contact: "კონტაქტი", istanbul: "სტამბოლი", dusseldorf: "დიუსელდორფი", germany: "გერმანია", areaLine: "სტამბოლი • დიუსელდორფი" },
     days: { Monday: "ორშაბათი", Tuesday: "სამშაბათი", Wednesday: "ოთხშაბათი", Thursday: "ხუთშაბათი", Friday: "პარასკევი", Saturday: "შაბათი", Sunday: "კვირა" },
     closed: "დახურულია",
@@ -455,7 +525,23 @@ export const messages: Record<Locale, Messages> = {
     eventsPage: { title: "სტუმარი ტატუ-ოსტატი სტამბოლში", lead: "სტუმარი ტატუ-ოსტატები სტამბოლში და Marmari Tattoo Festival. მთავარ გვერდზე მხოლოდ გამოყოფილი თარიღებია." },
     eventPage: { request: "სეანსის მოთხოვნა", all: "ყველა მოვლენა", other: "სხვა მოვლენები", untranslated: "ეს მოვლენა ჯერ არ არის თარგმნილი." },
     about: { title: "ტატუ İstiklal-ზე", publicName: "საჯარო სახელი", reach: "კავშირი", address: "მისამართი", phone: "ტელეფონი", also: "ასევე მითითებულია", email: "ელფოსტა", whatsapp: "WhatsApp", hours: "საათები", google: "Google Business-ის ბარათის გახსნა", booking: "ჩაწერის ფორმის გახსნა", portfolio: "არსებული პორტფოლიო" },
-    book: { title: "ტატუზე ჩაწერა", lead: "ტატუზე ჩაწერის მოთხოვნა თურქეთში ან გერმანიაში. გამოგზავნეთ იდეა, ადგილი და სავარაუდო დრო. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით." },
+    book: { title: "ტატუზე ჩაწერა", lead: "ტატუზე ჩაწერის მოთხოვნა თურქეთში ან გერმანიაში. გამოგზავნეთ იდეა, ადგილი და სავარაუდო დრო. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.", needAccount: "ჩაწერა იგზავნება მხოლოდ კლიენტის ანგარიშიდან, რომლის ელფოსტა და ტელეფონი დადასტურებულია.", register: "რეგისტრაცია" },
+    register: {
+      title: "კლიენტის რეგისტრაცია",
+      lead: "ანგარიში იქმნება მხოლოდ ორივე კოდის დადასტურების შემდეგ. სტუმარი ოსტატები თავიანთ გვერდზე შედიან, არა აქ.",
+      delivery: "ელფოსტა და SMS არ იგზავნება. სტუდია ინახავს გამოუყენებელ კოდებს, სანამ მათ შეიყვანთ.",
+      sent: "კოდები გაიგზავნა. შეიყვანეთ ორივე. არასწორი ან ვადაგასული კოდი ანგარიშს არ ქმნის.",
+      name: "სახელი", email: "ელფოსტა", phone: "ტელეფონი", send: "გაგრძელება", sending: "ინახება…",
+      codesLead: "შეიყვანეთ ელფოსტის კოდი და ტელეფონის კოდი. არასწორი ან ვადაგასული კოდი ანგარიშს არ ქმნის.",
+      emailCode: "ელფოსტის კოდი", phoneCode: "ტელეფონის კოდი", confirm: "კოდების დადასტურება", confirming: "მოწმდება…",
+      expired: "ამ კოდს ვადა გაუვიდა. მოითხოვეთ ახალი კოდები.",
+      wrong: "კოდი არ ემთხვევა. ანგარიში არ შეიქმნა.",
+      mismatch: "ეს ელფოსტა უკვე სხვა ტელეფონზეა მიბმული.",
+      error: "შეამოწმეთ სახელი, ელფოსტა და ტელეფონი.",
+      ok: "ანგარიში მზადაა.",
+      signedIn: "შესული ხართ როგორც {name}.",
+      bookLink: "ჩაწერაზე გადასვლა",
+    },
     styles: {
       title: "იაპონური ტატუ სტამბოლში",
       lead: "სტამბოლში იაპონური ტატუ სკამის ცენტრია: ირეზუმი და ნეო-ტრადიციული, და აქ შესრულებული შავ-ნაცრისფერი შეკვეთითი ნამუშევარი.",

@@ -88,6 +88,33 @@ export type Inquiry = {
   createdAt: string;
 };
 
+export type ClientAccount = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  emailVerified: true;
+  phoneVerified: true;
+  createdAt: string;
+};
+
+export type PendingRegistration = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  accountId?: string;
+  emailCodeHash: string;
+  phoneCodeHash: string;
+  emailCode?: string;
+  phoneCode?: string;
+  emailVerified: boolean;
+  phoneVerified: boolean;
+  attempts: number;
+  expiresAt: string;
+  createdAt: string;
+};
+
 export type Location = {
   id: string;
   name: string;
@@ -103,4 +130,6 @@ export type Store = {
   inquiries: Inquiry[];
   locations: Location[];
   threads?: ChatThread[];
+  clients?: ClientAccount[];
+  registrations?: PendingRegistration[];
 };

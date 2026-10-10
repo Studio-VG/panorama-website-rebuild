@@ -117,6 +117,7 @@ export function AdminApp() {
         <h1>Studio admin</h1>
         <p>Changes are saved in <code>data/store.json</code> and stay after a restart. Uploaded images go to <code>data/uploads</code>.</p>
         <p><a href="/admin/chats">Guest conversations</a></p>
+        <UnusedCodes />
         <div className="tabs" role="tablist" aria-label="Admin sections">
           {(["settings", "artists", "events", "inquiries", "locations"] as Tab[]).map((item) => (
             <button key={item} className="btn btn-ink" type="button" role="tab" aria-selected={tab === item} onClick={() => { setTab(item); setMessage(""); setError(""); }}>
@@ -134,6 +135,41 @@ export function AdminApp() {
         {tab === "locations" ? <LocationsForm locations={Array.isArray(store.locations) ? store.locations : []} onDone={async (text) => { setMessage(text); await reload(); }} onError={setError} /> : null}
       </div>
     </section>
+  );
+}
+
+function UnusedCodes() {
+  const [note, setNote] = useState("");
+  const [rows, setRows] = useState<{ id: string; name: string; email: string; phone: string; emailCode: string | null; phoneCode: string | null; expiresAt: string; expired: boolean }[]>([]);
+
+  async function load() {
+    const response = await fetch("/api/admin/codes");
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) return;
+    setNote(String(body.deliveryNote || ""));
+    setRows(Array.isArray(body.codes) ? body.codes : []);
+  }
+
+  useEffect(() => {
+    void load();
+  }, []);
+
+  return (
+    <div className="panel" style={{ margin: "1rem 0 1.4rem" }}>
+      <h2>Unused registration codes</h2>
+      <p>{note}</p>
+      {rows.length === 0 ? <p>No unused codes.</p> : (
+        <ul className="contact-list">
+          {rows.map((row) => (
+            <li key={row.id}>
+              <span>{row.name} · {row.email} · {row.phone}</span>
+              <span>email {row.emailCode || "used"} · phone {row.phoneCode || "used"}{row.expired ? " · expired" : ""}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <button className="btn" type="button" onClick={() => void load()}>Refresh codes</button>
+    </div>
   );
 }
 

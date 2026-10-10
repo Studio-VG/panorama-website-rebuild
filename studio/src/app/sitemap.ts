@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/events",
     "/about",
     "/book",
+    "/register",
     "/faq",
     "/guests",
     ...residents.map((artist) => `/artists/${artist.slug}`),

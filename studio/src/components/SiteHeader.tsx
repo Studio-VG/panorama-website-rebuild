@@ -26,6 +26,7 @@ export function SiteHeader({
     [`/${lang}/events`, labels.events],
     [`/${lang}/about`, labels.about],
     [`/${lang}/faq`, labels.faq],
+    [`/${lang}/register`, labels.register],
   ];
 
   return (

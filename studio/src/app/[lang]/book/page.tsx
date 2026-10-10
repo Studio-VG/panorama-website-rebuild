@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { InquiryForm } from "@/components/InquiryForm";
+import { CLIENT_COOKIE, clientFromToken } from "@/lib/auth";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
 import { istanbulAddress, pageMetadata } from "@/lib/seo";
@@ -25,9 +28,13 @@ export default async function BookPage({ params, searchParams }: Props) {
   if (!isLocale(lang)) notFound();
   const { artist } = await searchParams;
   const copy = messages[lang];
-  const { settings, artists, locations } = getStore();
+  const store = getStore();
+  const { settings, artists, locations } = store;
   const residents = artists.filter((artist) => !isGuest(artist)).map(publicArtist);
   const street = istanbulAddress(settings, locations);
+  const token = (await cookies()).get(CLIENT_COOKIE)?.value;
+  const client = clientFromToken(token, store.clients || []);
+  const registerHref = `/${lang}/register?next=/${lang}/book`;
   return (
     <section className="section">
       <div className="shell split">
@@ -38,9 +45,14 @@ export default async function BookPage({ params, searchParams }: Props) {
           <p>{street}</p>
           <p><a href={`mailto:${settings.email}`}>{settings.email}</a> · <a href={settings.whatsappUrl}>{copy.about.whatsapp}</a></p>
         </div>
-        <div className="book-form">
-          <InquiryForm artists={residents} defaultArtist={artist} labels={copy.form} />
-        </div>
+        {client ? (
+          <InquiryForm artists={residents} defaultArtist={artist} labels={copy.form} client={client} registerHref={registerHref} />
+        ) : (
+          <div className="book-form">
+            <p>{copy.book.needAccount}</p>
+            <p><Link className="btn" href={registerHref}>{copy.book.register}</Link></p>
+          </div>
+        )}
       </div>
     </section>
   );

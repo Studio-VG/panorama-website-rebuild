@@ -52,6 +52,8 @@ function withArtists(store: Store): Store {
     role: artist.role === "guest" ? "guest" : "resident",
   }));
   store.threads = Array.isArray(store.threads) ? store.threads : [];
+  store.clients = Array.isArray(store.clients) ? store.clients : [];
+  store.registrations = Array.isArray(store.registrations) ? store.registrations : [];
   return store;
 }
 
