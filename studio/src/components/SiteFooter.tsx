@@ -7,7 +7,7 @@ import { StudioMap } from "@/components/StudioMap";
 
 function PinIcon() {
   return (
-    <svg className="loc-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="loc-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#e24b3b" d="M12 2.2c-4 0-7.2 3.1-7.2 7.1 0 5.3 7.2 12.5 7.2 12.5s7.2-7.2 7.2-12.5c0-4-3.2-7.1-7.2-7.1z" />
       <circle cx="12" cy="9.2" r="2.6" fill="#fff" />
     </svg>

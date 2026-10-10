@@ -45,22 +45,20 @@ export default async function ArtistPage({ params }: Props) {
   return (
     <article>
       <JsonLd data={personJsonLd(view, settings, lang)} />
-      <div className="shell story-hero">
-        <div className="portrait-stage">
-          <StudioImage src={view.photo} alt={view.photoAlt} sizes="(max-width: 860px) 100vw, 40vw" priority />
+      <div className="shell essay">
+        <div className="portrait-stage essay-portrait">
+          <StudioImage src={view.photo} alt={view.photoAlt} sizes="280px" priority />
         </div>
         <div className="story">
           <p className="eyebrow">{view.styles.join(" · ")}</p>
           <h1>{view.name}</h1>
           <p className="lede">{localized ? view.blurb : copy.artistPage.untranslated}</p>
+          {localized ? <Paragraphs text={view.history} /> : null}
           <div className="actions">
             <Link className="btn" href={`/${lang}/book?artist=${encodeURIComponent(view.name)}`}>{copy.artistPage.request}</Link>
           </div>
           <p className="muted">{settings.phone} · {settings.phoneAlt} · {settings.email}</p>
         </div>
-      </div>
-      <div className="shell story">
-        {localized ? <Paragraphs text={view.history} /> : null}
       </div>
       <section className="section" aria-labelledby="work-heading">
         <div className="shell">

@@ -101,7 +101,7 @@ p { margin: 0 0 0.9rem; }
 }
 .artist-feature { display: grid; gap: 0.8rem; align-content: start; }
 .artist-feature:first-child { padding-right: 1.4rem; border-right: 1px solid var(--line); }
-.portrait-stage { position: relative; }
+.portrait-stage { position: relative; aspect-ratio: 4 / 5; }
 .portrait-stage img, .frame img { width: 100%; height: auto; }
 .portrait-stage::after {
   content: "";
@@ -169,9 +169,106 @@ textarea { min-height: 8rem; }
 .faq-list { display: grid; gap: 0.8rem; }
 .site-footer { border-top: 1px solid var(--line); padding: 2rem 0 2.6rem; color: var(--ink-soft); }
 .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1.4rem; }
-.map-stage { position: relative; background: #0c0b0a; }
-.map-frame { width: 100%; min-height: 180px; border: 0; }
-.pin, .pin-ring { position: absolute; }
+.location-panel {
+  background: rgba(255, 250, 242, 0.78);
+  border: 1px solid var(--line);
+  padding: 1.15rem 1.1rem 1rem;
+}
+.location-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  font-size: 1.55rem;
+}
+.loc-icon { width: 18px; height: 18px; max-width: 18px; max-height: 18px; flex: 0 0 18px; display: block; }
+.location-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.2rem; align-items: start; }
+.location-grid.locations-many { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.map-card { background: #241c16; border: 1px solid var(--line); overflow: hidden; }
+.map-stage { position: relative; background: #0c0b0a; height: 210px; overflow: hidden; }
+.map-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  max-width: calc(100% - 1.4rem);
+  padding-bottom: 9px;
+  pointer-events: none;
+}
+.pin-badge {
+  position: relative;
+  z-index: 1;
+  background: #e24b3b;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.84rem;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0.42rem 0.7rem 0.46rem;
+  border-radius: 12px;
+}
+.pin-badge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  border-width: 8px 7px 0;
+  border-style: solid;
+  border-color: #e24b3b transparent transparent;
+}
+.pin-ring {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0 0 -11px -11px;
+  border-radius: 50%;
+  border: 2px solid rgba(226, 75, 59, 0.9);
+  background: rgba(226, 75, 59, 0.28);
+  animation: pin-beep 1.8s ease-out infinite;
+}
+.pin-ring-late { animation-delay: -0.9s; }
+@keyframes pin-beep {
+  0% { transform: scale(0.45); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.map-frame { width: 100%; border: 0; }
+.map-frame.map-card-frame {
+  width: 100%;
+  height: 210px;
+  min-height: 210px;
+  max-height: 210px;
+  display: block;
+  background: #0c0b0a;
+  filter: contrast(1.22) brightness(0.52);
+}
+.map-card-body { padding: 0.85rem 0.95rem 1rem; display: grid; gap: 0.4rem; color: #f4eadb; }
+.map-card address { font-style: normal; margin: 0; }
+.map-directions { color: #e6d3a8; text-decoration: none; font-weight: 600; }
+.service-col h3 { margin: 0 0 0.55rem; font-size: 1.25rem; }
+.service-list, .contact-rows, .venue-list { list-style: none; padding: 0; margin: 0 0 0.85rem; }
+.city-name, .contact-rows p { display: flex; align-items: center; gap: 0.45rem; margin: 0.28rem 0; }
+.venue-list { margin: 0.15rem 0 0.2rem 1.65rem; }
+.contact-rows a, .location-social a { color: inherit; text-decoration: none; }
+.location-social { display: flex; gap: 1rem; flex-wrap: wrap; }
+.location-social a { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; }
+.location-line { text-align: center; margin: 0.95rem 0 0.15rem; letter-spacing: 0.06em; }
+.essay {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+  gap: 2.2rem;
+  align-items: start;
+  padding: 2.2rem 0 0.4rem;
+}
+.essay-portrait { max-width: 280px; }
+.essay .story p { font-size: 1.08rem; }
 .artists-more { display: flex; justify-content: center; margin-top: 1.2rem; }
 .event-list, .artist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
 .artist-card { text-decoration: none; display: block; }
@@ -181,7 +278,7 @@ textarea { min-height: 8rem; }
   .menu-toggle { display: inline-flex; }
   .nav-links { display: none; position: absolute; right: 1rem; top: 74px; background: var(--cream); border: 1px solid var(--line); padding: 0.8rem; flex-direction: column; align-items: flex-start; }
   .nav-links.open { display: flex; }
-  .artist-spread, .story-hero, .book-band, .split, .admin-grid, .footer-grid { grid-template-columns: 1fr; }
+  .artist-spread, .story-hero, .essay, .book-band, .split, .admin-grid, .footer-grid, .location-grid { grid-template-columns: 1fr; }
   .artist-feature:first-child { padding-right: 0; border-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 1.4rem; }
   h1 { font-size: 3rem; }
 }
