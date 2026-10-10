@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { parseHours } from "./format";
 import { locales, openGraphLocale, type Locale } from "./locale";
 import { getStore } from "./store";
 import type { Artist, Location, Settings, StudioEvent } from "./types";
 
-export function siteUrl() {
+export async function siteUrl() {
   const configured = process.env.SITE_URL?.trim();
-  return (configured || "http://localhost:3001").replace(/\/$/, "");
+  if (configured) return configured.replace(/\/$/, "");
+  try {
+    const headerStore = await headers();
+    const host = (headerStore.get("x-forwarded-host") || headerStore.get("host") || "").split(",")[0].trim();
+    if (host) {
+      const forwarded = (headerStore.get("x-forwarded-proto") || "").split(",")[0].trim();
+      const proto = forwarded || (host.startsWith("localhost") || host.startsWith("127.") ? "http" : "https");
+      return `${proto}://${host}`;
+    }
+  } catch {
+    // headers() is unavailable outside a request
+  }
+  return "http://localhost:3001";
 }
 
-export function absoluteUrl(path: string) {
+export async function absoluteUrl(path: string) {
   if (/^https?:\/\//.test(path)) return path;
-  return `${siteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
+  const base = await siteUrl();
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function clip(text: string, max = 155) {
@@ -89,21 +103,22 @@ function placeJson(place: Location, settings: Settings) {
   };
 }
 
-export function businessJsonLd(settings: Settings, locations: Location[] = [], lang: Locale = "en", description = "") {
+export async function businessJsonLd(settings: Settings, locations: Location[] = [], lang: Locale = "en", description = "") {
+  const origin = await siteUrl();
   const street = istanbulAddress(settings, locations);
   return {
     "@context": "https://schema.org",
     "@type": ["TattooParlor", "LocalBusiness"],
-    "@id": `${siteUrl()}/#studio`,
+    "@id": `${origin}/#studio`,
     name: settings.name,
     alternateName: settings.officialName || undefined,
     description: description || settings.tagline,
     knowsAbout: ["Irezumi", "Japanese tattoo"],
     inLanguage: lang,
-    url: `${siteUrl()}/${lang}`,
+    url: `${origin}/${lang}`,
     telephone: settings.phone || "+90 533 203 67 40",
     email: settings.email || "termini@vasovasiko.com",
-    image: absoluteUrl(settings.logoUrl || "/brand/logo.png"),
+    image: await absoluteUrl(settings.logoUrl || "/brand/logo.png"),
     address: {
       "@type": "PostalAddress",
       streetAddress: street,
@@ -163,18 +178,19 @@ export function faqJsonLd(items: { q: string; a: string }[]) {
   };
 }
 
-export function personJsonLd(artist: Artist, settings: Settings, lang: Locale) {
+export async function personJsonLd(artist: Artist, settings: Settings, lang: Locale) {
+  const origin = await siteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "Person",
     name: artist.name,
     description: artist.blurb,
-    image: absoluteUrl(artist.photo),
+    image: await absoluteUrl(artist.photo),
     jobTitle: "Tattoo artist",
     knowsAbout: artist.styles,
-    url: absoluteUrl(`/${lang}/artists/${artist.slug}`),
+    url: await absoluteUrl(`/${lang}/artists/${artist.slug}`),
     worksFor: {
-      "@id": `${siteUrl()}/#studio`,
+      "@id": `${origin}/#studio`,
       "@type": "TattooParlor",
       name: settings.name,
       telephone: settings.phone,
@@ -183,7 +199,8 @@ export function personJsonLd(artist: Artist, settings: Settings, lang: Locale) {
   };
 }
 
-export function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale) {
+export async function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale) {
+  const origin = await siteUrl();
   const awayFestival = event.slug === "marmaris-tattoo-festival" || /festival|convention|фестиваль/i.test(event.title);
   const street = istanbulAddress(settings, getStore().locations);
   return {
@@ -193,8 +210,8 @@ export function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale
     description: event.description,
     startDate: event.startDate,
     endDate: event.endDate || event.startDate,
-    image: absoluteUrl(event.image),
-    url: absoluteUrl(`/${lang}/events/${event.slug}`),
+    image: await absoluteUrl(event.image),
+    url: await absoluteUrl(`/${lang}/events/${event.slug}`),
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: awayFestival
@@ -214,7 +231,7 @@ export function eventJsonLd(event: StudioEvent, settings: Settings, lang: Locale
           },
         },
     organizer: {
-      "@id": `${siteUrl()}/#studio`,
+      "@id": `${origin}/#studio`,
       "@type": "TattooParlor",
       name: settings.name,
       telephone: settings.phone,

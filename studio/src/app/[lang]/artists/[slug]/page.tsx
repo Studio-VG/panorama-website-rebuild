@@ -44,7 +44,7 @@ export default async function ArtistPage({ params }: Props) {
 
   return (
     <article>
-      <JsonLd data={personJsonLd(view, settings, lang)} />
+      <JsonLd data={await personJsonLd(view, settings, lang)} />
       <div className="shell essay">
         <div className="portrait-stage essay-portrait">
           <StudioImage src={view.photo} alt={view.photoAlt} sizes="280px" priority />

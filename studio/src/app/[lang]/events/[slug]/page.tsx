@@ -46,7 +46,7 @@ export default async function EventPage({ params }: Props) {
 
   return (
     <article>
-      <JsonLd data={eventJsonLd(view, settings, lang)} />
+      <JsonLd data={await eventJsonLd(view, settings, lang)} />
       <div className="shell portfolio-hero">
         <div className="frame portrait-frame">
           <StudioImage src={view.image} alt={view.imageAlt} sizes="(max-width: 860px) 100vw, 320px" priority />

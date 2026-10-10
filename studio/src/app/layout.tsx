@@ -51,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { settings, locations } = getStore();
   const copy = messages[lang];
   return {
-    metadataBase: new URL(siteUrl()),
+    metadataBase: new URL(await siteUrl()),
     title: { default: `${settings.name} · ${copy.seo.homeTitle}`, template: `%s · ${settings.name}` },
     description: copy.seo.homeDescription,
     applicationName: settings.name,

@@ -5,11 +5,11 @@ import { getStore } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { artists, events } = getStore();
   const residents = artists.filter((artist) => artist.role !== "guest");
   const guests = artists.filter((artist) => artist.role === "guest");
-  const base = siteUrl();
+  const base = await siteUrl();
   const paths = [
     "/",
     "/artists",
