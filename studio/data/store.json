@@ -1,0 +1,232 @@
+{
+  "settings": {
+    "name": "ByVasoVasiko",
+    "tagline": "Two long careers, one studio.",
+    "heroLead": "Vaso Vasiko works Japanese irezumi and neo-traditional from İstiklal Avenue in Istanbul. Andrei Aivazian works realism, portraiture, and black and grey from Tbilisi.",
+    "officialName": "Vaso Vasiko",
+    "officialNameNote": "The existing site (vasovasiko.com) presents the practice as Vaso Vasiko. Google lists the business as byvasovasiko. ByVasoVasiko is the temporary name on this site until it is changed here.",
+    "phone": "+90 533 203 67 40",
+    "phoneAlt": "+49 163 787 99 67",
+    "email": "termini@vasovasiko.com",
+    "address": "Asmalı Mescit Mahallesi, İstiklal Cd. No:164, 34430 Beyoğlu/İstanbul, Türkiye",
+    "hours": [
+      {
+        "day": "Monday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Tuesday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Wednesday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Thursday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Friday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Saturday",
+        "hours": "10:00–20:00"
+      },
+      {
+        "day": "Sunday",
+        "hours": "Closed"
+      }
+    ],
+    "latitude": 41.029831,
+    "longitude": 28.975299,
+    "googleBusinessUrl": "https://maps.app.goo.gl/peS5AiSXgxieLkbs7",
+    "portfolioUrl": "https://www.vasovasiko.com/portfolio",
+    "instagramUrl": "https://www.instagram.com/vasovasiko/",
+    "facebookUrl": "https://www.facebook.com/vasovasiko",
+    "whatsappUrl": "https://wa.me/905332036740",
+    "websiteUrl": "https://www.vasovasiko.com/",
+    "logoUrl": "/brand/logo.png",
+    "about": "ByVasoVasiko is the studio of Vaso Vasiko and Andrei Aivazian. Vaso, born Vasil Kurakhchishvili in Georgia in 1980, has tattooed since 2000, mainly in Turkey, from a room on İstiklal Avenue in Istanbul, with frequent guest spots in Europe. Andrei is based in Tbilisi, associated with Black Kiss Tattoo and his own studio, with more than a decade of conventions, guest spots, and teaching.\n\nAppointments for the two of them go through the studio form. Visiting artists keep their own pages and talk to clients on this site. That chat does not replace a booking with Vaso or Andrei."
+  },
+  "artists": [
+    {
+      "id": "artist-vaso",
+      "slug": "vaso-vasiko",
+      "name": "Vaso Vasiko",
+      "styles": [
+        "Japanese irezumi",
+        "Neo-traditional",
+        "Black and grey",
+        "Geometric",
+        "Realism",
+        "Old school",
+        "New school"
+      ],
+      "blurb": "Vasil Kurakhchishvili was born in Georgia in 1980 and has tattooed professionally since 2000. The career was built mainly in Turkey: Japanese irezumi and neo-traditional work from a studio on İstiklal Avenue in Istanbul, and frequent guest spots at studios in Europe.",
+      "history": "Vasil Kurakhchishvili was born in Georgia in 1980. He has tattooed professionally since 2000, and that career was built mainly in Turkey. The studio is on İstiklal Avenue in Istanbul. He also takes frequent guest spots at studios in Europe.\n\nThe work he is known for is Japanese irezumi and neo-traditional, and he also works black and grey, geometric, realism, and old and new school. The large custom pieces are sleeves, back pieces, and leg suits: dragons, hannya, samurai, snakes, peonies, and koi. The drawing is made to follow the body. Contrast is heavy, the lines are bold, the backgrounds move, and the color is chosen so it ages well.\n\nFrom the early 2000s he brought large-scale custom Japanese and neo-traditional work into a Turkish scene that was mostly small tribal and flash. He pushed single-use needles, better pigments, and European hygiene practice. The studio on İstiklal is a high-profile room. Collaborations with European studios, and the standard of the work, made him a reference point for younger artists.\n\nSponsors named for this practice: Cheyenne Tattoo Equipment, Radiant Tattoo Ink, and Aloe Tattoo.\n\nThe plates on this page are studio studies of those motifs. They are not photographs of healed tattoos.",
+      "photo": "/art/portrait-vaso.png",
+      "photoAlt": "Vaso Vasiko tattooing in the studio.",
+      "portfolio": [
+        {
+          "id": "vaso-koi",
+          "src": "/art/plate-koi.jpg",
+          "alt": "Original koi and peony study in black, vermillion, and gold on warm paper.",
+          "caption": "Koi study, for a full-sleeve concept"
+        },
+        {
+          "id": "vaso-dragon",
+          "src": "/art/plate-dragon.jpg",
+          "alt": "Original dragon and cloud study with black scales and a vermillion eye.",
+          "caption": "Dragon study"
+        },
+        {
+          "id": "vaso-hannya",
+          "src": "/art/plate-hannya.jpg",
+          "alt": "Original hannya mask and peony study in traditional linework.",
+          "caption": "Hannya and peony study"
+        },
+        {
+          "id": "vaso-tiger",
+          "src": "/art/plate-tiger.jpg",
+          "alt": "Original tiger moving through waves and bamboo.",
+          "caption": "Tiger and wave study"
+        },
+        {
+          "id": "vaso-shishi",
+          "src": "/art/plate-shishi.jpg",
+          "alt": "Original shishi guardian lion study among peony leaves.",
+          "caption": "Fu dog (shishi) study"
+        }
+      ],
+      "role": "resident"
+    },
+    {
+      "id": "artist-andrei",
+      "slug": "andrei-aivazian",
+      "name": "Andrei Aivazian",
+      "role": "resident",
+      "styles": [
+        "Realism",
+        "Portraiture",
+        "Black and grey",
+        "Japanese",
+        "Color"
+      ],
+      "blurb": "Andrei Aivazian is a veteran tattoo artist based in Tbilisi, Georgia, associated with Black Kiss Tattoo and his own studio. Realism, portraiture, and black and grey lead more than a decade of conventions, guest spots, and teaching.",
+      "history": "Andrei Aivazian is a veteran tattoo artist based in Tbilisi, Georgia. He is associated with Black Kiss Tattoo and with his own studio. More than a decade of conventions, guest spots, and teaching sits behind the work.\n\nRealism, portraiture, and black and grey are the core. Japanese and Oriental work, and color, sit beside them. He is known for hyper-real portraits, for texture, for deep contrast, and for smooth gradients.\n\nHe trained artists in Tbilisi, including Tatia Godibadze, on machine work, needle choice, and professional ethics. His studios pushed the local scene toward custom portfolios and international hygiene standards. Guest spots, and the standard of the work, are what put Tbilisi in front of clients outside Georgia.\n\nSponsors named for this practice: Kwadron, World Famous Tattoo Ink, and Dragon Tattoo Supply.\n\nNo portrait photograph of Andrei is on file for this page. The mark above is a placeholder, not a picture of him.",
+      "photo": "/art/placeholder-portrait.svg",
+      "photoAlt": "A placeholder mark. No portrait of Andrei Aivazian is on file.",
+      "portfolio": [
+        {
+          "id": "andrei-portrait",
+          "src": "/art/plate-crane.jpg",
+          "alt": "A crane study in black ink, standing in for portrait texture. Not a photograph of a tattoo.",
+          "caption": "Study, not a healed tattoo"
+        },
+        {
+          "id": "andrei-contrast",
+          "src": "/art/plate-blackwork.jpg",
+          "alt": "A blackwork study with heavy contrast. Not a photograph of Andrei Aivazian's tattoos.",
+          "caption": "Contrast study"
+        }
+      ]
+    },
+    {
+      "id": "artist-sample-guest",
+      "slug": "sample-guest",
+      "name": "Sample Guest",
+      "role": "guest",
+      "styles": [
+        "Guest spot"
+      ],
+      "blurb": "An example seat for a visiting artist. Guests add their own text and pictures here. Clients write to them on this site.",
+      "history": "This profile is the sample guest, so the portal and the manager view can be opened. A guest signs in, edits this text and the portfolio, and answers clients here. Studio bookings for Vaso Vasiko and Andrei Aivazian stay on the appointment form.",
+      "photo": "/art/placeholder-portrait.svg",
+      "photoAlt": "Placeholder for the sample guest artist.",
+      "portalPassword": "guest-demo",
+      "portfolio": [
+        {
+          "id": "guest-waves",
+          "src": "/art/plate-waves.svg",
+          "alt": "A wave study on the sample guest portfolio.",
+          "caption": "Sample plate"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "event-osaka",
+      "slug": "guest-spot-visiting-irezumi-artist",
+      "title": "Guest spot — visiting irezumi artist",
+      "startDate": "2026-11-12",
+      "endDate": "2026-11-16",
+      "description": "The studio hosts guest artists from other countries. This November week is a seeded example for a visiting irezumi artist from Japan. A named guest for these dates was not published on the studio news pages — those posts were empty or placeholder text — so replace the name, dates, and picture here when the real guest is confirmed.",
+      "guest": "Visiting artist from Osaka",
+      "country": "Japan",
+      "image": "/art/event-guest.jpg",
+      "imageAlt": "Original illustration of a dim studio with a painted wave screen, used for the Japan guest spot.",
+      "featured": true
+    },
+    {
+      "id": "event-marmaris",
+      "slug": "marmaris-tattoo-festival",
+      "title": "Marmaris Tattoo Festival",
+      "startDate": "2025-10-03",
+      "endDate": "2025-10-05",
+      "description": "The Marmaris Tattoo Festival — also called the Marmari Tattoo Festival in conversation, and listed on the existing partners page as Marmaris Tattoo Convention — is an international gathering in Marmaris, Turkey. The last publicly announced edition ran 3–5 October 2025 at Green Nature Diamond Hotel, with artists from many countries, competitions, and walk-up work. A 2026 date was not on the studio news pages. Update this entry when the next edition is confirmed.",
+      "guest": "Studio at the festival",
+      "country": "Turkey",
+      "image": "/art/event-marmaris.jpg",
+      "imageAlt": "Original dusk illustration of a seaside gathering rendered as Japanese waves, for the Marmaris Tattoo Festival.",
+      "featured": true
+    },
+    {
+      "id": "event-hamburg",
+      "slug": "guest-spot-visiting-artist-from-germany",
+      "title": "Guest spot — visiting artist from Germany",
+      "startDate": "2026-03-18",
+      "endDate": "2026-03-22",
+      "description": "A seeded example of a European guest week. The studio has collaborated with European studios since 2015. A named guest for this week was not published, so edit or remove this entry in the admin panel.",
+      "guest": "Visiting artist from Hamburg",
+      "country": "Germany",
+      "image": "/art/event-hamburg.svg",
+      "imageAlt": "Original ink drawing of harbour water reduced to waves and a gold horizon, for the Germany guest spot.",
+      "featured": false
+    }
+  ],
+  "locations": [
+    {
+      "id": "loc-istanbul",
+      "name": "Istanbul",
+      "address": "Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye",
+      "mapsUrl": "https://maps.app.goo.gl/peS5AiSXgxieLkbs7",
+      "mapQuery": "Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul"
+    }
+  ],
+  "inquiries": [],
+  "threads": [
+    {
+      "id": "thread-sample",
+      "guestId": "artist-sample-guest",
+      "clientName": "Ayse Demir",
+      "clientToken": "seed-client-token",
+      "messages": [
+        {
+          "id": "m1",
+          "from": "client",
+          "body": "I am looking at a sleeve and wanted to ask what you have room for this season.",
+          "createdAt": "2026-10-01T10:00:00.000Z"
+        },
+        {
+          "id": "m2",
+          "from": "guest",
+          "body": "I can look at a sleeve while I am in the studio. Send the placement and a rough idea here, and we keep the conversation on this page.",
+          "createdAt": "2026-10-01T12:30:00.000Z"
+        }
+      ]
+    }
+  ]
+}
