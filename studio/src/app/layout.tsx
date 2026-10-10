@@ -37,7 +37,7 @@ export const dynamic = "force-dynamic";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f4eadb",
+  themeColor: "#14110e",
 };
 
 async function requestLocale(): Promise<Locale> {

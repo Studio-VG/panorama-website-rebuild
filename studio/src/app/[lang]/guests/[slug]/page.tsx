@@ -36,18 +36,18 @@ export default async function GuestProfilePage({ params }: Props) {
   const localized = artistIsLocalized(artist, lang);
   return (
     <article>
-      <div className="shell story-hero">
-        <div className="portrait-stage">
-          <StudioImage src={view.photo} alt={view.photoAlt} sizes="(max-width: 860px) 100vw, 40vw" priority />
+      <div className="shell portfolio-hero">
+        <div className="frame portrait-frame">
+          <StudioImage src={view.photo} alt={view.photoAlt} sizes="(max-width: 860px) 100vw, 320px" priority />
         </div>
-        <div className="story">
+        <div>
           <p className="eyebrow">{messages[lang].nav.guests}</p>
           <h1>{view.name}</h1>
           <p className="lede">{localized ? view.blurb : messages[lang].artistPage.untranslated}</p>
           <Link className="btn" href={`/${lang}/guests/${artist.slug}/chat`}>{messages[lang].salon.writeHere}</Link>
         </div>
       </div>
-      <div className="shell story">
+      <div className="shell">
         {localized ? <Paragraphs text={view.history} /> : null}
       </div>
       {view.portfolio.length ? (
@@ -57,7 +57,9 @@ export default async function GuestProfilePage({ params }: Props) {
             <div className="gallery">
               {view.portfolio.map((image) => (
                 <figure key={image.id}>
-                  <StudioImage src={image.src} alt={image.alt} sizes="(max-width: 860px) 100vw, 40vw" />
+                  <div className="frame plate-frame">
+                    <StudioImage src={image.src} alt={image.alt} sizes="(max-width: 860px) 100vw, 50vw" />
+                  </div>
                   {image.caption ? <figcaption>{image.caption}</figcaption> : null}
                 </figure>
               ))}

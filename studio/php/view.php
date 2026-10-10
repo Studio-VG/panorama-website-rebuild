@@ -418,13 +418,15 @@ function render_guests(string $lang, array $store, array $copy): void
         'ru' => ' Портал входа находится на сайте Next.js.',
         'ka' => ' შესვლის პორტალი Next.js-ის საიტზეა.',
     ][$lang] ?? ' The sign-in portal is part of the Next.js site.';
-    $body .= '<p class="lede">' . h($lead . $portal) . '</p><div class="guest-row">';
+    $body .= '<p class="lede">' . h($lead . $portal) . '</p><div class="artist-grid">';
     foreach ($store['artists'] as $artist) {
         if (($artist['role'] ?? '') !== 'guest') {
             continue;
         }
         $view = localize_artist($artist, $lang);
-        $body .= '<a class="guest-card" href="/' . h($lang) . '/guests/' . h($artist['slug']) . '"><strong>' . h($view['name']) . '</strong><span>' . h($view['blurb']) . '</span></a>';
+        $body .= '<a class="artist-card" href="/' . h($lang) . '/guests/' . h($artist['slug']) . '">';
+        $body .= '<div class="frame portrait-frame"><img src="' . h($view['photo']) . '" alt="' . h($view['photoAlt']) . '"></div>';
+        $body .= '<div class="card-body"><h3>' . h($view['name']) . '</h3><p>' . h($view['blurb']) . '</p></div></a>';
     }
     $body .= '</div></div></section>';
     layout($lang, [
@@ -448,7 +450,7 @@ function render_guest(string $lang, array $store, array $copy, string $slug): vo
         return;
     }
     $view = localize_artist($artist, $lang);
-    $body = '<article class="shell story-hero"><div><p class="eyebrow">' . h($copy['nav']['guests'] ?? 'Guests') . '</p><h1>' . h($view['name']) . '</h1>';
+    $body = '<article class="shell portfolio-hero"><div class="frame portrait-frame"><img src="' . h($view['photo']) . '" alt="' . h($view['photoAlt']) . '"></div><div><p class="eyebrow">' . h($copy['nav']['guests'] ?? 'Guests') . '</p><h1>' . h($view['name']) . '</h1>';
     $body .= '<p class="lede">' . h($view['blurb']) . '</p><p>' . h($view['history']) . '</p>';
     $notice = [
         'en' => 'No phone, email, Instagram, Facebook, or WhatsApp. The guest portal for editing this page and answering clients is on the Next.js site.',

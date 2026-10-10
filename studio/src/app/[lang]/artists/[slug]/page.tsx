@@ -45,11 +45,11 @@ export default async function ArtistPage({ params }: Props) {
   return (
     <article>
       <JsonLd data={await personJsonLd(view, settings, lang)} />
-      <div className="shell essay">
-        <div className="portrait-stage essay-portrait">
-          <StudioImage src={view.photo} alt={view.photoAlt} sizes="280px" priority />
+      <div className="shell portfolio-hero">
+        <div className="frame portrait-frame">
+          <StudioImage src={view.photo} alt={view.photoAlt} sizes="(max-width: 860px) 100vw, 320px" priority />
         </div>
-        <div className="story">
+        <div>
           <p className="eyebrow">{view.styles.join(" · ")}</p>
           <h1>{view.name}</h1>
           <p className="lede">{localized ? view.blurb : copy.artistPage.untranslated}</p>
