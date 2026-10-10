@@ -1,4 +1,4 @@
-export const locales = ["en", "tr", "de", "ru"] as const;
+export const locales = ["en", "tr", "de", "ru", "ka"] as const;
 export type Locale = (typeof locales)[number];
 
 export const localeCookie = "studio_lang";
@@ -7,6 +7,7 @@ const countryLocale: Record<string, Locale> = {
   TR: "tr",
   RU: "ru",
   DE: "de",
+  GE: "ka",
 };
 
 export function isLocale(value: string | undefined | null): value is Locale {
@@ -35,5 +36,5 @@ export function htmlLang(locale: Locale) {
 }
 
 export function openGraphLocale(locale: Locale) {
-  return { en: "en_US", tr: "tr_TR", de: "de_DE", ru: "ru_RU" }[locale];
+  return { en: "en_US", tr: "tr_TR", de: "de_DE", ru: "ru_RU", ka: "ka_GE" }[locale];
 }

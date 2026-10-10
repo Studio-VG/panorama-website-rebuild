@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { Paragraphs } from "@/components/Paragraphs";
 import { StudioImage } from "@/components/StudioImage";
@@ -8,7 +8,7 @@ import { artistIsLocalized, artistSeo, localizeArtist } from "@/lib/content";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
 import { pageMetadata, personJsonLd } from "@/lib/seo";
-import { getStore } from "@/lib/store";
+import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!isLocale(lang)) return {};
   const { artists } = getStore();
-  const artist = artists.find((item) => item.slug === slug);
+  const artist = artists.find((item) => item.slug === slug && !isGuest(item));
   if (!artist) return { title: messages[lang].nav.artists };
   const seo = artistSeo(artist, lang);
   const view = localizeArtist(artist, lang);
@@ -38,25 +38,29 @@ export default async function ArtistPage({ params }: Props) {
   const { artists, settings } = getStore();
   const artist = artists.find((item) => item.slug === slug);
   if (!artist) notFound();
-  const view = localizeArtist(artist, lang);
+  if (isGuest(artist)) redirect(`/${lang}/guests/${artist.slug}`);
+  const view = localizeArtist(publicArtist(artist), lang);
   const localized = artistIsLocalized(artist, lang);
 
   return (
     <article>
       <JsonLd data={personJsonLd(view, settings, lang)} />
-      <div className="shell portfolio-hero">
-        <div className="frame portrait-frame">
-          <StudioImage src={view.photo} alt={view.photoAlt} sizes="(max-width: 860px) 100vw, 320px" priority />
+      <div className="shell story-hero">
+        <div className="portrait-stage">
+          <StudioImage src={view.photo} alt={view.photoAlt} sizes="(max-width: 860px) 100vw, 40vw" priority />
         </div>
-        <div>
+        <div className="story">
           <p className="eyebrow">{view.styles.join(" · ")}</p>
           <h1>{view.name}</h1>
           <p className="lede">{localized ? view.blurb : copy.artistPage.untranslated}</p>
-          {localized ? <Paragraphs text={view.history} /> : null}
           <div className="actions">
             <Link className="btn" href={`/${lang}/book?artist=${encodeURIComponent(view.name)}`}>{copy.artistPage.request}</Link>
           </div>
+          <p className="muted">{settings.phone} · {settings.phoneAlt} · {settings.email}</p>
         </div>
+      </div>
+      <div className="shell story">
+        {localized ? <Paragraphs text={view.history} /> : null}
       </div>
       <section className="section" aria-labelledby="work-heading">
         <div className="shell">

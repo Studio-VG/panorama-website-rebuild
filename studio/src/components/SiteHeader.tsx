@@ -22,6 +22,7 @@ export function SiteHeader({
   const onAdmin = pathname.startsWith("/admin");
   const links = [
     [`/${lang}/artists`, labels.artists],
+    [`/${lang}/guests`, labels.guests],
     [`/${lang}/events`, labels.events],
     [`/${lang}/about`, labels.about],
     [`/${lang}/faq`, labels.faq],

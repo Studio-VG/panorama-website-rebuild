@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from "crypto";
+import type { Artist } from "./types";
 
 export const ADMIN_COOKIE = "studio_admin";
 
@@ -48,4 +49,33 @@ export function clearCookieHeader() {
 
 export function requireAdmin(request: Request) {
   return isAuthed(readCookie(request.headers.get("cookie"), ADMIN_COOKIE));
+}
+
+export const GUEST_COOKIE = "studio_guest";
+
+export function guestSessionToken(id: string, password: string) {
+  const secret = process.env.ADMIN_SESSION_SECRET?.trim() || adminPassword();
+  const sig = createHmac("sha256", secret).update(`guest:${id}:${password}`).digest("hex");
+  return `${id}.${sig}`;
+}
+
+export function guestCookieHeader(token: string) {
+  const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
+  return `${GUEST_COOKIE}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${60 * 60 * 24 * 14}${secure}`;
+}
+
+export function clearGuestCookieHeader() {
+  return `${GUEST_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0`;
+}
+
+export function guestFromToken(token: string | undefined, artists: Artist[]) {
+  if (!token || !token.includes(".")) return null;
+  const id = token.slice(0, token.indexOf("."));
+  const artist = artists.find((item) => item.id === id && item.role === "guest" && item.portalPassword);
+  if (!artist?.portalPassword) return null;
+  const expected = guestSessionToken(artist.id, artist.portalPassword);
+  const a = Buffer.from(token);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return null;
+  return timingSafeEqual(a, b) ? artist : null;
 }

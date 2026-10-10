@@ -14,7 +14,7 @@ function h(?string $value): string
 
 function locales(): array
 {
-    return ['en', 'tr', 'de', 'ru'];
+    return ['en', 'tr', 'de', 'ru', 'ka'];
 }
 
 function is_locale(?string $value): bool
@@ -24,7 +24,7 @@ function is_locale(?string $value): bool
 
 function locale_from_country(?string $code): string
 {
-    $map = ['TR' => 'tr', 'RU' => 'ru', 'DE' => 'de'];
+    $map = ['TR' => 'tr', 'RU' => 'ru', 'DE' => 'de', 'GE' => 'ka'];
     $code = strtoupper(trim((string) $code));
     return $map[$code] ?? 'en';
 }
@@ -654,7 +654,7 @@ function format_range(string $start, string $end = '', string $lang = 'en'): str
         }
         return $start . ' – ' . $finish;
     }
-    $locales = ['en' => 'en_GB', 'tr' => 'tr_TR', 'de' => 'de_DE', 'ru' => 'ru_RU'];
+    $locales = ['en' => 'en_GB', 'tr' => 'tr_TR', 'de' => 'de_DE', 'ru' => 'ru_RU', 'ka' => 'ka_GE'];
     $fmt = new IntlDateFormatter($locales[$lang] ?? 'en_GB', IntlDateFormatter::LONG, IntlDateFormatter::NONE, 'UTC');
     $startDate = new DateTimeImmutable($start . 'T12:00:00Z');
     $endDate = new DateTimeImmutable($finish . 'T12:00:00Z');

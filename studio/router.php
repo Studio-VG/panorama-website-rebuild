@@ -8,4 +8,4 @@ if ($path !== '/' && is_file($file)) {
     return false;
 }
 
-require __DIR__ . '/app/front.php';
+require __DIR__ . '/php/front.php';

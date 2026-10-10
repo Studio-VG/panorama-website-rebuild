@@ -1,6 +1,6 @@
 import type { HoursEntry, StudioEvent } from "./types";
 
-const dateLocales: Record<string, string> = { en: "en-GB", tr: "tr-TR", de: "de-DE", ru: "ru-RU" };
+const dateLocales: Record<string, string> = { en: "en-GB", tr: "tr-TR", de: "de-DE", ru: "ru-RU", ka: "ka-GE" };
 
 export function formatRange(start: string, end?: string, lang = "en") {
   if (!start) return "";

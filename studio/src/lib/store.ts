@@ -3,7 +3,7 @@ import path from "path";
 import defaultStore from "../../data/store.json";
 import { slugify } from "./format";
 import { ISTANBUL_LOCATION } from "./locations";
-import type { Location, Store } from "./types";
+import type { Artist, ChatThread, Location, Store } from "./types";
 
 const file = path.join(process.cwd(), "data", "store.json");
 
@@ -46,10 +46,38 @@ function withLocations(store: Store): Store {
   return store;
 }
 
+function withArtists(store: Store): Store {
+  store.artists = (store.artists || []).map((artist) => ({
+    ...artist,
+    role: artist.role === "guest" ? "guest" : "resident",
+  }));
+  store.threads = Array.isArray(store.threads) ? store.threads : [];
+  return store;
+}
+
+export function isGuest(artist: Pick<Artist, "role">) {
+  return artist.role === "guest";
+}
+
+export function publicArtist<T extends Artist>(artist: T): T {
+  const copy = { ...artist };
+  delete copy.portalPassword;
+  return copy;
+}
+
+export function publicThread(thread: ChatThread) {
+  return {
+    id: thread.id,
+    guestId: thread.guestId,
+    clientName: thread.clientName,
+    messages: thread.messages,
+  };
+}
+
 export function getStore(): Store {
   ensure();
   const parsed = JSON.parse(fs.readFileSync(file, "utf8")) as Store;
-  return withLocations(withEventSlugs(parsed));
+  return withArtists(withLocations(withEventSlugs(parsed)));
 }
 
 export function saveStore(store: Store) {

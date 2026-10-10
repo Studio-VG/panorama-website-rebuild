@@ -33,16 +33,35 @@ export type PortfolioImage = {
   caption: string;
 };
 
+export type ArtistRole = "resident" | "guest";
+
 export type Artist = {
   id: string;
   slug: string;
   name: string;
+  role?: ArtistRole;
   styles: string[];
   blurb: string;
   history: string;
   photo: string;
   photoAlt: string;
   portfolio: PortfolioImage[];
+  portalPassword?: string;
+};
+
+export type ChatMessage = {
+  id: string;
+  from: "guest" | "client";
+  body: string;
+  createdAt: string;
+};
+
+export type ChatThread = {
+  id: string;
+  guestId: string;
+  clientName: string;
+  clientToken: string;
+  messages: ChatMessage[];
 };
 
 export type StudioEvent = {
@@ -83,4 +102,5 @@ export type Store = {
   events: StudioEvent[];
   inquiries: Inquiry[];
   locations: Location[];
+  threads?: ChatThread[];
 };

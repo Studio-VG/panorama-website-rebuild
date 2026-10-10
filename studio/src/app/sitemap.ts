@@ -7,6 +7,8 @@ export const dynamic = "force-dynamic";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const { artists, events } = getStore();
+  const residents = artists.filter((artist) => artist.role !== "guest");
+  const guests = artists.filter((artist) => artist.role === "guest");
   const base = siteUrl();
   const paths = [
     "/",
@@ -15,7 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/book",
     "/faq",
-    ...artists.map((artist) => `/artists/${artist.slug}`),
+    "/guests",
+    ...residents.map((artist) => `/artists/${artist.slug}`),
+    ...guests.map((artist) => `/guests/${artist.slug}`),
     ...events.map((event) => `/events/${event.slug}`),
   ];
   return locales.flatMap((lang) =>

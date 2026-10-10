@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Noto_Sans_Georgian, Noto_Serif_Georgian, Outfit } from "next/font/google";
 import { HtmlLang } from "@/components/HtmlLang";
 import { isLocale, type Locale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
@@ -20,12 +20,24 @@ const sans = Outfit({
   variable: "--font-sans",
 });
 
+const displayKa = Noto_Serif_Georgian({
+  subsets: ["georgian"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display-ka",
+});
+
+const sansKa = Noto_Sans_Georgian({
+  subsets: ["georgian"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans-ka",
+});
+
 export const dynamic = "force-dynamic";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#14110e",
+  themeColor: "#f4eadb",
 };
 
 async function requestLocale(): Promise<Locale> {
@@ -55,7 +67,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const lang = await requestLocale();
 
   return (
-    <html lang={lang} className={`${display.variable} ${sans.variable}`}>
+    <html lang={lang} className={`${display.variable} ${sans.variable} ${displayKa.variable} ${sansKa.variable}`}>
       <body>
         <HtmlLang />
         {children}

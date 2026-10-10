@@ -9,7 +9,7 @@ import { telHref } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
 import { pageMetadata } from "@/lib/seo";
-import { getStore } from "@/lib/store";
+import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -30,6 +30,7 @@ export default async function AboutPage({ params }: Props) {
   if (!isLocale(lang)) notFound();
   const copy = messages[lang];
   const { settings, artists, locations } = getStore();
+  const residents = artists.filter((artist) => !isGuest(artist)).map(publicArtist);
   const istanbul = locations.find((place) => /istanbul|beyoğlu|beyoglu/i.test(`${place.name} ${place.address}`));
   const studio = localizeSettings(settings, lang);
   return (
@@ -70,7 +71,7 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </div>
         <div className="about-form">
-          <InquiryForm artists={artists} labels={copy.form} />
+          <InquiryForm artists={residents} labels={copy.form} />
         </div>
       </div>
     </section>

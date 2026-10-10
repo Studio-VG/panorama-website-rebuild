@@ -14,6 +14,14 @@ function render_public(string $lang, array $rest, string $method): void
         render_home($lang, $store, $studio, $copy);
         return;
     }
+    if ($page === 'guests' && count($rest) === 1) {
+        render_guests($lang, $store, $copy);
+        return;
+    }
+    if ($page === 'guests' && count($rest) === 2) {
+        render_guest($lang, $store, $copy, $rest[1]);
+        return;
+    }
     if ($page === 'artists' && count($rest) === 1) {
         render_artists($lang, $store, $copy);
         return;
@@ -121,7 +129,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     echo '<link rel="icon" href="' . h($settings['logoUrl'] ?: '/brand/favicon.png') . '">';
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
-    echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap">';
+    echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Georgian:wght@400;500;600&family=Noto+Serif+Georgian:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap">';
     echo '<link rel="stylesheet" href="/studio.css">';
     $default = $path === '/' ? site_url() . '/en' : site_url() . '/en' . $path;
     echo '<link rel="alternate" hreflang="x-default" href="' . h($default) . '">';
@@ -152,6 +160,7 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
     $path = request_path();
     $links = [
         ["/$lang/artists", $copy['nav']['artists']],
+        ["/$lang/guests", $copy['nav']['guests'] ?? 'Guests'],
         ["/$lang/events", $copy['nav']['events']],
         ["/$lang/about", $copy['nav']['about']],
         ["/$lang/faq", $copy['nav']['faq']],
@@ -277,6 +286,7 @@ function event_card(array $event, string $lang, array $statusLabels, string $hea
 
 function inquiry_form(array $artists, array $labels, string $defaultArtist = ''): string
 {
+    $artists = array_values(array_filter($artists, static fn (array $artist): bool => ($artist['role'] ?? 'resident') !== 'guest'));
     $error = text_field($_GET['inquiry_error'] ?? '', 240);
     $ok = isset($_GET['sent']) ? ($labels['ok'] ?? '') : '';
     $selected = $defaultArtist;
@@ -332,6 +342,9 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     $body .= '<p class="kicker">' . h($copy['home']['artistsKicker']) . '</p>';
     $body .= '<h2 id="artists-heading">' . h($copy['home']['artistsTitle']) . '</h2><p>' . h($copy['home']['artistsLead']) . '</p></div></div><div class="artist-grid">';
     foreach ($store['artists'] as $artist) {
+        if (($artist['role'] ?? 'resident') === 'guest') {
+            continue;
+        }
         $view = localize_artist($artist, $lang);
         $body .= '<a class="artist-card" href="/' . h($lang) . '/artists/' . h($artist['slug']) . '">';
         $body .= '<div class="frame portrait-frame"><img src="' . h($view['photo']) . '" alt="' . h($view['photoAlt']) . '"></div><div class="card-body">';
@@ -375,6 +388,9 @@ function render_artists(string $lang, array $store, array $copy): void
     $body = '<section class="section paper"><div class="shell"><p class="kicker">' . h($store['settings']['name']) . '</p>';
     $body .= '<h1>' . h($copy['artistsPage']['title']) . '</h1><p class="muted">' . h($copy['artistsPage']['lead']) . '</p><div class="artist-grid">';
     foreach ($store['artists'] as $artist) {
+        if (($artist['role'] ?? 'resident') === 'guest') {
+            continue;
+        }
         $view = localize_artist($artist, $lang);
         $body .= '<a class="artist-card" href="/' . h($lang) . '/artists/' . h($artist['slug']) . '"><div class="frame portrait-frame"><img src="' . h($view['photo']) . '" alt="' . h($view['photoAlt']) . '"></div><div class="card-body"><h2>' . h($view['name']) . '</h2><p>' . h($view['blurb']) . '</p><ul class="tags">';
         foreach ($view['styles'] as $style) {
@@ -388,6 +404,64 @@ function render_artists(string $lang, array $store, array $copy): void
         'title' => $copy['seo']['artistsTitle'],
         'description' => $copy['seo']['artistsDescription'],
         'image' => '/art/portrait-vaso.jpg',
+    ], $body);
+}
+
+function render_guests(string $lang, array $store, array $copy): void
+{
+    $body = '<section class="section"><div class="shell"><p class="eyebrow">' . h($copy['nav']['kicker']) . '</p><h1>' . h($copy['nav']['guests'] ?? 'Guests') . '</h1>';
+    $lead = $copy['salon']['guestList'] ?? 'Guest pages stay on this site. They do not list a phone, an email, or a social account.';
+    $portal = [
+        'en' => ' The sign-in portal is part of the Next.js site.',
+        'tr' => ' Giriş portalı Next.js sitesindedir.',
+        'de' => ' Das Anmeldeportal liegt auf der Next.js-Seite.',
+        'ru' => ' Портал входа находится на сайте Next.js.',
+        'ka' => ' შესვლის პორტალი Next.js-ის საიტზეა.',
+    ][$lang] ?? ' The sign-in portal is part of the Next.js site.';
+    $body .= '<p class="lede">' . h($lead . $portal) . '</p><div class="guest-row">';
+    foreach ($store['artists'] as $artist) {
+        if (($artist['role'] ?? '') !== 'guest') {
+            continue;
+        }
+        $view = localize_artist($artist, $lang);
+        $body .= '<a class="guest-card" href="/' . h($lang) . '/guests/' . h($artist['slug']) . '"><strong>' . h($view['name']) . '</strong><span>' . h($view['blurb']) . '</span></a>';
+    }
+    $body .= '</div></div></section>';
+    layout($lang, [
+        'path' => '/guests',
+        'title' => $copy['nav']['guests'] ?? 'Guests',
+        'description' => $copy['salon']['guestListMeta'] ?? 'Guest tattoo artists at ByVasoVasiko.',
+    ], $body);
+}
+
+function render_guest(string $lang, array $store, array $copy, string $slug): void
+{
+    $artist = null;
+    foreach ($store['artists'] as $item) {
+        if ($item['slug'] === $slug && ($item['role'] ?? '') === 'guest') {
+            $artist = $item;
+            break;
+        }
+    }
+    if (!$artist) {
+        render_not_found($lang, $copy);
+        return;
+    }
+    $view = localize_artist($artist, $lang);
+    $body = '<article class="shell story-hero"><div><p class="eyebrow">' . h($copy['nav']['guests'] ?? 'Guests') . '</p><h1>' . h($view['name']) . '</h1>';
+    $body .= '<p class="lede">' . h($view['blurb']) . '</p><p>' . h($view['history']) . '</p>';
+    $notice = [
+        'en' => 'No phone, email, Instagram, Facebook, or WhatsApp. The guest portal for editing this page and answering clients is on the Next.js site.',
+        'tr' => 'Telefon, e-posta, Instagram, Facebook veya WhatsApp yok. Bu sayfayı düzenlemek ve müşterilere cevap vermek için misafir portalı Next.js sitesindedir.',
+        'de' => 'Kein Telefon, keine E-Mail, kein Instagram, Facebook oder WhatsApp. Das Gastportal zum Bearbeiten dieser Seite und zum Antworten an Kunden liegt auf der Next.js-Seite.',
+        'ru' => 'Нет телефона, почты, Instagram, Facebook и WhatsApp. Портал гостя, где правят эту страницу и отвечают клиентам, находится на сайте Next.js.',
+        'ka' => 'არ არის ტელეფონი, ელფოსტა, Instagram, Facebook ან WhatsApp. სტუმრის პორტალი, სადაც ამ გვერდს ასწორებენ და კლიენტებს პასუხობენ, Next.js-ის საიტზეა.',
+    ][$lang] ?? 'No phone, email, Instagram, Facebook, or WhatsApp. The guest portal is on the Next.js site.';
+    $body .= '<p>' . h($notice) . '</p></div></article>';
+    layout($lang, [
+        'path' => '/guests/' . $artist['slug'],
+        'title' => $view['name'],
+        'description' => $view['blurb'],
     ], $body);
 }
 
@@ -414,7 +488,21 @@ function render_artist(string $lang, array $store, array $copy, string $slug): v
     if ($localized) {
         $body .= paragraphs($view['history']);
     }
-    $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book?artist=' . rawurlencode($view['name']) . '">' . h($copy['artistPage']['request']) . '</a></div></div></div>';
+    $guest = ($artist['role'] ?? '') === 'guest';
+    if ($guest) {
+        $notice = [
+            'en' => 'This guest has no phone, email, or social account. The guest portal, where they edit this page and answer clients, is on the Next.js site.',
+            'tr' => 'Bu misafirin telefonu, e-postası veya sosyal hesabı yok. Sayfayı düzenlediği ve müşterilere cevap verdiği portal Next.js sitesindedir.',
+            'de' => 'Dieser Gast hat kein Telefon, keine E-Mail und kein soziales Konto. Das Portal, in dem die Seite bearbeitet und Kunden geantwortet wird, liegt auf der Next.js-Seite.',
+            'ru' => 'У этого гостя нет телефона, почты и социальной сети. Портал, где правят страницу и отвечают клиентам, находится на сайте Next.js.',
+            'ka' => 'ამ სტუმარს არ აქვს ტელეფონი, ელფოსტა ან სოციალური ანგარიში. პორტალი, სადაც გვერდს ასწორებენ და კლიენტებს პასუხობენ, Next.js-ის საიტზეა.',
+        ][$lang] ?? 'This guest has no phone, email, or social account. The guest portal is on the Next.js site.';
+        $body .= '<p>' . h($notice) . '</p>';
+    } else {
+        $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book?artist=' . rawurlencode($view['name']) . '">' . h($copy['artistPage']['request']) . '</a></div>';
+        $body .= '<p>' . h($settings['phone']) . ' · ' . h($settings['phoneAlt'] ?? '') . ' · ' . h($settings['email']) . '</p>';
+    }
+    $body .= '</div></div>';
     $body .= '<section class="section" aria-labelledby="work-heading"><div class="shell"><h2 id="work-heading">' . h($copy['artistPage']['work']) . '</h2><div class="gallery">';
     foreach ($view['portfolio'] as $image) {
         $body .= '<figure><div class="frame plate-frame"><img src="' . h($image['src']) . '" alt="' . h($image['alt']) . '"></div>';

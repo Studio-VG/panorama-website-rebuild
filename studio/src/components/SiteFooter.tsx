@@ -46,11 +46,12 @@ function FacebookIcon() {
   );
 }
 
-export function SiteFooter({ settings, locations, lang, labels }: {
+export function SiteFooter({ settings, locations, lang, labels, quiet = false }: {
   settings: Settings;
   locations: Location[];
   lang: Locale;
   labels: Messages["footer"];
+  quiet?: boolean;
 }) {
   const email = "termini@vasovasiko.com";
   const many = locations.length > 1;
@@ -94,6 +95,7 @@ export function SiteFooter({ settings, locations, lang, labels }: {
                   </li>
                 ))}
               </ul>
+              {quiet ? <p>Studio appointments for Vaso Vasiko and Andrei Aivazian are booked on the appointment form. This guest has no phone, email, or social link.</p> : <>
               <h3>{labels.contact}</h3>
               <div className="contact-rows">
                 <p><PhoneIcon /><a href={telHref(settings.phone)}>{settings.phone}</a></p>
@@ -112,6 +114,7 @@ export function SiteFooter({ settings, locations, lang, labels }: {
                   <span className="sr-only"> ({labels.newTab})</span>
                 </a>
               </div>
+              </>}
             </div>
           </div>
           <p className="location-line">{groups.map((group) => group.label).join(" • ")}</p>

@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -20,14 +21,17 @@ export default async function LangLayout({
   const copy = messages[lang];
   const { settings, locations } = getStore();
   const view = localizeSettings(settings, lang);
+  const path = (await headers()).get("x-pathname") || "";
+  const quiet = /\/guests\//.test(path);
+  const shown = quiet ? { ...view, phone: "", phoneAlt: "", email: "", instagramUrl: "", facebookUrl: "", whatsappUrl: "", websiteUrl: "", portfolioUrl: "" } : view;
 
   return (
     <div className="site-canvas">
       <a className="skip" href="#content">{copy.nav.skip}</a>
       <SiteHeader name={settings.name} logo={settings.logoUrl} lang={lang} labels={copy.nav} />
       <main id="content">{children}</main>
-      <SiteFooter settings={view} locations={locations} lang={lang} labels={copy.footer} />
-      <JsonLd data={businessJsonLd({ ...settings, tagline: view.tagline }, locations, lang, copy.home.facts)} />
+      <SiteFooter settings={shown} locations={locations} lang={lang} labels={copy.footer} quiet={quiet} />
+      {quiet ? null : <JsonLd data={businessJsonLd({ ...settings, tagline: view.tagline }, locations, lang, copy.home.facts)} />}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { isBot, isLocale, localeCookie, localeFromCountry, type Locale } from "@
 function withLocaleHeader(request: NextRequest, locale: Locale) {
   const headers = new Headers(request.headers);
   headers.set("x-locale", locale);
+  headers.set("x-pathname", request.nextUrl.pathname);
   return NextResponse.next({ request: { headers } });
 }
 
@@ -34,6 +35,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (
     pathname.startsWith("/admin") ||
+    pathname.startsWith("/guest") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.includes(".")

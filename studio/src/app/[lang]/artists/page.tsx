@@ -6,7 +6,7 @@ import { localizeArtist } from "@/lib/content";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
 import { pageMetadata } from "@/lib/seo";
-import { getStore } from "@/lib/store";
+import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -36,8 +36,8 @@ export default async function ArtistsPage({ params }: Props) {
         <h1>{copy.artistsPage.title}</h1>
         <p className="muted">{copy.artistsPage.lead}</p>
         <div className="artist-grid">
-          {artists.map((artist) => {
-            const view = localizeArtist(artist, lang);
+          {artists.filter((artist) => !isGuest(artist)).map((artist) => {
+            const view = localizeArtist(publicArtist(artist), lang);
             return (
               <Link className="artist-card" href={`/${lang}/artists/${artist.slug}`} key={artist.id}>
                 <div className="frame portrait-frame">

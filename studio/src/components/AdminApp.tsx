@@ -116,6 +116,7 @@ export function AdminApp() {
       <div className="shell admin-wrap">
         <h1>Studio admin</h1>
         <p>Changes are saved in <code>data/store.json</code> and stay after a restart. Uploaded images go to <code>data/uploads</code>.</p>
+        <p><a href="/admin/chats">Guest conversations</a></p>
         <div className="tabs" role="tablist" aria-label="Admin sections">
           {(["settings", "artists", "events", "inquiries", "locations"] as Tab[]).map((item) => (
             <button key={item} className="btn btn-ink" type="button" role="tab" aria-selected={tab === item} onClick={() => { setTab(item); setMessage(""); setError(""); }}>

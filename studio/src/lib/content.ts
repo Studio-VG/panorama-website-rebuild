@@ -1,3 +1,4 @@
+import { briefArtists } from "./briefArtists";
 import type { Locale } from "./locale";
 import type { Artist, Settings, StudioEvent } from "./types";
 
@@ -128,6 +129,14 @@ const events: Record<string, Partial<Record<Locale, { title: string; description
       seoDescription: "Приглашённый тату-мастер в Стамбуле: неделя ирэдзуми из Японии, 12–16 ноября 2026.",
       description: "Студия принимает приглашённых мастеров из других стран. Эта ноябрьская неделя — пример гостя ирэдзуми из Японии. На страницах новостей имени на эти даты не было. Когда гость подтвердится, замените имя, даты и картинку.",
     },
+    ka: {
+      title: "სტუმრობის დღე — ირეზუმის ოსტატი",
+      guest: "სტუმარი Osaka-დან",
+      country: "იაპონია",
+      imageAlt: "ბნელი სტუდიის ნახატი ტალღის ფარით, იაპონიიდან სტუმრობის დღისთვის.",
+      seoDescription: "სტუმარი ტატუ-ოსტატი სტამბოლში: ირეზუმის კვირა იაპონიიდან, 12–16 ნოემბერი, 2026.",
+      description: "სტუდია მასპინძლობს სტუმარ ტატუ-ოსტატებს სხვა ქვეყნებიდან. ეს ნოემბრის კვირა მაგალითია იაპონიიდან ირეზუმის სტუმრისთვის. სიახლეების გვერდებზე ამ თარიღებისთვის სახელი არ ეწერა. როცა სტუმარი დადასტურდება, შეცვალეთ სახელი, თარიღი და სურათი.",
+    },
   },
   "event-marmaris": {
     en: {
@@ -162,6 +171,14 @@ const events: Record<string, Partial<Record<Locale, { title: string; description
       seoDescription: "Фестиваль Marmari в Мармарисе, 3–5 октября 2025. Студия участвует в этой встрече.",
       description: "Фестиваль Marmari — международная встреча в Мармарисе. На странице партнёров она же названа Marmaris Tattoo Convention. Последние объявленные даты — 3–5 октября 2025, отель Green Nature Diamond. Более новой даты на страницах новостей не было. Обновите запись, когда станет известен следующий год.",
     },
+    ka: {
+      title: "Marmari Tattoo Festival",
+      guest: "სტუდია ფესტივალზე",
+      country: "თურქეთი",
+      imageAlt: "საღამოს ნახატი ზღვისპირა შეკრებისა იაპონურ ტალღებად, Marmari Tattoo Festival-ისთვის.",
+      seoDescription: "Marmari Tattoo Festival Marmaris-ში, 3–5 ოქტომბერი, 2025. სტუდია ამ შეკრების პარტნიორია.",
+      description: "Marmari Tattoo Festival არის საერთაშორისო შეკრება Marmaris-ში. არსებული პარტნიორების გვერდზე ის ასევე წერია როგორც Marmaris Tattoo Convention. ბოლოს გამოცხადებული გამოცემა გაიმართა 3–5 ოქტომბერს, 2025, Green Nature Diamond Hotel-ში. უფრო გვიანი თარიღი სიახლეების გვერდებზე არ ეწერა. განაახლეთ ჩანაწერი, როცა შემდეგი გამოცემა დადასტურდება.",
+    },
   },
   "event-hamburg": {
     tr: {
@@ -188,6 +205,14 @@ const events: Record<string, Partial<Record<Locale, { title: string; description
       seoDescription: "Пример приглашённого мастера из Европы в Стамбуле, 18–22 марта 2026.",
       description: "Пример европейской гостевой недели. Студия с 2015 года работает с европейскими студиями. Имени на эту неделю не публиковали. Правьте или удалите запись в админке.",
     },
+    ka: {
+      title: "სტუმრობის დღე — ოსტატი გერმანიიდან",
+      guest: "სტუმარი Hamburg-იდან",
+      country: "გერმანია",
+      imageAlt: "ნავსადგურის წყალი, დაყვანილი ტალღებამდე და ოქროს ჰორიზონტამდე, გერმანიიდან სტუმრობის დღისთვის.",
+      seoDescription: "ევროპიდან სტუმარი ტატუ-ოსტატის მაგალითი სტამბოლში, 18–22 მარტი, 2026.",
+      description: "ევროპული სტუმრობის კვირის მაგალითი. სტუდია 2015 წლიდან მუშაობს ევროპის სტუდიებთან. ამ კვირისთვის გამოქვეყნებული სახელი არ არის. ჩანაწერი ადმინიდან შეასწორეთ ან წაშალეთ.",
+    },
   },
 };
 
@@ -196,19 +221,25 @@ const studioCopy: Partial<Record<Locale, { tagline: string; heroLead: string; ab
     tagline: "Kalıcı Japon dövmesi.",
     heroLead: "İstiklal’de irezumi ve yeni traditional. Başka ülkelerden misafirler ve Marmari dövme festivali gibi buluşmalar.",
     note: "Mevcut site (vasovasiko.com) pratiği Vaso Vasiko olarak sunar. Google kaydı byvasovasiko adını kullanır. ByVasoVasiko, ayarlardan değiştirilene kadar bu sitedeki geçici addır.",
-    about: "ByVasoVasiko, Asmalı Mescit’te İstiklal Caddesi üzerindeki Demirhan Apartmanı’nın üçüncü katındaki Japon dövme stüdyosunun geçici adıdır. Arkasındaki isim Vasil Kurakhchishvili, bilinen adıyla Vaso Vasiko. 1980’de Gürcistan’da doğdu, 2000’den beri dövme yapıyor. Yolun çoğu Türkiye’de geçti; 2015’ten beri Avrupa stüdyolarıyla çalışıyor.\n\nMasa, yıllar sonra da okunan özel Japon dövmesi, yani irezumi, ve yeni traditional üzerine kurulu. Siyah-gri, geometrik, renkli, new school ve old school da geçmişte var. İğneler tek kullanımlık, boyalar Avrupa standartlarında. Mevcut sitede adı geçen destekçiler arasında Cheyenne, Radiant, Aloe Tattoo ve Onyx var.\n\nBitmiş dövmeler mevcut portfolyoda kavram levhaları olarak durur: koi, kaplan, samuray ve yılan, çiçek, leylek, hannya, fu dog ve ejderha. Bu site o fotoğrafları kopyalamaz.\n\nGoogle işletmeyi byvasovasiko olarak listeler, pazartesiden cumartesiye açıktır, 22 yorumda 4,7 puanı vardır. Stüdyo misafir sanatçı ağırlar ve Marmari dövme festivaliyle bağlantılıdır.",
+    about: "ByVasoVasiko, Asmalı Mescit’te İstiklal Caddesi üzerindeki Demirhan Apartmanı’nın üçüncü katındaki Japon dövme stüdyosunun geçici adıdır. Arkasındaki isim Vasil Kurakhchishvili, bilinen adıyla Vaso Vasiko. 1980’de Gürcistan’da doğdu, 2000’den beri dövme yapıyor. Yolun çoğu Türkiye’de geçti; 2015’ten beri Avrupa stüdyolarıyla çalışıyor.\n\nMasa, yıllar sonra da okunan özel Japon dövmesi, yani irezumi, ve yeni traditional üzerine kurulu. Siyah-gri, geometrik, renkli, new school ve old school da geçmişte var. İğneler tek kullanımlık, boyalar Avrupa standartlarında. Mevcut sitede adı geçen destekçiler arasında Cheyenne, Radiant, Aloe Tattoo ve Onyx var.\n\nBitmiş dövmeler mevcut portfolyoda kavram levhaları olarak durur: koi, kaplan, samuray ve yılan, çiçek, leylek, hannya, fu dog ve ejderha. Bu site o fotoğrafları kopyalamaz.\n\nAndrei Aivazian Tiflis’tedir; Black Kiss Tattoo ve kendi stüdyosuyla anılır. Vaso ve Andrei için randevu formdadır. Misafir sanatçılar müşteriyle bu sitede yazar, bu sohbet stüdyo randevusunun yerine geçmez.",
   },
   de: {
     tagline: "Japanisches Tattoo, das bleibt.",
     heroLead: "Irezumi und New Traditional an der Istiklal, mit Gästen aus anderen Ländern und Treffen wie dem Marmari Tattoo Festival.",
     note: "Die bestehende Seite (vasovasiko.com) nennt die Praxis Vaso Vasiko. Google führt das Geschäft als byvasovasiko. ByVasoVasiko ist der vorläufige Name dieser Seite, bis er in den Einstellungen geändert wird.",
-    about: "ByVasoVasiko ist der vorläufige Name des japanischen Tattoo-Studios im dritten Stock des Demirhan-Apartments an der İstiklal in Asmalı Mescit. Dahinter steht Vasil Kurakhchishvili, bekannt als Vaso Vasiko. Er wurde 1980 in Georgien geboren und tätowiert seit 2000. Den größten Teil der Laufbahn verbrachte er in der Türkei, seit 2015 arbeitet er mit Studios in Europa.\n\nDie Bank steht auf japanischem Tattoo, Irezumi, und auf New Traditional, das Jahre später noch lesbar ist. Schwarz-grau, geometrisch, Farbe, New School und Old School gehören zur Geschichte. Nadeln sind Einweg, Farben folgen europäischen Normen. Auf der bestehenden Seite genannte Partner sind Cheyenne, Radiant, Aloe Tattoo und Onyx.\n\nFertige Tattoos stehen im bestehenden Portfolio als Konzeptblätter: Koi, Tiger, Samurai und Schlange, Blüten, Storch, Hannya, Fu-Hund und Drache. Diese Seite kopiert jene Fotos nicht.\n\nGoogle führt das Geschäft als byvasovasiko, geöffnet Montag bis Samstag, mit 4,7 aus 22 Rezensionen. Das Studio lädt Gastkünstler ein und ist mit dem Marmari Tattoo Festival verbunden.",
+    about: "ByVasoVasiko ist der vorläufige Name des japanischen Tattoo-Studios im dritten Stock des Demirhan-Apartments an der İstiklal in Asmalı Mescit. Dahinter steht Vasil Kurakhchishvili, bekannt als Vaso Vasiko. Er wurde 1980 in Georgien geboren und tätowiert seit 2000. Den größten Teil der Laufbahn verbrachte er in der Türkei, seit 2015 arbeitet er mit Studios in Europa.\n\nDie Bank steht auf japanischem Tattoo, Irezumi, und auf New Traditional, das Jahre später noch lesbar ist. Schwarz-grau, geometrisch, Farbe, New School und Old School gehören zur Geschichte. Nadeln sind Einweg, Farben folgen europäischen Normen. Auf der bestehenden Seite genannte Partner sind Cheyenne, Radiant, Aloe Tattoo und Onyx.\n\nFertige Tattoos stehen im bestehenden Portfolio als Konzeptblätter: Koi, Tiger, Samurai und Schlange, Blüten, Storch, Hannya, Fu-Hund und Drache. Diese Seite kopiert jene Fotos nicht.\n\nAndrei Aivazian arbeitet in Tiflis, verbunden mit Black Kiss Tattoo und dem eigenen Studio. Termine für Vaso und Andrei laufen über das Formular. Gäste schreiben mit Kunden auf dieser Seite. Dieser Chat ersetzt keine Buchung im Studio.",
   },
   ru: {
     tagline: "Японская татуировка, которая остаётся.",
     heroLead: "Ирэдзуми и нью-традишнл на Истикляль, с гостями из других стран и встречами вроде фестиваля Marmari.",
     note: "Существующий сайт (vasovasiko.com) представляет практику как Vaso Vasiko. В Google бизнес указан как byvasovasiko. ByVasoVasiko — временное имя этого сайта, пока его не сменят в настройках.",
-    about: "ByVasoVasiko — временное имя японской тату-студии на третьем этаже дома Демирхан, на Истикляль в Асмалы Месджит. За ним стоит Васил Курахчишвили, известный как Васо Васико. Он родился в Грузии в 1980 году и татуирует с 2000-го. Большая часть пути прошла в Турции, с 2015 года он работает со студиями в Европе.\n\nСтанок собран вокруг японской татуировки, ирэдзуми, и нью-традишнл, которые читаются и годы спустя. В истории есть чёрно-серое, геометрия, цвет, нью-скул и олд-скул. Иглы одноразовые, краски по европейским нормам. На существующем сайте среди спонсоров названы Cheyenne, Radiant, Aloe Tattoo и Onyx.\n\nГотовые тату лежат в существующем портфолио как концепт-листы: кои, тигр, самурай и змея, цветы, аист, хання, фу-дог и дракон. Этот сайт те фотографии не копирует.\n\nGoogle ведёт бизнес как byvasovasiko, открыт с понедельника по субботу, оценка 4,7 по 22 отзывам. Студия принимает гостей и связана с фестивалем Marmari.",
+    about: "ByVasoVasiko — временное имя японской тату-студии на третьем этаже дома Демирхан, на Истикляль в Асмалы Месджит. За ним стоит Васил Курахчишвили, известный как Васо Васико. Он родился в Грузии в 1980 году и татуирует с 2000-го. Большая часть пути прошла в Турции, с 2015 года он работает со студиями в Европе.\n\nСтанок собран вокруг японской татуировки, ирэдзуми, и нью-традишнл, которые читаются и годы спустя. В истории есть чёрно-серое, геометрия, цвет, нью-скул и олд-скул. Иглы одноразовые, краски по европейским нормам. На существующем сайте среди спонсоров названы Cheyenne, Radiant, Aloe Tattoo и Onyx.\n\nГотовые тату лежат в существующем портфолио как концепт-листы: кои, тигр, самурай и змея, цветы, аист, хання, фу-дог и дракон. Этот сайт те фотографии не копирует.\n\nАндрей Айвазян работает в Тбилиси, его связывают с Black Kiss Tattoo и собственной студией. Запись к Васо и Андрею идёт через форму. Гости переписываются с клиентами на этом сайте. Этот чат не заменяет запись в студию.",
+  },
+  ka: {
+    tagline: "ორი გრძელი კარიერა, ერთი სტუდია.",
+    heroLead: "Vaso Vasiko იაპონურ ირეზუმსა და ნეო-ტრადიციულს მუშაობს სტამბოლში, İstiklal-ის გამზირზე. Andrei Aivazian რეალიზმს, პორტრეტსა და შავ-ნაცრისფერს მუშაობს თბილისიდან.",
+    note: "არსებული საიტი (vasovasiko.com) პრაქტიკას წარმოადგენს როგორც Vaso Vasiko. Google ბიზნესს ატარებს როგორც byvasovasiko. ByVasoVasiko ამ საიტის დროებითი სახელია, სანამ აქ არ შეიცვლება.",
+    about: "ByVasoVasiko არის Vaso Vasiko-სა და Andrei Aivazian-ის სტუდია. Vaso, დაბადებული Vasil Kurakhchishvili, საქართველოში 1980 წელს, ტატუირებს 2000 წლიდან, ძირითადად თურქეთში, ოთახიდან İstiklal-ის გამზირზე სტამბოლში, ხშირი სტუმრობით ევროპაში. Andrei თბილისშია, დაკავშირებული Black Kiss Tattoo-სთან და საკუთარ სტუდიასთან, ათწლეულზე მეტი კონვენციით, სტუმრობითა და სწავლებით.\n\nორივესთან ჩაწერა სტუდიის ფორმით მიდის. სტუმარი ოსტატები საკუთარ გვერდებს ინახავენ და კლიენტებს ამ საიტზე ესაუბრებიან. ეს მიმოწერა არ ცვლის ჩაწერას Vaso Vasiko-სთან ან Andrei Aivazian-თან.",
   },
 };
 
@@ -218,8 +249,12 @@ export function localizeSettings(settings: Settings, lang: Locale): Settings {
   return { ...settings, tagline: copy.tagline, heroLead: copy.heroLead, about: copy.about, officialNameNote: copy.note };
 }
 
+function artistCopy(artist: Artist, lang: Locale) {
+  return briefArtists[artist.id]?.[lang] || artists[artist.id]?.[lang];
+}
+
 export function artistIsLocalized(artist: Artist, lang: Locale) {
-  return lang === "en" || Boolean(artists[artist.id]?.[lang]);
+  return lang === "en" || Boolean(artistCopy(artist, lang));
 }
 
 export function eventIsLocalized(event: StudioEvent, lang: Locale) {
@@ -227,7 +262,7 @@ export function eventIsLocalized(event: StudioEvent, lang: Locale) {
 }
 
 export function localizeArtist(artist: Artist, lang: Locale): Artist & { seoTitle: string; seoDescription: string } {
-  const copy = artists[artist.id]?.[lang];
+  const copy = artistCopy(artist, lang);
   if (!copy) {
     return {
       ...artist,
@@ -260,7 +295,9 @@ export function localizeEvent(event: StudioEvent, lang: Locale): StudioEvent & {
 export function artistSeo(artist: Artist, lang: Locale) {
   if (!artistIsLocalized(artist, lang)) return { title: artist.name, description: artist.name };
   if (lang === "en") {
-    if (artist.id === "artist-vaso") return { title: "Irezumi", description: `${artist.name} tattoos irezumi and new traditional in Beyoğlu, Istanbul.` };
+    if (artist.id === "artist-vaso") return { title: artist.name, description: artist.blurb };
+    if (artist.id === "artist-andrei") return { title: artist.name, description: artist.blurb };
+    if (artist.id === "artist-sample-guest") return { title: artist.name, description: artist.blurb };
     if (artist.id === "artist-fahriye") return { title: "Japanese florals", description: `${artist.name} works Japanese florals in Beyoğlu: peony and waves.` };
     if (artist.id === "artist-ahmet") return { title: "Blackwork", description: `${artist.name} works black and grey and custom blackwork in Beyoğlu, including neck pieces.` };
   }

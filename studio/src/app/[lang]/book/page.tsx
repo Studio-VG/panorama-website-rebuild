@@ -4,7 +4,7 @@ import { InquiryForm } from "@/components/InquiryForm";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
 import { istanbulAddress, pageMetadata } from "@/lib/seo";
-import { getStore } from "@/lib/store";
+import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }>; searchParams: Promise<{ artist?: string }> };
 
@@ -26,6 +26,7 @@ export default async function BookPage({ params, searchParams }: Props) {
   const { artist } = await searchParams;
   const copy = messages[lang];
   const { settings, artists, locations } = getStore();
+  const residents = artists.filter((artist) => !isGuest(artist)).map(publicArtist);
   const street = istanbulAddress(settings, locations);
   return (
     <section className="section">
@@ -38,7 +39,7 @@ export default async function BookPage({ params, searchParams }: Props) {
           <p><a href={`mailto:${settings.email}`}>{settings.email}</a> · <a href={settings.whatsappUrl}>{copy.about.whatsapp}</a></p>
         </div>
         <div className="book-form">
-          <InquiryForm artists={artists} defaultArtist={artist} labels={copy.form} />
+          <InquiryForm artists={residents} defaultArtist={artist} labels={copy.form} />
         </div>
       </div>
     </section>
