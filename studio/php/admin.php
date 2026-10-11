@@ -62,13 +62,6 @@ function admin_post(string $path): never
             $result['settings']['logoUrl'] = $upload['url'];
             $store = store_load();
         }
-        $video = save_video($_FILES['vasoVideo'] ?? []);
-        if (isset($video['error'])) {
-            throw new RuntimeException($video['error']);
-        }
-        if (isset($video['url'])) {
-            $result['settings']['vasoHomeVideo'] = $video['url'];
-        }
         $store['settings'] = $result['settings'];
         store_save($store);
         redirect('/admin?tab=settings&notice=settings-saved');
@@ -549,11 +542,6 @@ function admin_settings_form(array $settings): string
 {
     $html = '<form method="post" action="/admin/settings" enctype="multipart/form-data">';
     $html .= admin_field('setting-name', 'Studio name', 'name', $settings['name'] ?? '');
-    $html .= '<label for="setting-vaso-video">Vaso Vasiko home video (mp4)<input id="setting-vaso-video" name="vasoVideo" type="file" accept="video/mp4,.mp4"></label>';
-    $html .= '<input type="hidden" name="vasoHomeVideo" value="' . h((string) ($settings['vasoHomeVideo'] ?? '')) . '">';
-    $html .= '<p class="muted">Choose an mp4 and save settings. The file is kept with the studio settings. The home hero does not show a picture frame.</p>';
-    $currentVideo = (string) ($settings['vasoHomeVideo'] ?? '');
-    $html .= '<p>' . ($currentVideo !== '' ? 'Current video: ' . h($currentVideo) : 'No video uploaded.') . '</p>';
     $html .= admin_field('setting-tagline', 'Tagline', 'tagline', $settings['tagline'] ?? '');
     $html .= '<label for="setting-lead">Home introduction<textarea id="setting-lead" name="heroLead">' . h($settings['heroLead'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-official', 'Official name (alternate, not the site title)', 'officialName', $settings['officialName'] ?? '');

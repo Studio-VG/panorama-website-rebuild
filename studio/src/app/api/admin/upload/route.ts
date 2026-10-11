@@ -8,23 +8,15 @@ export const dynamic = "force-dynamic";
 
 const allowed = new Set(["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"]);
 const extensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"]);
-const videoTypes = new Set(["video/mp4", "application/mp4"]);
 
 export async function POST(request: Request) {
   if (!requireAdmin(request)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const form = await request.formData();
   const file = form.get("file");
-  if (!(file instanceof File)) return NextResponse.json({ error: "Choose a file." }, { status: 400 });
+  if (!(file instanceof File)) return NextResponse.json({ error: "Choose an image." }, { status: 400 });
+  if (file.size > 5_000_000) return NextResponse.json({ error: "Image must be under 5 MB." }, { status: 400 });
   const ext = path.extname(file.name).toLowerCase();
-  const video = String(form.get("kind") || "") === "video";
-  if (video) {
-    if (file.size > 40_000_000) return NextResponse.json({ error: "Video must be under 40 MB." }, { status: 400 });
-    if (ext !== ".mp4" || (file.type && !videoTypes.has(file.type))) {
-      return NextResponse.json({ error: "Use an mp4." }, { status: 400 });
-    }
-  } else if (file.size > 5_000_000) {
-    return NextResponse.json({ error: "Image must be under 5 MB." }, { status: 400 });
-  } else if (!allowed.has(file.type) || !extensions.has(ext)) {
+  if (!allowed.has(file.type) || !extensions.has(ext)) {
     return NextResponse.json({ error: "Use a JPEG, PNG, WebP, GIF, or SVG." }, { status: 400 });
   }
   const filename = `${Date.now()}-${randomUUID().slice(0, 8)}${ext}`;
