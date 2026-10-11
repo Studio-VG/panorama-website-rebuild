@@ -551,9 +551,9 @@ function admin_settings_form(array $settings): string
     $html .= admin_field('setting-name', 'Studio name', 'name', $settings['name'] ?? '');
     $html .= '<label for="setting-vaso-video">Vaso Vasiko home video (mp4)<input id="setting-vaso-video" name="vasoVideo" type="file" accept="video/mp4,.mp4"></label>';
     $html .= '<input type="hidden" name="vasoHomeVideo" value="' . h((string) ($settings['vasoHomeVideo'] ?? '')) . '">';
-    $html .= '<p class="muted">Choose an mp4 and save settings. It plays muted, inline, and looping in the large framed photo on the home page. With no file, that frame keeps the current photo. Andrei’s card is not changed.</p>';
+    $html .= '<p class="muted">Choose an mp4 and save settings. The file is kept with the studio settings. The home hero does not show a picture frame.</p>';
     $currentVideo = (string) ($settings['vasoHomeVideo'] ?? '');
-    $html .= '<p>' . ($currentVideo !== '' ? 'Current video: ' . h($currentVideo) : 'No video uploaded. The photo stays in the frame.') . '</p>';
+    $html .= '<p>' . ($currentVideo !== '' ? 'Current video: ' . h($currentVideo) : 'No video uploaded.') . '</p>';
     $html .= admin_field('setting-tagline', 'Tagline', 'tagline', $settings['tagline'] ?? '');
     $html .= '<label for="setting-lead">Home introduction<textarea id="setting-lead" name="heroLead">' . h($settings['heroLead'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-official', 'Official name (alternate, not the site title)', 'officialName', $settings['officialName'] ?? '');

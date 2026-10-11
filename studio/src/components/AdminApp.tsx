@@ -207,8 +207,8 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
           try { set("vasoHomeVideo", await upload(file, "video")); } catch (reason) { onError(reason instanceof Error ? reason.message : "Upload failed"); }
         }} />
       </label>
-      <p className="muted">Choose an mp4, then save studio settings. It plays muted, inline, and looping in the large framed photo on the home page. With no file, that frame keeps the current photo. Andrei’s card is not changed.</p>
-      <p>{draft.vasoHomeVideo ? `Current video: ${draft.vasoHomeVideo}` : "No video uploaded. The photo stays in the frame."}</p>
+      <p className="muted">Choose an mp4, then save studio settings. The file is kept with the studio settings. The home hero does not show a picture frame.</p>
+      <p>{draft.vasoHomeVideo ? `Current video: ${draft.vasoHomeVideo}` : "No video uploaded."}</p>
       <label htmlFor="setting-tagline">Tagline
         <input id="setting-tagline" value={draft.tagline} onChange={(event) => set("tagline", event.target.value)} />
       </label>

@@ -57,21 +57,6 @@ export default async function HomePage({ params }: Props) {
             <Link className="btn btn-ghost" href={`/${lang}/book`}>{copy.nav.book}</Link>
           </div>
         </div>
-        <div className="hero-art frame">
-          {settings.vasoHomeVideo ? (
-            <video
-              src={settings.vasoHomeVideo}
-              poster="/art/hero-back.jpg"
-              muted
-              loop
-              playsInline
-              autoPlay
-              aria-label={copy.home.heroAlt}
-            />
-          ) : (
-            <StudioImage src="/art/hero-back.jpg" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />
-          )}
-        </div>
       </section>
 
       <section className="section paper home-artists" aria-labelledby="artists-heading">

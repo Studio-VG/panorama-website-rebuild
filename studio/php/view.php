@@ -337,13 +337,7 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     $body .= '<p class="hero-meet">' . h($copy['home']['meet']) . '</p>';
     $body .= '<p>' . h($copy['home']['short']) . '</p>';
     $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/about">' . h($copy['home']['readMore']) . '</a>';
-    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div>';
-    $video = (string) ($settings['vasoHomeVideo'] ?? '');
-    if (preg_match('#^/api/media/[\w.-]+\.mp4$#', $video) === 1) {
-        $body .= '<div class="hero-art frame"><video src="' . h($video) . '" poster="/art/hero-back.jpg" muted loop playsinline autoplay aria-label="' . h($copy['home']['heroAlt']) . '"></video></div></section>';
-    } else {
-        $body .= '<div class="hero-art frame"><img src="/art/hero-back.jpg" alt="' . h($copy['home']['heroAlt']) . '"></div></section>';
-    }
+    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></section>';
 
     $body .= '<section class="section paper home-artists" aria-labelledby="artists-heading"><div class="shell"><div class="section-head"><div>';
     $body .= '<p class="kicker">' . h($copy['home']['artistsKicker']) . '</p>';

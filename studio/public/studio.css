@@ -173,10 +173,8 @@ address { font-style: normal; }
 .btn-ink:hover { background: #000; }
 
 .hero {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 2rem;
-  align-items: flex-end;
+  display: block;
+  max-width: 44rem;
   padding: 3.5rem 0 2.5rem;
 }
 .eyebrow {
