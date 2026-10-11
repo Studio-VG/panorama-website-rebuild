@@ -11,6 +11,7 @@ const types: Record<string, string> = {
   ".webp": "image/webp",
   ".gif": "image/gif",
   ".svg": "image/svg+xml",
+  ".mp4": "video/mp4",
 };
 
 export async function GET(_request: Request, context: { params: Promise<{ name: string }> }) {

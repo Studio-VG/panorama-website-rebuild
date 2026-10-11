@@ -29,9 +29,10 @@ const emptyEvent = {
   featured: false,
 };
 
-async function upload(file: File) {
+async function upload(file: File, kind: "image" | "video" = "image") {
   const body = new FormData();
   body.set("file", file);
+  body.set("kind", kind);
   const response = await fetch("/api/admin/upload", { method: "POST", body });
   const json = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(json.error || "Upload failed");
@@ -199,6 +200,15 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
       <label htmlFor="setting-name">Studio name
         <input id="setting-name" value={draft.name} onChange={(event) => set("name", event.target.value)} required />
       </label>
+      <label htmlFor="setting-vaso-video">Vaso Vasiko home video (mp4)
+        <input id="setting-vaso-video" type="file" accept="video/mp4,.mp4" onChange={async (event) => {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          try { set("vasoHomeVideo", await upload(file, "video")); } catch (reason) { onError(reason instanceof Error ? reason.message : "Upload failed"); }
+        }} />
+      </label>
+      <p className="muted">Choose an mp4, then save studio settings. It plays muted, inline, and looping in the large framed photo on the home page. With no file, that frame keeps the current photo. Andrei’s card is not changed.</p>
+      <p>{draft.vasoHomeVideo ? `Current video: ${draft.vasoHomeVideo}` : "No video uploaded. The photo stays in the frame."}</p>
       <label htmlFor="setting-tagline">Tagline
         <input id="setting-tagline" value={draft.tagline} onChange={(event) => set("tagline", event.target.value)} />
       </label>

@@ -62,6 +62,13 @@ function admin_post(string $path): never
             $result['settings']['logoUrl'] = $upload['url'];
             $store = store_load();
         }
+        $video = save_video($_FILES['vasoVideo'] ?? []);
+        if (isset($video['error'])) {
+            throw new RuntimeException($video['error']);
+        }
+        if (isset($video['url'])) {
+            $result['settings']['vasoHomeVideo'] = $video['url'];
+        }
         $store['settings'] = $result['settings'];
         store_save($store);
         redirect('/admin?tab=settings&notice=settings-saved');
@@ -391,6 +398,10 @@ function settings_from(array $input, array $current): array
     if ($logo !== '' && !str_starts_with($logo, '/')) {
         return ['error' => 'Logo must be an uploaded studio file.'];
     }
+    $savedVideo = vaso_video_field($input, $current);
+    if ($savedVideo === false) {
+        return ['error' => 'Video must be an uploaded mp4.'];
+    }
     return ['settings' => [
         'name' => $name,
         'tagline' => $tagline !== '' ? $tagline : ($current['tagline'] ?? ''),
@@ -412,7 +423,20 @@ function settings_from(array $input, array $current): array
         'websiteUrl' => text_field($input['websiteUrl'] ?? ($current['websiteUrl'] ?? ''), 300),
         'logoUrl' => $logo,
         'about' => text_field($input['about'] ?? '', 8000),
+        'vasoHomeVideo' => $savedVideo,
     ]];
+}
+
+function vaso_video_field(array $input, array $current): string|false
+{
+    if (!array_key_exists('vasoHomeVideo', $input)) {
+        return (string) ($current['vasoHomeVideo'] ?? '');
+    }
+    $video = text_field($input['vasoHomeVideo'] ?? '', 400);
+    if ($video !== '' && preg_match('#^/api/media/[\w.-]+\.mp4$#', $video) !== 1) {
+        return false;
+    }
+    return $video;
 }
 
 function admin_notice(): string
@@ -525,6 +549,11 @@ function admin_settings_form(array $settings): string
 {
     $html = '<form method="post" action="/admin/settings" enctype="multipart/form-data">';
     $html .= admin_field('setting-name', 'Studio name', 'name', $settings['name'] ?? '');
+    $html .= '<label for="setting-vaso-video">Vaso Vasiko home video (mp4)<input id="setting-vaso-video" name="vasoVideo" type="file" accept="video/mp4,.mp4"></label>';
+    $html .= '<input type="hidden" name="vasoHomeVideo" value="' . h((string) ($settings['vasoHomeVideo'] ?? '')) . '">';
+    $html .= '<p class="muted">Choose an mp4 and save settings. It plays muted, inline, and looping in the large framed photo on the home page. With no file, that frame keeps the current photo. Andrei’s card is not changed.</p>';
+    $currentVideo = (string) ($settings['vasoHomeVideo'] ?? '');
+    $html .= '<p>' . ($currentVideo !== '' ? 'Current video: ' . h($currentVideo) : 'No video uploaded. The photo stays in the frame.') . '</p>';
     $html .= admin_field('setting-tagline', 'Tagline', 'tagline', $settings['tagline'] ?? '');
     $html .= '<label for="setting-lead">Home introduction<textarea id="setting-lead" name="heroLead">' . h($settings['heroLead'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-official', 'Official name (alternate, not the site title)', 'officialName', $settings['officialName'] ?? '');

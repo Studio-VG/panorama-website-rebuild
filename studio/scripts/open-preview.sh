@@ -66,7 +66,7 @@ ensure_dev_server() {
 
   if ! tmux_cmd has-session -t "$DEV_SESSION" 2>/dev/null; then
     tmux_cmd new-session -d -s "$DEV_SESSION" -c "$STUDIO_DIR" -- \
-      bash -lc "cd $(printf '%q' "$STUDIO_DIR") && exec php -S 127.0.0.1:${PORT} -t public router.php"
+      bash -lc "cd $(printf '%q' "$STUDIO_DIR") && exec php -d upload_max_filesize=40M -d post_max_size=42M -S 127.0.0.1:${PORT} -t public router.php"
   fi
 
   for i in $(seq 1 120); do
@@ -91,7 +91,7 @@ body_is_php() {
   local url="$1"
   local body
   body="$(curl -fsS --connect-timeout 5 --max-time 20 "$url" 2>/dev/null || true)"
-  [[ "$body" == *"<!-- studio-php -->"* && "$body" == *"Best tattoo artists"* && "$body" == *"home-artists"* ]]
+  [[ "$body" == *"<!-- studio-php -->"* && "$body" == *"Planning to get a tattoo?"* && "$body" == *"home-artists"* ]]
 }
 
 preview_ok() {

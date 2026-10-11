@@ -148,9 +148,13 @@ export function settingsFrom(body: unknown, current: Settings): { settings?: Set
     websiteUrl: text(input.websiteUrl, 300),
     logoUrl: text(input.logoUrl, 400) || current.logoUrl,
     about: text(input.about, 8000),
+    vasoHomeVideo: text(input.vasoHomeVideo, 400) || current.vasoHomeVideo || "",
   };
   if (settings.logoUrl && !settings.logoUrl.startsWith("/")) {
     return { error: "Logo must be an uploaded studio file." };
+  }
+  if (settings.vasoHomeVideo && !/^\/api\/media\/[\w.-]+\.mp4$/.test(settings.vasoHomeVideo)) {
+    return { error: "Video must be an uploaded mp4." };
   }
   return { settings };
 }

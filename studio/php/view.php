@@ -333,10 +333,17 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     $body = '<section class="shell hero"><div class="hero-copy">';
     $body .= '<p class="eyebrow">' . h($copy['nav']['kicker']) . '</p>';
     $body .= '<h1>' . h($copy['home']['heroTitle']) . '</h1>';
-    $body .= '<p class="lede">' . h($studio['tagline']) . '</p><p>' . h($copy['home']['intro']) . '</p><p>' . h($studio['heroLead']) . '</p>';
-    $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a>';
-    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/artists">' . h($copy['home']['allArtists']) . '</a></div></div>';
-    $body .= '<div class="hero-art frame"><img src="/art/hero-back.jpg" alt="' . h($copy['home']['heroAlt']) . '"></div></section>';
+    $body .= '<p class="lede">' . h($copy['home']['permanence']) . '</p>';
+    $body .= '<p class="hero-meet">' . h($copy['home']['meet']) . '</p>';
+    $body .= '<p>' . h($copy['home']['short']) . '</p>';
+    $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/about">' . h($copy['home']['readMore']) . '</a>';
+    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div>';
+    $video = (string) ($settings['vasoHomeVideo'] ?? '');
+    if (preg_match('#^/api/media/[\w.-]+\.mp4$#', $video) === 1) {
+        $body .= '<div class="hero-art frame"><video src="' . h($video) . '" poster="/art/hero-back.jpg" muted loop playsinline autoplay aria-label="' . h($copy['home']['heroAlt']) . '"></video></div></section>';
+    } else {
+        $body .= '<div class="hero-art frame"><img src="/art/hero-back.jpg" alt="' . h($copy['home']['heroAlt']) . '"></div></section>';
+    }
 
     $body .= '<section class="section paper home-artists" aria-labelledby="artists-heading"><div class="shell"><div class="section-head"><div>';
     $body .= '<p class="kicker">' . h($copy['home']['artistsKicker']) . '</p>';
@@ -625,7 +632,7 @@ function render_about(string $lang, array $store, array $studio, array $copy): v
 {
     $settings = $store['settings'];
     $body = '<section class="section about-page"><div class="shell"><p class="kicker">' . h($settings['name']) . '</p><h1>' . h($copy['about']['title']) . '</h1><div class="split"><div>';
-    $body .= paragraphs($studio['about']);
+    $body .= paragraphs($copy['about']['story'] ?? '');
     if (!empty($settings['officialName'])) {
         $body .= '<p class="note">' . h($copy['about']['publicName']) . ': ' . h($settings['officialName']) . '. ' . h($studio['officialNameNote']) . '</p>';
     }

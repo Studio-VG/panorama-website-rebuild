@@ -50,7 +50,7 @@
       "featured": "Featured on home"
     },
     "home": {
-      "heroTitle": "Vaso Vasiko and Andrei Aivazian",
+      "heroTitle": "Planning to get a tattoo?",
       "intro": "Two long careers share this studio. Vaso Vasiko works Japanese irezumi and neo-traditional from İstiklal Avenue in Istanbul, and takes guest spots in Europe. Andrei Aivazian works realism, portraiture, and black and grey from Tbilisi.",
       "facts": "ByVasoVasiko is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf. The Istanbul address is Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. The Düsseldorf address is Königsallee 45-47, 40212 Düsseldorf, Germany. Phone +90 533 203 67 40 or +49 163 787 99 67. Email termini@vasovasiko.com. Hours are Monday to Saturday, 10:00–20:00, and Sunday is closed. To book, use the appointment form. The studio replies by email or WhatsApp.",
       "eventsKicker": "Special events",
@@ -64,7 +64,11 @@
       "visitTitle": "Write, call, or come up",
       "online": "Also online",
       "listing": "Open the Google listing",
-      "heroAlt": "A tattoo artist working on a back piece"
+      "heroAlt": "A tattoo artist working on a back piece",
+      "permanence": "Getting something permanent on your body means getting it from professionals.",
+      "meet": "Meet our legendary artists:",
+      "short": "Vaso Vasiko, born Vasil Kurakhchishvili, has tattooed since 2000, most of that career in Turkey. From the early 2000s he raised the level of large custom Japanese and neo-traditional work in Istanbul, in a scene that had been mostly small tribal and flash. Andrei Aivazian did the same in Tbilisi for realism and the professional studio: custom portfolios, teaching, and a hygiene standard that put the city in front of clients outside Georgia.",
+      "readMore": "Read more"
     },
     "artistsPage": {
       "title": "Tattoo shop in Beyoğlu",
@@ -98,7 +102,8 @@
       "hours": "Hours",
       "google": "Open the Google Business listing",
       "booking": "Open the booking form",
-      "portfolio": "Existing portfolio"
+      "portfolio": "Existing portfolio",
+      "story": "Vaso Vasiko, born Vasil Kurakhchishvili in Georgia in 1980, has tattooed professionally since 2000. The career was built mainly in Turkey, from the studio on İstiklal Avenue in Istanbul, with frequent guest spots at studios in Europe.\n\nHe is known for Japanese irezumi and neo-traditional work, and also for black and grey, geometric, realism, and old and new school. The large custom pieces are sleeves, back pieces, and leg suits: dragons, hannya, samurai, snakes, peonies, and koi. The work is made to flow with the body, with heavy contrast, bold lines, dynamic backgrounds, and color that ages well. Sponsors named with that work are Cheyenne Tattoo Equipment, Radiant Tattoo Ink, and Aloe Tattoo.\n\nFrom the early 2000s he brought large-scale custom Japanese and neo-traditional work into a Turkish scene that was mostly small tribal and flash. He pushed single-use needles, better pigments, and European hygiene. The studio on İstiklal, the work with European studios, and that standard made him a reference point for younger artists.\n\nAndrei Aivazian is a veteran tattoo artist based in Tbilisi, Georgia, associated with Black Kiss Tattoo and his own studio. More than a decade of conventions, guest spots, and teaching stands behind the work. Realism, portraiture, and black and grey are the core, with Japanese and color beside them. The portraits are hyper-real, with texture, deep contrast, and smooth gradients. Sponsors named with his work are Kwadron, World Famous Tattoo Ink, and Dragon Tattoo Supply.\n\nHe trained artists in Tbilisi, including Tatia Godibadze, on machine work, needle choice, and professional ethics. His studios pushed the local scene toward custom portfolios and international hygiene standards. Guest spots and the standard of the work put Tbilisi in front of clients outside Georgia."
     },
     "book": {
       "title": "Tattoo appointment",
@@ -274,7 +279,7 @@
       "featured": "Ana sayfada"
     },
     "home": {
-      "heroTitle": "Vaso Vasiko ve Andrei Aivazian",
+      "heroTitle": "Dövme yaptırmayı mı düşünüyorsunuz?",
       "intro": "İki uzun kariyer aynı stüdyoda. Vaso Vasiko, İstanbul’da İstiklal Caddesi’nde Japon irezumi ve neo-traditional yapar, Avrupa’da misafir çalışır. Andrei Aivazian Tiflis’te realizm, portre ve siyah-gri yapar.",
       "facts": "ByVasoVasiko, irezumi dahil özel Japon dövmesi yapan bir stüdyodur. Stüdyo İstanbul ve Düsseldorf’ta çalışır. İstanbul adresi Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Düsseldorf adresi Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 veya +49 163 787 99 67. E-posta termini@vasovasiko.com. Saatler pazartesiden cumartesiye 10:00–20:00, pazar kapalıdır. Randevu için formu kullanın. Stüdyo e-posta ya da WhatsApp ile döner.",
       "eventsKicker": "Özel etkinlikler",
@@ -288,7 +293,11 @@
       "visitTitle": "Yazın, arayın ya da çıkın",
       "online": "Çevrimiçi",
       "listing": "Google kaydını aç",
-      "heroAlt": "Bir dövme sanatçısı sırt parçası üzerinde çalışıyor"
+      "heroAlt": "Bir dövme sanatçısı sırt parçası üzerinde çalışıyor",
+      "permanence": "Vücudunuza kalıcı bir şey yaptırmak, bunu profesyonellerden almak demektir.",
+      "meet": "Efsanevi sanatçılarımızla tanışın:",
+      "short": "Vaso Vasiko, doğum adıyla Vasil Kurakhchishvili, 2000’den beri dövme yapıyor; bu kariyerin büyük bölümü Türkiye’de geçti. 2000’lerin başından itibaren İstanbul’da, çoğunluğu küçük tribal ve flash olan bir sahnede, büyük özel Japon ve neo-traditional işin düzeyini yükseltti. Andrei Aivazian aynı şeyi Tiflis’te realizm ve profesyonel stüdyo standardı için yaptı: özel portfolyolar, eğitim ve şehri Gürcistan dışındaki müşterilerin önüne çıkaran bir hijyen standardı.",
+      "readMore": "Devamını okuyun"
     },
     "artistsPage": {
       "title": "Beyoğlu dövme",
@@ -322,7 +331,8 @@
       "hours": "Saatler",
       "google": "Google Business kaydını aç",
       "booking": "Randevu formunu aç",
-      "portfolio": "Mevcut portfolyo"
+      "portfolio": "Mevcut portfolyo",
+      "story": "Vaso Vasiko, asıl adıyla Vasil Kurakhchishvili, 1980’de Gürcistan’da doğdu. 2000’den beri profesyonel olarak dövme yapıyor. Kariyerinin büyük bölümü Türkiye’de kuruldu: stüdyo İstanbul’da İstiklal Caddesi’nde, Avrupa’daki stüdyolarda ise sık sık misafir olarak çalışıyor.\n\nJapon irezumi ve neo-traditional işleriyle tanınır; siyah-gri, geometrik, realizm, old school ve new school da yapar. Büyük özel işler kol, sırt ve bacak kaplamalarıdır: ejderha, hannya, samuray, yılan, şakayık ve koi. İş vücutla birlikte akar; kontrast ağır, çizgi kalın, zemin hareketli, renk yıllar sonra da durur. Bu işle anılan sponsorlar Cheyenne Tattoo Equipment, Radiant Tattoo Ink ve Aloe Tattoo’dur.\n\n2000’lerin başından itibaren, çoğunlukla küçük tribal ve flash’tan oluşan Türkiye sahnesine büyük ölçekli özel Japon ve neo-traditional işi getirdi. Tek kullanımlık iğneyi, daha iyi pigmenti ve Avrupa hijyenini öne çıkardı. İstiklal’deki stüdyo, Avrupa stüdyolarıyla ortak işler ve bu iş düzeyi, genç sanatçılar için bir başvuru noktası oldu.\n\nAndrei Aivazian, Tiflis’te yerleşik, deneyimli bir dövme sanatçısıdır. Black Kiss Tattoo ve kendi stüdyosuyla anılır. Arkasında on yıldan uzun kongre, misafir çalışma ve eğitim vardır. Merkezde realizm, portre ve siyah-gri vardır; yanında Japon ve renkli iş de vardır. Portreler hipergerçektir: doku, derin kontrast ve yumuşak geçişler. Onun işiyle anılan sponsorlar Kwadron, World Famous Tattoo Ink ve Dragon Tattoo Supply’dir.\n\nTiflis’te sanatçılar yetiştirdi; aralarında Tatia Godibadze de vardır. Makine kullanımı, iğne seçimi ve meslek ahlakı bu eğitimin konusudur. Stüdyoları yerel sahneyi özel portfolyoya ve uluslararası hijyen standardına doğru itti. Misafir çalışmaları ve işin standardı, Tiflis’i Gürcistan dışındaki müşterilerin önüne çıkardı."
     },
     "book": {
       "title": "Dövme randevusu",
@@ -498,7 +508,7 @@
       "featured": "Auf der Startseite"
     },
     "home": {
-      "heroTitle": "Vaso Vasiko und Andrei Aivazian",
+      "heroTitle": "Planen Sie ein Tattoo?",
       "intro": "Zwei lange Laufbahnen teilen sich dieses Studio. Vaso Vasiko arbeitet japanisches Irezumi und Neo-Traditional an der İstiklal in Istanbul und gastiert in Europa. Andrei Aivazian arbeitet Realismus, Porträt und Schwarz-Grau in Tiflis.",
       "facts": "ByVasoVasiko ist ein Tattoo-Studio für japanische Tattoo-Kunst, einschließlich Irezumi. Das Studio arbeitet in Istanbul und Düsseldorf. Die Adresse in Istanbul ist Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Die Adresse in Düsseldorf ist Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 oder +49 163 787 99 67. E-Mail termini@vasovasiko.com. Geöffnet Montag bis Samstag, 10:00–20:00, sonntags geschlossen. Für einen Termin das Formular nutzen. Das Studio antwortet per E-Mail oder WhatsApp.",
       "eventsKicker": "Besondere Termine",
@@ -512,7 +522,11 @@
       "visitTitle": "Schreiben, anrufen oder heraufkommen",
       "online": "Auch online",
       "listing": "Google-Eintrag öffnen",
-      "heroAlt": "Ein Tätowierer arbeitet an einem Rückenstück"
+      "heroAlt": "Ein Tätowierer arbeitet an einem Rückenstück",
+      "permanence": "Etwas Dauerhaftes auf den Körper zu setzen heißt, es von Profis setzen zu lassen.",
+      "meet": "Lernen Sie unsere legendären Künstler kennen:",
+      "short": "Vaso Vasiko, geboren als Vasil Kurakhchishvili, tätowiert seit 2000, den größten Teil dieser Laufbahn in der Türkei. Seit den frühen 2000er-Jahren hob er in Istanbul das Niveau großer, frei entworfener japanischer und neotraditioneller Arbeiten an, in einer Szene, die zuvor vor allem aus kleinem Tribal und Flash bestand. Andrei Aivazian tat dasselbe in Tiflis für Realismus und den professionellen Studiostandard: eigene Portfolios, Unterricht und ein Hygienestandard, der die Stadt Kunden außerhalb Georgiens vor Augen führte.",
+      "readMore": "Weiterlesen"
     },
     "artistsPage": {
       "title": "Tattoo-Studio Beyoğlu",
@@ -546,7 +560,8 @@
       "hours": "Zeiten",
       "google": "Google-Business-Eintrag öffnen",
       "booking": "Zum Terminformular",
-      "portfolio": "Bestehendes Portfolio"
+      "portfolio": "Bestehendes Portfolio",
+      "story": "Vaso Vasiko, mit bürgerlichem Namen Vasil Kurakhchishvili, wurde 1980 in Georgien geboren. Er tätowiert seit 2000 professionell. Die Laufbahn entstand vor allem in der Türkei, im Studio an der İstiklal-Allee in Istanbul, mit häufigen Gastspielen in Studios in Europa.\n\nBekannt ist er für japanisches Irezumi und neotraditionelle Arbeit, dazu Schwarz-Grau, Geometrie, Realismus sowie Old und New School. Die großen freien Arbeiten sind Ärmel, Rückenstücke und Beinanzüge: Drachen, Hannya, Samurai, Schlangen, Pfingstrosen und Koi. Die Arbeit folgt dem Körper, mit starkem Kontrast, kräftigen Linien, bewegten Hintergründen und Farbe, die gut altert. Als Sponsoren dieser Arbeit genannt sind Cheyenne Tattoo Equipment, Radiant Tattoo Ink und Aloe Tattoo.\n\nAb den frühen 2000er-Jahren brachte er großformatige, frei entworfene japanische und neotraditionelle Arbeit in eine türkische Szene, die vor allem aus kleinem Tribal und Flash bestand. Er setzte Einwegnadeln, bessere Pigmente und europäische Hygiene durch. Das Studio an der İstiklal, die Zusammenarbeit mit europäischen Studios und dieses Niveau der Arbeit machten ihn zu einem Bezugspunkt für jüngere Künstler.\n\nAndrei Aivazian ist ein langjähriger Tattoo-Künstler in Tiflis, Georgien, verbunden mit Black Kiss Tattoo und dem eigenen Studio. Dahinter liegen mehr als zehn Jahre Conventions, Gastspiele und Unterricht. Den Kern bilden Realismus, Porträt und Schwarz-Grau, daneben Japanisch und Farbe. Die Porträts sind hyperreal, mit Textur, tiefem Kontrast und weichen Verläufen. Als Sponsoren seiner Arbeit genannt sind Kwadron, World Famous Tattoo Ink und Dragon Tattoo Supply.\n\nIn Tiflis bildete er Künstler aus, darunter Tatia Godibadze, an der Maschine, an der Nadelwahl und an der Berufsethik. Seine Studios schoben die lokale Szene zu eigenen Portfolios und zu internationalen Hygienestandards. Gastspiele und das Niveau der Arbeit stellten Tiflis Kunden außerhalb Georgiens vor."
     },
     "book": {
       "title": "Tattoo-Termin",
@@ -722,7 +737,7 @@
       "featured": "На главной"
     },
     "home": {
-      "heroTitle": "Васо Васико и Андрей Айвазян",
+      "heroTitle": "Думаете о татуировке?",
       "intro": "Две долгие карьеры в одной студии. Васо Васико делает японское ирэдзуми и нео-традишнл на Истикляль в Стамбуле и гостит в Европе. Андрей Айвазян делает реализм, портрет и чёрно-серое в Тбилиси.",
       "facts": "ByVasoVasiko — тату-студия заказной японской татуировки, включая ирэдзуми. Студия работает в Стамбуле и Дюссельдорфе. Адрес в Стамбуле: Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Адрес в Дюссельдорфе: Königsallee 45-47, 40212 Düsseldorf, Germany. Телефон +90 533 203 67 40 или +49 163 787 99 67. Почта termini@vasovasiko.com. Часы: понедельник–суббота 10:00–20:00, воскресенье закрыто. Для записи используйте форму. Студия отвечает почтой или в WhatsApp.",
       "eventsKicker": "Особые даты",
@@ -736,7 +751,11 @@
       "visitTitle": "Напишите, позвоните или поднимитесь",
       "online": "Ещё онлайн",
       "listing": "Открыть карточку в Google",
-      "heroAlt": "Тату-мастер делает татуировку на спине"
+      "heroAlt": "Тату-мастер делает татуировку на спине",
+      "permanence": "Постоянный рисунок на теле значит, что его делают профессионалы.",
+      "meet": "Познакомьтесь с нашими легендарными мастерами:",
+      "short": "Vaso Vasiko, урождённый Vasil Kurakhchishvili, татуирует с 2000 года, и большая часть этой карьеры прошла в Турции. С начала 2000-х он поднял в Стамбуле уровень крупных авторских японских и неотрадиционных работ там, где преобладали мелкий трайбл и флэш. Andrei Aivazian сделал то же в Тбилиси для реализма и профессиональной студии: авторские портфолио, обучение и стандарт гигиены, который вывел город к клиентам за пределами Грузии.",
+      "readMore": "Читать дальше"
     },
     "artistsPage": {
       "title": "Тату в Бейоглу",
@@ -770,7 +789,8 @@
       "hours": "Часы",
       "google": "Открыть карточку Google Business",
       "booking": "Открыть форму записи",
-      "portfolio": "Существующее портфолио"
+      "portfolio": "Существующее портфолио",
+      "story": "Vaso Vasiko, настоящее имя Vasil Kurakhchishvili, родился в Грузии в 1980 году. Профессионально татуирует с 2000 года. Карьера сложилась в основном в Турции: студия на проспекте İstiklal в Стамбуле и частые гостевые сессии в студиях Европы.\n\nЕго знают по японскому ирэдзуми и неотрадиции, а также по чёрно-серому, геометрии, реализму, олдскулу и нью-скулу. Крупные авторские работы — рукава, спины и ножные костюмы: драконы, хання, самураи, змеи, пионы и кои. Работа ложится по телу, с тяжёлым контрастом, жирной линией, динамичным фоном и цветом, который хорошо стареет. Спонсоры, названные с этой работой: Cheyenne Tattoo Equipment, Radiant Tattoo Ink и Aloe Tattoo.\n\nС начала 2000-х он принёс крупную авторскую японскую и неотрадиционную работу в турецкую среду, где преобладали мелкий трайбл и флэш. Он продвигал одноразовые иглы, более стойкие пигменты и европейскую гигиену. Студия на İstiklal, совместная работа с европейскими студиями и этот уровень сделали его ориентиром для молодых мастеров.\n\nAndrei Aivazian — мастер с большим стажем, база в Тбилиси, Грузия. Его связывают с Black Kiss Tattoo и с собственной студией. За плечами больше десяти лет конвенций, гостевых сессий и преподавания. Основа — реализм, портрет и чёрно-серое; рядом японская работа и цвет. Портреты гиперреалистичны: фактура, глубокий контраст, мягкие градиенты. Спонсоры, названные с его работой: Kwadron, World Famous Tattoo Ink и Dragon Tattoo Supply.\n\nВ Тбилиси он учил мастеров, в том числе Tatia Godibadze: машина, выбор игл, профессиональная этика. Его студии сдвигали местную среду к авторским портфолио и международным нормам гигиены. Гостевые сессии и уровень работы вывели Тбилиси к клиентам за пределами Грузии."
     },
     "book": {
       "title": "Запись на тату",
@@ -946,7 +966,7 @@
       "featured": "მთავარ გვერდზე"
     },
     "home": {
-      "heroTitle": "Vaso Vasiko და Andrei Aivazian",
+      "heroTitle": "ტატუს გაკეთებას გეგმავთ?",
       "intro": "ამ სტუდიას ორი გრძელი კარიერა იზიარებს. Vaso Vasiko იაპონურ ირეზუმსა და ნეო-ტრადიციულს მუშაობს სტამბოლში, İstiklal-ის გამზირზე, და სტუმრად დადის ევროპის სტუდიებში. Andrei Aivazian რეალიზმს, პორტრეტსა და შავ-ნაცრისფერს მუშაობს თბილისიდან.",
       "facts": "ByVasoVasiko არის ტატუ-სტუდია შეკვეთითი იაპონური ტატუსთვის, მათ შორის ირეზუმისთვის. სტუდია მუშაობს სტამბოლში და დიუსელდორფში. სტამბოლის მისამართია Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. დიუსელდორფის მისამართია Königsallee 45-47, 40212 Düsseldorf, Germany. ტელეფონი +90 533 203 67 40 ან +49 163 787 99 67. ელფოსტა termini@vasovasiko.com. საათებია ორშაბათიდან შაბათამდე, 10:00–20:00, კვირა დახურულია. ჩასაწერად გამოიყენეთ ფორმა. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.",
       "eventsKicker": "განსაკუთრებული მოვლენები",
@@ -960,7 +980,11 @@
       "visitTitle": "მოგვწერეთ, დაგვირეკეთ ან ამოდით",
       "online": "ასევე ონლაინ",
       "listing": "Google-ის ბარათის გახსნა",
-      "heroAlt": "ტატუ-ოსტატი ზურგის ნამუშევარზე მუშაობს"
+      "heroAlt": "ტატუ-ოსტატი ზურგის ნამუშევარზე მუშაობს",
+      "permanence": "სხეულზე მუდმივი ნახატის გაკეთება ნიშნავს, რომ მას პროფესიონალები აკეთებენ.",
+      "meet": "გაიცანით ჩვენი ლეგენდარული ოსტატები:",
+      "short": "Vaso Vasiko, ნამდვილი სახელით Vasil Kurakhchishvili, 2000 წლიდან ტატუავს და ამ კარიერის დიდი ნაწილი თურქეთში გაიარა. 2000-იანი წლების დასაწყისიდან მან სტამბოლში აამაღლა დიდი ავტორული იაპონური და ნეოტრადიციული ნამუშევრის დონე, სცენაზე, სადაც მანამდე ძირითადად პატარა ტრაიბალი და ფლეში ჭარბობდა. Andrei Aivazian-მა იგივე გააკეთა თბილისში რეალიზმისა და პროფესიული სტუდიის სტანდარტისთვის: ავტორული პორტფოლიოები, სწავლება და ჰიგიენის ის სტანდარტი, რომელმაც თბილისი საქართველოს გარეთ მყოფ კლიენტებს წარუდგინა.",
+      "readMore": "წაიკითხეთ სრულად"
     },
     "artistsPage": {
       "title": "ტატუ Beyoğlu-ში",
@@ -994,7 +1018,8 @@
       "hours": "საათები",
       "google": "Google Business-ის ბარათის გახსნა",
       "booking": "ჩაწერის ფორმის გახსნა",
-      "portfolio": "არსებული პორტფოლიო"
+      "portfolio": "არსებული პორტფოლიო",
+      "story": "Vaso Vasiko, ნამდვილი სახელით Vasil Kurakhchishvili, 1980 წელს საქართველოში დაიბადა. პროფესიონალურად ტატუავს 2000 წლიდან. კარიერა ძირითადად თურქეთში აშენდა: სტუდია სტამბოლში, İstiklal-ის გამზირზე, და ხშირი სტუმრობა ევროპის სტუდიებში.\n\nცნობილია იაპონური ირეზუმითა და ნეოტრადიციული ნამუშევრით, აგრეთვე შავ-ნაცრისფრით, გეომეტრიით, რეალიზმით, ოლდ სკულითა და ნიუ სკულით. დიდი ავტორული სამუშაოა სახელოები, ზურგის კომპოზიციები და ფეხის კოსტიუმები: დრაკონები, ჰანია, სამურაი, გველები, პიონები და კოი. ნამუშევარი სხეულს მიჰყვება, მძიმე კონტრასტით, მკვეთრი ხაზით, მოძრავი ფონით და ფერით, რომელიც კარგად ბერდება. ამ ნამუშევართან დასახელებული სპონსორებია Cheyenne Tattoo Equipment, Radiant Tattoo Ink და Aloe Tattoo.\n\n2000-იანი წლების დასაწყისიდან მან თურქულ სცენაზე, სადაც უმეტესად პატარა ტრაიბალი და ფლეში იყო, დიდი ზომის ავტორული იაპონური და ნეოტრადიციული სამუშაო შემოიტანა. წინ წამოწია ერთჯერადი ნემსები, უკეთესი პიგმენტები და ევროპული ჰიგიენა. İstiklal-ზე სტუდია, ევროპულ სტუდიებთან თანამშრომლობა და ამ სამუშაოს დონე ახალგაზრდა ოსტატებისთვის მისაბაძი გახდა.\n\nAndrei Aivazian გამოცდილი ტატუ-ოსტატია თბილისში, საქართველოში. მას Black Kiss Tattoo-სთან და საკუთარ სტუდიასთან აკავშირებენ. უკან ათწლეულზე მეტი კონვენცია, სტუმრობა და სწავლება დგას. ბირთვია რეალიზმი, პორტრეტი და შავ-ნაცრისფერი; გვერდით იაპონური და ფერადი სამუშაოა. პორტრეტები ჰიპერრეალურია: ტექსტურა, ღრმა კონტრასტი და რბილი გადასვლები. მის ნამუშევართან დასახელებული სპონსორებია Kwadron, World Famous Tattoo Ink და Dragon Tattoo Supply.\n\nთბილისში ოსტატებს ასწავლიდა, მათ შორის Tatia Godibadze-ს, მანქანაზე მუშაობას, ნემსის არჩევას და პროფესიულ ეთიკას. მისმა სტუდიებმა ადგილობრივი სცენა ავტორული პორტფოლიოსა და საერთაშორისო ჰიგიენის სტანდარტისკენ წაიყვანა. სტუმრობამ და სამუშაოს დონემ თბილისი საქართველოს გარეთ მყოფ კლიენტებს წარუდგინა."
     },
     "book": {
       "title": "ტატუზე ჩაწერა",

@@ -983,6 +983,11 @@ function media_types(): array
     ];
 }
 
+function video_types(): array
+{
+    return ['mp4' => 'video/mp4'];
+}
+
 function serve_media(string $name): never
 {
     if (!preg_match('/^[\w.-]+$/', $name)) {
@@ -1007,7 +1012,9 @@ function serve_media(string $name): never
             continue;
         }
         $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-        header('Content-Type: ' . (media_types()[$ext] ?? 'application/octet-stream'));
+        $types = media_types() + video_types();
+        header('Content-Type: ' . ($types[$ext] ?? 'application/octet-stream'));
+        header('Accept-Ranges: bytes');
         header('Cache-Control: public, max-age=31536000, immutable');
         readfile($path);
         exit;
@@ -1061,6 +1068,40 @@ function save_upload(array $file): array
         if (!move_uploaded_file($file['tmp_name'], $dir . '/' . $filename)) {
             return ['error' => 'Could not store the image.'];
         }
+    }
+    return ['url' => '/api/media/' . $filename];
+}
+
+function save_video(array $file): array
+{
+    $error = $file['error'] ?? UPLOAD_ERR_NO_FILE;
+    if ($error === UPLOAD_ERR_NO_FILE) {
+        return ['empty' => true];
+    }
+    if ($error !== UPLOAD_ERR_OK) {
+        return ['error' => 'The video could not be uploaded.'];
+    }
+    if (($file['size'] ?? 0) > 40000000) {
+        return ['error' => 'Video must be under 40 MB.'];
+    }
+    $ext = strtolower(pathinfo((string) ($file['name'] ?? ''), PATHINFO_EXTENSION));
+    if (!isset(video_types()[$ext])) {
+        return ['error' => 'Use an mp4.'];
+    }
+    $mime = (new finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']) ?: '';
+    if (!in_array($mime, ['video/mp4', 'application/mp4'], true)) {
+        return ['error' => 'Use an mp4.'];
+    }
+    if (!store_can_write()) {
+        return ['error' => store_write_message()];
+    }
+    $filename = (string) (int) round(microtime(true) * 1000) . '-' . bin2hex(random_bytes(4)) . '.' . $ext;
+    $dir = studio_root() . '/data/uploads';
+    if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+        return ['error' => 'Could not create the uploads folder.'];
+    }
+    if (!move_uploaded_file($file['tmp_name'], $dir . '/' . $filename)) {
+        return ['error' => 'Could not store the video.'];
     }
     return ['url' => '/api/media/' . $filename];
 }

@@ -1,3 +1,4 @@
+import opening from "../../data/opening.json";
 import type { Locale } from "./locale";
 
 export type Messages = {
@@ -6,12 +7,12 @@ export type Messages = {
   days: Record<string, string>;
   closed: string;
   status: { Upcoming: string; Past: string; Now: string; featured: string };
-  home: { heroTitle: string; intro: string; facts: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
+  home: { heroTitle: string; permanence: string; meet: string; short: string; readMore: string; intro: string; facts: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
   artistsPage: { title: string; lead: string };
   artistPage: { work: string; request: string; portfolio: string; untranslated: string };
   eventsPage: { title: string; lead: string };
   eventPage: { request: string; all: string; other: string; untranslated: string };
-  about: { title: string; publicName: string; reach: string; address: string; phone: string; also: string; email: string; whatsapp: string; hours: string; google: string; booking: string; portfolio: string };
+  about: { title: string; story: string; publicName: string; reach: string; address: string; phone: string; also: string; email: string; whatsapp: string; hours: string; google: string; booking: string; portfolio: string };
   book: { title: string; lead: string; needAccount: string; register: string };
   register: {
     title: string; lead: string; delivery: string; sent: string; name: string; email: string; phone: string;
@@ -52,7 +53,11 @@ export const messages: Record<Locale, Messages> = {
     closed: "Closed",
     status: { Upcoming: "Upcoming", Past: "Past", Now: "Now", featured: "Featured on home" },
     home: {
-      heroTitle: "Vaso Vasiko and Andrei Aivazian",
+      heroTitle: opening.en.heroTitle,
+      permanence: opening.en.permanence,
+      meet: opening.en.meet,
+      short: opening.en.short,
+      readMore: opening.en.readMore,
       intro: "Two long careers share this studio. Vaso Vasiko works Japanese irezumi and neo-traditional from İstiklal Avenue in Istanbul, and takes guest spots in Europe. Andrei Aivazian works realism, portraiture, and black and grey from Tbilisi.",
       facts: "ByVasoVasiko is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf. The Istanbul address is Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. The Düsseldorf address is Königsallee 45-47, 40212 Düsseldorf, Germany. Phone +90 533 203 67 40 or +49 163 787 99 67. Email termini@vasovasiko.com. Hours are Monday to Saturday, 10:00–20:00, and Sunday is closed. To book, use the appointment form. The studio replies by email or WhatsApp.",
       eventsKicker: "Special events",
@@ -72,7 +77,7 @@ export const messages: Record<Locale, Messages> = {
     artistPage: { work: "Work", request: "Request this artist", portfolio: "Existing portfolio", untranslated: "This profile has not been translated yet." },
     eventsPage: { title: "Guest tattoo artist in Istanbul", lead: "Guest tattoo artists in Istanbul, and the Marmari Tattoo Festival. Home shows only the featured dates." },
     eventPage: { request: "Request a sitting", all: "All events", other: "Other events", untranslated: "This event has not been translated yet." },
-    about: { title: "Istiklal Street tattoo", publicName: "Public name", reach: "Reach", address: "Address", phone: "Phone", also: "Also listed", email: "Email", whatsapp: "WhatsApp", hours: "Hours", google: "Open the Google Business listing", booking: "Open the booking form", portfolio: "Existing portfolio" },
+    about: { title: "Istiklal Street tattoo", story: opening.en.story, publicName: "Public name", reach: "Reach", address: "Address", phone: "Phone", also: "Also listed", email: "Email", whatsapp: "WhatsApp", hours: "Hours", google: "Open the Google Business listing", booking: "Open the booking form", portfolio: "Existing portfolio" },
     book: { title: "Tattoo appointment", lead: "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp.", needAccount: "A booking is sent only from a client account whose email and phone are both confirmed.", register: "Register" },
     register: {
       title: "Client registration",
@@ -165,7 +170,11 @@ export const messages: Record<Locale, Messages> = {
     closed: "Kapalı",
     status: { Upcoming: "Yaklaşan", Past: "Geçmiş", Now: "Şimdi", featured: "Ana sayfada" },
     home: {
-      heroTitle: "Vaso Vasiko ve Andrei Aivazian",
+      heroTitle: opening.tr.heroTitle,
+      permanence: opening.tr.permanence,
+      meet: opening.tr.meet,
+      short: opening.tr.short,
+      readMore: opening.tr.readMore,
       intro: "İki uzun kariyer aynı stüdyoda. Vaso Vasiko, İstanbul’da İstiklal Caddesi’nde Japon irezumi ve neo-traditional yapar, Avrupa’da misafir çalışır. Andrei Aivazian Tiflis’te realizm, portre ve siyah-gri yapar.",
       facts: "ByVasoVasiko, irezumi dahil özel Japon dövmesi yapan bir stüdyodur. Stüdyo İstanbul ve Düsseldorf’ta çalışır. İstanbul adresi Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Düsseldorf adresi Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 veya +49 163 787 99 67. E-posta termini@vasovasiko.com. Saatler pazartesiden cumartesiye 10:00–20:00, pazar kapalıdır. Randevu için formu kullanın. Stüdyo e-posta ya da WhatsApp ile döner.",
       eventsKicker: "Özel etkinlikler",
@@ -185,7 +194,7 @@ export const messages: Record<Locale, Messages> = {
     artistPage: { work: "İşler", request: "Bu sanatçıyı iste", portfolio: "Mevcut portfolyo", untranslated: "Bu profil henüz çevrilmedi." },
     eventsPage: { title: "Misafir dövme sanatçısı", lead: "İstanbul’da misafir dövme sanatçısı günleri ve Marmari dövme festivali. Ana sayfa yalnızca öne çıkan tarihleri gösterir." },
     eventPage: { request: "Randevu iste", all: "Tüm etkinlikler", other: "Diğer etkinlikler", untranslated: "Bu etkinlik henüz çevrilmedi." },
-    about: { title: "İstiklal dövme", publicName: "Kamuya açık ad", reach: "Ulaşın", address: "Adres", phone: "Telefon", also: "Ayrıca kayıtlı", email: "E-posta", whatsapp: "WhatsApp", hours: "Saatler", google: "Google Business kaydını aç", booking: "Randevu formunu aç", portfolio: "Mevcut portfolyo" },
+    about: { title: "İstiklal dövme", story: opening.tr.story, publicName: "Kamuya açık ad", reach: "Ulaşın", address: "Adres", phone: "Telefon", also: "Ayrıca kayıtlı", email: "E-posta", whatsapp: "WhatsApp", hours: "Saatler", google: "Google Business kaydını aç", booking: "Randevu formunu aç", portfolio: "Mevcut portfolyo" },
     book: { title: "Dövme randevusu", lead: "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner.", needAccount: "Randevu yalnızca e-postası ve telefonu doğrulanmış bir müşteri hesabından gönderilir.", register: "Kayıt ol" },
     register: {
       title: "Müşteri kaydı",
@@ -278,7 +287,11 @@ export const messages: Record<Locale, Messages> = {
     closed: "Geschlossen",
     status: { Upcoming: "Kommend", Past: "Vergangen", Now: "Jetzt", featured: "Auf der Startseite" },
     home: {
-      heroTitle: "Vaso Vasiko und Andrei Aivazian",
+      heroTitle: opening.de.heroTitle,
+      permanence: opening.de.permanence,
+      meet: opening.de.meet,
+      short: opening.de.short,
+      readMore: opening.de.readMore,
       intro: "Zwei lange Laufbahnen teilen sich dieses Studio. Vaso Vasiko arbeitet japanisches Irezumi und Neo-Traditional an der İstiklal in Istanbul und gastiert in Europa. Andrei Aivazian arbeitet Realismus, Porträt und Schwarz-Grau in Tiflis.",
       facts: "ByVasoVasiko ist ein Tattoo-Studio für japanische Tattoo-Kunst, einschließlich Irezumi. Das Studio arbeitet in Istanbul und Düsseldorf. Die Adresse in Istanbul ist Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Die Adresse in Düsseldorf ist Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 oder +49 163 787 99 67. E-Mail termini@vasovasiko.com. Geöffnet Montag bis Samstag, 10:00–20:00, sonntags geschlossen. Für einen Termin das Formular nutzen. Das Studio antwortet per E-Mail oder WhatsApp.",
       eventsKicker: "Besondere Termine",
@@ -298,7 +311,7 @@ export const messages: Record<Locale, Messages> = {
     artistPage: { work: "Arbeiten", request: "Diesen Künstler anfragen", portfolio: "Bestehendes Portfolio", untranslated: "Dieses Profil ist noch nicht übersetzt." },
     eventsPage: { title: "Gasttätowierer in Istanbul", lead: "Gasttätowierer in Istanbul und das Marmari Tattoo Festival. Die Startseite zeigt nur die hervorgehobenen Daten." },
     eventPage: { request: "Sitzung anfragen", all: "Alle Termine", other: "Weitere Termine", untranslated: "Dieser Termin ist noch nicht übersetzt." },
-    about: { title: "Tattoo an der Istiklal", publicName: "Öffentlicher Name", reach: "Erreichen", address: "Adresse", phone: "Telefon", also: "Außerdem genannt", email: "E-Mail", whatsapp: "WhatsApp", hours: "Zeiten", google: "Google-Business-Eintrag öffnen", booking: "Zum Terminformular", portfolio: "Bestehendes Portfolio" },
+    about: { title: "Tattoo an der Istiklal", story: opening.de.story, publicName: "Öffentlicher Name", reach: "Erreichen", address: "Adresse", phone: "Telefon", also: "Außerdem genannt", email: "E-Mail", whatsapp: "WhatsApp", hours: "Zeiten", google: "Google-Business-Eintrag öffnen", booking: "Zum Terminformular", portfolio: "Bestehendes Portfolio" },
     book: { title: "Tattoo-Termin", lead: "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp.", needAccount: "Eine Anfrage geht nur von einem Kundenkonto, dessen E-Mail und Telefon bestätigt sind.", register: "Registrieren" },
     register: {
       title: "Kundenregistrierung",
@@ -391,7 +404,11 @@ export const messages: Record<Locale, Messages> = {
     closed: "Закрыто",
     status: { Upcoming: "Скоро", Past: "Прошло", Now: "Сейчас", featured: "На главной" },
     home: {
-      heroTitle: "Васо Васико и Андрей Айвазян",
+      heroTitle: opening.ru.heroTitle,
+      permanence: opening.ru.permanence,
+      meet: opening.ru.meet,
+      short: opening.ru.short,
+      readMore: opening.ru.readMore,
       intro: "Две долгие карьеры в одной студии. Васо Васико делает японское ирэдзуми и нео-традишнл на Истикляль в Стамбуле и гостит в Европе. Андрей Айвазян делает реализм, портрет и чёрно-серое в Тбилиси.",
       facts: "ByVasoVasiko — тату-студия заказной японской татуировки, включая ирэдзуми. Студия работает в Стамбуле и Дюссельдорфе. Адрес в Стамбуле: Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Адрес в Дюссельдорфе: Königsallee 45-47, 40212 Düsseldorf, Germany. Телефон +90 533 203 67 40 или +49 163 787 99 67. Почта termini@vasovasiko.com. Часы: понедельник–суббота 10:00–20:00, воскресенье закрыто. Для записи используйте форму. Студия отвечает почтой или в WhatsApp.",
       eventsKicker: "Особые даты",
@@ -411,7 +428,7 @@ export const messages: Record<Locale, Messages> = {
     artistPage: { work: "Работы", request: "Запросить этого мастера", portfolio: "Существующее портфолио", untranslated: "Этот профиль ещё не переведён." },
     eventsPage: { title: "Приглашённый тату-мастер в Стамбуле", lead: "Приглашённые тату-мастера в Стамбуле и фестиваль Marmari. На главной только отмеченные даты." },
     eventPage: { request: "Запросить сеанс", all: "Все события", other: "Другие события", untranslated: "Это событие ещё не переведено." },
-    about: { title: "Тату на Истикляль", publicName: "Публичное имя", reach: "Связь", address: "Адрес", phone: "Телефон", also: "Также указан", email: "Почта", whatsapp: "WhatsApp", hours: "Часы", google: "Открыть карточку Google Business", booking: "Открыть форму записи", portfolio: "Существующее портфолио" },
+    about: { title: "Тату на Истикляль", story: opening.ru.story, publicName: "Публичное имя", reach: "Связь", address: "Адрес", phone: "Телефон", also: "Также указан", email: "Почта", whatsapp: "WhatsApp", hours: "Часы", google: "Открыть карточку Google Business", booking: "Открыть форму записи", portfolio: "Существующее портфолио" },
     book: { title: "Запись на тату", lead: "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp.", needAccount: "Запись отправляется только из аккаунта клиента, у которого подтверждены почта и телефон.", register: "Регистрация" },
     register: {
       title: "Регистрация клиента",
@@ -504,7 +521,11 @@ export const messages: Record<Locale, Messages> = {
     closed: "დახურულია",
     status: { Upcoming: "მომავალი", Past: "წარსული", Now: "ახლა", featured: "მთავარ გვერდზე" },
     home: {
-      heroTitle: "Vaso Vasiko და Andrei Aivazian",
+      heroTitle: opening.ka.heroTitle,
+      permanence: opening.ka.permanence,
+      meet: opening.ka.meet,
+      short: opening.ka.short,
+      readMore: opening.ka.readMore,
       intro: "ამ სტუდიას ორი გრძელი კარიერა იზიარებს. Vaso Vasiko იაპონურ ირეზუმსა და ნეო-ტრადიციულს მუშაობს სტამბოლში, İstiklal-ის გამზირზე, და სტუმრად დადის ევროპის სტუდიებში. Andrei Aivazian რეალიზმს, პორტრეტსა და შავ-ნაცრისფერს მუშაობს თბილისიდან.",
       facts: "ByVasoVasiko არის ტატუ-სტუდია შეკვეთითი იაპონური ტატუსთვის, მათ შორის ირეზუმისთვის. სტუდია მუშაობს სტამბოლში და დიუსელდორფში. სტამბოლის მისამართია Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. დიუსელდორფის მისამართია Königsallee 45-47, 40212 Düsseldorf, Germany. ტელეფონი +90 533 203 67 40 ან +49 163 787 99 67. ელფოსტა termini@vasovasiko.com. საათებია ორშაბათიდან შაბათამდე, 10:00–20:00, კვირა დახურულია. ჩასაწერად გამოიყენეთ ფორმა. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.",
       eventsKicker: "განსაკუთრებული მოვლენები",
@@ -524,7 +545,7 @@ export const messages: Record<Locale, Messages> = {
     artistPage: { work: "ნამუშევარი", request: "ამ ოსტატის მოთხოვნა", portfolio: "არსებული პორტფოლიო", untranslated: "ეს პროფილი ჯერ არ არის თარგმნილი." },
     eventsPage: { title: "სტუმარი ტატუ-ოსტატი სტამბოლში", lead: "სტუმარი ტატუ-ოსტატები სტამბოლში და Marmari Tattoo Festival. მთავარ გვერდზე მხოლოდ გამოყოფილი თარიღებია." },
     eventPage: { request: "სეანსის მოთხოვნა", all: "ყველა მოვლენა", other: "სხვა მოვლენები", untranslated: "ეს მოვლენა ჯერ არ არის თარგმნილი." },
-    about: { title: "ტატუ İstiklal-ზე", publicName: "საჯარო სახელი", reach: "კავშირი", address: "მისამართი", phone: "ტელეფონი", also: "ასევე მითითებულია", email: "ელფოსტა", whatsapp: "WhatsApp", hours: "საათები", google: "Google Business-ის ბარათის გახსნა", booking: "ჩაწერის ფორმის გახსნა", portfolio: "არსებული პორტფოლიო" },
+    about: { title: "ტატუ İstiklal-ზე", story: opening.ka.story, publicName: "საჯარო სახელი", reach: "კავშირი", address: "მისამართი", phone: "ტელეფონი", also: "ასევე მითითებულია", email: "ელფოსტა", whatsapp: "WhatsApp", hours: "საათები", google: "Google Business-ის ბარათის გახსნა", booking: "ჩაწერის ფორმის გახსნა", portfolio: "არსებული პორტფოლიო" },
     book: { title: "ტატუზე ჩაწერა", lead: "ტატუზე ჩაწერის მოთხოვნა თურქეთში ან გერმანიაში. გამოგზავნეთ იდეა, ადგილი და სავარაუდო დრო. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.", needAccount: "ჩაწერა იგზავნება მხოლოდ კლიენტის ანგარიშიდან, რომლის ელფოსტა და ტელეფონი დადასტურებულია.", register: "რეგისტრაცია" },
     register: {
       title: "კლიენტის რეგისტრაცია",

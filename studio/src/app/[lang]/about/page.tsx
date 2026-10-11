@@ -46,7 +46,7 @@ export default async function AboutPage({ params }: Props) {
         <h1>{copy.about.title}</h1>
         <div className="split">
           <div>
-            <Paragraphs text={studio.about} />
+            <Paragraphs text={copy.about.story} />
             {settings.officialName ? (
               <p className="note">
                 {copy.about.publicName}: {settings.officialName}. {studio.officialNameNote}

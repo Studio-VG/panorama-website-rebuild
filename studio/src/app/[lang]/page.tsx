@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EventCard } from "@/components/EventCard";
 import { StudioImage } from "@/components/StudioImage";
-import { localizeArtist, localizeEvent, localizeSettings } from "@/lib/content";
+import { localizeArtist, localizeEvent } from "@/lib/content";
 import { eventStatus } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
@@ -33,7 +33,6 @@ export default async function HomePage({ params }: Props) {
   const copy = messages[lang];
   const store = getStore();
   const settings = store.settings;
-  const studio = localizeSettings(settings, lang);
   const residents = store.artists.filter((artist) => !isGuest(artist)).map((artist) => localizeArtist(publicArtist(artist), lang));
   const guests = store.artists.filter(isGuest).map((artist) => localizeArtist(publicArtist(artist), lang));
   const featured = store.events
@@ -50,16 +49,28 @@ export default async function HomePage({ params }: Props) {
         <div className="hero-copy">
           <p className="eyebrow">{copy.nav.kicker}</p>
           <h1>{copy.home.heroTitle}</h1>
-          <p className="lede">{studio.tagline}</p>
-          <p>{copy.home.intro}</p>
-          <p>{studio.heroLead}</p>
+          <p className="lede">{copy.home.permanence}</p>
+          <p className="hero-meet">{copy.home.meet}</p>
+          <p>{copy.home.short}</p>
           <div className="actions">
-            <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>
-            <Link className="btn btn-ghost" href={`/${lang}/artists`}>{copy.home.allArtists}</Link>
+            <Link className="btn" href={`/${lang}/about`}>{copy.home.readMore}</Link>
+            <Link className="btn btn-ghost" href={`/${lang}/book`}>{copy.nav.book}</Link>
           </div>
         </div>
         <div className="hero-art frame">
-          <StudioImage src="/art/hero-back.jpg" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />
+          {settings.vasoHomeVideo ? (
+            <video
+              src={settings.vasoHomeVideo}
+              poster="/art/hero-back.jpg"
+              muted
+              loop
+              playsInline
+              autoPlay
+              aria-label={copy.home.heroAlt}
+            />
+          ) : (
+            <StudioImage src="/art/hero-back.jpg" alt={copy.home.heroAlt} sizes="(max-width: 860px) 100vw, 46vw" priority />
+          )}
         </div>
       </section>
 

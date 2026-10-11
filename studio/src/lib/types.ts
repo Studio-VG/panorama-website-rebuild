@@ -24,6 +24,7 @@ export type Settings = {
   websiteUrl: string;
   logoUrl: string;
   about: string;
+  vasoHomeVideo?: string;
 };
 
 export type PortfolioImage = {
