@@ -164,6 +164,7 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
         ["/$lang/events", $copy['nav']['events']],
         ["/$lang/about", $copy['nav']['about']],
         ["/$lang/faq", $copy['nav']['faq']],
+        ["/$lang/register", $copy['nav']['register'] ?? 'Register'],
     ];
     $html = '<header class="site-header"><div class="shell header-inner">';
     $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
