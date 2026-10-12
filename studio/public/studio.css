@@ -93,10 +93,10 @@ address { font-style: normal; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(128, 82, 48, 0.22);
-  border-bottom: 1px solid rgba(226, 190, 148, 0.55);
-  -webkit-backdrop-filter: blur(8px) saturate(1.25);
-  backdrop-filter: blur(8px) saturate(1.25);
+  background: rgba(0, 0, 0, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
 }
 .header-inner {
   display: flex;
@@ -134,38 +134,55 @@ address { font-style: normal; }
 }
 .nav-links {
   display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
+  position: fixed;
+  top: 76px;
   right: 0;
-  z-index: 11;
+  bottom: 0;
+  z-index: 9;
+  width: min(280px, 86vw);
   flex-direction: column;
   align-items: flex-start;
   gap: 0.85rem;
   list-style: none;
   margin: 0;
-  padding: 0.95rem 1.15rem 1.15rem;
-  background: rgba(128, 82, 48, 0.34);
-  border-bottom: 1px solid rgba(226, 190, 148, 0.55);
-  -webkit-backdrop-filter: blur(8px) saturate(1.25);
-  backdrop-filter: blur(8px) saturate(1.25);
+  padding: 1.25rem 1.35rem 1.5rem;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.62);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(16px) saturate(1.05);
+  backdrop-filter: blur(16px) saturate(1.05);
 }
 .nav-links.open { display: flex; }
 .nav-links a { text-decoration: none; }
 .nav-links a:hover { color: var(--gold-2); }
+.nav-links .langs {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
 .menu-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  color: var(--gold-2);
-  border: 1px solid rgba(226, 190, 148, 0.55);
+  color: var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   min-height: 44px;
   min-width: 44px;
-  padding: 0 0.75rem;
+  padding: 0;
   cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0;
+}
+.menu-lines {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 18px;
+}
+.menu-lines i {
+  display: block;
+  width: 2px;
+  height: 18px;
+  background: currentColor;
 }
 
 .btn, button.btn {

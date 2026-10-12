@@ -42,7 +42,9 @@ export function SiteHeader({
         </Link>
         {onAdmin ? null : (
           <>
-            <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" aria-label={open ? labels.close : labels.menu} onClick={() => setOpen((value) => !value)}>==</button>
+            <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" aria-label={open ? labels.close : labels.menu} onClick={() => setOpen((value) => !value)}>
+              <span className="menu-lines" aria-hidden="true"><i /><i /><i /></span>
+            </button>
             <ul id="site-menu" className={open ? "nav-links open" : "nav-links"}>
               {links.map(([href, label]) => (
                 <li key={href}><Link href={href} onClick={() => setOpen(false)}>{label}</Link></li>

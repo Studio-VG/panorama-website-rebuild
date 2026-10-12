@@ -170,7 +170,7 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
     $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
     $html .= '<span><span class="brand-name">' . h($settings['name']) . '</span><small>' . h($copy['nav']['kicker']) . '</small></span></a>';
     if ($publicNav) {
-        $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="' . h($copy['nav']['menu']) . '">==</button>';
+        $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="' . h($copy['nav']['menu']) . '"><span class="menu-lines" aria-hidden="true"><i></i><i></i><i></i></span></button>';
         $html .= '<ul id="site-menu" class="nav-links">';
         foreach ($links as [$href, $label]) {
             $html .= '<li><a href="' . h($href) . '">' . h($label) . '</a></li>';
