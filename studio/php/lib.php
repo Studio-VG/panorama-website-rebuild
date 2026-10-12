@@ -1031,6 +1031,10 @@ function serve_file_range(string $path, string $type): never
     if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'HEAD') {
         exit;
     }
+    @ini_set('zlib.output_compression', '0');
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
     $handle = fopen($path, 'rb');
     if ($handle === false) {
         exit;
@@ -1044,6 +1048,7 @@ function serve_file_range(string $path, string $type): never
         }
         echo $chunk;
         $left -= strlen($chunk);
+        flush();
     }
     fclose($handle);
     exit;
@@ -1074,6 +1079,9 @@ function serve_media(string $name): never
         }
         $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
         $types = media_types() + video_types();
+        if ($ext === 'mp4') {
+            $path = playback_mp4($path);
+        }
         serve_file_range($path, $types[$ext] ?? 'application/octet-stream');
     }
     http_response_code(404);
@@ -1115,7 +1123,8 @@ function welcome_video_public(array $store): string
         $onDisk = is_file(studio_root() . '/data/uploads/' . $name);
         $stored = isset($full['files'][$name]) && is_array($full['files'][$name]);
         if ($onDisk || $stored) {
-            $version = $onDisk ? filemtime(studio_root() . '/data/uploads/' . $name) : false;
+            $played = $onDisk ? playback_mp4(studio_root() . '/data/uploads/' . $name) : '';
+            $version = $played !== '' && is_file($played) ? filemtime($played) : false;
             return $version ? $path . '?v=' . $version : $path;
         }
     }
@@ -1125,6 +1134,44 @@ function welcome_video_public(array $store): string
 function welcome_video_max_bytes(): int
 {
     return 42 * 1024 * 1024;
+}
+
+function faststart_path(string $path): string
+{
+    $next = preg_replace('/\.mp4$/', '.faststart.mp4', $path);
+    return is_string($next) ? $next : $path;
+}
+
+function playback_mp4(string $path): string
+{
+    $fast = faststart_path($path);
+    if ($fast !== $path && is_file($fast) && is_file($path) && filemtime($fast) >= filemtime($path)) {
+        return $fast;
+    }
+    return $path;
+}
+
+function write_faststart_copy(string $path): void
+{
+    if (!is_file($path)) {
+        return;
+    }
+    $fast = faststart_path($path);
+    if ($fast === $path) {
+        return;
+    }
+    if (is_file($fast) && filemtime($fast) >= filemtime($path)) {
+        return;
+    }
+    $tmp = $fast . '.tmp';
+    exec('ffmpeg -y -i ' . escapeshellarg($path) . ' -c copy -movflags +faststart ' . escapeshellarg($tmp) . ' 2>/dev/null', $unused, $code);
+    if ($code === 0 && is_file($tmp) && (int) filesize($tmp) > 0) {
+        rename($tmp, $fast);
+        return;
+    }
+    if (is_file($tmp)) {
+        unlink($tmp);
+    }
 }
 
 function save_welcome_video(array $file, string $currentPath = ''): array
@@ -1181,9 +1228,11 @@ function save_welcome_video(array $file, string $currentPath = ''): array
         if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
             return ['error' => 'Could not create the uploads folder.'];
         }
-        if (!move_uploaded_file((string) $file['tmp_name'], $dir . '/' . $filename)) {
+        $stored = $dir . '/' . $filename;
+        if (!move_uploaded_file((string) $file['tmp_name'], $stored)) {
             return ['error' => 'Could not store the video.'];
         }
+        write_faststart_copy($stored);
     }
     return ['url' => '/api/media/' . $filename, 'name' => $display];
 }

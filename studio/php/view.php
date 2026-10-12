@@ -123,6 +123,12 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html><html lang="' . h($lang) . '"><head><meta charset="utf-8">';
     echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+    if (($meta['path'] ?? '') === '/') {
+        $preloadVideo = welcome_video_public($store);
+        if ($preloadVideo !== '') {
+            echo '<link rel="preload" as="video" href="' . h($preloadVideo) . '" fetchpriority="high">';
+        }
+    }
     echo '<title>' . h($title) . '</title>';
     echo '<meta name="description" content="' . h($description) . '">';
     echo '<link rel="canonical" href="' . h($canonical) . '">';
@@ -334,7 +340,8 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     $video = welcome_video_public($store);
     $body = '<section class="welcome-top' . ($video !== '' ? ' has-video' : '') . '">';
     if ($video !== '') {
-        $body .= '<video class="welcome-video" src="' . h($video) . '" muted loop playsinline autoplay aria-hidden="true"></video>';
+        $body .= '<video class="welcome-video" src="' . h($video) . '" muted loop playsinline autoplay preload="auto" fetchpriority="high" aria-hidden="true"></video>';
+        $body .= '<script>(function(){var v=document.querySelector(".welcome-video");if(!v)return;v.muted=true;var start=function(){var p=v.play();if(p&&p.catch)p.catch(function(){});};v.addEventListener("loadeddata",start);v.addEventListener("canplay",start);if(v.readyState>=2)start();})();</script>';
     }
     $body .= '<div class="shell hero"><div class="hero-copy">';
     $body .= '<p class="eyebrow">' . h($copy['nav']['kicker']) . '</p>';

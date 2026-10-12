@@ -22,7 +22,9 @@ function welcomeVideoSrc(settings: Settings) {
     if (!match) continue;
     const file = path.join(process.cwd(), "data", "uploads", match[1]);
     if (!existsSync(file)) continue;
-    return `${value}?v=${Math.floor(statSync(file).mtimeMs)}`;
+    const fast = file.replace(/\.mp4$/, ".faststart.mp4");
+    const played = fast !== file && existsSync(fast) && statSync(fast).mtimeMs >= statSync(file).mtimeMs ? fast : file;
+    return `${value}?v=${Math.floor(statSync(played).mtimeMs)}`;
   }
   return "";
 }
@@ -62,9 +64,12 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
+      {welcomeVideo ? (
+        <link rel="preload" as="video" href={welcomeVideo} fetchPriority="high" />
+      ) : null}
       <section className={welcomeVideo ? "welcome-top has-video" : "welcome-top"}>
         {welcomeVideo ? (
-          <video className="welcome-video" src={welcomeVideo} muted loop playsInline autoPlay aria-hidden="true" />
+          <video className="welcome-video" src={welcomeVideo} muted loop playsInline autoPlay preload="auto" aria-hidden="true" />
         ) : null}
         <div className="shell hero">
           <p className="eyebrow">{copy.nav.kicker}</p>

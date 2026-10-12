@@ -1,6 +1,7 @@
+import { execFile } from "child_process";
 import { randomUUID } from "crypto";
 import { existsSync } from "fs";
-import { mkdir, writeFile } from "fs/promises";
+import { mkdir, rename, writeFile } from "fs/promises";
 import path from "path";
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
@@ -19,6 +20,21 @@ function isMp4(bytes: Buffer) {
 function safeVideoName(name: string) {
   const base = path.basename(name).replace(/[^\w.\- ]+/g, "").slice(0, 180);
   return base.toLowerCase().endsWith(".mp4") ? base : `${base || "welcome"}.mp4`;
+}
+
+function writeFaststartCopy(file: string) {
+  const fast = file.replace(/\.mp4$/, ".faststart.mp4");
+  if (fast === file) return Promise.resolve();
+  const tmp = `${fast}.tmp`;
+  return new Promise<void>((resolve) => {
+    execFile("ffmpeg", ["-y", "-i", file, "-c", "copy", "-movflags", "+faststart", tmp], { timeout: 120000 }, (error) => {
+      if (error) {
+        resolve();
+        return;
+      }
+      rename(tmp, fast).then(() => resolve(), () => resolve());
+    });
+  });
 }
 
 function playingWelcomeFile(settings: Settings) {
@@ -54,7 +70,9 @@ export async function POST(request: Request) {
   const filename = playing || `${Date.now()}-${randomUUID().slice(0, 8)}${video ? ".mp4" : ext}`;
   const dir = path.join(process.cwd(), "data", "uploads");
   await mkdir(dir, { recursive: true });
-  await writeFile(path.join(dir, filename), bytes);
+  const stored = path.join(dir, filename);
+  await writeFile(stored, bytes);
+  if (video) await writeFaststartCopy(stored);
   const url = `/api/media/${filename}`;
   if (video) {
     const store = getStore();

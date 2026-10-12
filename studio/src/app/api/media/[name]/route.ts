@@ -1,4 +1,4 @@
-import { createReadStream, statSync } from "fs";
+import { createReadStream, existsSync, statSync } from "fs";
 import { Readable } from "stream";
 import path from "path";
 import { NextResponse } from "next/server";
@@ -18,7 +18,11 @@ const types: Record<string, string> = {
 export async function GET(request: Request, context: { params: Promise<{ name: string }> }) {
   const { name } = await context.params;
   if (!/^[\w.-]+$/.test(name)) return new NextResponse("Not found", { status: 404 });
-  const file = path.join(process.cwd(), "data", "uploads", name);
+  const uploaded = path.join(process.cwd(), "data", "uploads", name);
+  const fast = uploaded.replace(/\.mp4$/, ".faststart.mp4");
+  const file = name.endsWith(".mp4") && fast !== uploaded && existsSync(uploaded) && existsSync(fast) && statSync(fast).mtimeMs >= statSync(uploaded).mtimeMs
+    ? fast
+    : uploaded;
   let size = 0;
   try {
     size = statSync(file).size;
