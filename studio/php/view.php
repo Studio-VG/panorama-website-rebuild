@@ -248,7 +248,7 @@ function site_footer(string $lang, array $settings, array $copy): string
     $html .= '<a href="https://www.facebook.com/vasovasiko" target="_blank" rel="noopener noreferrer"><svg class="loc-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.2 20.5v-7.2h2.4l.4-2.8h-2.8V8.8c0-.8.2-1.4 1.4-1.4H17V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2h-2.4v2.8h2.4v7.1h2.9z"/></svg>Facebook</a></div></div></div>';
     $line = array_map(static fn (array $group): string => (string) $group['label'], $groups);
     $html .= '<p class="location-line">' . h(implode(' • ', $line)) . '</p></section></div>';
-    $html .= '<div class="shell"><p class="fine">' . h($labels['note']) . '</p></div></footer>';
+    $html .= '<div class="shell"><p class="footer-title">' . h($settings['name']) . '</p><p class="fine">' . h($labels['note']) . '</p></div></footer>';
     return $html;
 }
 
@@ -331,14 +331,19 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
         $right = $rank[event_status($b)] ?? 3;
         return $left <=> $right ?: strcmp($b['startDate'], $a['startDate']);
     });
-    $body = '<section class="shell hero"><div class="hero-copy">';
+    $video = welcome_video_public($store);
+    $body = '<section class="welcome-top' . ($video !== '' ? ' has-video' : '') . '">';
+    if ($video !== '') {
+        $body .= '<video class="welcome-video" src="' . h($video) . '" muted loop playsinline autoplay aria-hidden="true"></video>';
+    }
+    $body .= '<div class="shell hero"><div class="hero-copy">';
     $body .= '<p class="eyebrow">' . h($copy['nav']['kicker']) . '</p>';
     $body .= '<h1>' . h($copy['home']['heroTitle']) . '</h1>';
     $body .= '<p class="lede">' . h($copy['home']['permanence']) . '</p>';
     $body .= '<p class="hero-meet">' . h($copy['home']['meet']) . '</p>';
     $body .= '<p>' . h($copy['home']['short']) . '</p>';
     $body .= '<div class="actions"><a class="btn" href="/' . h($lang) . '/about">' . h($copy['home']['readMore']) . '</a>';
-    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></section>';
+    $body .= '<a class="btn btn-ghost" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></div></div></div></section>';
 
     $body .= '<section class="section paper home-artists" aria-labelledby="artists-heading"><div class="shell"><div class="section-head"><div>';
     $body .= '<p class="kicker">' . h($copy['home']['artistsKicker']) . '</p>';
@@ -434,7 +439,7 @@ function render_guests(string $lang, array $store, array $copy): void
     layout($lang, [
         'path' => '/guests',
         'title' => $copy['nav']['guests'] ?? 'Guests',
-        'description' => $copy['salon']['guestListMeta'] ?? 'Guest tattoo artists at ByVasoVasiko.',
+        'description' => $copy['salon']['guestListMeta'] ?? 'Guest tattoo artists at VasoAndrei.',
     ], $body);
 }
 

@@ -148,15 +148,28 @@ export function settingsFrom(body: unknown, current: Settings): { settings?: Set
     websiteUrl: text(input.websiteUrl, 300),
     logoUrl: text(input.logoUrl, 400) || current.logoUrl,
     about: text(input.about, 8000),
-    vasoHomeVideo: text(input.vasoHomeVideo, 400) || current.vasoHomeVideo || "",
+    welcomeVideo: keptWelcomeVideo(input.welcomeVideo, current),
+    welcomeVideoName: keptWelcomeName(input.welcomeVideoName, input.welcomeVideo, current),
   };
   if (settings.logoUrl && !settings.logoUrl.startsWith("/")) {
     return { error: "Logo must be an uploaded studio file." };
   }
-  if (settings.vasoHomeVideo && !/^\/api\/media\/[\w.-]+\.mp4$/.test(settings.vasoHomeVideo)) {
-    return { error: "Video must be an uploaded mp4." };
-  }
   return { settings };
+}
+
+function mediaVideoPath(value: unknown): string {
+  const path = text(value, 400);
+  return /^\/api\/media\/[\w.-]+\.mp4$/.test(path) ? path : "";
+}
+
+function keptWelcomeVideo(value: unknown, current: Settings): string {
+  return mediaVideoPath(value) || mediaVideoPath(current.welcomeVideo) || mediaVideoPath(current.vasoHomeVideo);
+}
+
+function keptWelcomeName(name: unknown, video: unknown, current: Settings): string {
+  const path = keptWelcomeVideo(video, current);
+  if (!path) return "";
+  return text(name, 180) || text(current.welcomeVideoName, 180) || path.split("/").pop() || "";
 }
 
 export function inquiryFrom(body: unknown): { inquiry?: Inquiry; error?: string } {

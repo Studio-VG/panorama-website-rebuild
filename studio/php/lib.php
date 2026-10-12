@@ -1025,6 +1025,97 @@ function serve_media(string $name): never
     exit;
 }
 
+function stored_welcome_video(array $current): string
+{
+    foreach (['welcomeVideo', 'vasoHomeVideo'] as $key) {
+        $path = (string) ($current[$key] ?? '');
+        if (preg_match('#^/api/media/[\w.-]+\.mp4$#', $path) === 1) {
+            return $path;
+        }
+    }
+    return '';
+}
+
+function stored_welcome_name(array $current, string $path): string
+{
+    if ($path === '') {
+        return '';
+    }
+    $name = text_field((string) ($current['welcomeVideoName'] ?? ''), 180);
+    return $name !== '' ? $name : basename($path);
+}
+
+function welcome_video_public(array $store): string
+{
+    $settings = $store['settings'] ?? [];
+    $full = store_load();
+    foreach (['welcomeVideo', 'vasoHomeVideo'] as $key) {
+        $path = (string) ($settings[$key] ?? '');
+        if (preg_match('#^/api/media/([\w.-]+\.mp4)$#', $path, $match) !== 1) {
+            continue;
+        }
+        $name = $match[1];
+        $onDisk = is_file(studio_root() . '/data/uploads/' . $name);
+        $stored = isset($full['files'][$name]) && is_array($full['files'][$name]);
+        if ($onDisk || $stored) {
+            return $path;
+        }
+    }
+    return '';
+}
+
+function save_welcome_video(array $file): array
+{
+    $error = $file['error'] ?? UPLOAD_ERR_NO_FILE;
+    if ($error === UPLOAD_ERR_NO_FILE) {
+        return ['empty' => true];
+    }
+    if ($error === UPLOAD_ERR_INI_SIZE || $error === UPLOAD_ERR_FORM_SIZE) {
+        return ['error' => 'That upload is too large. Use an mp4 under 40 MB.'];
+    }
+    if ($error !== UPLOAD_ERR_OK) {
+        return ['error' => 'The video could not be uploaded.'];
+    }
+    if (($file['size'] ?? 0) > 40000000) {
+        return ['error' => 'Video must be under 40 MB.'];
+    }
+    $original = (string) ($file['name'] ?? '');
+    if (strtolower(pathinfo($original, PATHINFO_EXTENSION)) !== 'mp4') {
+        return ['error' => 'Use an mp4.'];
+    }
+    $mime = (new finfo(FILEINFO_MIME_TYPE))->file((string) ($file['tmp_name'] ?? '')) ?: '';
+    if (!in_array($mime, ['video/mp4', 'application/mp4'], true)) {
+        return ['error' => 'Use an mp4.'];
+    }
+    if (!store_can_write()) {
+        return ['error' => store_write_message()];
+    }
+    $stem = preg_replace('/[^\w.\- ]+/u', '', pathinfo($original, PATHINFO_FILENAME)) ?? '';
+    $stem = trim((string) $stem);
+    $display = ($stem !== '' ? mb_substr($stem, 0, 170) : 'welcome') . '.mp4';
+    $filename = (string) (int) round(microtime(true) * 1000) . '-' . bin2hex(random_bytes(4)) . '.mp4';
+    if (store_mode() === 'database') {
+        $store = store_load();
+        if (!isset($store['files']) || !is_array($store['files'])) {
+            $store['files'] = [];
+        }
+        $store['files'][$filename] = [
+            'type' => 'video/mp4',
+            'data' => base64_encode((string) file_get_contents((string) $file['tmp_name'])),
+        ];
+        store_save($store);
+    } else {
+        $dir = studio_root() . '/data/uploads';
+        if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+            return ['error' => 'Could not create the uploads folder.'];
+        }
+        if (!move_uploaded_file((string) $file['tmp_name'], $dir . '/' . $filename)) {
+            return ['error' => 'Could not store the video.'];
+        }
+    }
+    return ['url' => '/api/media/' . $filename, 'name' => $display];
+}
+
 function save_upload(array $file): array
 {
     $error = $file['error'] ?? UPLOAD_ERR_NO_FILE;

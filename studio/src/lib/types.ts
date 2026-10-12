@@ -24,6 +24,8 @@ export type Settings = {
   websiteUrl: string;
   logoUrl: string;
   about: string;
+  welcomeVideo?: string;
+  welcomeVideoName?: string;
   vasoHomeVideo?: string;
 };
 

@@ -49,6 +49,10 @@ function admin_post(string $path): never
     }
     $tab = admin_tab();
     if ($path === '/admin/settings') {
+        $length = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
+        if ($length > 0 && $_POST === [] && $_FILES === []) {
+            throw new RuntimeException('That upload is too large. Use an mp4 under 40 MB.');
+        }
         $store = store_load();
         $result = settings_from($_POST, $store['settings']);
         if (isset($result['error'])) {
@@ -60,6 +64,15 @@ function admin_post(string $path): never
         }
         if (isset($upload['url'])) {
             $result['settings']['logoUrl'] = $upload['url'];
+            $store = store_load();
+        }
+        $video = save_welcome_video($_FILES['welcomeVideo'] ?? []);
+        if (isset($video['error'])) {
+            throw new RuntimeException($video['error']);
+        }
+        if (isset($video['url'])) {
+            $result['settings']['welcomeVideo'] = $video['url'];
+            $result['settings']['welcomeVideoName'] = $video['name'];
             $store = store_load();
         }
         $store['settings'] = $result['settings'];
@@ -391,10 +404,7 @@ function settings_from(array $input, array $current): array
     if ($logo !== '' && !str_starts_with($logo, '/')) {
         return ['error' => 'Logo must be an uploaded studio file.'];
     }
-    $savedVideo = vaso_video_field($input, $current);
-    if ($savedVideo === false) {
-        return ['error' => 'Video must be an uploaded mp4.'];
-    }
+    $welcomeVideo = stored_welcome_video($current);
     return ['settings' => [
         'name' => $name,
         'tagline' => $tagline !== '' ? $tagline : ($current['tagline'] ?? ''),
@@ -416,20 +426,9 @@ function settings_from(array $input, array $current): array
         'websiteUrl' => text_field($input['websiteUrl'] ?? ($current['websiteUrl'] ?? ''), 300),
         'logoUrl' => $logo,
         'about' => text_field($input['about'] ?? '', 8000),
-        'vasoHomeVideo' => $savedVideo,
+        'welcomeVideo' => $welcomeVideo,
+        'welcomeVideoName' => stored_welcome_name($current, $welcomeVideo),
     ]];
-}
-
-function vaso_video_field(array $input, array $current): string|false
-{
-    if (!array_key_exists('vasoHomeVideo', $input)) {
-        return (string) ($current['vasoHomeVideo'] ?? '');
-    }
-    $video = text_field($input['vasoHomeVideo'] ?? '', 400);
-    if ($video !== '' && preg_match('#^/api/media/[\w.-]+\.mp4$#', $video) !== 1) {
-        return false;
-    }
-    return $video;
 }
 
 function admin_notice(): string
@@ -542,6 +541,10 @@ function admin_settings_form(array $settings): string
 {
     $html = '<form method="post" action="/admin/settings" enctype="multipart/form-data">';
     $html .= admin_field('setting-name', 'Studio name', 'name', $settings['name'] ?? '');
+    $welcomePath = stored_welcome_video($settings);
+    $welcomeName = stored_welcome_name($settings, $welcomePath);
+    $html .= '<label for="setting-welcome-video">Welcome top video (mp4)<input id="setting-welcome-video" name="welcomeVideo" type="file" accept="video/mp4,.mp4"></label>';
+    $html .= '<p id="welcome-video-saved">' . ($welcomeName !== '' ? 'Saved file: ' . h($welcomeName) : 'No welcome video saved. The home artwork stays.') . '</p>';
     $html .= admin_field('setting-tagline', 'Tagline', 'tagline', $settings['tagline'] ?? '');
     $html .= '<label for="setting-lead">Home introduction<textarea id="setting-lead" name="heroLead">' . h($settings['heroLead'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-official', 'Official name (alternate, not the site title)', 'officialName', $settings['officialName'] ?? '');

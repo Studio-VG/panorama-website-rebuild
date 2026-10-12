@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import type { Artist, Location, PortfolioImage, Settings, Store, StudioEvent } from "@/lib/types";
 
 type Tab = "settings" | "artists" | "events" | "inquiries" | "locations";
@@ -29,13 +29,14 @@ const emptyEvent = {
   featured: false,
 };
 
-async function upload(file: File) {
+async function upload(file: File, kind: "image" | "video" = "image") {
   const body = new FormData();
   body.set("file", file);
+  body.set("kind", kind);
   const response = await fetch("/api/admin/upload", { method: "POST", body });
   const json = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(json.error || "Upload failed");
-  return json.url as string;
+  return { url: String(json.url || ""), name: String(json.name || "") };
 }
 
 export function AdminApp() {
@@ -175,6 +176,7 @@ function UnusedCodes() {
 
 function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDone: (text: string) => Promise<void>; onError: (text: string) => void }) {
   const [draft, setDraft] = useState(settings);
+  const welcomeFile = useRef<File | null>(null);
   useEffect(() => setDraft(settings), [settings]);
 
   function set<K extends keyof Settings>(key: K, value: Settings[K]) {
@@ -184,21 +186,44 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
   async function save(event: FormEvent) {
     event.preventDefault();
     onError("");
+    const next = { ...draft };
+    const file = welcomeFile.current;
+    if (file) {
+      try {
+        const saved = await upload(file, "video");
+        next.welcomeVideo = saved.url;
+        next.welcomeVideoName = saved.name || file.name;
+        welcomeFile.current = null;
+      } catch (reason) {
+        onError(reason instanceof Error ? reason.message : "Upload failed");
+        return;
+      }
+    }
     const response = await fetch("/api/admin/settings", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(draft),
+      body: JSON.stringify(next),
     });
     const body = await response.json().catch(() => ({}));
     if (!response.ok) return onError(body.error || "Could not save settings.");
     await onDone("Studio settings saved.");
   }
 
+  const savedName = draft.welcomeVideo
+    ? (draft.welcomeVideoName || draft.welcomeVideo.split("/").pop() || "")
+    : "";
+
   return (
     <form onSubmit={save}>
       <label htmlFor="setting-name">Studio name
         <input id="setting-name" value={draft.name} onChange={(event) => set("name", event.target.value)} required />
       </label>
+      <label htmlFor="setting-welcome-video">Welcome top video (mp4)
+        <input id="setting-welcome-video" name="welcomeVideo" type="file" accept="video/mp4,.mp4" onChange={(event) => {
+          welcomeFile.current = event.target.files?.[0] || null;
+        }} />
+      </label>
+      <p id="welcome-video-saved">{savedName ? `Saved file: ${savedName}` : "No welcome video saved. The home artwork stays."}</p>
       <label htmlFor="setting-tagline">Tagline
         <input id="setting-tagline" value={draft.tagline} onChange={(event) => set("tagline", event.target.value)} />
       </label>
@@ -255,7 +280,7 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
         <input id="setting-logo" type="file" accept="image/*" onChange={async (event) => {
           const file = event.target.files?.[0];
           if (!file) return;
-          try { set("logoUrl", await upload(file)); } catch (reason) { onError(reason instanceof Error ? reason.message : "Upload failed"); }
+          try { set("logoUrl", (await upload(file)).url); } catch (reason) { onError(reason instanceof Error ? reason.message : "Upload failed"); }
         }} />
       </label>
       {draft.logoUrl ? <img src={draft.logoUrl} alt="Current studio logo" style={{ height: 64, width: 64, objectFit: "contain", background: "#14110e" }} /> : null}
@@ -353,7 +378,7 @@ function ArtistsForm({ artists, onDone, onError }: { artists: Artist[]; onDone: 
             const file = event.target.files?.[0];
             if (!file) return;
             try {
-              const url = await upload(file);
+              const url = (await upload(file)).url;
               setDraft((current) => ({ ...current, photo: url, photoAlt: current.photoAlt || `Portrait of ${current.name || "the artist"}` }));
             } catch (reason) { onError(reason instanceof Error ? reason.message : "Upload failed"); }
           }} />
@@ -365,7 +390,7 @@ function ArtistsForm({ artists, onDone, onError }: { artists: Artist[]; onDone: 
             try {
               const added: PortfolioImage[] = [];
               for (const file of files) {
-                const src = await upload(file);
+                const src = (await upload(file)).url;
                 added.push({ id: src, src, alt: file.name, caption: file.name.replace(/\.[^.]+$/, "") });
               }
               setDraft((current) => ({ ...current, portfolio: [...current.portfolio, ...added] }));
@@ -480,7 +505,7 @@ function EventsForm({ events, onDone, onError }: { events: StudioEvent[]; onDone
             const file = event.target.files?.[0];
             if (!file) return;
             try {
-              const url = await upload(file);
+              const url = (await upload(file)).url;
               setDraft((current) => ({ ...current, image: url, imageAlt: current.imageAlt || current.title }));
             } catch (reason) { onError(reason instanceof Error ? reason.message : "Upload failed"); }
           }} />

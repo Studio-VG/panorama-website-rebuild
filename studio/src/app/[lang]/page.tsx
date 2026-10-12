@@ -1,6 +1,9 @@
+import { existsSync } from "fs";
+import path from "path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Settings } from "@/lib/types";
 import { EventCard } from "@/components/EventCard";
 import { StudioImage } from "@/components/StudioImage";
 import { localizeArtist, localizeEvent } from "@/lib/content";
@@ -12,14 +15,25 @@ import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }> };
 
+function welcomeVideoSrc(settings: Settings) {
+  for (const candidate of [settings.welcomeVideo, settings.vasoHomeVideo]) {
+    const value = candidate ?? "";
+    const match = /^\/api\/media\/([\w.-]+\.mp4)$/.exec(value);
+    if (!match) continue;
+    if (existsSync(path.join(process.cwd(), "data", "uploads", match[1]))) return value;
+  }
+  return "";
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const copy = messages[lang];
+  const settings = getStore().settings;
   return pageMetadata({
     lang,
     title: copy.seo.homeTitle,
-    absoluteTitle: `${copy.seo.homeTitle} · ByVasoVasiko`,
+    absoluteTitle: `${settings.name} · ${copy.seo.homeTitle}`,
     description: copy.seo.homeDescription,
     path: "/",
     image: "/art/hero-back.jpg",
@@ -33,6 +47,7 @@ export default async function HomePage({ params }: Props) {
   const copy = messages[lang];
   const store = getStore();
   const settings = store.settings;
+  const welcomeVideo = welcomeVideoSrc(settings);
   const residents = store.artists.filter((artist) => !isGuest(artist)).map((artist) => localizeArtist(publicArtist(artist), lang));
   const guests = store.artists.filter(isGuest).map((artist) => localizeArtist(publicArtist(artist), lang));
   const featured = store.events
@@ -45,8 +60,11 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <section className="shell hero">
-        <div className="hero-copy">
+      <section className={welcomeVideo ? "welcome-top has-video" : "welcome-top"}>
+        {welcomeVideo ? (
+          <video className="welcome-video" src={welcomeVideo} muted loop playsInline autoPlay aria-hidden="true" />
+        ) : null}
+        <div className="shell hero">
           <p className="eyebrow">{copy.nav.kicker}</p>
           <h1>{copy.home.heroTitle}</h1>
           <p className="lede">{copy.home.permanence}</p>
