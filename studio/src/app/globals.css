@@ -181,9 +181,14 @@ address { font-style: normal; }
   position: relative;
   overflow: hidden;
 }
+.welcome-top.has-video {
+  z-index: 1;
+  isolation: isolate;
+  background: #000;
+}
 .welcome-top .hero {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .welcome-video {
   position: absolute;
@@ -192,7 +197,8 @@ address { font-style: normal; }
   height: 100%;
   max-width: none;
   object-fit: cover;
-  z-index: 0;
+  z-index: 1;
+  background: #000;
   pointer-events: none;
 }
 .welcome-top.has-video::before {
@@ -200,7 +206,7 @@ address { font-style: normal; }
   position: absolute;
   inset: 0;
   background: rgba(20, 17, 14, 0.45);
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
 }
 .eyebrow {

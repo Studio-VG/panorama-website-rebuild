@@ -988,6 +988,67 @@ function video_types(): array
     return ['mp4' => 'video/mp4'];
 }
 
+function serve_file_range(string $path, string $type): never
+{
+    $size = filesize($path);
+    if ($size === false) {
+        http_response_code(404);
+        header('Content-Type: text/plain; charset=utf-8');
+        echo 'Not found';
+        exit;
+    }
+    $start = 0;
+    $end = $size - 1;
+    $partial = false;
+    $range = (string) ($_SERVER['HTTP_RANGE'] ?? '');
+    if ($range !== '' && preg_match('/bytes=(\d*)-(\d*)/', $range, $match) === 1) {
+        $from = $match[1];
+        $to = $match[2];
+        if ($from === '' && $to !== '') {
+            $suffix = (int) $to;
+            $start = $suffix > 0 ? max(0, $size - $suffix) : 0;
+        } else {
+            $start = $from === '' ? 0 : (int) $from;
+            $end = $to === '' ? $size - 1 : (int) $to;
+        }
+        if ($start > $end || $start >= $size) {
+            http_response_code(416);
+            header('Content-Range: bytes */' . $size);
+            exit;
+        }
+        $end = min($end, $size - 1);
+        $partial = true;
+    }
+    $length = $end - $start + 1;
+    http_response_code($partial ? 206 : 200);
+    header('Content-Type: ' . $type);
+    header('Accept-Ranges: bytes');
+    header('Content-Length: ' . $length);
+    header('Cache-Control: public, max-age=31536000, immutable');
+    if ($partial) {
+        header('Content-Range: bytes ' . $start . '-' . $end . '/' . $size);
+    }
+    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'HEAD') {
+        exit;
+    }
+    $handle = fopen($path, 'rb');
+    if ($handle === false) {
+        exit;
+    }
+    fseek($handle, $start);
+    $left = $length;
+    while ($left > 0 && !feof($handle)) {
+        $chunk = fread($handle, (int) min(8192, $left));
+        if (!is_string($chunk) || $chunk === '') {
+            break;
+        }
+        echo $chunk;
+        $left -= strlen($chunk);
+    }
+    fclose($handle);
+    exit;
+}
+
 function serve_media(string $name): never
 {
     if (!preg_match('/^[\w.-]+$/', $name)) {
@@ -1013,11 +1074,7 @@ function serve_media(string $name): never
         }
         $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
         $types = media_types() + video_types();
-        header('Content-Type: ' . ($types[$ext] ?? 'application/octet-stream'));
-        header('Accept-Ranges: bytes');
-        header('Cache-Control: public, max-age=31536000, immutable');
-        readfile($path);
-        exit;
+        serve_file_range($path, $types[$ext] ?? 'application/octet-stream');
     }
     http_response_code(404);
     header('Content-Type: text/plain; charset=utf-8');
