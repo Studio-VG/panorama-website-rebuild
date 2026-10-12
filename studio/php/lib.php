@@ -1115,13 +1115,14 @@ function welcome_video_public(array $store): string
         $onDisk = is_file(studio_root() . '/data/uploads/' . $name);
         $stored = isset($full['files'][$name]) && is_array($full['files'][$name]);
         if ($onDisk || $stored) {
-            return $path;
+            $version = $onDisk ? filemtime(studio_root() . '/data/uploads/' . $name) : false;
+            return $version ? $path . '?v=' . $version : $path;
         }
     }
     return '';
 }
 
-function save_welcome_video(array $file): array
+function save_welcome_video(array $file, string $currentPath = ''): array
 {
     $error = $file['error'] ?? UPLOAD_ERR_NO_FILE;
     if ($error === UPLOAD_ERR_NO_FILE) {
@@ -1153,7 +1154,13 @@ function save_welcome_video(array $file): array
     $stem = preg_replace('/[^\w.\- ]+/u', '', pathinfo($original, PATHINFO_FILENAME)) ?? '';
     $stem = trim((string) $stem);
     $display = ($stem !== '' ? mb_substr($stem, 0, 170) : 'welcome') . '.mp4';
-    $filename = (string) (int) round(microtime(true) * 1000) . '-' . bin2hex(random_bytes(4)) . '.mp4';
+    $filename = '';
+    if (preg_match('#^/api/media/([\w.-]+\.mp4)$#', $currentPath, $match) === 1) {
+        $filename = $match[1];
+    }
+    if ($filename === '') {
+        $filename = (string) (int) round(microtime(true) * 1000) . '-' . bin2hex(random_bytes(4)) . '.mp4';
+    }
     if (store_mode() === 'database') {
         $store = store_load();
         if (!isset($store['files']) || !is_array($store['files'])) {

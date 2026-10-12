@@ -1,4 +1,4 @@
-import { existsSync } from "fs";
+import { existsSync, statSync } from "fs";
 import path from "path";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -17,10 +17,12 @@ type Props = { params: Promise<{ lang: string }> };
 
 function welcomeVideoSrc(settings: Settings) {
   for (const candidate of [settings.welcomeVideo, settings.vasoHomeVideo]) {
-    const value = candidate ?? "";
+    const value = (candidate ?? "").split("?")[0];
     const match = /^\/api\/media\/([\w.-]+\.mp4)$/.exec(value);
     if (!match) continue;
-    if (existsSync(path.join(process.cwd(), "data", "uploads", match[1]))) return value;
+    const file = path.join(process.cwd(), "data", "uploads", match[1]);
+    if (!existsSync(file)) continue;
+    return `${value}?v=${Math.floor(statSync(file).mtimeMs)}`;
   }
   return "";
 }

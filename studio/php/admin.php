@@ -66,7 +66,7 @@ function admin_post(string $path): never
             $result['settings']['logoUrl'] = $upload['url'];
             $store = store_load();
         }
-        $video = save_welcome_video($_FILES['welcomeVideo'] ?? []);
+        $video = save_welcome_video($_FILES['welcomeVideo'] ?? [], (string) ($result['settings']['welcomeVideo'] ?? ''));
         if (isset($video['error'])) {
             throw new RuntimeException($video['error']);
         }

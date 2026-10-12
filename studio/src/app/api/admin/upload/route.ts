@@ -1,9 +1,11 @@
 import { randomUUID } from "crypto";
+import { existsSync } from "fs";
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import { getStore, saveStore } from "@/lib/store";
+import type { Settings } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +18,16 @@ function isMp4(bytes: Buffer) {
 function safeVideoName(name: string) {
   const base = path.basename(name).replace(/[^\w.\- ]+/g, "").slice(0, 180);
   return base.toLowerCase().endsWith(".mp4") ? base : `${base || "welcome"}.mp4`;
+}
+
+function playingWelcomeFile(settings: Settings) {
+  for (const candidate of [settings.welcomeVideo, settings.vasoHomeVideo]) {
+    const match = /^\/api\/media\/([\w.-]+\.mp4)$/.exec((candidate ?? "").split("?")[0]);
+    if (!match) continue;
+    const file = path.join(process.cwd(), "data", "uploads", match[1]);
+    if (existsSync(file)) return match[1];
+  }
+  return "";
 }
 
 export async function POST(request: Request) {
@@ -37,7 +49,8 @@ export async function POST(request: Request) {
   if (video && (ext !== ".mp4" || !isMp4(bytes))) {
     return NextResponse.json({ error: "Use an mp4." }, { status: 400 });
   }
-  const filename = `${Date.now()}-${randomUUID().slice(0, 8)}${video ? ".mp4" : ext}`;
+  const playing = video ? playingWelcomeFile(getStore().settings) : "";
+  const filename = playing || `${Date.now()}-${randomUUID().slice(0, 8)}${video ? ".mp4" : ext}`;
   const dir = path.join(process.cwd(), "data", "uploads");
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, filename), bytes);
