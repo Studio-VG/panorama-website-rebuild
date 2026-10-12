@@ -543,8 +543,11 @@ function admin_settings_form(array $settings): string
     $html .= admin_field('setting-name', 'Studio name', 'name', $settings['name'] ?? '');
     $welcomePath = stored_welcome_video($settings);
     $welcomeName = stored_welcome_name($settings, $welcomePath);
-    $html .= '<label for="setting-welcome-video">Welcome top video (mp4)<input id="setting-welcome-video" name="welcomeVideo" type="file" accept="video/mp4,.mp4"></label>';
-    $html .= '<p id="welcome-video-saved">' . ($welcomeName !== '' ? 'Saved file: ' . h($welcomeName) : 'No welcome video saved. The home artwork stays.') . '</p>';
+    $savedText = $welcomeName !== '' ? 'Saved file: ' . $welcomeName : 'No welcome video saved. The home artwork stays.';
+    $html .= '<label for="welcome-video-saved">Welcome top video (mp4)';
+    $html .= '<input id="welcome-video-saved" type="text" readonly value="' . h($savedText) . '">';
+    $html .= '</label>';
+    $html .= '<label for="setting-welcome-video">Replace welcome top video (mp4)<input id="setting-welcome-video" name="welcomeVideo" type="file" accept="video/mp4,.mp4"></label>';
     $html .= admin_field('setting-tagline', 'Tagline', 'tagline', $settings['tagline'] ?? '');
     $html .= '<label for="setting-lead">Home introduction<textarea id="setting-lead" name="heroLead">' . h($settings['heroLead'] ?? '') . '</textarea></label>';
     $html .= admin_field('setting-official', 'Official name (alternate, not the site title)', 'officialName', $settings['officialName'] ?? '');

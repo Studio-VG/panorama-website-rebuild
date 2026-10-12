@@ -9,7 +9,9 @@ export const dynamic = "force-dynamic";
 
 const allowed = new Set(["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"]);
 const extensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"]);
-const videoTypes = new Set(["video/mp4", "application/mp4"]);
+function isMp4(bytes: Buffer) {
+  return bytes.length >= 12 && bytes.subarray(4, 8).toString("ascii") === "ftyp";
+}
 
 function safeVideoName(name: string) {
   const base = path.basename(name).replace(/[^\w.\- ]+/g, "").slice(0, 180);
@@ -25,18 +27,20 @@ export async function POST(request: Request) {
   const video = String(form.get("kind") || "") === "video";
   if (video) {
     if (file.size > 40_000_000) return NextResponse.json({ error: "Video must be under 40 MB." }, { status: 400 });
-    if (ext !== ".mp4" || (file.type && !videoTypes.has(file.type))) {
-      return NextResponse.json({ error: "Use an mp4." }, { status: 400 });
-    }
+    if (ext !== ".mp4") return NextResponse.json({ error: "Use an mp4." }, { status: 400 });
   } else if (file.size > 5_000_000) {
     return NextResponse.json({ error: "Image must be under 5 MB." }, { status: 400 });
   } else if (!allowed.has(file.type) || !extensions.has(ext)) {
     return NextResponse.json({ error: "Use a JPEG, PNG, WebP, GIF, or SVG." }, { status: 400 });
   }
+  const bytes = Buffer.from(await file.arrayBuffer());
+  if (video && (ext !== ".mp4" || !isMp4(bytes))) {
+    return NextResponse.json({ error: "Use an mp4." }, { status: 400 });
+  }
   const filename = `${Date.now()}-${randomUUID().slice(0, 8)}${video ? ".mp4" : ext}`;
   const dir = path.join(process.cwd(), "data", "uploads");
   await mkdir(dir, { recursive: true });
-  await writeFile(path.join(dir, filename), Buffer.from(await file.arrayBuffer()));
+  await writeFile(path.join(dir, filename), bytes);
   const url = `/api/media/${filename}`;
   if (video) {
     const store = getStore();

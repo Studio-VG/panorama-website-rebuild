@@ -218,12 +218,14 @@ function SettingsForm({ settings, onDone, onError }: { settings: Settings; onDon
       <label htmlFor="setting-name">Studio name
         <input id="setting-name" value={draft.name} onChange={(event) => set("name", event.target.value)} required />
       </label>
-      <label htmlFor="setting-welcome-video">Welcome top video (mp4)
+      <label htmlFor="welcome-video-saved">Welcome top video (mp4)
+        <input id="welcome-video-saved" type="text" readOnly value={savedName ? `Saved file: ${savedName}` : "No welcome video saved. The home artwork stays."} />
+      </label>
+      <label htmlFor="setting-welcome-video">Replace welcome top video (mp4)
         <input id="setting-welcome-video" name="welcomeVideo" type="file" accept="video/mp4,.mp4" onChange={(event) => {
           welcomeFile.current = event.target.files?.[0] || null;
         }} />
       </label>
-      <p id="welcome-video-saved">{savedName ? `Saved file: ${savedName}` : "No welcome video saved. The home artwork stays."}</p>
       <label htmlFor="setting-tagline">Tagline
         <input id="setting-tagline" value={draft.tagline} onChange={(event) => set("tagline", event.target.value)} />
       </label>

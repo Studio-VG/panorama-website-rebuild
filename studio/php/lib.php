@@ -1083,8 +1083,11 @@ function save_welcome_video(array $file): array
     if (strtolower(pathinfo($original, PATHINFO_EXTENSION)) !== 'mp4') {
         return ['error' => 'Use an mp4.'];
     }
-    $mime = (new finfo(FILEINFO_MIME_TYPE))->file((string) ($file['tmp_name'] ?? '')) ?: '';
-    if (!in_array($mime, ['video/mp4', 'application/mp4'], true)) {
+    $tmp = (string) ($file['tmp_name'] ?? '');
+    $mime = $tmp !== '' ? ((new finfo(FILEINFO_MIME_TYPE))->file($tmp) ?: '') : '';
+    $head = $tmp !== '' ? (file_get_contents($tmp, false, null, 0, 32) ?: '') : '';
+    $ftyp = is_string($head) && strlen($head) >= 12 && substr($head, 4, 4) === 'ftyp';
+    if (!$ftyp && !in_array($mime, ['video/mp4', 'application/mp4', 'video/quicktime'], true)) {
         return ['error' => 'Use an mp4.'];
     }
     if (!store_can_write()) {
