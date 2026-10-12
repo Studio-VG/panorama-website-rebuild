@@ -9,6 +9,7 @@ import type { Settings } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
+const welcomeVideoMaxBytes = 42 * 1024 * 1024;
 const allowed = new Set(["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"]);
 const extensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"]);
 function isMp4(bytes: Buffer) {
@@ -38,7 +39,7 @@ export async function POST(request: Request) {
   const ext = path.extname(file.name).toLowerCase();
   const video = String(form.get("kind") || "") === "video";
   if (video) {
-    if (file.size > 40_000_000) return NextResponse.json({ error: "Video must be under 40 MB." }, { status: 400 });
+    if (file.size > welcomeVideoMaxBytes) return NextResponse.json({ error: "Video must be 42 MB or smaller." }, { status: 400 });
     if (ext !== ".mp4") return NextResponse.json({ error: "Use an mp4." }, { status: 400 });
   } else if (file.size > 5_000_000) {
     return NextResponse.json({ error: "Image must be under 5 MB." }, { status: 400 });

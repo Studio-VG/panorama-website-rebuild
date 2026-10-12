@@ -66,7 +66,7 @@ ensure_dev_server() {
 
   if ! tmux_cmd has-session -t "$DEV_SESSION" 2>/dev/null; then
     tmux_cmd new-session -d -s "$DEV_SESSION" -c "$STUDIO_DIR" -- \
-      bash -lc "cd $(printf '%q' "$STUDIO_DIR") && exec php -d upload_max_filesize=40M -d post_max_size=42M -S 127.0.0.1:${PORT} -t public router.php"
+      bash -lc "cd $(printf '%q' "$STUDIO_DIR") && exec php -d upload_max_filesize=48M -d post_max_size=50M -S 127.0.0.1:${PORT} -t public router.php"
   fi
 
   for i in $(seq 1 120); do

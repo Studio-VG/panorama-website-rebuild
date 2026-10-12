@@ -1122,6 +1122,11 @@ function welcome_video_public(array $store): string
     return '';
 }
 
+function welcome_video_max_bytes(): int
+{
+    return 42 * 1024 * 1024;
+}
+
 function save_welcome_video(array $file, string $currentPath = ''): array
 {
     $error = $file['error'] ?? UPLOAD_ERR_NO_FILE;
@@ -1129,13 +1134,13 @@ function save_welcome_video(array $file, string $currentPath = ''): array
         return ['empty' => true];
     }
     if ($error === UPLOAD_ERR_INI_SIZE || $error === UPLOAD_ERR_FORM_SIZE) {
-        return ['error' => 'That upload is too large. Use an mp4 under 40 MB.'];
+        return ['error' => 'That upload is too large. Use an mp4 up to 42 MB.'];
     }
     if ($error !== UPLOAD_ERR_OK) {
         return ['error' => 'The video could not be uploaded.'];
     }
-    if (($file['size'] ?? 0) > 40000000) {
-        return ['error' => 'Video must be under 40 MB.'];
+    if (($file['size'] ?? 0) > welcome_video_max_bytes()) {
+        return ['error' => 'Video must be 42 MB or smaller.'];
     }
     $original = (string) ($file['name'] ?? '');
     if (strtolower(pathinfo($original, PATHINFO_EXTENSION)) !== 'mp4') {

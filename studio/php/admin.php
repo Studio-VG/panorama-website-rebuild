@@ -51,7 +51,7 @@ function admin_post(string $path): never
     if ($path === '/admin/settings') {
         $length = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
         if ($length > 0 && $_POST === [] && $_FILES === []) {
-            throw new RuntimeException('That upload is too large. Use an mp4 under 40 MB.');
+            throw new RuntimeException('That upload is too large. Use an mp4 up to 42 MB.');
         }
         $store = store_load();
         $result = settings_from($_POST, $store['settings']);
