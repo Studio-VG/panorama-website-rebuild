@@ -151,7 +151,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     echo site_header($lang, $settings, $copy);
     echo '<main id="content">' . $body . '</main>';
     echo site_footer($lang, $studio, $copy);
-    echo '<script>document.querySelector(".menu-toggle")?.addEventListener("click",()=>{const menu=document.getElementById("site-menu");const open=menu.classList.toggle("open");document.querySelector(".menu-toggle").setAttribute("aria-expanded",open?"true":"false");document.querySelector(".menu-toggle").textContent=open?' . json_encode($copy['nav']['close']) . ':' . json_encode($copy['nav']['menu']) . ';});</script>';
+    echo '<script>document.querySelector(".menu-toggle")?.addEventListener("click",()=>{const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");const open=menu.classList.toggle("open");button.setAttribute("aria-expanded",open?"true":"false");button.setAttribute("aria-label",open?' . json_encode($copy['nav']['close']) . ':' . json_encode($copy['nav']['menu']) . ');});document.getElementById("site-menu")?.addEventListener("click",(event)=>{const link=event.target.closest("a");if(!link)return;const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");menu.classList.remove("open");button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",' . json_encode($copy['nav']['menu']) . ');});</script>';
     echo '</div></body></html>';
 }
 
@@ -170,7 +170,7 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
     $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
     $html .= '<span><span class="brand-name">' . h($settings['name']) . '</span><small>' . h($copy['nav']['kicker']) . '</small></span></a>';
     if ($publicNav) {
-        $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">' . h($copy['nav']['menu']) . '</button>';
+        $html .= '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="' . h($copy['nav']['menu']) . '">==</button>';
         $html .= '<ul id="site-menu" class="nav-links">';
         foreach ($links as [$href, $label]) {
             $html .= '<li><a href="' . h($href) . '">' . h($label) . '</a></li>';

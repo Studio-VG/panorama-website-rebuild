@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { locales, switchLocale, type Locale } from "@/lib/locale";
 import type { Messages } from "@/lib/messages";
 
@@ -20,6 +20,7 @@ export function SiteHeader({
   const [open, setOpen] = useState(false);
   const pathname = usePathname() || `/${lang}`;
   const onAdmin = pathname.startsWith("/admin");
+  useEffect(() => { setOpen(false); }, [pathname]);
   const links = [
     [`/${lang}/artists`, labels.artists],
     [`/${lang}/guests`, labels.guests],
@@ -41,9 +42,7 @@ export function SiteHeader({
         </Link>
         {onAdmin ? null : (
           <>
-            <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen((value) => !value)}>
-              {open ? labels.close : labels.menu}
-            </button>
+            <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" aria-label={open ? labels.close : labels.menu} onClick={() => setOpen((value) => !value)}>==</button>
             <ul id="site-menu" className={open ? "nav-links open" : "nav-links"}>
               {links.map(([href, label]) => (
                 <li key={href}><Link href={href} onClick={() => setOpen(false)}>{label}</Link></li>
@@ -52,7 +51,7 @@ export function SiteHeader({
               <li>
                 <nav className="langs" aria-label={labels.languages}>
                   {locales.map((code) => (
-                    <Link key={code} href={switchLocale(pathname, code)} hrefLang={code} lang={code} aria-current={code === lang ? "page" : undefined}>
+                    <Link key={code} href={switchLocale(pathname, code)} hrefLang={code} lang={code} aria-current={code === lang ? "page" : undefined} onClick={() => setOpen(false)}>
                       {code.toUpperCase()}
                     </Link>
                   ))}
