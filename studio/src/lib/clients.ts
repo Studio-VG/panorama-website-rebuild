@@ -61,7 +61,7 @@ async function dispatchCodes(pending: PendingRegistration, emailCode: string, ph
       body: JSON.stringify({
         from: process.env.RESEND_FROM?.trim(),
         to: pending.email,
-        subject: "ByVasoVasiko registration code",
+        subject: "VasoAndrei registration code",
         text: `Your email code is ${emailCode}. It expires in 10 minutes.`,
       }),
     });
@@ -71,7 +71,7 @@ async function dispatchCodes(pending: PendingRegistration, emailCode: string, ph
     const body = new URLSearchParams({
       To: pending.phone,
       From: process.env.TWILIO_FROM?.trim() || "",
-      Body: `ByVasoVasiko phone code: ${phoneCode}. It expires in 10 minutes.`,
+      Body: `VasoAndrei phone code: ${phoneCode}. It expires in 10 minutes.`,
     });
     const sid = process.env.TWILIO_ACCOUNT_SID?.trim();
     const token = process.env.TWILIO_AUTH_TOKEN?.trim();

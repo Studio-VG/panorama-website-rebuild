@@ -1,6 +1,6 @@
-# ByVasoVasiko studio site
+# VasoAndrei studio site
 
-Japanese-tattoo studio site for the practice publicly listed as **Vaso Vasiko** / **byvasovasiko**. The name shown on this site is the temporary name **ByVasoVasiko**.
+Japanese-tattoo studio site for the practice publicly listed as **Vaso Vasiko** / **byvasovasiko**. The name shown on this site is **VasoAndrei**.
 
 This app lives in `studio/` because the repository root is the existing Panorama glass site. Nothing in that site was replaced.
 

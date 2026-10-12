@@ -120,7 +120,7 @@ export function SiteFooter({ settings, locations, lang, labels, quiet = false }:
           <p className="location-line">{groups.map((group) => group.label).join(" • ")}</p>
         </section>
       </div>
-      <div className="shell"><p className="fine">{labels.note}</p></div>
+      <div className="shell"><p className="footer-title">{settings.name}</p><p className="fine">{labels.note}</p></div>
     </footer>
   );
 }
