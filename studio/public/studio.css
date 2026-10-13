@@ -732,7 +732,7 @@ html[lang="ka"] {
   background: #000;
 }
 .home-entry .welcome-video {
-  filter: blur(20px);
+  filter: blur(7px);
   transform: scale(1.12);
 }
 .home-entry .welcome-top.has-video::before {
