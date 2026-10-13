@@ -22,7 +22,7 @@ export default async function LangLayout({
   const { settings, locations } = getStore();
   const view = localizeSettings(settings, lang);
   const path = (await headers()).get("x-pathname") || "";
-  const home = path === `/${lang}`;
+  const home = new RegExp(`^/${lang}(?:/(?:artists|events|about)(?:/.*)?)?$`).test(path);
   const quiet = /\/guests\//.test(path);
   const shown = quiet ? { ...view, phone: "", phoneAlt: "", email: "", instagramUrl: "", facebookUrl: "", whatsappUrl: "", websiteUrl: "", portfolioUrl: "" } : view;
 

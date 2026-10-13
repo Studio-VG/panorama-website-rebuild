@@ -81,6 +81,10 @@ export function clientCookieHeader(token: string) {
   return `${CLIENT_COOKIE}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${60 * 60 * 24 * 30}${secure}`;
 }
 
+export function clearClientCookieHeader() {
+  return `${CLIENT_COOKIE}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0`;
+}
+
 export function clientFromToken(token: string | undefined, clients: ClientAccount[]) {
   if (!token || !token.includes(".")) return null;
   const id = token.slice(0, token.indexOf("."));

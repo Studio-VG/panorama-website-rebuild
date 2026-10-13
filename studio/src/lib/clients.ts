@@ -198,6 +198,47 @@ export function unusedCodes() {
     }));
 }
 
+export async function startSignIn(body: unknown) {
+  const input = (body ?? {}) as { contact?: unknown };
+  const contact = text(input.contact, 160);
+  const email = contact.toLowerCase();
+  const phoneDigits = digits(contact);
+  const store = getStore();
+  const account = (store.clients || []).find((client) => client.email === email || (phoneDigits.length >= 6 && digits(client.phone) === phoneDigits));
+  if (!account) return { error: "unknown" as const };
+
+  const id = randomUUID();
+  const emailCode = newCode();
+  const phoneCode = newCode();
+  const pending: PendingRegistration = {
+    id,
+    name: account.name,
+    email: account.email,
+    phone: account.phone,
+    accountId: account.id,
+    emailCodeHash: hashCode(id, "email", emailCode),
+    phoneCodeHash: hashCode(id, "phone", phoneCode),
+    emailCode,
+    phoneCode,
+    emailVerified: true,
+    phoneVerified: false,
+    attempts: 0,
+    expiresAt: new Date(Date.now() + CODE_TTL_MS).toISOString(),
+    createdAt: new Date().toISOString(),
+  };
+  try {
+    await dispatchCodes(pending, emailCode, phoneCode);
+  } catch {
+    return { error: "send" as const };
+  }
+  const delivery = codeDelivery();
+  if (delivery.email) delete pending.emailCode;
+  if (delivery.sms) delete pending.phoneCode;
+  store.registrations = [pending, ...(store.registrations || [])].slice(0, 40);
+  saveStore(store);
+  return { id, delivery, expiresAt: pending.expiresAt };
+}
+
 export function clientFromRequest(request: Request): ClientAccount | null {
   const header = request.headers.get("cookie");
   if (!header) return null;

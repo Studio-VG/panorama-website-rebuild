@@ -27,14 +27,13 @@ export default async function EventsPage({ params }: Props) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const copy = messages[lang];
-  const { events, settings } = getStore();
+  const { events } = getStore();
   const sorted = events.map((event) => localizeEvent(event, lang)).sort((a, b) => b.startDate.localeCompare(a.startDate));
   return (
-    <section className="section">
+    <section className="home-lower">
       <div className="shell">
-        <p className="eyebrow">{settings.name}</p>
-        <h1>{copy.eventsPage.title}</h1>
-        <p>{copy.eventsPage.lead}</p>
+        <h1 className="home-legend">{copy.eventsPage.title}</h1>
+        <p className="home-lead">{copy.eventsPage.lead}</p>
         <div className="event-list">
           {sorted.map((event) => <EventCard key={event.id} event={event} lang={lang} statusLabels={copy.status} />)}
         </div>

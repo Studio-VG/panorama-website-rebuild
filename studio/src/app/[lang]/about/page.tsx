@@ -40,10 +40,9 @@ export default async function AboutPage({ params }: Props) {
   const istanbul = locations.find((place) => /istanbul|beyoğlu|beyoglu/i.test(`${place.name} ${place.address}`));
   const studio = localizeSettings(settings, lang);
   return (
-    <section className="section about-page">
+    <section className="home-lower about-page">
       <div className="shell">
-        <p className="kicker">{settings.name}</p>
-        <h1>{copy.about.title}</h1>
+        <h1 className="home-legend">{copy.about.title}</h1>
         <div className="split">
           <div>
             <Paragraphs text={copy.about.story} />

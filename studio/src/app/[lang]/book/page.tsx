@@ -50,7 +50,10 @@ export default async function BookPage({ params, searchParams }: Props) {
         ) : (
           <div className="book-form">
             <p>{copy.book.needAccount}</p>
-            <p><Link className="btn" href={registerHref}>{copy.book.register}</Link></p>
+            <p className="home-book" style={{ justifyContent: "flex-start", gap: "0.75rem" }}>
+              <Link className="btn" href={registerHref}>{copy.book.register}</Link>
+              <Link className="btn" href={`/${lang}/sign-in?next=/${lang}/book`}>{copy.nav.signIn}</Link>
+            </p>
           </div>
         )}
       </div>

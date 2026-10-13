@@ -2,12 +2,12 @@ import opening from "../../data/opening.json";
 import type { Locale } from "./locale";
 
 export type Messages = {
-  nav: { artists: string; guests: string; styles: string; events: string; about: string; faq: string; register: string; book: string; menu: string; close: string; languages: string; kicker: string; skip: string };
+  nav: { artists: string; guests: string; styles: string; events: string; about: string; faq: string; register: string; signIn: string; signOut: string; account: string; book: string; menu: string; close: string; languages: string; kicker: string; skip: string };
   footer: { hours: string; reach: string; note: string; google: string; portfolio: string; aftercare: string; admin: string; newTab: string; location: string; openMaps: string; directions: string; serviceArea: string; contact: string; istanbul: string; dusseldorf: string; germany: string; areaLine: string };
   days: Record<string, string>;
   closed: string;
   status: { Upcoming: string; Past: string; Now: string; featured: string };
-  home: { heroTitle: string; permanence: string; meet: string; short: string; readMore: string; intro: string; facts: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
+  home: { heroTitle: string; permanence: string; meet: string; short: string; readMore: string; intro: string; facts: string; eventsKicker: string; eventsTitle: string; eventsLead: string; allEvents: string; artistsKicker: string; artistsTitle: string; artistsLead: string; legend: string; vasoDeed: string; andreiDeed: string; allArtists: string; visitTitle: string; online: string; listing: string; heroAlt: string };
   artistsPage: { title: string; lead: string };
   artistPage: { work: string; request: string; portfolio: string; untranslated: string };
   eventsPage: { title: string; lead: string };
@@ -19,6 +19,11 @@ export type Messages = {
     send: string; sending: string; codesLead: string; emailCode: string; phoneCode: string;
     confirm: string; confirming: string; expired: string; wrong: string; mismatch: string;
     error: string; ok: string; signedIn: string; bookLink: string;
+  };
+  signIn: {
+    title: string; lead: string; identifier: string; send: string; sending: string;
+    code: string; confirm: string; confirming: string; unknown: string; wrong: string;
+    expired: string; error: string;
   };
   styles: { title: string; lead: string; items: { title: string; body: string }[]; more: string };
   aftercare: { title: string; intro: string; sections: { title: string; body: string }[]; call: string };
@@ -47,7 +52,7 @@ const daysEn = { Monday: "Monday", Tuesday: "Tuesday", Wednesday: "Wednesday", T
 
 export const messages: Record<Locale, Messages> = {
   en: {
-    nav: { artists: "Artists", guests: "Guests", styles: "Styles", events: "Events", about: "About", faq: "FAQ", register: "Register", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "İstiklal, Istanbul", skip: "Skip to content" },
+    nav: { artists: "Artists", guests: "Guests", styles: "Styles", events: "Events", about: "About", faq: "FAQ", register: "Register", signIn: "Sign in", signOut: "Sign out", account: "Signed in as {name}", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "İstiklal, Istanbul", skip: "Skip to content" },
     footer: { hours: "Hours", reach: "Reach the studio", note: "Portraits and plates on this site are original illustrations.", google: "Google Business", portfolio: "Existing portfolio", aftercare: "Aftercare", admin: "Studio admin", newTab: "opens in a new tab", location: "Location", openMaps: "Open in Google Maps", directions: "Click for directions", serviceArea: "Service area", contact: "Contact", istanbul: "Istanbul", dusseldorf: "Düsseldorf", germany: "Germany", areaLine: "Istanbul • Düsseldorf" },
     days: daysEn,
     closed: "Closed",
@@ -67,6 +72,9 @@ export const messages: Record<Locale, Messages> = {
       artistsKicker: "The bench",
       artistsTitle: "Artists",
       artistsLead: "Who is working, and the styles they take.",
+      legend: "Meet our legendary tattoo artists:",
+      vasoDeed: "Vaso Vasiko has tattooed since 2000. He is the leading Japanese-style tattoo artist in Turkey and Georgia. From the early 2000s he brought large-scale Japanese irezumi and neo-traditional work into tattooing in Turkey, and that work became a reference for younger artists.",
+      andreiDeed: "Andrei Aivazian has tattooed for more than a decade. He was the first person to introduce realism in Georgia. In Tbilisi he teaches realism, portrait, and black-and-grey, and his studios moved the local scene toward custom portfolios.",
       allArtists: "All artists",
       visitTitle: "Write, call, or come up",
       online: "Also online",
@@ -94,6 +102,20 @@ export const messages: Record<Locale, Messages> = {
       ok: "The account is ready.",
       signedIn: "You are signed in as {name}.",
       bookLink: "Continue to booking",
+    },
+    signIn: {
+      title: "Sign in",
+      lead: "Sign in with the email or phone already on your account. There is no password. A one-time code confirms it is you.",
+      identifier: "Email or phone",
+      send: "Send code",
+      sending: "Sending…",
+      code: "One-time code",
+      confirm: "Sign in",
+      confirming: "Checking…",
+      unknown: "No finished account uses that email or phone.",
+      wrong: "That code does not match.",
+      expired: "That code has expired. Ask for a new one.",
+      error: "Enter the email or phone on the account.",
     },
     styles: {
       title: "Japanese tattoo in Istanbul",
@@ -164,7 +186,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   tr: {
-    nav: { artists: "Sanatçılar", guests: "Misafirler", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", register: "Kayıt", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "İstiklal, İstanbul", skip: "İçeriğe geç" },
+    nav: { artists: "Sanatçılar", guests: "Misafirler", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", register: "Kayıt", signIn: "Giriş", signOut: "Çıkış", account: "{name} olarak giriş yapıldı", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "İstiklal, İstanbul", skip: "İçeriğe geç" },
     footer: { hours: "Saatler", reach: "Stüdyoya ulaşın", note: "Bu sitedeki portreler ve desenler özgün çizimlerdir.", google: "Google Business", portfolio: "Mevcut portfolyo", aftercare: "Bakım", admin: "Stüdyo yönetimi", newTab: "yeni sekmede açılır", location: "Konum", openMaps: "Google Haritalar’da aç", directions: "Yol tarifi için tıklayın", serviceArea: "Hizmet bölgesi", contact: "İletişim", istanbul: "İstanbul", dusseldorf: "Düsseldorf", germany: "Almanya", areaLine: "İstanbul • Düsseldorf" },
     days: { Monday: "Pazartesi", Tuesday: "Salı", Wednesday: "Çarşamba", Thursday: "Perşembe", Friday: "Cuma", Saturday: "Cumartesi", Sunday: "Pazar" },
     closed: "Kapalı",
@@ -184,6 +206,9 @@ export const messages: Record<Locale, Messages> = {
       artistsKicker: "Masa",
       artistsTitle: "Sanatçılar",
       artistsLead: "Kim çalışıyor, hangi stilleri alıyor.",
+      legend: "Efsanevi dövme sanatçılarımızla tanışın:",
+      vasoDeed: "Vaso Vasiko 2000’den beri dövme yapıyor. Türkiye ve Gürcistan’da Japon stilinin önde gelen dövme sanatçısıdır. 2000’lerin başından itibaren Türkiye’deki dövmeye büyük ölçekli Japon irezumi ve neo-traditional işi getirdi; bu iş genç sanatçılar için bir referans oldu.",
+      andreiDeed: "Andrei Aivazian on yıldan uzun süredir dövme yapıyor. Gürcistan’da realizmi tanıtan ilk kişidir. Tiflis’te realizm, portre ve siyah-gri öğretir; stüdyoları yerel sahneyi özel portfolyoya yöneltti.",
       allArtists: "Tüm sanatçılar",
       visitTitle: "Yazın, arayın ya da çıkın",
       online: "Çevrimiçi",
@@ -211,6 +236,20 @@ export const messages: Record<Locale, Messages> = {
       ok: "Hesap hazır.",
       signedIn: "{name} olarak giriş yaptınız.",
       bookLink: "Randevuya devam et",
+    },
+    signIn: {
+      title: "Giriş",
+      lead: "Hesaptaki e-posta ya da telefonla giriş yapın. Şifre yoktur. Tek kullanımlık kod bunun siz olduğunu doğrular.",
+      identifier: "E-posta veya telefon",
+      send: "Kod gönder",
+      sending: "Gönderiliyor…",
+      code: "Tek kullanımlık kod",
+      confirm: "Giriş yap",
+      confirming: "Kontrol ediliyor…",
+      unknown: "Bu e-posta ya da telefonla bitmiş bir hesap yok.",
+      wrong: "Kod uyuşmuyor.",
+      expired: "Kodun süresi doldu. Yenisini isteyin.",
+      error: "Hesaptaki e-postayı ya da telefonu yazın.",
     },
     styles: {
       title: "Japon dövmesi",
@@ -281,7 +320,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   de: {
-    nav: { artists: "Künstler", guests: "Gäste", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", register: "Registrieren", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "İstiklal, Istanbul", skip: "Zum Inhalt" },
+    nav: { artists: "Künstler", guests: "Gäste", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", register: "Registrieren", signIn: "Anmelden", signOut: "Abmelden", account: "Angemeldet als {name}", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "İstiklal, Istanbul", skip: "Zum Inhalt" },
     footer: { hours: "Zeiten", reach: "Studio erreichen", note: "Porträts und Blätter auf dieser Seite sind eigene Zeichnungen.", google: "Google Business", portfolio: "Bestehendes Portfolio", aftercare: "Pflege", admin: "Studio-Admin", newTab: "öffnet sich in einem neuen Tab", location: "Standort", openMaps: "In Google Maps öffnen", directions: "Für die Route tippen", serviceArea: "Einsatzgebiet", contact: "Kontakt", istanbul: "Istanbul", dusseldorf: "Düsseldorf", germany: "Deutschland", areaLine: "Istanbul • Düsseldorf" },
     days: { Monday: "Montag", Tuesday: "Dienstag", Wednesday: "Mittwoch", Thursday: "Donnerstag", Friday: "Freitag", Saturday: "Samstag", Sunday: "Sonntag" },
     closed: "Geschlossen",
@@ -301,6 +340,9 @@ export const messages: Record<Locale, Messages> = {
       artistsKicker: "Die Bank",
       artistsTitle: "Künstler",
       artistsLead: "Wer arbeitet, und welche Stile sie annehmen.",
+      legend: "Lernen Sie unsere legendären Tätowierer kennen:",
+      vasoDeed: "Vaso Vasiko tätowiert seit 2000. Er ist der führende Tätowierer für japanischen Stil in der Türkei und in Georgien. Seit den frühen 2000ern brachte er großformatiges japanisches Irezumi und Neo-Traditional in die Türkei, und diese Arbeit wurde ein Bezug für jüngere Künstler.",
+      andreiDeed: "Andrei Aivazian tätowiert seit mehr als einem Jahrzehnt. Er war die erste Person, die Realismus in Georgien eingeführt hat. In Tiflis unterrichtet er Realismus, Porträt und Schwarz-Grau, und seine Studios haben die lokale Szene zu eigenen Portfolios geführt.",
       allArtists: "Alle Künstler",
       visitTitle: "Schreiben, anrufen oder heraufkommen",
       online: "Auch online",
@@ -328,6 +370,20 @@ export const messages: Record<Locale, Messages> = {
       ok: "Das Konto ist bereit.",
       signedIn: "Sie sind als {name} angemeldet.",
       bookLink: "Weiter zur Anfrage",
+    },
+    signIn: {
+      title: "Anmelden",
+      lead: "Melden Sie sich mit der E-Mail oder dem Telefon des Kontos an. Es gibt kein Passwort. Ein einmaliger Code bestätigt, dass Sie es sind.",
+      identifier: "E-Mail oder Telefon",
+      send: "Code senden",
+      sending: "Wird gesendet…",
+      code: "Einmaliger Code",
+      confirm: "Anmelden",
+      confirming: "Prüfung…",
+      unknown: "Kein fertiges Konto nutzt diese E-Mail oder dieses Telefon.",
+      wrong: "Der Code stimmt nicht.",
+      expired: "Der Code ist abgelaufen. Bitten Sie um einen neuen.",
+      error: "Geben Sie die E-Mail oder das Telefon des Kontos ein.",
     },
     styles: {
       title: "Japanisches Tattoo in Istanbul",
@@ -398,7 +454,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   ru: {
-    nav: { artists: "Мастера", guests: "Гости", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", register: "Регистрация", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Истикляль, Стамбул", skip: "К содержанию" },
+    nav: { artists: "Мастера", guests: "Гости", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", register: "Регистрация", signIn: "Вход", signOut: "Выход", account: "Вы вошли как {name}", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Истикляль, Стамбул", skip: "К содержанию" },
     footer: { hours: "Часы", reach: "Связаться", note: "Портреты и листы на этом сайте — собственные рисунки.", google: "Google Business", portfolio: "Существующее портфолио", aftercare: "Уход", admin: "Админка", newTab: "откроется в новой вкладке", location: "Где мы", openMaps: "Открыть в Google Картах", directions: "Нажмите, чтобы построить маршрут", serviceArea: "Где работаем", contact: "Контакты", istanbul: "Стамбул", dusseldorf: "Дюссельдорф", germany: "Германия", areaLine: "Стамбул • Дюссельдорф" },
     days: { Monday: "Понедельник", Tuesday: "Вторник", Wednesday: "Среда", Thursday: "Четверг", Friday: "Пятница", Saturday: "Суббота", Sunday: "Воскресенье" },
     closed: "Закрыто",
@@ -418,6 +474,9 @@ export const messages: Record<Locale, Messages> = {
       artistsKicker: "Мастера",
       artistsTitle: "Кто работает",
       artistsLead: "Кто за станком и какие стили берёт.",
+      legend: "Познакомьтесь с нашими легендарными тату-мастерами:",
+      vasoDeed: "Vaso Vasiko татуирует с 2000 года. Он ведущий мастер японского стиля в Турции и Грузии. С начала 2000-х он принёс крупную заказную японскую и нео-традиционную работу в татуировку Турции, и эта работа стала ориентиром для младших мастеров.",
+      andreiDeed: "Andrei Aivazian татуирует больше десяти лет. Он первым принёс реализм в Грузию. В Тбилиси он учит реализму, портрету и чёрно-серому, а его студии сдвинули местную сцену к заказным портфолио.",
       allArtists: "Все мастера",
       visitTitle: "Напишите, позвоните или поднимитесь",
       online: "Ещё онлайн",
@@ -445,6 +504,20 @@ export const messages: Record<Locale, Messages> = {
       ok: "Аккаунт готов.",
       signedIn: "Вы вошли как {name}.",
       bookLink: "К записи",
+    },
+    signIn: {
+      title: "Вход",
+      lead: "Войдите по почте или телефону, которые уже есть в аккаунте. Пароля нет. Одноразовый код подтверждает, что это вы.",
+      identifier: "Почта или телефон",
+      send: "Прислать код",
+      sending: "Отправка…",
+      code: "Одноразовый код",
+      confirm: "Войти",
+      confirming: "Проверка…",
+      unknown: "Готового аккаунта с этой почтой или телефоном нет.",
+      wrong: "Код не совпадает.",
+      expired: "Срок кода истёк. Запросите новый.",
+      error: "Введите почту или телефон аккаунта.",
     },
     styles: {
       title: "Японская татуировка в Стамбуле",
@@ -515,7 +588,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   ka: {
-    nav: { artists: "ოსტატები", guests: "სტუმრები", styles: "სტილები", events: "მოვლენები", about: "სტუდიის შესახებ", faq: "კითხვები", register: "რეგისტრაცია", book: "ჩაწერა", menu: "მენიუ", close: "დახურვა", languages: "ენები", kicker: "İstiklal, Istanbul", skip: "შინაარსზე გადასვლა" },
+    nav: { artists: "ოსტატები", guests: "სტუმრები", styles: "სტილები", events: "მოვლენები", about: "სტუდიის შესახებ", faq: "კითხვები", register: "რეგისტრაცია", signIn: "შესვლა", signOut: "გამოსვლა", account: "შესული ხართ როგორც {name}", book: "ჩაწერა", menu: "მენიუ", close: "დახურვა", languages: "ენები", kicker: "İstiklal, Istanbul", skip: "შინაარსზე გადასვლა" },
     footer: { hours: "საათები", reach: "სტუდიასთან კავშირი", note: "ამ საიტის პორტრეტები და ფირფიტები ორიგინალი ილუსტრაციებია.", google: "Google Business", portfolio: "არსებული პორტფოლიო", aftercare: "მოვლა", admin: "სტუდიის ადმინი", newTab: "იხსნება ახალ ჩანართში", location: "მდებარეობა", openMaps: "Google Maps-ში გახსნა", directions: "მარშრუტისთვის დააწკაპუნეთ", serviceArea: "მომსახურების ზონა", contact: "კონტაქტი", istanbul: "სტამბოლი", dusseldorf: "დიუსელდორფი", germany: "გერმანია", areaLine: "სტამბოლი • დიუსელდორფი" },
     days: { Monday: "ორშაბათი", Tuesday: "სამშაბათი", Wednesday: "ოთხშაბათი", Thursday: "ხუთშაბათი", Friday: "პარასკევი", Saturday: "შაბათი", Sunday: "კვირა" },
     closed: "დახურულია",
@@ -535,6 +608,9 @@ export const messages: Record<Locale, Messages> = {
       artistsKicker: "სკამი",
       artistsTitle: "ოსტატები",
       artistsLead: "ვინ მუშაობს და რომელი სტილები იღებს.",
+      legend: "გაიცანით ჩვენი ლეგენდარული ტატუ-ოსტატები:",
+      vasoDeed: "Vaso Vasiko 2000 წლიდან ტატუირებს. ის თურქეთსა და საქართველოში იაპონური სტილის წამყვანი ტატუ-ოსტატია. 2000-იანი წლების დასაწყისიდან მან თურქეთის ტატუში დიდი ზომის იაპონური ირეზუმი და ნეო-ტრადიციული ნამუშევარი შემოიტანა, და ეს ნამუშევარი ახალგაზრდა ოსტატების საყრდენი გახდა.",
+      andreiDeed: "Andrei Aivazian ათწლეულზე მეტია ტატუირებს. ის იყო პირველი, ვინც საქართველოში რეალიზმი შემოიტანა. თბილისში ასწავლის რეალიზმს, პორტრეტსა და შავ-ნაცრისფერს, მისმა სტუდიებმა კი ადგილობრივი სცენა შეკვეთითი პორტფოლიოებისკენ წაიყვანა.",
       allArtists: "ყველა ოსტატი",
       visitTitle: "მოგვწერეთ, დაგვირეკეთ ან ამოდით",
       online: "ასევე ონლაინ",
@@ -562,6 +638,20 @@ export const messages: Record<Locale, Messages> = {
       ok: "ანგარიში მზადაა.",
       signedIn: "შესული ხართ როგორც {name}.",
       bookLink: "ჩაწერაზე გადასვლა",
+    },
+    signIn: {
+      title: "შესვლა",
+      lead: "შედით ანგარიშზე უკვე მითითებული ელფოსტით ან ტელეფონით. პაროლი არ არის. ერთჯერადი კოდი ადასტურებს, რომ ეს თქვენ ხართ.",
+      identifier: "ელფოსტა ან ტელეფონი",
+      send: "კოდის გაგზავნა",
+      sending: "იგზავნება…",
+      code: "ერთჯერადი კოდი",
+      confirm: "შესვლა",
+      confirming: "მოწმდება…",
+      unknown: "დასრულებული ანგარიში ამ ელფოსტით ან ტელეფონით არ არის.",
+      wrong: "კოდი არ ემთხვევა.",
+      expired: "კოდს ვადა გაუვიდა. ახალი მოითხოვეთ.",
+      error: "ჩაწერეთ ანგარიშის ელფოსტა ან ტელეფონი.",
     },
     styles: {
       title: "იაპონური ტატუ სტამბოლში",

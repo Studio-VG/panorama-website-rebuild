@@ -13,7 +13,7 @@ import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }> };
 
-const homeArtists = ["andrei-aivazian", "vaso-vasiko"];
+const homeArtists = ["vaso-vasiko", "andrei-aivazian"];
 
 function welcomeVideoSrc(settings: Settings) {
   for (const candidate of [settings.welcomeVideo, settings.vasoHomeVideo]) {
@@ -70,11 +70,12 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section className="home-lower home-artists" id="artists" aria-labelledby="artists-heading">
+        <h2 className="home-legend" id="artists-heading">{copy.home.legend}</h2>
         <div className="home-artist-grid">
-          {residents.map((artist, index) => (
+          {residents.map((artist) => (
             <article key={artist.id}>
-              <h2 id={index === 0 ? "artists-heading" : undefined}>{artist.name}</h2>
-              <p>{artist.blurb}</p>
+              <h3>{artist.name}</h3>
+              <p>{artist.slug === "vaso-vasiko" ? copy.home.vasoDeed : copy.home.andreiDeed}</p>
             </article>
           ))}
         </div>

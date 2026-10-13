@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/accounts.php';
+
 function render_public(string $lang, array $rest, string $method): void
 {
     $store = public_store();
@@ -51,6 +53,24 @@ function render_public(string $lang, array $rest, string $method): void
         }
         render_book($lang, $store, $copy);
         return;
+    }
+    if ($page === 'register' && count($rest) === 1) {
+        if ($method === 'POST') {
+            handle_register($lang);
+        }
+        render_register($lang);
+        return;
+    }
+    if ($page === 'sign-in' && count($rest) === 1) {
+        if ($method === 'POST') {
+            handle_sign_in($lang);
+        }
+        render_sign_in($lang);
+        return;
+    }
+    if ($page === 'sign-out' && count($rest) === 1) {
+        clear_client_cookie();
+        redirect('/' . $lang);
     }
     if ($page === 'faq' && count($rest) === 1) {
         render_faq($lang, $settings, $copy);
@@ -151,17 +171,26 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     foreach ($extraLd as $block) {
         echo json_ld($block);
     }
-    $canvas = ($meta['path'] ?? '') === '/' ? 'site-canvas home-entry' : 'site-canvas';
+    $metaPath = (string) ($meta['path'] ?? '');
+    $sparse = $metaPath === '/' || preg_match('#^/(artists|events|about)(/|$)#', $metaPath) === 1;
+    $canvas = $sparse ? 'site-canvas home-entry' : 'site-canvas';
     echo '</head><body><div class="' . $canvas . '">';
     echo '<!-- studio-php -->';
     echo '<a class="skip" href="#content">' . h($copy['nav']['skip']) . '</a>';
     echo site_header($lang, $settings, $copy);
     echo '<main id="content">' . $body . '</main>';
-    if (($meta['path'] ?? '') !== '/') {
+    if (!$sparse) {
         echo site_footer($lang, $studio, $copy);
     }
-    echo '<script>document.querySelector(".menu-toggle")?.addEventListener("click",()=>{const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");const open=menu.classList.toggle("open");button.setAttribute("aria-expanded",open?"true":"false");button.setAttribute("aria-label",open?' . json_encode($copy['nav']['close']) . ':' . json_encode($copy['nav']['menu']) . ');});document.getElementById("site-menu")?.addEventListener("click",(event)=>{const link=event.target.closest("a");if(!link)return;const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");menu.classList.remove("open");button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",' . json_encode($copy['nav']['menu']) . ');});</script>';
+    echo menu_script($copy);
     echo '</div></body></html>';
+}
+
+function menu_script(array $copy): string
+{
+    $open = json_encode($copy['nav']['menu'] ?? 'Menu', JSON_UNESCAPED_UNICODE);
+    $close = json_encode($copy['nav']['close'] ?? 'Close', JSON_UNESCAPED_UNICODE);
+    return '<script>(function(){const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");if(!menu||!button)return;const openLabel=' . $open . ';const closeLabel=' . $close . ';function setOpen(open){menu.classList.toggle("open",open);button.setAttribute("aria-expanded",open?"true":"false");button.setAttribute("aria-label",open?closeLabel:openLabel);if(!open){const slot=menu.querySelector(".lang-slot");if(slot){slot.classList.remove("open");slot.querySelector(".lang-toggle")?.setAttribute("aria-expanded","false");slot.querySelector(".lang-choices")?.setAttribute("hidden","");}}}button.addEventListener("click",()=>setOpen(!menu.classList.contains("open")));document.addEventListener("pointerdown",(event)=>{if(!menu.classList.contains("open"))return;const target=event.target;if(!(target instanceof Node))return;if(menu.contains(target)||button.contains(target))return;setOpen(false);});menu.addEventListener("click",(event)=>{const link=event.target.closest("a");if(link)setOpen(false);});menu.querySelector(".lang-toggle")?.addEventListener("click",()=>{const slot=menu.querySelector(".lang-slot");const toggle=menu.querySelector(".lang-toggle");const choices=slot.querySelector(".lang-choices");const open=slot.classList.toggle("open");toggle.setAttribute("aria-expanded",open?"true":"false");if(choices){if(open)choices.removeAttribute("hidden");else choices.setAttribute("hidden","");}});})();</script>';
 }
 
 function site_header(string $lang, array $settings, array $copy, bool $publicNav = true): string
@@ -169,15 +198,13 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
     $path = request_path();
     $links = [
         ["/$lang/artists", $copy['nav']['artists']],
-        ["/$lang/guests", $copy['nav']['guests'] ?? 'Guests'],
         ["/$lang/events", $copy['nav']['events']],
         ["/$lang/about", $copy['nav']['about']],
         ["/$lang/faq", $copy['nav']['faq']],
-        ["/$lang/register", $copy['nav']['register'] ?? 'Register'],
     ];
-    $home = $publicNav && request_path() === '/' . $lang;
-    $html = '<header class="site-header' . ($home ? ' home-float' : '') . '"><div class="shell header-inner">';
-    if ($home) {
+    $sparse = $publicNav && preg_match('#^/' . $lang . '(?:/(?:artists|events|about)(?:/.*)?)?$#', $path) === 1;
+    $html = '<header class="site-header' . ($sparse ? ' home-float' : '') . '"><div class="shell header-inner">';
+    if ($sparse) {
         $html .= '<div class="brand"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
         $html .= '<h1 class="brand-name">' . h($settings['name']) . '</h1></div>';
     } else {
@@ -190,11 +217,23 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
         foreach ($links as [$href, $label]) {
             $html .= '<li><a href="' . h($href) . '">' . h($label) . '</a></li>';
         }
-        $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li><li>';
-        $html .= '<nav class="langs" aria-label="' . h($copy['nav']['languages']) . '">';
+        $account = client_account();
+        if ($account) {
+            $line = str_replace('{name}', (string) ($account['name'] ?? ''), (string) ($copy['nav']['account'] ?? 'Signed in as {name}'));
+            $html .= '<li class="menu-account">' . h($line) . '</li>';
+            $html .= '<li><a class="btn" href="/' . h($lang) . '/sign-out">' . h($copy['nav']['signOut'] ?? 'Sign out') . '</a></li>';
+        } else {
+            $html .= '<li><a class="btn" href="/' . h($lang) . '/register">' . h($copy['nav']['register'] ?? 'Register') . '</a></li>';
+            $html .= '<li><a class="btn" href="/' . h($lang) . '/sign-in">' . h($copy['nav']['signIn'] ?? 'Sign in') . '</a></li>';
+        }
+        $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li>';
+        $html .= '<li class="lang-slot"><button class="lang-toggle" type="button" aria-expanded="false" aria-controls="lang-choices">' . h(strtoupper($lang)) . '</button>';
+        $html .= '<nav id="lang-choices" class="lang-choices" aria-label="' . h($copy['nav']['languages']) . '" hidden>';
         foreach (locales() as $code) {
-            $current = $code === $lang ? ' aria-current="page"' : '';
-            $html .= '<a href="' . h(switch_locale($path, $code)) . '" hrefLang="' . h($code) . '" lang="' . h($code) . '"' . $current . '>' . h(strtoupper($code)) . '</a>';
+            if ($code === $lang) {
+                continue;
+            }
+            $html .= '<a href="' . h(switch_locale($path, $code)) . '" hrefLang="' . h($code) . '" lang="' . h($code) . '">' . h(strtoupper($code)) . '</a>';
         }
         $html .= '</nav></li></ul>';
     }
@@ -341,7 +380,8 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     }
     $body .= '<a class="scroll-cue" href="#artists" aria-label="' . h($copy['home']['artistsTitle']) . '"><span></span></a></section>';
 
-    $order = ['andrei-aivazian' => 0, 'vaso-vasiko' => 1];
+    $order = ['vaso-vasiko' => 0, 'andrei-aivazian' => 1];
+    $deeds = ['vaso-vasiko' => $copy['home']['vasoDeed'] ?? '', 'andrei-aivazian' => $copy['home']['andreiDeed'] ?? ''];
     $residents = [];
     foreach ($store['artists'] as $artist) {
         if (($artist['role'] ?? 'resident') === 'guest' || !isset($order[$artist['slug']])) {
@@ -351,11 +391,12 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
     }
     usort($residents, static fn (array $a, array $b): int => $order[$a['slug']] <=> $order[$b['slug']]);
 
-    $body .= '<section class="home-lower home-artists" id="artists" aria-labelledby="artists-heading"><div class="home-artist-grid">';
-    foreach ($residents as $index => $artist) {
+    $body .= '<section class="home-lower home-artists" id="artists" aria-labelledby="artists-heading">';
+    $body .= '<h2 class="home-legend" id="artists-heading">' . h($copy['home']['legend'] ?? 'Meet our legendary tattoo artists:') . '</h2><div class="home-artist-grid">';
+    foreach ($residents as $artist) {
         $view = localize_artist($artist, $lang);
-        $heading = $index === 0 ? ' id="artists-heading"' : '';
-        $body .= '<article><h2' . $heading . '>' . h($view['name']) . '</h2><p>' . h($view['blurb']) . '</p></article>';
+        $text = $deeds[$artist['slug']] !== '' ? $deeds[$artist['slug']] : $view['blurb'];
+        $body .= '<article><h3>' . h($view['name']) . '</h3><p>' . h($text) . '</p></article>';
     }
     $body .= '</div><p class="home-book"><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></p>';
     $body .= '<div class="home-facts"><div><h2>' . h($copy['footer']['location']) . '</h2><p>';
@@ -390,20 +431,36 @@ function render_home(string $lang, array $store, array $studio, array $copy): vo
 
 function render_artists(string $lang, array $store, array $copy): void
 {
-    $body = '<section class="section paper"><div class="shell"><p class="kicker">' . h($store['settings']['name']) . '</p>';
-    $body .= '<h1>' . h($copy['artistsPage']['title']) . '</h1><p class="muted">' . h($copy['artistsPage']['lead']) . '</p><div class="artist-grid">';
+    $rank = static function (array $artist): int {
+        return match ($artist['slug'] ?? '') {
+            'vaso-vasiko' => 0,
+            'andrei-aivazian' => 1,
+            default => 2,
+        };
+    };
+    $residents = [];
+    $guests = [];
     foreach ($store['artists'] as $artist) {
         if (($artist['role'] ?? 'resident') === 'guest') {
-            continue;
+            $guests[] = $artist;
+        } else {
+            $residents[] = $artist;
         }
-        $view = localize_artist($artist, $lang);
-        $body .= '<a class="artist-card" href="/' . h($lang) . '/artists/' . h($artist['slug']) . '"><div class="frame portrait-frame"><img src="' . h($view['photo']) . '" alt="' . h($view['photoAlt']) . '"></div><div class="card-body"><h2>' . h($view['name']) . '</h2><p>' . h($view['blurb']) . '</p><ul class="tags">';
-        foreach ($view['styles'] as $style) {
-            $body .= '<li>' . h($style) . '</li>';
-        }
-        $body .= '</ul></div></a>';
     }
-    $body .= '</div></div></section>';
+    usort($residents, static fn (array $a, array $b): int => $rank($a) <=> $rank($b));
+    $deeds = ['vaso-vasiko' => $copy['home']['vasoDeed'] ?? '', 'andrei-aivazian' => $copy['home']['andreiDeed'] ?? ''];
+    $body = '<section class="home-lower home-artists"><h1 class="home-legend">' . h($copy['artistsPage']['title']) . '</h1><div class="home-artist-grid">';
+    foreach ($residents as $artist) {
+        $view = localize_artist($artist, $lang);
+        $text = ($deeds[$artist['slug']] ?? '') !== '' ? $deeds[$artist['slug']] : $view['blurb'];
+        $body .= '<article><h2><a href="/' . h($lang) . '/artists/' . h($artist['slug']) . '">' . h($view['name']) . '</a></h2><p>' . h($text) . '</p></article>';
+    }
+    $body .= '</div><section class="home-guests" id="guests" aria-labelledby="guests-heading"><h2 class="home-legend" id="guests-heading">' . h($copy['nav']['guests'] ?? 'Guests') . '</h2><div class="home-artist-grid">';
+    foreach ($guests as $artist) {
+        $view = localize_artist($artist, $lang);
+        $body .= '<article><h3><a href="/' . h($lang) . '/guests/' . h($artist['slug']) . '">' . h($view['name']) . '</a></h3><p>' . h($view['blurb']) . '</p></article>';
+    }
+    $body .= '</div></section></section>';
     layout($lang, [
         'path' => '/artists',
         'title' => $copy['seo']['artistsTitle'],
@@ -414,31 +471,8 @@ function render_artists(string $lang, array $store, array $copy): void
 
 function render_guests(string $lang, array $store, array $copy): void
 {
-    $body = '<section class="section"><div class="shell"><p class="eyebrow">' . h($copy['nav']['kicker']) . '</p><h1>' . h($copy['nav']['guests'] ?? 'Guests') . '</h1>';
-    $lead = $copy['salon']['guestList'] ?? 'Guest pages stay on this site. They do not list a phone, an email, or a social account.';
-    $portal = [
-        'en' => ' The sign-in portal is part of the Next.js site.',
-        'tr' => ' Giriş portalı Next.js sitesindedir.',
-        'de' => ' Das Anmeldeportal liegt auf der Next.js-Seite.',
-        'ru' => ' Портал входа находится на сайте Next.js.',
-        'ka' => ' შესვლის პორტალი Next.js-ის საიტზეა.',
-    ][$lang] ?? ' The sign-in portal is part of the Next.js site.';
-    $body .= '<p class="lede">' . h($lead . $portal) . '</p><div class="artist-grid">';
-    foreach ($store['artists'] as $artist) {
-        if (($artist['role'] ?? '') !== 'guest') {
-            continue;
-        }
-        $view = localize_artist($artist, $lang);
-        $body .= '<a class="artist-card" href="/' . h($lang) . '/guests/' . h($artist['slug']) . '">';
-        $body .= '<div class="frame portrait-frame"><img src="' . h($view['photo']) . '" alt="' . h($view['photoAlt']) . '"></div>';
-        $body .= '<div class="card-body"><h3>' . h($view['name']) . '</h3><p>' . h($view['blurb']) . '</p></div></a>';
-    }
-    $body .= '</div></div></section>';
-    layout($lang, [
-        'path' => '/guests',
-        'title' => $copy['nav']['guests'] ?? 'Guests',
-        'description' => $copy['salon']['guestListMeta'] ?? 'Guest tattoo artists at VasoAndrei.',
-    ], $body);
+    unset($store, $copy);
+    redirect('/' . $lang . '/artists#guests');
 }
 
 function render_guest(string $lang, array $store, array $copy, string $slug): void
@@ -542,8 +576,8 @@ function render_events(string $lang, array $store, array $copy): void
 {
     $events = array_map(static fn (array $event): array => localize_event($event, $lang), $store['events']);
     usort($events, static fn (array $a, array $b): int => strcmp($b['startDate'], $a['startDate']));
-    $body = '<section class="section"><div class="shell"><p class="eyebrow">' . h($store['settings']['name']) . '</p>';
-    $body .= '<h1>' . h($copy['eventsPage']['title']) . '</h1><p>' . h($copy['eventsPage']['lead']) . '</p><div class="event-list">';
+    $body = '<section class="home-lower"><div class="shell">';
+    $body .= '<h1 class="home-legend">' . h($copy['eventsPage']['title']) . '</h1><p class="home-lead">' . h($copy['eventsPage']['lead']) . '</p><div class="event-list">';
     foreach ($events as $event) {
         $body .= event_card($event, $lang, $copy['status']);
     }
@@ -629,7 +663,7 @@ function render_event(string $lang, array $store, array $copy, string $slug): vo
 function render_about(string $lang, array $store, array $studio, array $copy): void
 {
     $settings = $store['settings'];
-    $body = '<section class="section about-page"><div class="shell"><p class="kicker">' . h($settings['name']) . '</p><h1>' . h($copy['about']['title']) . '</h1><div class="split"><div>';
+    $body = '<section class="home-lower about-page"><div class="shell"><h1 class="home-legend">' . h($copy['about']['title']) . '</h1><div class="split"><div>';
     $body .= paragraphs($copy['about']['story'] ?? '');
     if (!empty($settings['officialName'])) {
         $body .= '<p class="note">' . h($copy['about']['publicName']) . ': ' . h($settings['officialName']) . '. ' . h($studio['officialNameNote']) . '</p>';
@@ -676,7 +710,14 @@ function render_book(string $lang, array $store, array $copy): void
     $body = '<section class="section"><div class="shell split"><div><p class="kicker">' . h($settings['name']) . '</p>';
     $body .= '<h1>' . h($copy['book']['title']) . '</h1><p>' . h($copy['book']['lead']) . '</p><p>' . h(istanbul_street($settings, studio_locations($store))) . '</p>';
     $body .= '<p><a href="mailto:' . h($settings['email']) . '">' . h($settings['email']) . '</a> · <a href="' . h($settings['whatsappUrl']) . '">' . h($copy['about']['whatsapp']) . '</a></p></div>';
-    $body .= '<div class="book-form">' . inquiry_form($store['artists'], $copy['form'], $artist) . '</div></div></section>';
+    $client = client_account();
+    if ($client) {
+        $body .= '<div class="book-form">' . inquiry_form($store['artists'], $copy['form'], $artist) . '</div>';
+    } else {
+        $need = account_copy($lang)['need'];
+        $body .= '<div class="book-form"><p>' . h($need) . '</p><p><a class="btn" href="/' . h($lang) . '/register?next=/' . h($lang) . '/book">' . h($copy['nav']['register'] ?? 'Register') . '</a> <a class="btn" href="/' . h($lang) . '/sign-in?next=/' . h($lang) . '/book">' . h($copy['nav']['signIn'] ?? 'Sign in') . '</a></p></div>';
+    }
+    $body .= '</div></section>';
     layout($lang, [
         'path' => '/book',
         'title' => $copy['seo']['bookTitle'],
