@@ -731,7 +731,18 @@ html[lang="ka"] {
   min-height: 100vh;
   background: #000;
 }
-.home-entry .welcome-top.has-video::before { content: none; }
+.home-entry .welcome-video {
+  filter: blur(20px);
+  transform: scale(1.12);
+}
+.home-entry .welcome-top.has-video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  pointer-events: none;
+}
 .scroll-cue {
   position: absolute;
   left: 50%;
