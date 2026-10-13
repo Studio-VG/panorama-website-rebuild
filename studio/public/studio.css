@@ -675,7 +675,8 @@ html[lang="ka"] {
   height: 100%;
 }
 .site-header.home-float .brand {
-  pointer-events: auto;
+  pointer-events: none;
+  cursor: default;
   position: absolute;
   left: 50%;
   top: 46%;

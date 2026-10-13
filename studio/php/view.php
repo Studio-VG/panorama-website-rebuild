@@ -177,10 +177,11 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
     ];
     $home = $publicNav && request_path() === '/' . $lang;
     $html = '<header class="site-header' . ($home ? ' home-float' : '') . '"><div class="shell header-inner">';
-    $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
     if ($home) {
-        $html .= '<h1 class="brand-name">' . h($settings['name']) . '</h1><small>' . h($copy['nav']['kicker']) . '</small></a>';
+        $html .= '<div class="brand"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
+        $html .= '<h1 class="brand-name">' . h($settings['name']) . '</h1></div>';
     } else {
+        $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
         $html .= '<span><span class="brand-name">' . h($settings['name']) . '</span><small>' . h($copy['nav']['kicker']) . '</small></span></a>';
     }
     if ($publicNav) {

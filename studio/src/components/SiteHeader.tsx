@@ -34,20 +34,20 @@ export function SiteHeader({
   return (
     <header className={home ? "site-header home-float" : "site-header"}>
       <div className="shell header-inner">
-        <Link href={onAdmin ? "/en" : `/${lang}`} className="brand" onClick={() => setOpen(false)}>
-          <img src={logo || "/brand/logo.png"} alt="" />
-          {home ? (
-            <>
-              <h1 className="brand-name">{name}</h1>
-              <small>{labels.kicker}</small>
-            </>
-          ) : (
+        {home ? (
+          <div className="brand">
+            <img src={logo || "/brand/logo.png"} alt="" />
+            <h1 className="brand-name">{name}</h1>
+          </div>
+        ) : (
+          <Link href={onAdmin ? "/en" : `/${lang}`} className="brand" onClick={() => setOpen(false)}>
+            <img src={logo || "/brand/logo.png"} alt="" />
             <span>
               <span className="brand-name">{name}</span>
               <small>{labels.kicker}</small>
             </span>
-          )}
-        </Link>
+          </Link>
+        )}
         {onAdmin ? null : (
           <>
             <button className="menu-toggle" type="button" aria-expanded={open} aria-controls="site-menu" aria-label={open ? labels.close : labels.menu} onClick={() => setOpen((value) => !value)}>
