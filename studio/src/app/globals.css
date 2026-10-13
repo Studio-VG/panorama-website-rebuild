@@ -731,10 +731,6 @@ html[lang="ka"] {
   min-height: 100vh;
   background: #000;
 }
-.home-entry .welcome-video {
-  filter: blur(7px);
-  transform: scale(1.12);
-}
 .home-entry .welcome-top.has-video::before {
   content: "";
   position: absolute;
