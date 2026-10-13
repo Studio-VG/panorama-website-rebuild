@@ -172,14 +172,14 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
         echo json_ld($block);
     }
     $metaPath = (string) ($meta['path'] ?? '');
-    $sparse = $metaPath === '/' || preg_match('#^/(artists|events|about)(/|$)#', $metaPath) === 1;
-    $canvas = $sparse ? 'site-canvas home-entry' : 'site-canvas';
+    $dark = $metaPath === '/' || preg_match('#^/(artists|events|about|register|sign-in)(/|$)#', $metaPath) === 1;
+    $canvas = $dark ? 'site-canvas home-entry' : 'site-canvas';
     echo '</head><body><div class="' . $canvas . '">';
     echo '<!-- studio-php -->';
     echo '<a class="skip" href="#content">' . h($copy['nav']['skip']) . '</a>';
     echo site_header($lang, $settings, $copy);
     echo '<main id="content">' . $body . '</main>';
-    if (!$sparse) {
+    if (!$dark) {
         echo site_footer($lang, $studio, $copy);
     }
     echo menu_script($copy);
@@ -190,7 +190,7 @@ function menu_script(array $copy): string
 {
     $open = json_encode($copy['nav']['menu'] ?? 'Menu', JSON_UNESCAPED_UNICODE);
     $close = json_encode($copy['nav']['close'] ?? 'Close', JSON_UNESCAPED_UNICODE);
-    return '<script>(function(){const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");if(!menu||!button)return;const openLabel=' . $open . ';const closeLabel=' . $close . ';function setOpen(open){menu.classList.toggle("open",open);button.setAttribute("aria-expanded",open?"true":"false");button.setAttribute("aria-label",open?closeLabel:openLabel);if(!open){const slot=menu.querySelector(".lang-slot");if(slot){slot.classList.remove("open");slot.querySelector(".lang-toggle")?.setAttribute("aria-expanded","false");slot.querySelector(".lang-choices")?.setAttribute("hidden","");}}}button.addEventListener("click",()=>setOpen(!menu.classList.contains("open")));document.addEventListener("pointerdown",(event)=>{if(!menu.classList.contains("open"))return;const target=event.target;if(!(target instanceof Node))return;if(menu.contains(target)||button.contains(target))return;setOpen(false);});menu.addEventListener("click",(event)=>{const link=event.target.closest("a");if(link)setOpen(false);});menu.querySelector(".lang-toggle")?.addEventListener("click",()=>{const slot=menu.querySelector(".lang-slot");const toggle=menu.querySelector(".lang-toggle");const choices=slot.querySelector(".lang-choices");const open=slot.classList.toggle("open");toggle.setAttribute("aria-expanded",open?"true":"false");if(choices){if(open)choices.removeAttribute("hidden");else choices.setAttribute("hidden","");}});})();</script>';
+    return '<script>(function(){const menu=document.getElementById("site-menu");const button=document.querySelector(".menu-toggle");if(!menu||!button)return;const openLabel=' . $open . ';const closeLabel=' . $close . ';function setOpen(open){menu.classList.toggle("open",open);button.setAttribute("aria-expanded",open?"true":"false");button.setAttribute("aria-label",open?closeLabel:openLabel);}button.addEventListener("click",()=>setOpen(!menu.classList.contains("open")));document.addEventListener("pointerdown",(event)=>{if(!menu.classList.contains("open"))return;const target=event.target;if(!(target instanceof Node))return;if(menu.contains(target)||button.contains(target))return;setOpen(false);});menu.addEventListener("click",(event)=>{const link=event.target.closest("a");if(link)setOpen(false);});})();</script>';
 }
 
 function site_header(string $lang, array $settings, array $copy, bool $publicNav = true): string
@@ -202,12 +202,13 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
         ["/$lang/about", $copy['nav']['about']],
         ["/$lang/faq", $copy['nav']['faq']],
     ];
-    $sparse = $publicNav && preg_match('#^/' . $lang . '(?:/(?:artists|events|about)(?:/.*)?)?$#', $path) === 1;
-    $html = '<header class="site-header' . ($sparse ? ' home-float' : '') . '"><div class="shell header-inner">';
-    if ($sparse) {
+    $videoHome = $publicNav && $path === '/' . $lang;
+    $plain = $publicNav && preg_match('#^/' . $lang . '/(?:artists|events|about|register|sign-in)(?:/.*)?$#', $path) === 1;
+    $html = '<header class="site-header' . ($videoHome ? ' home-float' : ($plain ? ' menu-corner' : '')) . '"><div class="shell header-inner">';
+    if ($videoHome) {
         $html .= '<div class="brand"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
         $html .= '<h1 class="brand-name">' . h($settings['name']) . '</h1></div>';
-    } else {
+    } elseif (!$plain) {
         $html .= '<a class="brand" href="/' . h($lang) . '"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
         $html .= '<span><span class="brand-name">' . h($settings['name']) . '</span><small>' . h($copy['nav']['kicker']) . '</small></span></a>';
     }
@@ -227,13 +228,10 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
             $html .= '<li><a class="btn" href="/' . h($lang) . '/sign-in">' . h($copy['nav']['signIn'] ?? 'Sign in') . '</a></li>';
         }
         $html .= '<li><a class="btn" href="/' . h($lang) . '/book">' . h($copy['nav']['book']) . '</a></li>';
-        $html .= '<li class="lang-slot"><button class="lang-toggle" type="button" aria-expanded="false" aria-controls="lang-choices">' . h(strtoupper($lang)) . '</button>';
-        $html .= '<nav id="lang-choices" class="lang-choices" aria-label="' . h($copy['nav']['languages']) . '" hidden>';
+        $html .= '<li><nav class="langs" aria-label="' . h($copy['nav']['languages']) . '">';
         foreach (locales() as $code) {
-            if ($code === $lang) {
-                continue;
-            }
-            $html .= '<a href="' . h(switch_locale($path, $code)) . '" hrefLang="' . h($code) . '" lang="' . h($code) . '">' . h(strtoupper($code)) . '</a>';
+            $current = $code === $lang ? ' aria-current="page"' : '';
+            $html .= '<a href="' . h(switch_locale($path, $code)) . '" hrefLang="' . h($code) . '" lang="' . h($code) . '"' . $current . '>' . h(strtoupper($code)) . '</a>';
         }
         $html .= '</nav></li></ul>';
     }

@@ -32,11 +32,10 @@ export default async function RegisterPage({ params, searchParams }: Props) {
   const client = clientFromToken(token, getStore().clients || []);
   const delivery = codeDelivery();
   return (
-    <section className="section">
+    <section className="home-lower">
       <div className="shell split">
         <div>
-          <p className="kicker">{copy.nav.kicker}</p>
-          <h1>{copy.register.title}</h1>
+          <h1 className="home-legend">{copy.register.title}</h1>
           <p>{copy.register.lead}</p>
           <p>{delivery.email || delivery.sms ? copy.register.sent : copy.register.delivery}</p>
         </div>

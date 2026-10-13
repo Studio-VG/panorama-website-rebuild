@@ -173,7 +173,7 @@ function account_error(string $lang, string $page, string $code, string $next = 
 
 function render_account_page(string $lang, string $path, string $title, string $lead, string $form): void
 {
-    $body = '<section class="section"><div class="shell" style="max-width:640px"><h1>' . h($title) . '</h1><p>' . h($lead) . '</p>' . $form . '</div></section>';
+    $body = '<section class="home-lower"><div class="shell" style="max-width:640px"><h1 class="home-legend">' . h($title) . '</h1><p>' . h($lead) . '</p>' . $form . '</div></section>';
     layout($lang, [
         'path' => $path,
         'title' => $title,

@@ -30,9 +30,9 @@ export default async function SignInPage({ params, searchParams }: Props) {
   const token = (await cookies()).get(CLIENT_COOKIE)?.value;
   const client = clientFromToken(token, getStore().clients || []);
   return (
-    <section className="section">
+    <section className="home-lower">
       <div className="shell" style={{ maxWidth: 640 }}>
-        <h1>{copy.signIn.title}</h1>
+        <h1 className="home-legend">{copy.signIn.title}</h1>
         <p>{copy.signIn.lead}</p>
         <SignInForm labels={copy.signIn} nextPath={nextPath(query.next, lang)} signedInName={client?.name} />
       </div>
