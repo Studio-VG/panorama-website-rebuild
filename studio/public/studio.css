@@ -652,3 +652,186 @@ html[lang="ka"] {
 .chat-log article { border-left: 3px solid var(--gold); padding: 0.4rem 0.8rem; background: rgba(20, 17, 14, 0.45); }
 .chat-log article.mine { border-left-color: var(--vermillion); }
 .thread-list { display: grid; gap: 0.6rem; }
+
+.home-entry { background: #000; color: #fff; }
+.home-entry.site-canvas::before,
+.home-entry.site-canvas::after { content: none; }
+.site-header.home-float {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 10;
+  background: none;
+  border: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  pointer-events: none;
+}
+.site-header.home-float .header-inner {
+  position: static;
+  min-height: 0;
+  height: 100%;
+}
+.site-header.home-float .brand {
+  pointer-events: auto;
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.7rem;
+  background: none;
+}
+.site-header.home-float .brand img {
+  height: 104px;
+  width: 104px;
+}
+.site-header.home-float .brand-name,
+.site-header.home-float h1.brand-name {
+  margin: 0;
+  font-size: clamp(2.5rem, 6.2vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: #fff;
+}
+.site-header.home-float .brand small {
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.32em;
+  font-size: 0.68rem;
+  margin-top: 0.15rem;
+}
+.site-header.home-float .menu-toggle {
+  pointer-events: auto;
+  position: fixed;
+  top: 1.25rem;
+  right: 1.35rem;
+  z-index: 12;
+  border: 0;
+  background: transparent;
+}
+.site-header.home-float .menu-lines { width: 22px; gap: 5px; }
+.site-header.home-float .menu-lines i { width: 22px; height: 1.5px; background: #fff; }
+.site-header.home-float .nav-links {
+  pointer-events: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 11;
+}
+.home-entry .welcome-top,
+.entry-screen {
+  height: 100vh;
+  min-height: 100vh;
+  background: #000;
+}
+.home-entry .welcome-top.has-video::before { content: none; }
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 4;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  text-decoration: none;
+}
+.scroll-cue span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 8px auto 0;
+  border-right: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: rotate(45deg);
+}
+.home-lower {
+  background: #000;
+  color: #fff;
+  padding: 8rem 0 7rem;
+}
+.home-artist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem 6.5rem;
+  width: min(980px, calc(100% - 4.5rem));
+  margin: 0 auto;
+}
+.home-artist-grid h2 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 1.35rem;
+}
+.home-artist-grid p {
+  margin: 0;
+  max-width: 28rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+.home-book {
+  display: flex;
+  justify-content: center;
+  margin: 4.75rem 0 0;
+}
+.home-book .btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  min-width: 220px;
+  padding: 0.95rem 2.2rem;
+}
+.home-book .btn:hover { background: #fff; color: #000; }
+.home-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3.5rem 4rem;
+  width: min(980px, calc(100% - 4.5rem));
+  margin: 7.5rem auto 0;
+}
+.home-facts h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin: 0 0 1.15rem;
+}
+.home-facts p,
+.home-facts li,
+.home-facts a {
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.home-facts a { text-decoration: none; }
+.home-facts a:hover { color: #fff; }
+.home-facts p { margin: 0 0 0.35rem; }
+.home-facts ul { list-style: none; margin: 0; padding: 0; }
+.home-facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.home-social { display: flex; gap: 1.25rem; margin-top: 0.85rem; }
+@media (max-width: 800px) {
+  .home-artist-grid,
+  .home-facts { grid-template-columns: 1fr; gap: 3rem; }
+  .site-header.home-float .brand-name,
+  .site-header.home-float h1.brand-name { letter-spacing: 0.08em; font-size: clamp(2rem, 9vw, 3rem); }
+}

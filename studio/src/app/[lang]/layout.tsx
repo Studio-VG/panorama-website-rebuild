@@ -22,15 +22,16 @@ export default async function LangLayout({
   const { settings, locations } = getStore();
   const view = localizeSettings(settings, lang);
   const path = (await headers()).get("x-pathname") || "";
+  const home = path === `/${lang}`;
   const quiet = /\/guests\//.test(path);
   const shown = quiet ? { ...view, phone: "", phoneAlt: "", email: "", instagramUrl: "", facebookUrl: "", whatsappUrl: "", websiteUrl: "", portfolioUrl: "" } : view;
 
   return (
-    <div className="site-canvas">
+    <div className={home ? "site-canvas home-entry" : "site-canvas"}>
       <a className="skip" href="#content">{copy.nav.skip}</a>
       <SiteHeader name={settings.name} logo={settings.logoUrl} lang={lang} labels={copy.nav} />
       <main id="content">{children}</main>
-      <SiteFooter settings={shown} locations={locations} lang={lang} labels={copy.footer} quiet={quiet} />
+      {home ? null : <SiteFooter settings={shown} locations={locations} lang={lang} labels={copy.footer} quiet={quiet} />}
       {quiet ? null : <JsonLd data={await businessJsonLd({ ...settings, tagline: view.tagline }, locations, lang, copy.home.facts)} />}
     </div>
   );

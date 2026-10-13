@@ -20,6 +20,7 @@ export function SiteHeader({
   const [open, setOpen] = useState(false);
   const pathname = usePathname() || `/${lang}`;
   const onAdmin = pathname.startsWith("/admin");
+  const home = !onAdmin && /^\/(en|tr|de|ru|ka)$/.test(pathname);
   useEffect(() => { setOpen(false); }, [pathname]);
   const links = [
     [`/${lang}/artists`, labels.artists],
@@ -31,14 +32,21 @@ export function SiteHeader({
   ];
 
   return (
-    <header className="site-header">
+    <header className={home ? "site-header home-float" : "site-header"}>
       <div className="shell header-inner">
         <Link href={onAdmin ? "/en" : `/${lang}`} className="brand" onClick={() => setOpen(false)}>
           <img src={logo || "/brand/logo.png"} alt="" />
-          <span>
-            <span className="brand-name">{name}</span>
-            <small>{labels.kicker}</small>
-          </span>
+          {home ? (
+            <>
+              <h1 className="brand-name">{name}</h1>
+              <small>{labels.kicker}</small>
+            </>
+          ) : (
+            <span>
+              <span className="brand-name">{name}</span>
+              <small>{labels.kicker}</small>
+            </span>
+          )}
         </Link>
         {onAdmin ? null : (
           <>

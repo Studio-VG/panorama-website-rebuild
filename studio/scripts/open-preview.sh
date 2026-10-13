@@ -91,7 +91,7 @@ body_is_php() {
   local url="$1"
   local body
   body="$(curl -fsS --connect-timeout 5 --max-time 20 "$url" 2>/dev/null || true)"
-  [[ "$body" == *"<!-- studio-php -->"* && "$body" == *"Planning to get a tattoo?"* && "$body" == *"home-artists"* ]]
+  [[ "$body" == *"<!-- studio-php -->"* && "$body" == *"home-entry"* && "$body" == *"home-artists"* ]]
 }
 
 preview_ok() {

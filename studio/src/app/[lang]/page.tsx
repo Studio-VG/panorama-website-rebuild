@@ -4,16 +4,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Settings } from "@/lib/types";
-import { EventCard } from "@/components/EventCard";
-import { StudioImage } from "@/components/StudioImage";
-import { localizeArtist, localizeEvent } from "@/lib/content";
-import { eventStatus } from "@/lib/format";
+import { localizeArtist } from "@/lib/content";
+import { telHref } from "@/lib/format";
 import { isLocale } from "@/lib/locale";
 import { messages } from "@/lib/messages";
 import { pageMetadata } from "@/lib/seo";
 import { getStore, isGuest, publicArtist } from "@/lib/store";
 
 type Props = { params: Promise<{ lang: string }> };
+
+const homeArtists = ["andrei-aivazian", "vaso-vasiko"];
 
 function welcomeVideoSrc(settings: Settings) {
   for (const candidate of [settings.welcomeVideo, settings.vasoHomeVideo]) {
@@ -52,128 +52,64 @@ export default async function HomePage({ params }: Props) {
   const store = getStore();
   const settings = store.settings;
   const welcomeVideo = welcomeVideoSrc(settings);
-  const residents = store.artists.filter((artist) => !isGuest(artist)).map((artist) => localizeArtist(publicArtist(artist), lang));
-  const guests = store.artists.filter(isGuest).map((artist) => localizeArtist(publicArtist(artist), lang));
-  const featured = store.events
-    .map((event) => localizeEvent(event, lang))
-    .filter((event) => event.featured)
-    .sort((a, b) => {
-      const rank = (status: string) => (status === "Now" ? 0 : status === "Upcoming" ? 1 : 2);
-      return rank(eventStatus(a)) - rank(eventStatus(b)) || b.startDate.localeCompare(a.startDate);
-    });
+  const residents = store.artists
+    .filter((artist) => !isGuest(artist) && homeArtists.includes(artist.slug))
+    .map((artist) => localizeArtist(publicArtist(artist), lang))
+    .sort((a, b) => homeArtists.indexOf(a.slug) - homeArtists.indexOf(b.slug));
 
   return (
     <>
       {welcomeVideo ? (
         <link rel="preload" as="video" href={welcomeVideo} fetchPriority="high" />
       ) : null}
-      <section className={welcomeVideo ? "welcome-top has-video" : "welcome-top"}>
+      <section className={welcomeVideo ? "welcome-top entry-screen has-video" : "welcome-top entry-screen"}>
         {welcomeVideo ? (
           <video className="welcome-video" src={welcomeVideo} muted loop playsInline autoPlay preload="auto" aria-hidden="true" />
         ) : null}
-        <div className="shell hero">
-          <p className="eyebrow">{copy.nav.kicker}</p>
-          <h1>{copy.home.heroTitle}</h1>
-          <p className="lede">{copy.home.permanence}</p>
-          <p className="hero-meet">{copy.home.meet}</p>
-          <p>{copy.home.short}</p>
-          <div className="actions">
-            <Link className="btn" href={`/${lang}/about`}>{copy.home.readMore}</Link>
-            <Link className="btn btn-ghost" href={`/${lang}/book`}>{copy.nav.book}</Link>
-          </div>
-        </div>
+        <a className="scroll-cue" href="#artists" aria-label={copy.home.artistsTitle}><span /></a>
       </section>
 
-      <section className="section paper home-artists" aria-labelledby="artists-heading">
-        <div className="shell">
-          <div className="section-head">
-            <div>
-              <p className="kicker">{copy.home.artistsKicker}</p>
-              <h2 id="artists-heading">{copy.home.artistsTitle}</h2>
-              <p>{copy.home.artistsLead}</p>
-            </div>
-          </div>
-          <div className="artist-grid">
-            {residents.map((artist) => (
-              <Link className="artist-card" href={`/${lang}/artists/${artist.slug}`} key={artist.id}>
-                <div className="frame portrait-frame">
-                  <StudioImage src={artist.photo} alt={artist.photoAlt} sizes="(max-width: 860px) 100vw, 340px" />
-                </div>
-                <div className="card-body">
-                  <h3>{artist.name}</h3>
-                  <p>{artist.blurb}</p>
-                  <ul className="tags">{artist.styles.map((style) => <li key={style}>{style}</li>)}</ul>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="artists-more">
-            <Link className="btn btn-ink" href={`/${lang}/artists`}>{copy.home.allArtists}</Link>
-          </div>
+      <section className="home-lower home-artists" id="artists" aria-labelledby="artists-heading">
+        <div className="home-artist-grid">
+          {residents.map((artist, index) => (
+            <article key={artist.id}>
+              <h2 id={index === 0 ? "artists-heading" : undefined}>{artist.name}</h2>
+              <p>{artist.blurb}</p>
+            </article>
+          ))}
         </div>
-      </section>
-
-      {guests.length ? (
-        <section className="section paper" aria-labelledby="guests-heading">
-          <div className="shell">
-            <div className="section-head">
-              <div>
-                <p className="kicker">{copy.nav.guests}</p>
-                <h2 id="guests-heading">{copy.nav.guests}</h2>
-                <p>{copy.salon.guestLead}</p>
-              </div>
-            </div>
-            <div className="artist-grid">
-              {guests.map((artist) => (
-                <Link className="artist-card" href={`/${lang}/guests/${artist.slug}`} key={artist.id}>
-                  <div className="frame portrait-frame">
-                    <StudioImage src={artist.photo} alt={artist.photoAlt} sizes="(max-width: 860px) 100vw, 340px" />
-                  </div>
-                  <div className="card-body">
-                    <h3>{artist.name}</h3>
-                    <p>{artist.blurb}</p>
-                  </div>
-                </Link>
+        <p className="home-book">
+          <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>
+        </p>
+        <div className="home-facts">
+          <div>
+            <h2>{copy.footer.location}</h2>
+            <p>
+              {settings.googleBusinessUrl ? (
+                <a href={settings.googleBusinessUrl}>{settings.address}</a>
+              ) : settings.address}
+            </p>
+          </div>
+          <div>
+            <h2>{copy.footer.contact}</h2>
+            <p><a href={telHref(settings.phone)}>{settings.phone}</a></p>
+            {settings.phoneAlt ? <p><a href={telHref(settings.phoneAlt)}>{settings.phoneAlt}</a></p> : null}
+            <p><a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+            <p className="home-social">
+              <a href={settings.instagramUrl}>Instagram</a>
+              <a href={settings.facebookUrl}>Facebook</a>
+            </p>
+          </div>
+          <div>
+            <h2>{copy.footer.hours}</h2>
+            <ul>
+              {settings.hours.map((entry) => (
+                <li key={entry.day}>
+                  <span>{copy.days[entry.day] || entry.day}</span>
+                  <span>{/closed/i.test(entry.hours) ? copy.closed : entry.hours}</span>
+                </li>
               ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="section" aria-labelledby="events-heading">
-        <div className="shell">
-          <div className="section-head">
-            <div>
-              <p className="kicker" style={{ color: "var(--gold-2)" }}>{copy.home.eventsKicker}</p>
-              <h2 id="events-heading">{copy.home.eventsTitle}</h2>
-              <p>{copy.home.eventsLead}</p>
-            </div>
-            <Link className="btn btn-ghost" href={`/${lang}/events`}>{copy.home.allEvents}</Link>
-          </div>
-          <div className="event-list">
-            {featured.map((event) => (
-              <EventCard key={event.id} event={event} lang={lang} statusLabels={copy.status} heading="h3" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="visit-heading">
-        <div className="shell">
-          <p className="eyebrow">{copy.about.title}</p>
-          <h2 id="visit-heading">{copy.home.visitTitle}</h2>
-          <ul className="hours">
-            {settings.hours.map((entry) => (
-              <li key={entry.day}>
-                <span>{copy.days[entry.day] || entry.day}</span>
-                <span>{/closed/i.test(entry.hours) ? copy.closed : entry.hours}</span>
-              </li>
-            ))}
-          </ul>
-          <p>{copy.home.facts}</p>
-          <div className="actions">
-            <Link className="btn btn-ghost" href={`/${lang}/about`}>{copy.nav.about}</Link>
-            <Link className="btn" href={`/${lang}/book`}>{copy.nav.book}</Link>
+            </ul>
           </div>
         </div>
       </section>
