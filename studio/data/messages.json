@@ -1066,7 +1066,7 @@
   "ka": {
     "nav": {
       "home": "მთავარი",
-      "artists": "ოსტატები",
+      "artists": "არტისტები",
       "guests": "სტუმრები",
       "styles": "სტილები",
       "events": "მოვლენები",
@@ -1127,7 +1127,7 @@
       "eventsLead": "სხვა ქვეყნებიდან სტუმარი ოსტატები და დღეები, როგორიცაა Marmari Tattoo Festival.",
       "allEvents": "ყველა მოვლენა",
       "artistsKicker": "სკამი",
-      "artistsTitle": "ოსტატები",
+      "artistsTitle": "არტისტები",
       "artistsLead": "ვინ მუშაობს და რომელი სტილები იღებს.",
       "allArtists": "ყველა ოსტატი",
       "visitTitle": "მოგვწერეთ, დაგვირეკეთ ან ამოდით",
@@ -1263,7 +1263,7 @@
     },
     "notFound": {
       "title": "ეს გვერდი აქ არ არის",
-      "body": "ნახეთ ოსტატები, მოვლენები ან მთავარი გვერდი.",
+      "body": "ნახეთ არტისტები, მოვლენები ან მთავარი გვერდი.",
       "home": "მთავარზე დაბრუნება"
     },
     "salon": {
@@ -1286,7 +1286,7 @@
       "homeTitle": "Vaso Vasiko და Andrei Aivazian",
       "homeDescription": "VasoAndrei არის Vaso Vasiko-ს სტუდია, İstiklal-ზე სტამბოლში, და Andrei Aivazian-ისა, თბილისში.",
       "artistsTitle": "ტატუ Beyoğlu-ში",
-      "artistsDescription": "ტატუ-სტუდია Beyoğlu-ში, Asmalı Mescit-ში, İstiklal-ზე. ოსტატები, სტილები და პორტფოლიო.",
+      "artistsDescription": "ტატუ-სტუდია Beyoğlu-ში, Asmalı Mescit-ში, İstiklal-ზე. არტისტები, სტილები და პორტფოლიო.",
       "aboutTitle": "ტატუ İstiklal-ზე",
       "aboutDescription": "VasoAndrei სტამბოლში და დიუსელდორფში: მისამართები, ტელეფონები, termini@vasovasiko.com და საათები.",
       "bookTitle": "ტატუზე ჩაწერა",
