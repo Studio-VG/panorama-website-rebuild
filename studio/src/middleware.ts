@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { countryFromHeaders, localeFromIp, publicClientIp } from "@/lib/geo";
-import { isBot, isLocale, localeCookie, localeFromCountry, type Locale } from "@/lib/locale";
+import { isBot, isLocale, localeCookie, type Locale } from "@/lib/locale";
 
 function withLocaleHeader(request: NextRequest, locale: Locale) {
   const headers = new Headers(request.headers);
@@ -20,15 +19,11 @@ function remember(response: NextResponse, locale: Locale) {
 }
 
 async function preferredLocale(request: NextRequest): Promise<Locale> {
-  if (isBot(request.headers.get("user-agent"))) return "en";
-  const chosen = request.cookies.get(localeCookie)?.value;
-  if (isLocale(chosen)) return chosen;
-  const country = countryFromHeaders(request.headers);
-  if (country) return localeFromCountry(country);
-  if (process.env.NODE_ENV !== "production") return "en";
-  const ip = publicClientIp(request.headers);
-  if (!ip) return "en";
-  return localeFromIp(ip);
+  if (!isBot(request.headers.get("user-agent"))) {
+    const chosen = request.cookies.get(localeCookie)?.value;
+    if (isLocale(chosen)) return chosen;
+  }
+  return "ka";
 }
 
 export async function middleware(request: NextRequest) {

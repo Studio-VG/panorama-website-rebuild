@@ -45,7 +45,7 @@ function oauth_buttons(string $next): string
 
 function oauth_safe_next(string $next): string
 {
-    return preg_match('#^/(en|tr|de|ru|ka)(/book)?$#', $next) === 1 ? $next : '/en';
+    return preg_match('#^/(ka|en|tr|de|ru)(/book)?$#', $next) === 1 ? $next : '/ka';
 }
 
 function handle_oauth(string $provider, bool $callback, string $method): void
@@ -200,6 +200,6 @@ function oauth_blocked_page(string $provider, array $missing): void
     echo '<p>No account was created and nobody was signed in.</p>';
     echo '<p>Still needed: ' . h(implode(', ', $missing)) . '.</p>';
     echo '<p>Redirect URL to allow: ' . h(oauth_redirect_url($provider)) . '</p>';
-    echo '<p><a href="/en/sign-in">Back to sign in</a></p>';
+    echo '<p><a href="/ka/sign-in">Back to sign in</a></p>';
     echo '</div></main></div></body></html>';
 }

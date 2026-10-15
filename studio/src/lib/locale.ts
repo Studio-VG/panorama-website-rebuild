@@ -1,4 +1,4 @@
-export const locales = ["en", "tr", "de", "ru", "ka"] as const;
+export const locales = ["ka", "en", "tr", "de", "ru"] as const;
 export type Locale = (typeof locales)[number];
 
 export const localeCookie = "studio_lang";
@@ -15,8 +15,8 @@ export function isLocale(value: string | undefined | null): value is Locale {
 }
 
 export function localeFromCountry(code: string | null | undefined): Locale {
-  if (!code) return "en";
-  return countryLocale[code.trim().toUpperCase()] || "en";
+  if (!code) return "ka";
+  return countryLocale[code.trim().toUpperCase()] || "ka";
 }
 
 export function isBot(userAgent: string | null) {

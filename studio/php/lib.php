@@ -14,7 +14,7 @@ function h(?string $value): string
 
 function locales(): array
 {
-    return ['en', 'tr', 'de', 'ru', 'ka'];
+    return ['ka', 'en', 'tr', 'de', 'ru'];
 }
 
 function is_locale(?string $value): bool
@@ -26,7 +26,7 @@ function locale_from_country(?string $code): string
 {
     $map = ['TR' => 'tr', 'RU' => 'ru', 'DE' => 'de', 'GE' => 'ka'];
     $code = strtoupper(trim((string) $code));
-    return $map[$code] ?? 'en';
+    return $map[$code] ?? 'ka';
 }
 
 function is_bot(): bool
@@ -720,25 +720,13 @@ function cookie_value(string $name): ?string
 
 function preferred_locale(): string
 {
-    if (is_bot()) {
-        return 'en';
+    if (!is_bot()) {
+        $chosen = cookie_value('studio_lang');
+        if (is_locale($chosen)) {
+            return $chosen;
+        }
     }
-    $chosen = cookie_value('studio_lang');
-    if (is_locale($chosen)) {
-        return $chosen;
-    }
-    $country = $_SERVER['HTTP_X_VERCEL_IP_COUNTRY'] ?? ($_SERVER['HTTP_CF_IPCOUNTRY'] ?? '');
-    if (is_string($country) && trim($country) !== '') {
-        return locale_from_country($country);
-    }
-    if (!is_production()) {
-        return 'en';
-    }
-    $ip = public_client_ip();
-    if ($ip === null) {
-        return 'en';
-    }
-    return locale_from_ip($ip);
+    return 'ka';
 }
 
 function public_client_ip(): ?string
@@ -769,7 +757,7 @@ function locale_from_ip(string $ip): string
     $context = stream_context_create(['http' => ['timeout' => 0.8]]);
     $body = @file_get_contents('https://get.geojs.io/v1/ip/country/' . rawurlencode($ip), false, $context);
     if (!is_string($body) || !preg_match('/^[A-Za-z]{2}$/', trim($body))) {
-        return 'en';
+        return 'ka';
     }
     return locale_from_country(trim($body));
 }

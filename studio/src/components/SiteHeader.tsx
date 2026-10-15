@@ -80,7 +80,7 @@ export function SiteHeader({
             <h1 className="brand-name">{name}</h1>
           </div>
         ) : plain ? null : (
-          <Link href={onAdmin ? "/en" : `/${lang}`} className="brand" onClick={() => setOpen(false)}>
+          <Link href={onAdmin ? "/ka" : `/${lang}`} className="brand" onClick={() => setOpen(false)}>
             <img src={logo || "/brand/logo.png"} alt="" />
             <span>
               <span className="brand-name">{name}</span>

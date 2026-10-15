@@ -31,11 +31,11 @@ export async function localeFromIp(ip: string): Promise<Locale> {
       cache: "no-store",
     });
     clearTimeout(timer);
-    if (!response.ok) return "en";
+    if (!response.ok) return "ka";
     const code = (await response.text()).trim();
-    if (!/^[A-Za-z]{2}$/.test(code)) return "en";
+    if (!/^[A-Za-z]{2}$/.test(code)) return "ka";
     return localeFromCountry(code);
   } catch {
-    return "en";
+    return "ka";
   }
 }

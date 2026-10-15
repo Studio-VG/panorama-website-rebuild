@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     paths.map((path) => {
       const url = path === "/" ? `${base}/${lang}` : `${base}/${lang}${path}`;
       const languages: Record<string, string> = {
-        "x-default": path === "/" ? `${base}/en` : `${base}/en${path}`,
+        "x-default": path === "/" ? `${base}/ka` : `${base}/ka${path}`,
       };
       for (const locale of locales) {
         languages[locale] = path === "/" ? `${base}/${locale}` : `${base}/${locale}${path}`;

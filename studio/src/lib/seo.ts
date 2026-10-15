@@ -54,7 +54,7 @@ export function pageMetadata(options: {
   const image = options.image || "/art/hero-koi.jpg";
   const branded = options.absoluteTitle || `${options.title} · ${settings.name}`;
   const canonical = localizedPath(options.lang, options.path);
-  const languages: Record<string, string> = { "x-default": localizedPath("en", options.path) };
+  const languages: Record<string, string> = { "x-default": localizedPath("ka", options.path) };
   for (const locale of locales) languages[locale] = localizedPath(locale, options.path);
   return {
     title: options.absoluteTitle ? { absolute: options.absoluteTitle } : options.title,

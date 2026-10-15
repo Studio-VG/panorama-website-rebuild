@@ -27,5 +27,5 @@ export function requestOrigin(request: Request) {
 }
 
 export function safeNext(value: string | null) {
-  return value && /^\/(en|tr|de|ru|ka)(\/book)?$/.test(value) ? value : "/en";
+  return value && /^\/(ka|en|tr|de|ru)(\/book)?$/.test(value) ? value : "/ka";
 }

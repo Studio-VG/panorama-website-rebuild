@@ -164,7 +164,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
     echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Georgian:wght@400;500;600&family=Noto+Serif+Georgian:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap">';
     echo '<link rel="stylesheet" href="/studio.css">';
-    $default = $path === '/' ? site_url() . '/en' : site_url() . '/en' . $path;
+    $default = $path === '/' ? site_url() . '/ka' : site_url() . '/ka' . $path;
     echo '<link rel="alternate" hreflang="x-default" href="' . h($default) . '">';
     foreach (locales() as $locale) {
         $href = $path === '/' ? site_url() . '/' . $locale : site_url() . '/' . $locale . $path;
@@ -797,7 +797,7 @@ function render_sitemap(): void
         foreach ($paths as $path) {
             $url = $path === '/' ? site_url() . '/' . $lang : site_url() . '/' . $lang . $path;
             echo '<url><loc>' . h($url) . '</loc>';
-            $xdefault = $path === '/' ? site_url() . '/en' : site_url() . '/en' . $path;
+            $xdefault = $path === '/' ? site_url() . '/ka' : site_url() . '/ka' . $path;
             echo '<xhtml:link rel="alternate" hreflang="x-default" href="' . h($xdefault) . '"/>';
             foreach (locales() as $locale) {
                 $href = $path === '/' ? site_url() . '/' . $locale : site_url() . '/' . $locale . $path;
