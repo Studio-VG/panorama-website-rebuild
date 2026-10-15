@@ -88,7 +88,7 @@ export function clearClientCookieHeader() {
 export function clientFromToken(token: string | undefined, clients: ClientAccount[]) {
   if (!token || !token.includes(".")) return null;
   const id = token.slice(0, token.indexOf("."));
-  const client = clients.find((item) => item.id === id && item.emailVerified && item.phoneVerified);
+  const client = clients.find((item) => item.id === id);
   if (!client) return null;
   const expected = clientSessionToken(client.id);
   const a = Buffer.from(token);

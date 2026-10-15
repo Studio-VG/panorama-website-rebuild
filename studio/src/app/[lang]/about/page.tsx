@@ -35,7 +35,8 @@ export default async function AboutPage({ params }: Props) {
   const { settings, artists, locations } = store;
   const residents = artists.filter((artist) => !isGuest(artist)).map(publicArtist);
   const token = (await cookies()).get(CLIENT_COOKIE)?.value;
-  const client = clientFromToken(token, store.clients || []);
+  const account = clientFromToken(token, store.clients || []);
+  const client = account?.emailVerified && account.phoneVerified ? account : null;
   const registerHref = `/${lang}/register?next=/${lang}/book`;
   const istanbul = locations.find((place) => /istanbul|beyoğlu|beyoglu/i.test(`${place.name} ${place.address}`));
   const studio = localizeSettings(settings, lang);

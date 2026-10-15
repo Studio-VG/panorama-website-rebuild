@@ -96,8 +96,8 @@ export type ClientAccount = {
   name: string;
   email: string;
   phone: string;
-  emailVerified: true;
-  phoneVerified: true;
+  emailVerified: boolean;
+  phoneVerified: boolean;
   createdAt: string;
 };
 

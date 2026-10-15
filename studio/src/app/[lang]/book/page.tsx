@@ -33,14 +33,14 @@ export default async function BookPage({ params, searchParams }: Props) {
   const residents = artists.filter((artist) => !isGuest(artist)).map(publicArtist);
   const street = istanbulAddress(settings, locations);
   const token = (await cookies()).get(CLIENT_COOKIE)?.value;
-  const client = clientFromToken(token, store.clients || []);
+  const account = clientFromToken(token, store.clients || []);
+  const client = account?.emailVerified && account.phoneVerified ? account : null;
   const registerHref = `/${lang}/register?next=/${lang}/book`;
   return (
-    <section className="section">
+    <section className="home-lower">
       <div className="shell split">
         <div>
-          <p className="kicker">{settings.name}</p>
-          <h1>{copy.book.title}</h1>
+          <h1 className="home-legend">{copy.book.title}</h1>
           <p>{copy.book.lead}</p>
           <p>{street}</p>
           <p><a href={`mailto:${settings.email}`}>{settings.email}</a> · <a href={settings.whatsappUrl}>{copy.about.whatsapp}</a></p>

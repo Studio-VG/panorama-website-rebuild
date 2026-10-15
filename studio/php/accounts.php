@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/oauth.php';
+
 function client_secret(): string
 {
     $secret = getenv('ADMIN_SESSION_SECRET');
@@ -81,6 +83,7 @@ function account_copy(string $lang): array
         'regConfirm' => (string) ($reg['confirm'] ?? 'Confirm codes'),
         'mismatch' => (string) ($reg['mismatch'] ?? 'That email already has an account with a different phone.'),
         'regError' => (string) ($reg['error'] ?? 'Check the name, email, and phone.'),
+        'regSend' => (string) ($reg['send'] ?? 'Continue'),
         'regWrong' => (string) ($reg['wrong'] ?? 'That code does not match.'),
         'need' => (string) ($copy['book']['needAccount'] ?? 'A booking is sent only from a signed-in client account.'),
     ];
@@ -214,7 +217,7 @@ function render_sign_in(string $lang): void
         }
         $form .= '<button class="btn btn-ink" type="submit">' . h($copy['send']) . '</button></form>';
     }
-    render_account_page($lang, '/sign-in', $copy['signTitle'], $copy['signLead'], $form);
+    render_account_page($lang, '/sign-in', $copy['signTitle'], $copy['signLead'], oauth_buttons($next) . $form);
 }
 
 function handle_sign_in(string $lang): never
@@ -301,8 +304,8 @@ function render_register(string $lang): void
     if ($note !== '') {
         $form .= '<p class="form-error" role="alert">' . h($note) . '</p>';
     }
-    $form .= '<button class="btn btn-ink" type="submit">' . h($id !== '' ? $copy['regConfirm'] : $copy['send']) . '</button></form>';
-    render_account_page($lang, '/register', $copy['regTitle'], $copy['regLead'], $form);
+    $form .= '<button class="btn btn-ink" type="submit">' . h($id !== '' ? $copy['regConfirm'] : $copy['regSend']) . '</button></form>';
+    render_account_page($lang, '/register', $copy['regTitle'], $copy['regLead'], oauth_buttons($next) . $form);
 }
 
 function handle_register(string $lang): never
@@ -350,7 +353,10 @@ function handle_register(string $lang): never
                 'phoneVerified' => true,
                 'createdAt' => gmdate('c'),
             ];
-            $store['clients'][] = $account;
+            if (!isset($store['clients']) || !is_array($store['clients'])) {
+            $store['clients'] = [];
+        }
+        $store['clients'][] = $account;
         }
         unset($pending['emailCode'], $pending['phoneCode']);
         $pending['emailVerified'] = true;

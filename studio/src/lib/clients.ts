@@ -176,6 +176,11 @@ export function confirmRegistration(body: unknown) {
       createdAt: new Date().toISOString(),
     };
     store.clients = [account, ...(store.clients || [])];
+  } else {
+    account.name = pending.name;
+    account.phone = pending.phone;
+    account.emailVerified = true;
+    account.phoneVerified = true;
   }
   saveStore(store);
   return { account };

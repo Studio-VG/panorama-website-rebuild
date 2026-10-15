@@ -518,6 +518,7 @@ function admin_shell(array $store, string $tab, string $error, string $notice): 
     if ($error !== '') {
         $html .= '<p class="form-error" role="alert">' . h($error) . '</p>';
     }
+    $html .= admin_codes();
     if ($tab === 'settings') {
         $html .= admin_settings_form($store['settings']);
     } elseif ($tab === 'artists') {
@@ -763,6 +764,33 @@ function admin_locations_form(array $locations): string
         $html .= '<button class="btn danger" id="location-remove" name="action" value="delete" type="submit">Remove location</button>';
     }
     return $html . '</form></div>';
+}
+
+function admin_codes(): string
+{
+    $now = time();
+    $html = '<section class="panel" id="codes"><h2>Unused registration codes</h2>';
+    $html .= '<p>Email and SMS are not configured, so these codes were not sent. They stay here until they are used.</p>';
+    $rows = [];
+    foreach (store_load()['registrations'] ?? [] as $item) {
+        if (!is_array($item) || (empty($item['emailCode']) && empty($item['phoneCode']))) {
+            continue;
+        }
+        $rows[] = $item;
+        if (count($rows) >= 12) {
+            break;
+        }
+    }
+    if ($rows === []) {
+        return $html . '<p>No unused codes.</p></section>';
+    }
+    $html .= '<ul class="contact-list">';
+    foreach ($rows as $row) {
+        $expired = strtotime((string) ($row['expiresAt'] ?? '')) <= $now;
+        $html .= '<li><span>' . h((string) ($row['name'] ?? '')) . ' · ' . h((string) ($row['email'] ?? '')) . ' · ' . h((string) ($row['phone'] ?? '')) . '</span>';
+        $html .= '<span>email ' . h((string) ($row['emailCode'] ?? 'used')) . ' · phone ' . h((string) ($row['phoneCode'] ?? 'used')) . ($expired ? ' · expired' : '') . '</span></li>';
+    }
+    return $html . '</ul></section>';
 }
 
 function admin_inquiries(array $inquiries): string

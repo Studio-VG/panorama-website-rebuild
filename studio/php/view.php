@@ -49,6 +49,13 @@ function render_public(string $lang, array $rest, string $method): void
     }
     if ($page === 'book' && count($rest) === 1) {
         if ($method === 'POST') {
+            $client = client_account();
+            if (!$client || empty($client['emailVerified']) || empty($client['phoneVerified'])) {
+                redirect('/' . $lang . '/sign-in?next=/' . $lang . '/book');
+            }
+            $_POST['name'] = (string) ($client['name'] ?? '');
+            $_POST['email'] = (string) ($client['email'] ?? '');
+            $_POST['phone'] = (string) ($client['phone'] ?? '');
             handle_inquiry($lang);
         }
         render_book($lang, $store, $copy);
@@ -172,7 +179,7 @@ function layout(string $lang, array $meta, string $body, array $extraLd = []): v
         echo json_ld($block);
     }
     $metaPath = (string) ($meta['path'] ?? '');
-    $dark = $metaPath === '/' || preg_match('#^/(artists|events|about|register|sign-in)(/|$)#', $metaPath) === 1;
+    $dark = $metaPath === '/' || preg_match('#^/(artists|events|about|register|sign-in|book)(/|$)#', $metaPath) === 1;
     $canvas = $dark ? 'site-canvas home-entry' : 'site-canvas';
     echo '</head><body><div class="' . $canvas . '">';
     echo '<!-- studio-php -->';
@@ -204,7 +211,7 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
         ["/$lang/faq", $copy['nav']['faq']],
     ];
     $videoHome = $publicNav && $path === '/' . $lang;
-    $plain = $publicNav && preg_match('#^/' . $lang . '/(?:artists|events|about|register|sign-in)(?:/.*)?$#', $path) === 1;
+    $plain = $publicNav && preg_match('#^/' . $lang . '/(?:artists|events|about|register|sign-in|book)(?:/.*)?$#', $path) === 1;
     $html = '<header class="site-header' . ($videoHome ? ' home-float' : ($plain ? ' menu-corner' : '')) . '"><div class="shell header-inner">';
     if ($videoHome) {
         $html .= '<div class="brand"><img src="' . h($settings['logoUrl'] ?: '/brand/logo.png') . '" alt="">';
@@ -338,7 +345,7 @@ function event_card(array $event, string $lang, array $statusLabels, string $hea
     return $html . '<p>' . h($event['description']) . '</p></div></article>';
 }
 
-function inquiry_form(array $artists, array $labels, string $defaultArtist = ''): string
+function inquiry_form(array $artists, array $labels, string $defaultArtist = '', ?array $client = null): string
 {
     $artists = array_values(array_filter($artists, static fn (array $artist): bool => ($artist['role'] ?? 'resident') !== 'guest'));
     $error = text_field($_GET['inquiry_error'] ?? '', 240);
@@ -348,10 +355,15 @@ function inquiry_form(array $artists, array $labels, string $defaultArtist = '')
     if (!in_array($selected, $names, true)) {
         $selected = $labels['preference'];
     }
-    $html = '<form method="post">';
-    $html .= '<label for="inquiry-name">' . h($labels['name']) . '<input id="inquiry-name" name="name" autocomplete="name" required></label>';
-    $html .= '<label for="inquiry-email">' . h($labels['email']) . '<input id="inquiry-email" name="email" type="email" autocomplete="email" required></label>';
-    $html .= '<label for="inquiry-phone">' . h($labels['phone']) . '<input id="inquiry-phone" name="phone" type="tel" autocomplete="tel" required></label>';
+    $locked = $client !== null;
+    $name = $locked ? (string) ($client['name'] ?? '') : '';
+    $email = $locked ? (string) ($client['email'] ?? '') : '';
+    $phone = $locked ? (string) ($client['phone'] ?? '') : '';
+    $readOnly = $locked ? ' readonly' : '';
+    $html = '<form class="book-form" method="post">';
+    $html .= '<label for="inquiry-name">' . h($labels['name']) . '<input id="inquiry-name" name="name" autocomplete="name" required' . $readOnly . ' value="' . h($name) . '"></label>';
+    $html .= '<label for="inquiry-email">' . h($labels['email']) . '<input id="inquiry-email" name="email" type="email" autocomplete="email" required' . $readOnly . ' value="' . h($email) . '"></label>';
+    $html .= '<label for="inquiry-phone">' . h($labels['phone']) . '<input id="inquiry-phone" name="phone" type="tel" autocomplete="tel" required' . $readOnly . ' value="' . h($phone) . '"></label>';
     $html .= '<label for="inquiry-artist">' . h($labels['artist']) . '<select id="inquiry-artist" name="artist">';
     $html .= '<option' . ($selected === $labels['preference'] ? ' selected' : '') . '>' . h($labels['preference']) . '</option>';
     foreach ($artists as $artist) {
@@ -706,12 +718,13 @@ function render_book(string $lang, array $store, array $copy): void
 {
     $settings = $store['settings'];
     $artist = text_field($_GET['artist'] ?? '', 120);
-    $body = '<section class="section"><div class="shell split"><div><p class="kicker">' . h($settings['name']) . '</p>';
-    $body .= '<h1>' . h($copy['book']['title']) . '</h1><p>' . h($copy['book']['lead']) . '</p><p>' . h(istanbul_street($settings, studio_locations($store))) . '</p>';
+    $body = '<section class="home-lower"><div class="shell split"><div>';
+    $body .= '<h1 class="home-legend">' . h($copy['book']['title']) . '</h1><p>' . h($copy['book']['lead']) . '</p><p>' . h(istanbul_street($settings, studio_locations($store))) . '</p>';
     $body .= '<p><a href="mailto:' . h($settings['email']) . '">' . h($settings['email']) . '</a> · <a href="' . h($settings['whatsappUrl']) . '">' . h($copy['about']['whatsapp']) . '</a></p></div>';
     $client = client_account();
-    if ($client) {
-        $body .= '<div class="book-form">' . inquiry_form($store['artists'], $copy['form'], $artist) . '</div>';
+    $ready = $client && !empty($client['emailVerified']) && !empty($client['phoneVerified']);
+    if ($ready) {
+        $body .= inquiry_form($store['artists'], $copy['form'], $artist, $client);
     } else {
         $need = account_copy($lang)['need'];
         $body .= '<div class="book-form"><p>' . h($need) . '</p><p><a class="btn" href="/' . h($lang) . '/register?next=/' . h($lang) . '/book">' . h($copy['nav']['register'] ?? 'Register') . '</a> <a class="btn" href="/' . h($lang) . '/sign-in?next=/' . h($lang) . '/book">' . h($copy['nav']['signIn'] ?? 'Sign in') . '</a></p></div>';

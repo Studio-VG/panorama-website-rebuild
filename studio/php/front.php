@@ -33,6 +33,12 @@ if ($path === '/admin' || str_starts_with($path, '/admin/')) {
     exit;
 }
 
+if (preg_match('#^/auth/(google|apple)(/callback)?$#', $path, $oauth) === 1) {
+    require_once __DIR__ . '/oauth.php';
+    handle_oauth($oauth[1], isset($oauth[2]) && $oauth[2] !== '', $method);
+    exit;
+}
+
 $segments = $path === '/' ? [] : explode('/', trim($path, '/'));
 $first = $segments[0] ?? '';
 

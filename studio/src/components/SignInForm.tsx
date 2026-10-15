@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { AuthProviders } from "@/components/AuthProviders";
 import type { Messages } from "@/lib/messages";
 
 export function SignInForm({
@@ -61,6 +62,7 @@ export function SignInForm({
   if (!challenge) {
     return (
       <form className="book-form" onSubmit={start} noValidate>
+        <AuthProviders nextPath={nextPath} />
         <label htmlFor="signin-contact">{labels.identifier}
           <input id="signin-contact" name="contact" autoComplete="username" required />
         </label>

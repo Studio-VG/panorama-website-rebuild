@@ -22,7 +22,7 @@ export function SiteHeader({
   const pathname = usePathname() || `/${lang}`;
   const onAdmin = pathname.startsWith("/admin");
   const videoHome = !onAdmin && /^\/(en|tr|de|ru|ka)$/.test(pathname);
-  const plain = !onAdmin && /^\/(en|tr|de|ru|ka)\/(artists|events|about|register|sign-in)(\/.*)?$/.test(pathname);
+  const plain = !onAdmin && /^\/(en|tr|de|ru|ka)\/(artists|events|about|register|sign-in|book)(\/.*)?$/.test(pathname);
   const links = [
     [`/${lang}`, labels.home],
     [`/${lang}/artists`, labels.artists],

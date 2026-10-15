@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { AuthProviders } from "@/components/AuthProviders";
 import type { Messages } from "@/lib/messages";
 
 export function RegisterForm({
@@ -66,6 +67,7 @@ export function RegisterForm({
   if (!challenge) {
     return (
       <form className="book-form" onSubmit={start} noValidate>
+        <AuthProviders nextPath={nextPath} />
         <label htmlFor="register-name">{labels.name}
           <input id="register-name" name="name" autoComplete="name" required />
         </label>
