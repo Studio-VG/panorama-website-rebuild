@@ -24,6 +24,7 @@ export function SiteHeader({
   const videoHome = !onAdmin && /^\/(en|tr|de|ru|ka)$/.test(pathname);
   const plain = !onAdmin && /^\/(en|tr|de|ru|ka)\/(artists|events|about|register|sign-in)(\/.*)?$/.test(pathname);
   const links = [
+    [`/${lang}`, labels.home],
     [`/${lang}/artists`, labels.artists],
     [`/${lang}/events`, labels.events],
     [`/${lang}/about`, labels.about],

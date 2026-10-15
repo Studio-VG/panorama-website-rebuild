@@ -1,6 +1,7 @@
 {
   "en": {
     "nav": {
+      "home": "Home",
       "artists": "Artists",
       "guests": "Guests",
       "styles": "Styles",
@@ -266,6 +267,7 @@
   },
   "tr": {
     "nav": {
+      "home": "Ana sayfa",
       "artists": "Sanatçılar",
       "guests": "Misafirler",
       "styles": "Stiller",
@@ -531,6 +533,7 @@
   },
   "de": {
     "nav": {
+      "home": "Startseite",
       "artists": "Künstler",
       "guests": "Gäste",
       "styles": "Stile",
@@ -796,6 +799,7 @@
   },
   "ru": {
     "nav": {
+      "home": "Главная",
       "artists": "Мастера",
       "guests": "Гости",
       "styles": "Стили",
@@ -1061,6 +1065,7 @@
   },
   "ka": {
     "nav": {
+      "home": "მთავარი",
       "artists": "ოსტატები",
       "guests": "სტუმრები",
       "styles": "სტილები",

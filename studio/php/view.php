@@ -197,6 +197,7 @@ function site_header(string $lang, array $settings, array $copy, bool $publicNav
 {
     $path = request_path();
     $links = [
+        ["/$lang", $copy['nav']['home'] ?? 'Home'],
         ["/$lang/artists", $copy['nav']['artists']],
         ["/$lang/events", $copy['nav']['events']],
         ["/$lang/about", $copy['nav']['about']],

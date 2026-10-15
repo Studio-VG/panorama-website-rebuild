@@ -2,7 +2,7 @@ import opening from "../../data/opening.json";
 import type { Locale } from "./locale";
 
 export type Messages = {
-  nav: { artists: string; guests: string; styles: string; events: string; about: string; faq: string; register: string; signIn: string; signOut: string; account: string; book: string; menu: string; close: string; languages: string; kicker: string; skip: string };
+  nav: { home: string; artists: string; guests: string; styles: string; events: string; about: string; faq: string; register: string; signIn: string; signOut: string; account: string; book: string; menu: string; close: string; languages: string; kicker: string; skip: string };
   footer: { hours: string; reach: string; note: string; google: string; portfolio: string; aftercare: string; admin: string; newTab: string; location: string; openMaps: string; directions: string; serviceArea: string; contact: string; istanbul: string; dusseldorf: string; germany: string; areaLine: string };
   days: Record<string, string>;
   closed: string;
@@ -52,7 +52,7 @@ const daysEn = { Monday: "Monday", Tuesday: "Tuesday", Wednesday: "Wednesday", T
 
 export const messages: Record<Locale, Messages> = {
   en: {
-    nav: { artists: "Artists", guests: "Guests", styles: "Styles", events: "Events", about: "About", faq: "FAQ", register: "Register", signIn: "Sign in", signOut: "Sign out", account: "Signed in as {name}", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "İstiklal, Istanbul", skip: "Skip to content" },
+    nav: { home: "Home", artists: "Artists", guests: "Guests", styles: "Styles", events: "Events", about: "About", faq: "FAQ", register: "Register", signIn: "Sign in", signOut: "Sign out", account: "Signed in as {name}", book: "Book", menu: "Menu", close: "Close", languages: "Languages", kicker: "İstiklal, Istanbul", skip: "Skip to content" },
     footer: { hours: "Hours", reach: "Reach the studio", note: "Portraits and plates on this site are original illustrations.", google: "Google Business", portfolio: "Existing portfolio", aftercare: "Aftercare", admin: "Studio admin", newTab: "opens in a new tab", location: "Location", openMaps: "Open in Google Maps", directions: "Click for directions", serviceArea: "Service area", contact: "Contact", istanbul: "Istanbul", dusseldorf: "Düsseldorf", germany: "Germany", areaLine: "Istanbul • Düsseldorf" },
     days: daysEn,
     closed: "Closed",
@@ -186,7 +186,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   tr: {
-    nav: { artists: "Sanatçılar", guests: "Misafirler", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", register: "Kayıt", signIn: "Giriş", signOut: "Çıkış", account: "{name} olarak giriş yapıldı", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "İstiklal, İstanbul", skip: "İçeriğe geç" },
+    nav: { home: "Ana sayfa", artists: "Sanatçılar", guests: "Misafirler", styles: "Stiller", events: "Etkinlikler", about: "Hakkında", faq: "Sorular", register: "Kayıt", signIn: "Giriş", signOut: "Çıkış", account: "{name} olarak giriş yapıldı", book: "Randevu", menu: "Menü", close: "Kapat", languages: "Diller", kicker: "İstiklal, İstanbul", skip: "İçeriğe geç" },
     footer: { hours: "Saatler", reach: "Stüdyoya ulaşın", note: "Bu sitedeki portreler ve desenler özgün çizimlerdir.", google: "Google Business", portfolio: "Mevcut portfolyo", aftercare: "Bakım", admin: "Stüdyo yönetimi", newTab: "yeni sekmede açılır", location: "Konum", openMaps: "Google Haritalar’da aç", directions: "Yol tarifi için tıklayın", serviceArea: "Hizmet bölgesi", contact: "İletişim", istanbul: "İstanbul", dusseldorf: "Düsseldorf", germany: "Almanya", areaLine: "İstanbul • Düsseldorf" },
     days: { Monday: "Pazartesi", Tuesday: "Salı", Wednesday: "Çarşamba", Thursday: "Perşembe", Friday: "Cuma", Saturday: "Cumartesi", Sunday: "Pazar" },
     closed: "Kapalı",
@@ -320,7 +320,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   de: {
-    nav: { artists: "Künstler", guests: "Gäste", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", register: "Registrieren", signIn: "Anmelden", signOut: "Abmelden", account: "Angemeldet als {name}", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "İstiklal, Istanbul", skip: "Zum Inhalt" },
+    nav: { home: "Startseite", artists: "Künstler", guests: "Gäste", styles: "Stile", events: "Termine", about: "Über uns", faq: "Fragen", register: "Registrieren", signIn: "Anmelden", signOut: "Abmelden", account: "Angemeldet als {name}", book: "Termin", menu: "Menü", close: "Schließen", languages: "Sprachen", kicker: "İstiklal, Istanbul", skip: "Zum Inhalt" },
     footer: { hours: "Zeiten", reach: "Studio erreichen", note: "Porträts und Blätter auf dieser Seite sind eigene Zeichnungen.", google: "Google Business", portfolio: "Bestehendes Portfolio", aftercare: "Pflege", admin: "Studio-Admin", newTab: "öffnet sich in einem neuen Tab", location: "Standort", openMaps: "In Google Maps öffnen", directions: "Für die Route tippen", serviceArea: "Einsatzgebiet", contact: "Kontakt", istanbul: "Istanbul", dusseldorf: "Düsseldorf", germany: "Deutschland", areaLine: "Istanbul • Düsseldorf" },
     days: { Monday: "Montag", Tuesday: "Dienstag", Wednesday: "Mittwoch", Thursday: "Donnerstag", Friday: "Freitag", Saturday: "Samstag", Sunday: "Sonntag" },
     closed: "Geschlossen",
@@ -454,7 +454,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   ru: {
-    nav: { artists: "Мастера", guests: "Гости", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", register: "Регистрация", signIn: "Вход", signOut: "Выход", account: "Вы вошли как {name}", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Истикляль, Стамбул", skip: "К содержанию" },
+    nav: { home: "Главная", artists: "Мастера", guests: "Гости", styles: "Стили", events: "События", about: "О студии", faq: "Вопросы", register: "Регистрация", signIn: "Вход", signOut: "Выход", account: "Вы вошли как {name}", book: "Запись", menu: "Меню", close: "Закрыть", languages: "Языки", kicker: "Истикляль, Стамбул", skip: "К содержанию" },
     footer: { hours: "Часы", reach: "Связаться", note: "Портреты и листы на этом сайте — собственные рисунки.", google: "Google Business", portfolio: "Существующее портфолио", aftercare: "Уход", admin: "Админка", newTab: "откроется в новой вкладке", location: "Где мы", openMaps: "Открыть в Google Картах", directions: "Нажмите, чтобы построить маршрут", serviceArea: "Где работаем", contact: "Контакты", istanbul: "Стамбул", dusseldorf: "Дюссельдорф", germany: "Германия", areaLine: "Стамбул • Дюссельдорф" },
     days: { Monday: "Понедельник", Tuesday: "Вторник", Wednesday: "Среда", Thursday: "Четверг", Friday: "Пятница", Saturday: "Суббота", Sunday: "Воскресенье" },
     closed: "Закрыто",
@@ -588,7 +588,7 @@ export const messages: Record<Locale, Messages> = {
     },
   },
   ka: {
-    nav: { artists: "ოსტატები", guests: "სტუმრები", styles: "სტილები", events: "მოვლენები", about: "სტუდიის შესახებ", faq: "კითხვები", register: "რეგისტრაცია", signIn: "შესვლა", signOut: "გამოსვლა", account: "შესული ხართ როგორც {name}", book: "ჩაწერა", menu: "მენიუ", close: "დახურვა", languages: "ენები", kicker: "İstiklal, Istanbul", skip: "შინაარსზე გადასვლა" },
+    nav: { home: "მთავარი", artists: "ოსტატები", guests: "სტუმრები", styles: "სტილები", events: "მოვლენები", about: "სტუდიის შესახებ", faq: "კითხვები", register: "რეგისტრაცია", signIn: "შესვლა", signOut: "გამოსვლა", account: "შესული ხართ როგორც {name}", book: "ჩაწერა", menu: "მენიუ", close: "დახურვა", languages: "ენები", kicker: "İstiklal, Istanbul", skip: "შინაარსზე გადასვლა" },
     footer: { hours: "საათები", reach: "სტუდიასთან კავშირი", note: "ამ საიტის პორტრეტები და ფირფიტები ორიგინალი ილუსტრაციებია.", google: "Google Business", portfolio: "არსებული პორტფოლიო", aftercare: "მოვლა", admin: "სტუდიის ადმინი", newTab: "იხსნება ახალ ჩანართში", location: "მდებარეობა", openMaps: "Google Maps-ში გახსნა", directions: "მარშრუტისთვის დააწკაპუნეთ", serviceArea: "მომსახურების ზონა", contact: "კონტაქტი", istanbul: "სტამბოლი", dusseldorf: "დიუსელდორფი", germany: "გერმანია", areaLine: "სტამბოლი • დიუსელდორფი" },
     days: { Monday: "ორშაბათი", Tuesday: "სამშაბათი", Wednesday: "ოთხშაბათი", Thursday: "ხუთშაბათი", Friday: "პარასკევი", Saturday: "შაბათი", Sunday: "კვირა" },
     closed: "დახურულია",
