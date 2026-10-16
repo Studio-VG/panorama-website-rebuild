@@ -1,0 +1,1332 @@
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "artists": "Artists",
+      "guests": "Guests",
+      "styles": "Styles",
+      "events": "Events",
+      "about": "About",
+      "faq": "FAQ",
+      "register": "Register",
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "account": "Signed in as {name}",
+      "book": "Book",
+      "menu": "Menu",
+      "close": "Close",
+      "languages": "Languages",
+      "kicker": "İstiklal, Istanbul",
+      "skip": "Skip to content"
+    },
+    "footer": {
+      "hours": "Hours",
+      "reach": "Reach the studio",
+      "note": "Portraits and plates on this site are original illustrations.",
+      "google": "Google Business",
+      "portfolio": "Existing portfolio",
+      "aftercare": "Aftercare",
+      "admin": "Studio admin",
+      "newTab": "opens in a new tab",
+      "location": "Location",
+      "openMaps": "Open in Google Maps",
+      "directions": "Click for directions",
+      "serviceArea": "Service area",
+      "contact": "Contact",
+      "istanbul": "Istanbul",
+      "dusseldorf": "Düsseldorf",
+      "germany": "Germany",
+      "areaLine": "Istanbul • Düsseldorf"
+    },
+    "days": {
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday",
+      "Sunday": "Sunday"
+    },
+    "closed": "Closed",
+    "status": {
+      "Upcoming": "Upcoming",
+      "Past": "Past",
+      "Now": "Now",
+      "featured": "Featured on home"
+    },
+    "home": {
+      "heroTitle": "Planning to get a tattoo?",
+      "intro": "Two long careers share this studio. Vaso Vasiko works Japanese irezumi and neo-traditional from İstiklal Avenue in Istanbul, and takes guest spots in Europe. Andrei Aivazian works realism, portraiture, and black and grey from Tbilisi.",
+      "facts": "VasoAndrei is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf. The Istanbul address is Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. The Düsseldorf address is Königsallee 45-47, 40212 Düsseldorf, Germany. Phone +90 533 203 67 40 or +49 163 787 99 67. Email termini@vasovasiko.com. Hours are Monday to Saturday, 10:00–20:00, and Sunday is closed. To book, use the appointment form. The studio replies by email or WhatsApp.",
+      "eventsKicker": "Special events",
+      "eventsTitle": "Guests and gatherings",
+      "eventsLead": "Visiting artists from other countries, and days such as the Marmari Tattoo Festival.",
+      "allEvents": "All events",
+      "artistsKicker": "The bench",
+      "artistsTitle": "Artists",
+      "artistsLead": "Who is working, and the styles they take.",
+      "allArtists": "All artists",
+      "visitTitle": "Write, call, or come up",
+      "online": "Also online",
+      "listing": "Open the Google listing",
+      "heroAlt": "A tattoo artist working on a back piece",
+      "permanence": "Getting something permanent on your body means getting it from professionals.",
+      "meet": "Meet our legendary artists:",
+      "short": "Vaso Vasiko, born Vasil Kurakhchishvili, has tattooed since 2000, most of that career in Turkey. From the early 2000s he raised the level of large custom Japanese and neo-traditional work in Istanbul, in a scene that had been mostly small tribal and flash. Andrei Aivazian did the same in Tbilisi for realism and the professional studio: custom portfolios, teaching, and a hygiene standard that put the city in front of clients outside Georgia.",
+      "readMore": "Read more",
+      "legend": "Meet our legendary tattoo artists:",
+      "vasoDeed": "Vaso Vasiko has tattooed since 2000. He is the leading Japanese-style tattoo artist in Turkey and Georgia. From the early 2000s he brought large-scale Japanese irezumi and neo-traditional work into the Turkish tattoo industry, which helped the regional development of Japanese-style work. Thanks to him, many international tattoo conventions are held in Turkey every year.",
+      "andreiDeed": "Andrei Aivazian has tattooed for more than two decades. He was the first to bring the realism style to Georgia. In Tbilisi he teaches realism, portrait, and black-and-grey style. His studio noticeably developed the local scene. He has won many awards at international tattoo conventions. His students are widely popular in Georgia, England, and the United States."
+    },
+    "artistsPage": {
+      "title": "Tattoo shop in Beyoğlu",
+      "lead": "The tattoo shop in Beyoğlu, above Istiklal Street in Asmalı Mescit. Open a portrait for the history and the plates."
+    },
+    "artistPage": {
+      "work": "Work",
+      "request": "Request this artist",
+      "portfolio": "Existing portfolio",
+      "untranslated": "This profile has not been translated yet."
+    },
+    "eventsPage": {
+      "title": "Guest tattoo artist in Istanbul",
+      "lead": "Guest tattoo artists in Istanbul, and the Marmari Tattoo Festival. Home shows only the featured dates."
+    },
+    "eventPage": {
+      "request": "Request a sitting",
+      "all": "All events",
+      "other": "Other events",
+      "untranslated": "This event has not been translated yet."
+    },
+    "about": {
+      "title": "Istiklal Street tattoo",
+      "publicName": "Public name",
+      "reach": "Reach",
+      "address": "Address",
+      "phone": "Phone",
+      "also": "Also listed",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "hours": "Hours",
+      "google": "Open the Google Business listing",
+      "booking": "Open the booking form",
+      "portfolio": "Existing portfolio",
+      "story": "Vaso Vasiko, born Vasil Kurakhchishvili in Georgia in 1980, has tattooed professionally since 2000. The career was built mainly in Turkey, from the studio on İstiklal Avenue in Istanbul, with frequent guest spots at studios in Europe.\n\nHe is known for Japanese irezumi and neo-traditional work, and also for black and grey, geometric, realism, and old and new school. The large custom pieces are sleeves, back pieces, and leg suits: dragons, hannya, samurai, snakes, peonies, and koi. The work is made to flow with the body, with heavy contrast, bold lines, dynamic backgrounds, and color that ages well. Sponsors named with that work are Cheyenne Tattoo Equipment, Radiant Tattoo Ink, and Aloe Tattoo.\n\nFrom the early 2000s he brought large-scale custom Japanese and neo-traditional work into a Turkish scene that was mostly small tribal and flash. He pushed single-use needles, better pigments, and European hygiene. The studio on İstiklal, the work with European studios, and that standard made him a reference point for younger artists.\n\nAndrei Aivazian is a veteran tattoo artist based in Tbilisi, Georgia, associated with Black Kiss Tattoo and his own studio. More than a decade of conventions, guest spots, and teaching stands behind the work. Realism, portraiture, and black and grey are the core, with Japanese and color beside them. The portraits are hyper-real, with texture, deep contrast, and smooth gradients. Sponsors named with his work are Kwadron, World Famous Tattoo Ink, and Dragon Tattoo Supply.\n\nHe trained artists in Tbilisi, including Tatia Godibadze, on machine work, needle choice, and professional ethics. His studios pushed the local scene toward custom portfolios and international hygiene standards. Guest spots and the standard of the work put Tbilisi in front of clients outside Georgia."
+    },
+    "book": {
+      "title": "Tattoo appointment",
+      "lead": "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp.",
+      "needAccount": "A booking is sent only from a client account whose email and phone are both confirmed."
+    },
+    "styles": {
+      "title": "Japanese tattoo in Istanbul",
+      "lead": "Japanese tattoo in Istanbul is the centre of the bench: irezumi and new traditional, plus the black and grey custom work done here.",
+      "more": "See who works in these styles",
+      "items": [
+        {
+          "title": "Irezumi",
+          "body": "Sleeves and larger pieces built from koi, dragon, peony, hannya, and waves. This is the work Vaso Vasiko keeps at the front of the studio."
+        },
+        {
+          "title": "New traditional",
+          "body": "Bold outlines and a limited palette, planned so the tattoo still reads years later."
+        },
+        {
+          "title": "Black and grey",
+          "body": "Weight, negative space, and custom blackwork, including neck pieces."
+        },
+        {
+          "title": "Also in the history",
+          "body": "Geometric, colour, new school, and old school appear in the public biography. Japanese and new traditional stay in front."
+        }
+      ]
+    },
+    "aftercare": {
+      "title": "Aftercare",
+      "intro": "General care for a fresh tattoo, not medical advice. If the skin is hot, streaking, or you feel unwell, contact a doctor.",
+      "call": "For ordinary healing questions, call the studio.",
+      "sections": [
+        {
+          "title": "The first days",
+          "body": "Leave the covering on for the time you were told. Wash with clean hands and a mild, unscented soap. Pat dry. Use a thin layer of the ointment you were given."
+        },
+        {
+          "title": "While it settles",
+          "body": "Do not soak it. Skip swimming, baths, and saunas until the surface has closed. Keep it out of the sun. Wear loose clothing. Do not pick flakes."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Questions",
+      "items": [
+        {
+          "q": "How do I book a tattoo appointment in Beyoğlu?",
+          "a": "Use the form with an idea or reference, the placement, and a rough time. The existing appointment notes say the studio replies by email or WhatsApp, usually within five working days."
+        },
+        {
+          "q": "Is there a deposit?",
+          "a": "The existing site states a deposit of 200 euros. It is applied to the final cost, it is not refunded, and it holds the date. They ask for 72 hours’ notice to reschedule."
+        },
+        {
+          "q": "When is the design ready?",
+          "a": "After the project is agreed, the design is presented within about 20 working days. The sitting is booked once you approve it."
+        },
+        {
+          "q": "Do you host a guest tattoo artist?",
+          "a": "Yes. Guest spots from other countries are listed on the events page, and the featured ones also appear on the home page."
+        },
+        {
+          "q": "What about the Marmari Tattoo Festival?",
+          "a": "The studio takes part in the Marmari Tattoo Festival in Marmaris. The last announced edition was 3–5 October 2025. The next dates are updated on the events page."
+        },
+        {
+          "q": "Where is the studio?",
+          "a": "VasoAndrei is a tattoo studio for custom Japanese tattoo art, including irezumi. The studio works in Istanbul and Düsseldorf. The Istanbul address is Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. The Düsseldorf address is Königsallee 45-47, 40212 Düsseldorf, Germany. Phone +90 533 203 67 40 or +49 163 787 99 67. Email termini@vasovasiko.com. Hours are Monday to Saturday, 10:00–20:00, and Sunday is closed. To book, use the appointment form. The studio replies by email or WhatsApp."
+        }
+      ]
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "artist": "Preferred artist",
+      "message": "Idea, placement, and rough timing",
+      "send": "Send request",
+      "sending": "Sending…",
+      "ok": "Request received. The studio will reply by email or WhatsApp.",
+      "preference": "No preference",
+      "error": "The message could not be sent."
+    },
+    "notFound": {
+      "title": "That page is not here",
+      "body": "Try the artists, the events, or the front page.",
+      "home": "Back home"
+    },
+    "salon": {
+      "guestLead": "Visiting artists keep a page here. They do not publish a phone, an email, or a social account. Clients write on the site.",
+      "bookNote": "That form is for Vaso Vasiko and Andrei Aivazian. A guest’s chat does not take their place.",
+      "hoursLine": "Monday–Saturday 10:00–20:00",
+      "guestList": "The studio hosts guest tattoo artists. Each guest has a page and a conversation on this site. None of those pages carry Instagram, Facebook, a phone, an email, or WhatsApp.",
+      "guestListMeta": "Guest tattoo artists at VasoAndrei. Profiles stay on this site, without a phone, email, or social account.",
+      "writeHere": "Write on this site",
+      "chatEyebrow": "On this site",
+      "chatLead": "Write here. This page has no phone, email, Instagram, Facebook, or WhatsApp. Booking Vaso Vasiko or Andrei Aivazian is a separate form.",
+      "chatYou": "You",
+      "chatGuest": "Guest",
+      "chatName": "Your name",
+      "chatMessage": "Message",
+      "chatSend": "Send on this site",
+      "chatError": "The message was not sent."
+    },
+    "seo": {
+      "homeTitle": "Vaso Vasiko and Andrei Aivazian",
+      "homeDescription": "VasoAndrei is the studio of Vaso Vasiko, on İstiklal in Istanbul, and Andrei Aivazian, in Tbilisi.",
+      "artistsTitle": "Tattoo shop Beyoğlu",
+      "artistsDescription": "Tattoo shop in Beyoğlu, on Istiklal Street in Asmalı Mescit. Artists, styles, and portfolios.",
+      "aboutTitle": "Istiklal Street tattoo",
+      "aboutDescription": "VasoAndrei in Istanbul and Düsseldorf: addresses, phones, termini@vasovasiko.com, and hours.",
+      "bookTitle": "Tattoo appointment",
+      "bookDescription": "Request a tattoo appointment in Turkey or Germany. Send an idea, the placement, and a rough time. The studio replies by email or WhatsApp.",
+      "stylesTitle": "Japanese tattoo Istanbul",
+      "stylesDescription": "Japanese tattoo in Istanbul: irezumi, new traditional, and black and grey custom work.",
+      "eventsTitle": "Guest tattoo artist Istanbul",
+      "eventsDescription": "Guest tattoo artists in Istanbul, and the Marmari Tattoo Festival.",
+      "aftercareTitle": "Aftercare",
+      "aftercareDescription": "How to look after a fresh tattoo, and when to call the studio.",
+      "faqTitle": "Questions",
+      "faqDescription": "Where VasoAndrei works in Istanbul and Düsseldorf, and how to book."
+    },
+    "register": {
+      "title": "Client registration",
+      "lead": "The account is created only after both codes are confirmed. Guest artists sign in on their own page, not here.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "send": "Continue",
+      "codesLead": "Enter the email code and the phone code. A wrong or expired code does not create the account.",
+      "emailCode": "Email code",
+      "phoneCode": "Phone code",
+      "confirm": "Confirm codes",
+      "expired": "That code has expired. Ask for new codes.",
+      "wrong": "That code does not match. The account was not created.",
+      "mismatch": "That email already has an account with a different phone.",
+      "error": "Check the name, email, and phone."
+    },
+    "signIn": {
+      "title": "Sign in",
+      "lead": "Sign in with the email or phone already on your account. There is no password. A one-time code confirms it is you.",
+      "identifier": "Email or phone",
+      "send": "Send code",
+      "code": "One-time code",
+      "confirm": "Sign in",
+      "unknown": "No finished account uses that email or phone.",
+      "wrong": "That code does not match.",
+      "expired": "That code has expired. Ask for a new one.",
+      "error": "Enter the email or phone on the account."
+    }
+  },
+  "tr": {
+    "nav": {
+      "home": "Ana sayfa",
+      "artists": "Sanatçılar",
+      "guests": "Misafirler",
+      "styles": "Stiller",
+      "events": "Etkinlikler",
+      "about": "Hakkında",
+      "faq": "Sorular",
+      "register": "Kayıt",
+      "signIn": "Giriş",
+      "signOut": "Çıkış",
+      "account": "{name} olarak giriş yapıldı",
+      "book": "Randevu",
+      "menu": "Menü",
+      "close": "Kapat",
+      "languages": "Diller",
+      "kicker": "İstiklal, İstanbul",
+      "skip": "İçeriğe geç"
+    },
+    "footer": {
+      "hours": "Saatler",
+      "reach": "Stüdyoya ulaşın",
+      "note": "Bu sitedeki portreler ve desenler özgün çizimlerdir.",
+      "google": "Google Business",
+      "portfolio": "Mevcut portfolyo",
+      "aftercare": "Bakım",
+      "admin": "Stüdyo yönetimi",
+      "newTab": "yeni sekmede açılır",
+      "location": "Konum",
+      "openMaps": "Google Haritalar’da aç",
+      "directions": "Yol tarifi için tıklayın",
+      "serviceArea": "Hizmet bölgesi",
+      "contact": "İletişim",
+      "istanbul": "İstanbul",
+      "dusseldorf": "Düsseldorf",
+      "germany": "Almanya",
+      "areaLine": "İstanbul • Düsseldorf"
+    },
+    "days": {
+      "Monday": "Pazartesi",
+      "Tuesday": "Salı",
+      "Wednesday": "Çarşamba",
+      "Thursday": "Perşembe",
+      "Friday": "Cuma",
+      "Saturday": "Cumartesi",
+      "Sunday": "Pazar"
+    },
+    "closed": "Kapalı",
+    "status": {
+      "Upcoming": "Yaklaşan",
+      "Past": "Geçmiş",
+      "Now": "Şimdi",
+      "featured": "Ana sayfada"
+    },
+    "home": {
+      "heroTitle": "Dövme yaptırmayı mı düşünüyorsunuz?",
+      "intro": "İki uzun kariyer aynı stüdyoda. Vaso Vasiko, İstanbul’da İstiklal Caddesi’nde Japon irezumi ve neo-traditional yapar, Avrupa’da misafir çalışır. Andrei Aivazian Tiflis’te realizm, portre ve siyah-gri yapar.",
+      "facts": "VasoAndrei, irezumi dahil özel Japon dövmesi yapan bir stüdyodur. Stüdyo İstanbul ve Düsseldorf’ta çalışır. İstanbul adresi Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Düsseldorf adresi Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 veya +49 163 787 99 67. E-posta termini@vasovasiko.com. Saatler pazartesiden cumartesiye 10:00–20:00, pazar kapalıdır. Randevu için formu kullanın. Stüdyo e-posta ya da WhatsApp ile döner.",
+      "eventsKicker": "Özel etkinlikler",
+      "eventsTitle": "Misafirler ve buluşmalar",
+      "eventsLead": "Başka ülkelerden misafir dövme sanatçıları ve Marmari dövme festivali gibi günler.",
+      "allEvents": "Tüm etkinlikler",
+      "artistsKicker": "Masa",
+      "artistsTitle": "Sanatçılar",
+      "artistsLead": "Kim çalışıyor, hangi stilleri alıyor.",
+      "allArtists": "Tüm sanatçılar",
+      "visitTitle": "Yazın, arayın ya da çıkın",
+      "online": "Çevrimiçi",
+      "listing": "Google kaydını aç",
+      "heroAlt": "Bir dövme sanatçısı sırt parçası üzerinde çalışıyor",
+      "permanence": "Vücudunuza kalıcı bir şey yaptırmak, bunu profesyonellerden almak demektir.",
+      "meet": "Efsanevi sanatçılarımızla tanışın:",
+      "short": "Vaso Vasiko, doğum adıyla Vasil Kurakhchishvili, 2000’den beri dövme yapıyor; bu kariyerin büyük bölümü Türkiye’de geçti. 2000’lerin başından itibaren İstanbul’da, çoğunluğu küçük tribal ve flash olan bir sahnede, büyük özel Japon ve neo-traditional işin düzeyini yükseltti. Andrei Aivazian aynı şeyi Tiflis’te realizm ve profesyonel stüdyo standardı için yaptı: özel portfolyolar, eğitim ve şehri Gürcistan dışındaki müşterilerin önüne çıkaran bir hijyen standardı.",
+      "readMore": "Devamını okuyun",
+      "legend": "Efsanevi dövme sanatçılarımızla tanışın:",
+      "vasoDeed": "Vaso Vasiko 2000’den beri dövme yapıyor. Türkiye ve Gürcistan’da Japon stilinin önde gelen dövme sanatçısıdır. 2000’lerin başından itibaren Türkiye’deki dövme endüstrisine büyük ölçekli Japon irezumi ve neo-traditional iş getirdi; bu, Japon stili işin bölgesel gelişmesine yardımcı oldu. Onun sayesinde Türkiye’de her yıl birçok uluslararası dövme konvansiyonu düzenleniyor.",
+      "andreiDeed": "Andrei Aivazian yirmi yılı aşkın süredir dövme yapıyor. Gürcistan’a realizm stilini getiren ilk kişidir. Tiflis’te realizm, portre ve siyah-gri stil öğretir. Stüdyosu yerel sahneyi belirgin biçimde geliştirdi. Uluslararası dövme konvansiyonlarında birçok ödül kazanmıştır. Öğrencileri Gürcistan, İngiltere ve Amerika Birleşik Devletleri’nde geniş çapta popülerdir."
+    },
+    "artistsPage": {
+      "title": "Beyoğlu dövme",
+      "lead": "Asmalı Mescit’te, İstiklal üzerindeki Beyoğlu dövme stüdyosu. Portreye girince tarih ve desenler açılır."
+    },
+    "artistPage": {
+      "work": "İşler",
+      "request": "Bu sanatçıyı iste",
+      "portfolio": "Mevcut portfolyo",
+      "untranslated": "Bu profil henüz çevrilmedi."
+    },
+    "eventsPage": {
+      "title": "Misafir dövme sanatçısı",
+      "lead": "İstanbul’da misafir dövme sanatçısı günleri ve Marmari dövme festivali. Ana sayfa yalnızca öne çıkan tarihleri gösterir."
+    },
+    "eventPage": {
+      "request": "Randevu iste",
+      "all": "Tüm etkinlikler",
+      "other": "Diğer etkinlikler",
+      "untranslated": "Bu etkinlik henüz çevrilmedi."
+    },
+    "about": {
+      "title": "İstiklal dövme",
+      "publicName": "Kamuya açık ad",
+      "reach": "Ulaşın",
+      "address": "Adres",
+      "phone": "Telefon",
+      "also": "Ayrıca kayıtlı",
+      "email": "E-posta",
+      "whatsapp": "WhatsApp",
+      "hours": "Saatler",
+      "google": "Google Business kaydını aç",
+      "booking": "Randevu formunu aç",
+      "portfolio": "Mevcut portfolyo",
+      "story": "Vaso Vasiko, asıl adıyla Vasil Kurakhchishvili, 1980’de Gürcistan’da doğdu. 2000’den beri profesyonel olarak dövme yapıyor. Kariyerinin büyük bölümü Türkiye’de kuruldu: stüdyo İstanbul’da İstiklal Caddesi’nde, Avrupa’daki stüdyolarda ise sık sık misafir olarak çalışıyor.\n\nJapon irezumi ve neo-traditional işleriyle tanınır; siyah-gri, geometrik, realizm, old school ve new school da yapar. Büyük özel işler kol, sırt ve bacak kaplamalarıdır: ejderha, hannya, samuray, yılan, şakayık ve koi. İş vücutla birlikte akar; kontrast ağır, çizgi kalın, zemin hareketli, renk yıllar sonra da durur. Bu işle anılan sponsorlar Cheyenne Tattoo Equipment, Radiant Tattoo Ink ve Aloe Tattoo’dur.\n\n2000’lerin başından itibaren, çoğunlukla küçük tribal ve flash’tan oluşan Türkiye sahnesine büyük ölçekli özel Japon ve neo-traditional işi getirdi. Tek kullanımlık iğneyi, daha iyi pigmenti ve Avrupa hijyenini öne çıkardı. İstiklal’deki stüdyo, Avrupa stüdyolarıyla ortak işler ve bu iş düzeyi, genç sanatçılar için bir başvuru noktası oldu.\n\nAndrei Aivazian, Tiflis’te yerleşik, deneyimli bir dövme sanatçısıdır. Black Kiss Tattoo ve kendi stüdyosuyla anılır. Arkasında on yıldan uzun kongre, misafir çalışma ve eğitim vardır. Merkezde realizm, portre ve siyah-gri vardır; yanında Japon ve renkli iş de vardır. Portreler hipergerçektir: doku, derin kontrast ve yumuşak geçişler. Onun işiyle anılan sponsorlar Kwadron, World Famous Tattoo Ink ve Dragon Tattoo Supply’dir.\n\nTiflis’te sanatçılar yetiştirdi; aralarında Tatia Godibadze de vardır. Makine kullanımı, iğne seçimi ve meslek ahlakı bu eğitimin konusudur. Stüdyoları yerel sahneyi özel portfolyoya ve uluslararası hijyen standardına doğru itti. Misafir çalışmaları ve işin standardı, Tiflis’i Gürcistan dışındaki müşterilerin önüne çıkardı."
+    },
+    "book": {
+      "title": "Dövme randevusu",
+      "lead": "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner.",
+      "needAccount": "Randevu yalnızca e-postası ve telefonu doğrulanmış bir müşteri hesabından gönderilir."
+    },
+    "styles": {
+      "title": "Japon dövmesi",
+      "lead": "Stüdyonun ortasında Japon dövmesi var: irezumi ve yeni traditional, yanında siyah-gri özel iş.",
+      "more": "Bu stillerde kim çalışıyor",
+      "items": [
+        {
+          "title": "Irezumi",
+          "body": "Koi, ejderha, şakayık, hannya ve dalgalardan kurulan kol ve büyük parçalar. Vaso Vasiko’nun önde tuttuğu iş budur."
+        },
+        {
+          "title": "Yeni traditional",
+          "body": "Kalın kontur ve sınırlı palet. Dövme yıllar sonra da okunur kalsın diye kurulur."
+        },
+        {
+          "title": "Siyah ve gri",
+          "body": "Ağırlık, boşluk ve özel blackwork; boyun işleri de buna girer."
+        },
+        {
+          "title": "Geçmişte de",
+          "body": "Geometrik, renkli, new school ve old school kamuya açık biyografide geçer. Önde Japon ve yeni traditional durur."
+        }
+      ]
+    },
+    "aftercare": {
+      "title": "Bakım",
+      "intro": "Taze dövme için genel bakım. Tıbbi tavsiye değildir. Deri sıcaksa, çizgi halinde kızarıyorsa ya da kendinizi kötü hissediyorsanız bir hekime başvurun.",
+      "call": "Olağan iyileşme soruları için stüdyoyu arayın.",
+      "sections": [
+        {
+          "title": "İlk günler",
+          "body": "Örtüyü söylenen süre boyunca bırakın. Temiz elle ve kokusuz hafif bir sabunla yıkayın. Bastırarak kurulayın. Verilen merhemden ince bir kat sürün."
+        },
+        {
+          "title": "Yerleşirken",
+          "body": "Suya sokmayın. Yüzey kapanana kadar havuz, banyo ve sauna yok. Güneşten kaçının. Bol kıyafet giyin. Kabuğu koparmayın."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Sorular",
+      "items": [
+        {
+          "q": "Beyoğlu’nda dövme randevusu nasıl alınır?",
+          "a": "Forma fikri ya da referansı, bölgeyi ve kabaca zamanı yazın. Mevcut randevu notlarına göre stüdyo genellikle beş iş günü içinde e-posta ya da WhatsApp ile döner."
+        },
+        {
+          "q": "Depozito var mı?",
+          "a": "Mevcut sitede depozito 200 euro olarak yazar. Son ücrete sayılır, iade edilmez ve tarihi tutar. Erteleme için 72 saat önce haber isterler."
+        },
+        {
+          "q": "Tasarım ne zaman hazır?",
+          "a": "İş kararlaştırıldıktan sonra tasarım yaklaşık 20 iş günü içinde sunulur. Siz onaylayınca en yakın tarihe randevu yazılır."
+        },
+        {
+          "q": "Misafir dövme sanatçısı geliyor mu?",
+          "a": "Evet. Başka ülkelerden misafir günleri etkinlikler sayfasındadır. Öne çıkanlar ana sayfada da durur."
+        },
+        {
+          "q": "Marmari dövme festivali ne?",
+          "a": "Stüdyo, Marmaris’teki Marmari dövme festivaline katılır. Son duyurulan tarih 3–5 Ekim 2025’tir. Yeni tarih etkinlikler sayfasında güncellenir."
+        },
+        {
+          "q": "Stüdyo nerede?",
+          "a": "VasoAndrei, irezumi dahil özel Japon dövmesi yapan bir stüdyodur. Stüdyo İstanbul ve Düsseldorf’ta çalışır. İstanbul adresi Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Düsseldorf adresi Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 veya +49 163 787 99 67. E-posta termini@vasovasiko.com. Saatler pazartesiden cumartesiye 10:00–20:00, pazar kapalıdır. Randevu için formu kullanın. Stüdyo e-posta ya da WhatsApp ile döner."
+        }
+      ]
+    },
+    "form": {
+      "name": "Ad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "artist": "Tercih edilen sanatçı",
+      "message": "Fikir, bölge ve kabaca zaman",
+      "send": "İsteği gönder",
+      "sending": "Gönderiliyor…",
+      "ok": "İstek alındı. Stüdyo e-posta ya da WhatsApp ile döner.",
+      "preference": "Fark etmez",
+      "error": "Mesaj gönderilemedi."
+    },
+    "notFound": {
+      "title": "Bu sayfa yok",
+      "body": "Sanatçılara, etkinliklere ya da ana sayfaya bakın.",
+      "home": "Ana sayfa"
+    },
+    "salon": {
+      "guestLead": "Ziyaretçi sanatçılar burada sayfa tutar. Telefon, e-posta veya sosyal hesap yayımlamazlar. Müşteriler siteden yazar.",
+      "bookNote": "Bu form Vaso Vasiko ve Andrei Aivazian içindir. Misafirin sohbeti onun yerini tutmaz.",
+      "hoursLine": "Pazartesi–Cumartesi 10:00–20:00",
+      "guestList": "Stüdyo misafir dövme sanatçıları ağırlar. Her misafirin bu sitede bir sayfası ve bir yazışması vardır. Bu sayfalarda Instagram, Facebook, telefon, e-posta veya WhatsApp yoktur.",
+      "guestListMeta": "VasoAndrei’da misafir dövme sanatçıları. Profiller bu sitede kalır; telefon, e-posta veya sosyal hesap yoktur.",
+      "writeHere": "Bu siteden yazın",
+      "chatEyebrow": "Bu sitede",
+      "chatLead": "Buradan yazın. Bu sayfada telefon, e-posta, Instagram, Facebook veya WhatsApp yoktur. Vaso Vasiko veya Andrei Aivazian için randevu ayrı formdadır.",
+      "chatYou": "Siz",
+      "chatGuest": "Misafir",
+      "chatName": "Adınız",
+      "chatMessage": "Mesaj",
+      "chatSend": "Bu siteden gönder",
+      "chatError": "Mesaj gönderilmedi."
+    },
+    "seo": {
+      "homeTitle": "Vaso Vasiko ve Andrei Aivazian",
+      "homeDescription": "VasoAndrei, İstanbul’da İstiklal’de Vaso Vasiko’nun ve Tiflis’te Andrei Aivazian’ın stüdyosudur.",
+      "artistsTitle": "Beyoğlu dövme",
+      "artistsDescription": "Asmalı Mescit’te, İstiklal üzerinde Beyoğlu dövme stüdyosu. Sanatçılar ve portfolyolar.",
+      "aboutTitle": "İstiklal dövme",
+      "aboutDescription": "VasoAndrei İstanbul ve Düsseldorf’ta: adresler, telefonlar, termini@vasovasiko.com ve saatler.",
+      "bookTitle": "Dövme randevusu",
+      "bookDescription": "Türkiye veya Almanya’da dövme randevusu isteyin. Fikri, bölgeyi ve kabaca zamanı yazın. Stüdyo e-posta ya da WhatsApp ile döner.",
+      "stylesTitle": "Japon dövmesi",
+      "stylesDescription": "İstanbul’da Japon dövmesi: irezumi, yeni traditional ve siyah-gri özel iş.",
+      "eventsTitle": "Misafir dövme sanatçısı",
+      "eventsDescription": "İstanbul’da misafir dövme sanatçısı günleri ve Marmari dövme festivali.",
+      "aftercareTitle": "Bakım",
+      "aftercareDescription": "Taze dövmenin bakımı ve stüdyoyu ne zaman arayacağınız.",
+      "faqTitle": "Sorular",
+      "faqDescription": "VasoAndrei’nun İstanbul ve Düsseldorf adresleri ve randevu."
+    },
+    "register": {
+      "title": "Müşteri kaydı",
+      "lead": "Hesap ancak iki kod da doğrulandıktan sonra oluşur. Misafir sanatçılar kendi sayfalarından girer, buradan değil.",
+      "name": "Ad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "send": "Devam",
+      "codesLead": "E-posta kodunu ve telefon kodunu girin. Yanlış veya süresi dolmuş kod hesap oluşturmaz.",
+      "emailCode": "E-posta kodu",
+      "phoneCode": "Telefon kodu",
+      "confirm": "Kodları doğrula",
+      "expired": "Bu kodun süresi doldu. Yeni kod isteyin.",
+      "wrong": "Kod uyuşmuyor. Hesap oluşturulmadı.",
+      "mismatch": "Bu e-posta farklı bir telefonla kayıtlı.",
+      "error": "Adı, e-postayı ve telefonu kontrol edin."
+    },
+    "signIn": {
+      "title": "Giriş",
+      "lead": "Hesaptaki e-posta ya da telefonla giriş yapın. Şifre yoktur. Tek kullanımlık kod bunun siz olduğunu doğrular.",
+      "identifier": "E-posta veya telefon",
+      "send": "Kod gönder",
+      "code": "Tek kullanımlık kod",
+      "confirm": "Giriş",
+      "unknown": "Bu e-posta veya telefonla bitmiş bir hesap yok.",
+      "wrong": "Kod uyuşmuyor.",
+      "expired": "Bu kodun süresi doldu. Yenisini isteyin.",
+      "error": "Hesaptaki e-postayı veya telefonu girin."
+    }
+  },
+  "de": {
+    "nav": {
+      "home": "Startseite",
+      "artists": "Künstler",
+      "guests": "Gäste",
+      "styles": "Stile",
+      "events": "Termine",
+      "about": "Über uns",
+      "faq": "Fragen",
+      "register": "Registrieren",
+      "signIn": "Anmelden",
+      "signOut": "Abmelden",
+      "account": "Angemeldet als {name}",
+      "book": "Termin",
+      "menu": "Menü",
+      "close": "Schließen",
+      "languages": "Sprachen",
+      "kicker": "İstiklal, Istanbul",
+      "skip": "Zum Inhalt"
+    },
+    "footer": {
+      "hours": "Zeiten",
+      "reach": "Studio erreichen",
+      "note": "Porträts und Blätter auf dieser Seite sind eigene Zeichnungen.",
+      "google": "Google Business",
+      "portfolio": "Bestehendes Portfolio",
+      "aftercare": "Pflege",
+      "admin": "Studio-Admin",
+      "newTab": "öffnet sich in einem neuen Tab",
+      "location": "Standort",
+      "openMaps": "In Google Maps öffnen",
+      "directions": "Für die Route tippen",
+      "serviceArea": "Einsatzgebiet",
+      "contact": "Kontakt",
+      "istanbul": "Istanbul",
+      "dusseldorf": "Düsseldorf",
+      "germany": "Deutschland",
+      "areaLine": "Istanbul • Düsseldorf"
+    },
+    "days": {
+      "Monday": "Montag",
+      "Tuesday": "Dienstag",
+      "Wednesday": "Mittwoch",
+      "Thursday": "Donnerstag",
+      "Friday": "Freitag",
+      "Saturday": "Samstag",
+      "Sunday": "Sonntag"
+    },
+    "closed": "Geschlossen",
+    "status": {
+      "Upcoming": "Kommend",
+      "Past": "Vergangen",
+      "Now": "Jetzt",
+      "featured": "Auf der Startseite"
+    },
+    "home": {
+      "heroTitle": "Planen Sie ein Tattoo?",
+      "intro": "Zwei lange Laufbahnen teilen sich dieses Studio. Vaso Vasiko arbeitet japanisches Irezumi und Neo-Traditional an der İstiklal in Istanbul und gastiert in Europa. Andrei Aivazian arbeitet Realismus, Porträt und Schwarz-Grau in Tiflis.",
+      "facts": "VasoAndrei ist ein Tattoo-Studio für japanische Tattoo-Kunst, einschließlich Irezumi. Das Studio arbeitet in Istanbul und Düsseldorf. Die Adresse in Istanbul ist Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Die Adresse in Düsseldorf ist Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 oder +49 163 787 99 67. E-Mail termini@vasovasiko.com. Geöffnet Montag bis Samstag, 10:00–20:00, sonntags geschlossen. Für einen Termin das Formular nutzen. Das Studio antwortet per E-Mail oder WhatsApp.",
+      "eventsKicker": "Besondere Termine",
+      "eventsTitle": "Gäste und Treffen",
+      "eventsLead": "Gasttätowierer aus anderen Ländern und Tage wie das Marmari Tattoo Festival.",
+      "allEvents": "Alle Termine",
+      "artistsKicker": "Die Bank",
+      "artistsTitle": "Künstler",
+      "artistsLead": "Wer arbeitet, und welche Stile sie annehmen.",
+      "allArtists": "Alle Künstler",
+      "visitTitle": "Schreiben, anrufen oder heraufkommen",
+      "online": "Auch online",
+      "listing": "Google-Eintrag öffnen",
+      "heroAlt": "Ein Tätowierer arbeitet an einem Rückenstück",
+      "permanence": "Etwas Dauerhaftes auf den Körper zu setzen heißt, es von Profis setzen zu lassen.",
+      "meet": "Lernen Sie unsere legendären Künstler kennen:",
+      "short": "Vaso Vasiko, geboren als Vasil Kurakhchishvili, tätowiert seit 2000, den größten Teil dieser Laufbahn in der Türkei. Seit den frühen 2000er-Jahren hob er in Istanbul das Niveau großer, frei entworfener japanischer und neotraditioneller Arbeiten an, in einer Szene, die zuvor vor allem aus kleinem Tribal und Flash bestand. Andrei Aivazian tat dasselbe in Tiflis für Realismus und den professionellen Studiostandard: eigene Portfolios, Unterricht und ein Hygienestandard, der die Stadt Kunden außerhalb Georgiens vor Augen führte.",
+      "readMore": "Weiterlesen",
+      "legend": "Lernen Sie unsere legendären Tätowierer kennen:",
+      "vasoDeed": "Vaso Vasiko tätowiert seit 2000. Er ist der führende Tätowierer für japanischen Stil in der Türkei und in Georgien. Seit den frühen 2000ern brachte er großformatiges japanisches Irezumi und Neo-Traditional in die türkische Tattoo-Branche, was die regionale Entwicklung der japanischen Arbeit gefördert hat. Ihm ist es zu verdanken, dass in der Türkei jedes Jahr viele internationale Tattoo-Conventions stattfinden.",
+      "andreiDeed": "Andrei Aivazian tätowiert seit mehr als zwei Jahrzehnten. Er war der Erste, der den Realismus-Stil nach Georgien gebracht hat. In Tiflis unterrichtet er Realismus, Porträt und den Schwarz-Grau-Stil. Sein Studio hat die lokale Szene spürbar weiterentwickelt. Er hat viele Auszeichnungen bei internationalen Tattoo-Conventions gewonnen. Seine Schüler sind in Georgien, England und den Vereinigten Staaten weithin populär."
+    },
+    "artistsPage": {
+      "title": "Tattoo-Studio Beyoğlu",
+      "lead": "Das Tattoo-Studio in Beyoğlu, über der Istiklal in Asmalı Mescit. Ein Porträt öffnet die Geschichte und die Blätter."
+    },
+    "artistPage": {
+      "work": "Arbeiten",
+      "request": "Diesen Künstler anfragen",
+      "portfolio": "Bestehendes Portfolio",
+      "untranslated": "Dieses Profil ist noch nicht übersetzt."
+    },
+    "eventsPage": {
+      "title": "Gasttätowierer in Istanbul",
+      "lead": "Gasttätowierer in Istanbul und das Marmari Tattoo Festival. Die Startseite zeigt nur die hervorgehobenen Daten."
+    },
+    "eventPage": {
+      "request": "Sitzung anfragen",
+      "all": "Alle Termine",
+      "other": "Weitere Termine",
+      "untranslated": "Dieser Termin ist noch nicht übersetzt."
+    },
+    "about": {
+      "title": "Tattoo an der Istiklal",
+      "publicName": "Öffentlicher Name",
+      "reach": "Erreichen",
+      "address": "Adresse",
+      "phone": "Telefon",
+      "also": "Außerdem genannt",
+      "email": "E-Mail",
+      "whatsapp": "WhatsApp",
+      "hours": "Zeiten",
+      "google": "Google-Business-Eintrag öffnen",
+      "booking": "Zum Terminformular",
+      "portfolio": "Bestehendes Portfolio",
+      "story": "Vaso Vasiko, mit bürgerlichem Namen Vasil Kurakhchishvili, wurde 1980 in Georgien geboren. Er tätowiert seit 2000 professionell. Die Laufbahn entstand vor allem in der Türkei, im Studio an der İstiklal-Allee in Istanbul, mit häufigen Gastspielen in Studios in Europa.\n\nBekannt ist er für japanisches Irezumi und neotraditionelle Arbeit, dazu Schwarz-Grau, Geometrie, Realismus sowie Old und New School. Die großen freien Arbeiten sind Ärmel, Rückenstücke und Beinanzüge: Drachen, Hannya, Samurai, Schlangen, Pfingstrosen und Koi. Die Arbeit folgt dem Körper, mit starkem Kontrast, kräftigen Linien, bewegten Hintergründen und Farbe, die gut altert. Als Sponsoren dieser Arbeit genannt sind Cheyenne Tattoo Equipment, Radiant Tattoo Ink und Aloe Tattoo.\n\nAb den frühen 2000er-Jahren brachte er großformatige, frei entworfene japanische und neotraditionelle Arbeit in eine türkische Szene, die vor allem aus kleinem Tribal und Flash bestand. Er setzte Einwegnadeln, bessere Pigmente und europäische Hygiene durch. Das Studio an der İstiklal, die Zusammenarbeit mit europäischen Studios und dieses Niveau der Arbeit machten ihn zu einem Bezugspunkt für jüngere Künstler.\n\nAndrei Aivazian ist ein langjähriger Tattoo-Künstler in Tiflis, Georgien, verbunden mit Black Kiss Tattoo und dem eigenen Studio. Dahinter liegen mehr als zehn Jahre Conventions, Gastspiele und Unterricht. Den Kern bilden Realismus, Porträt und Schwarz-Grau, daneben Japanisch und Farbe. Die Porträts sind hyperreal, mit Textur, tiefem Kontrast und weichen Verläufen. Als Sponsoren seiner Arbeit genannt sind Kwadron, World Famous Tattoo Ink und Dragon Tattoo Supply.\n\nIn Tiflis bildete er Künstler aus, darunter Tatia Godibadze, an der Maschine, an der Nadelwahl und an der Berufsethik. Seine Studios schoben die lokale Szene zu eigenen Portfolios und zu internationalen Hygienestandards. Gastspiele und das Niveau der Arbeit stellten Tiflis Kunden außerhalb Georgiens vor."
+    },
+    "book": {
+      "title": "Tattoo-Termin",
+      "lead": "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp.",
+      "needAccount": "Eine Anfrage geht nur von einem Kundenkonto, dessen E-Mail und Telefon bestätigt sind."
+    },
+    "styles": {
+      "title": "Japanisches Tattoo in Istanbul",
+      "lead": "Japanisches Tattoo in Istanbul steht in der Mitte: Irezumi und New Traditional, dazu schwarz-graue Einzelstücke.",
+      "more": "Wer in diesen Stilen arbeitet",
+      "items": [
+        {
+          "title": "Irezumi",
+          "body": "Ärmel und größere Stücke aus Koi, Drache, Pfingstrose, Hannya und Wellen. Das ist die Arbeit, die Vaso Vasiko vorne hält."
+        },
+        {
+          "title": "New Traditional",
+          "body": "Kräftige Kontur und eine knappe Palette, damit das Tattoo nach Jahren noch lesbar ist."
+        },
+        {
+          "title": "Schwarz-grau",
+          "body": "Gewicht, freier Raum und Blackwork, auch am Hals."
+        },
+        {
+          "title": "Auch in der Geschichte",
+          "body": "Geometrisch, farbig, New School und Old School stehen in der öffentlichen Biografie. Vorne bleiben japanisch und New Traditional."
+        }
+      ]
+    },
+    "aftercare": {
+      "title": "Nachsorge",
+      "intro": "Allgemeine Pflege für ein frisches Tattoo, kein medizinischer Rat. Wenn die Haut heiß ist, streifig wird oder Sie sich krank fühlen, gehen Sie zum Arzt.",
+      "call": "Bei gewöhnlichen Heilungsfragen rufen Sie das Studio an.",
+      "sections": [
+        {
+          "title": "Die ersten Tage",
+          "body": "Die Folie so lange lassen, wie besprochen. Mit sauberen Händen und milder, duftfreier Seife waschen. Trockentupfen. Eine dünne Schicht der Salbe auftragen."
+        },
+        {
+          "title": "Während es sitzt",
+          "body": "Nicht einweichen. Kein Schwimmen, keine Wanne, keine Sauna, bis die Oberfläche zu ist. Sonne meiden. Lockere Kleidung. Keine Schuppen abziehen."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Fragen",
+      "items": [
+        {
+          "q": "Wie buche ich einen Tattoo-Termin in Beyoğlu?",
+          "a": "Schicken Sie eine Idee oder Referenz, die Stelle und einen groben Zeitpunkt. Laut den bestehenden Hinweisen antwortet das Studio meist innerhalb von fünf Werktagen per E-Mail oder WhatsApp."
+        },
+        {
+          "q": "Gibt es eine Anzahlung?",
+          "a": "Auf der bestehenden Seite steht eine Anzahlung von 200 Euro. Sie wird verrechnet, nicht erstattet, und sie hält den Termin. Zum Verschieben werden 72 Stunden Vorlauf gebeten."
+        },
+        {
+          "q": "Wann ist der Entwurf fertig?",
+          "a": "Nach der Zusage kommt der Entwurf in etwa 20 Werktagen. Der Sitz wird gebucht, wenn Sie ihn freigeben."
+        },
+        {
+          "q": "Kommt ein Gasttätowierer?",
+          "a": "Ja. Gasttage aus anderen Ländern stehen auf der Terminseite. Hervorgehobene erscheinen auch auf der Startseite."
+        },
+        {
+          "q": "Was ist das Marmari Tattoo Festival?",
+          "a": "Das Studio nimmt am Marmari Tattoo Festival in Marmaris teil. Die letzte angekündigte Ausgabe war der 3.–5. Oktober 2025. Neue Daten stehen auf der Terminseite."
+        },
+        {
+          "q": "Wo ist das Studio?",
+          "a": "VasoAndrei ist ein Tattoo-Studio für japanische Tattoo-Kunst, einschließlich Irezumi. Das Studio arbeitet in Istanbul und Düsseldorf. Die Adresse in Istanbul ist Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Die Adresse in Düsseldorf ist Königsallee 45-47, 40212 Düsseldorf, Germany. Telefon +90 533 203 67 40 oder +49 163 787 99 67. E-Mail termini@vasovasiko.com. Geöffnet Montag bis Samstag, 10:00–20:00, sonntags geschlossen. Für einen Termin das Formular nutzen. Das Studio antwortet per E-Mail oder WhatsApp."
+        }
+      ]
+    },
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "artist": "Wunschkünstler",
+      "message": "Idee, Stelle und grober Zeitpunkt",
+      "send": "Anfrage senden",
+      "sending": "Wird gesendet…",
+      "ok": "Anfrage angekommen. Das Studio antwortet per E-Mail oder WhatsApp.",
+      "preference": "Keine Vorgabe",
+      "error": "Die Nachricht konnte nicht gesendet werden."
+    },
+    "notFound": {
+      "title": "Diese Seite gibt es nicht",
+      "body": "Sehen Sie bei den Künstlern, den Terminen oder auf der Startseite nach.",
+      "home": "Zur Startseite"
+    },
+    "salon": {
+      "guestLead": "Gastkünstler haben hier eine Seite. Sie veröffentlichen kein Telefon, keine E-Mail und kein soziales Konto. Kunden schreiben auf der Seite.",
+      "bookNote": "Dieses Formular ist für Vaso Vasiko und Andrei Aivazian. Der Chat eines Gastes tritt nicht an seine Stelle.",
+      "hoursLine": "Montag–Samstag 10:00–20:00",
+      "guestList": "Das Studio empfängt Gasttätowierer. Jeder Gast hat eine Seite und ein Gespräch auf dieser Website. Keine dieser Seiten trägt Instagram, Facebook, ein Telefon, eine E-Mail oder WhatsApp.",
+      "guestListMeta": "Gasttätowierer bei VasoAndrei. Profile bleiben auf dieser Seite, ohne Telefon, E-Mail oder soziales Konto.",
+      "writeHere": "Auf dieser Seite schreiben",
+      "chatEyebrow": "Auf dieser Seite",
+      "chatLead": "Schreiben Sie hier. Diese Seite hat kein Telefon, keine E-Mail, kein Instagram, Facebook oder WhatsApp. Ein Termin bei Vaso Vasiko oder Andrei Aivazian ist ein eigenes Formular.",
+      "chatYou": "Sie",
+      "chatGuest": "Gast",
+      "chatName": "Ihr Name",
+      "chatMessage": "Nachricht",
+      "chatSend": "Auf dieser Seite senden",
+      "chatError": "Die Nachricht wurde nicht gesendet."
+    },
+    "seo": {
+      "homeTitle": "Vaso Vasiko und Andrei Aivazian",
+      "homeDescription": "VasoAndrei ist das Studio von Vaso Vasiko an der İstiklal in Istanbul und von Andrei Aivazian in Tiflis.",
+      "artistsTitle": "Tattoo-Studio Beyoğlu",
+      "artistsDescription": "Tattoo-Studio in Beyoğlu, an der Istiklal in Asmalı Mescit. Künstler und Mappen.",
+      "aboutTitle": "Tattoo an der Istiklal",
+      "aboutDescription": "VasoAndrei in Istanbul und Düsseldorf: Adressen, Telefone, termini@vasovasiko.com und Zeiten.",
+      "bookTitle": "Tattoo-Termin",
+      "bookDescription": "Einen Tattoo-Termin in der Türkei oder in Deutschland anfragen. Idee, Stelle und einen groben Zeitpunkt schicken. Das Studio antwortet per E-Mail oder WhatsApp.",
+      "stylesTitle": "Japanisches Tattoo Istanbul",
+      "stylesDescription": "Japanisches Tattoo in Istanbul: Irezumi, New Traditional und schwarz-graue Einzelstücke.",
+      "eventsTitle": "Gasttätowierer Istanbul",
+      "eventsDescription": "Gasttätowierer in Istanbul und das Marmari Tattoo Festival.",
+      "aftercareTitle": "Nachsorge",
+      "aftercareDescription": "Pflege eines frischen Tattoos und wann Sie das Studio anrufen.",
+      "faqTitle": "Fragen",
+      "faqDescription": "Wo VasoAndrei in Istanbul und Düsseldorf arbeitet, und wie man bucht."
+    },
+    "register": {
+      "title": "Kundenregistrierung",
+      "lead": "Das Konto entsteht erst, wenn beide Codes bestätigt sind. Gastkünstler melden sich auf ihrer eigenen Seite an, nicht hier.",
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "send": "Weiter",
+      "codesLead": "Geben Sie den E-Mail-Code und den Telefon-Code ein. Ein falscher oder abgelaufener Code legt kein Konto an.",
+      "emailCode": "E-Mail-Code",
+      "phoneCode": "Telefon-Code",
+      "confirm": "Codes bestätigen",
+      "expired": "Dieser Code ist abgelaufen. Fordern Sie neue Codes an.",
+      "wrong": "Der Code stimmt nicht. Das Konto wurde nicht angelegt.",
+      "mismatch": "Diese E-Mail hat bereits ein Konto mit einer anderen Telefonnummer.",
+      "error": "Prüfen Sie Name, E-Mail und Telefon."
+    },
+    "signIn": {
+      "title": "Anmelden",
+      "lead": "Melden Sie sich mit der E-Mail oder dem Telefon des Kontos an. Es gibt kein Passwort. Ein einmaliger Code bestätigt, dass Sie es sind.",
+      "identifier": "E-Mail oder Telefon",
+      "send": "Code senden",
+      "code": "Einmaliger Code",
+      "confirm": "Anmelden",
+      "unknown": "Kein fertiges Konto nutzt diese E-Mail oder dieses Telefon.",
+      "wrong": "Der Code stimmt nicht.",
+      "expired": "Dieser Code ist abgelaufen. Fordern Sie einen neuen an.",
+      "error": "Geben Sie die E-Mail oder das Telefon des Kontos ein."
+    }
+  },
+  "ru": {
+    "nav": {
+      "home": "Главная",
+      "artists": "Мастера",
+      "guests": "Гости",
+      "styles": "Стили",
+      "events": "События",
+      "about": "О студии",
+      "faq": "Вопросы",
+      "register": "Регистрация",
+      "signIn": "Вход",
+      "signOut": "Выход",
+      "account": "Вы вошли как {name}",
+      "book": "Запись",
+      "menu": "Меню",
+      "close": "Закрыть",
+      "languages": "Языки",
+      "kicker": "Истикляль, Стамбул",
+      "skip": "К содержанию"
+    },
+    "footer": {
+      "hours": "Часы",
+      "reach": "Связаться",
+      "note": "Портреты и листы на этом сайте — собственные рисунки.",
+      "google": "Google Business",
+      "portfolio": "Существующее портфолио",
+      "aftercare": "Уход",
+      "admin": "Админка",
+      "newTab": "откроется в новой вкладке",
+      "location": "Где мы",
+      "openMaps": "Открыть в Google Картах",
+      "directions": "Нажмите, чтобы построить маршрут",
+      "serviceArea": "Где работаем",
+      "contact": "Контакты",
+      "istanbul": "Стамбул",
+      "dusseldorf": "Дюссельдорф",
+      "germany": "Германия",
+      "areaLine": "Стамбул • Дюссельдорф"
+    },
+    "days": {
+      "Monday": "Понедельник",
+      "Tuesday": "Вторник",
+      "Wednesday": "Среда",
+      "Thursday": "Четверг",
+      "Friday": "Пятница",
+      "Saturday": "Суббота",
+      "Sunday": "Воскресенье"
+    },
+    "closed": "Закрыто",
+    "status": {
+      "Upcoming": "Скоро",
+      "Past": "Прошло",
+      "Now": "Сейчас",
+      "featured": "На главной"
+    },
+    "home": {
+      "heroTitle": "Думаете о татуировке?",
+      "intro": "Две долгие карьеры в одной студии. Васо Васико делает японское ирэдзуми и нео-традишнл на Истикляль в Стамбуле и гостит в Европе. Андрей Айвазян делает реализм, портрет и чёрно-серое в Тбилиси.",
+      "facts": "VasoAndrei — тату-студия заказной японской татуировки, включая ирэдзуми. Студия работает в Стамбуле и Дюссельдорфе. Адрес в Стамбуле: Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Адрес в Дюссельдорфе: Königsallee 45-47, 40212 Düsseldorf, Germany. Телефон +90 533 203 67 40 или +49 163 787 99 67. Почта termini@vasovasiko.com. Часы: понедельник–суббота 10:00–20:00, воскресенье закрыто. Для записи используйте форму. Студия отвечает почтой или в WhatsApp.",
+      "eventsKicker": "Особые даты",
+      "eventsTitle": "Гости и встречи",
+      "eventsLead": "Приглашённые мастера из других стран и дни вроде фестиваля Marmari.",
+      "allEvents": "Все события",
+      "artistsKicker": "Мастера",
+      "artistsTitle": "Кто работает",
+      "artistsLead": "Кто за станком и какие стили берёт.",
+      "allArtists": "Все мастера",
+      "visitTitle": "Напишите, позвоните или поднимитесь",
+      "online": "Ещё онлайн",
+      "listing": "Открыть карточку в Google",
+      "heroAlt": "Тату-мастер делает татуировку на спине",
+      "permanence": "Постоянный рисунок на теле значит, что его делают профессионалы.",
+      "meet": "Познакомьтесь с нашими легендарными мастерами:",
+      "short": "Vaso Vasiko, урождённый Vasil Kurakhchishvili, татуирует с 2000 года, и большая часть этой карьеры прошла в Турции. С начала 2000-х он поднял в Стамбуле уровень крупных авторских японских и неотрадиционных работ там, где преобладали мелкий трайбл и флэш. Andrei Aivazian сделал то же в Тбилиси для реализма и профессиональной студии: авторские портфолио, обучение и стандарт гигиены, который вывел город к клиентам за пределами Грузии.",
+      "readMore": "Читать дальше",
+      "legend": "Познакомьтесь с нашими легендарными тату-мастерами:",
+      "vasoDeed": "Vaso Vasiko татуирует с 2000 года. Он ведущий мастер японского стиля в Турции и Грузии. С начала 2000-х он принёс в турецкую тату-индустрию крупное японское ирэдзуми и нео-традиционную работу, что помогло региональному развитию японского стиля. Благодаря ему в Турции каждый год проходит много международных тату-конвенций.",
+      "andreiDeed": "Andrei Aivazian татуирует более двух десятилетий. Он первым принёс стиль реализма в Грузию. В Тбилиси он учит реализму, портрету и чёрно-серому стилю. Его студия заметно развила местную сцену. Он получил много наград на международных тату-конвенциях. Его ученики широко популярны в Грузии, Англии и Соединённых Штатах."
+    },
+    "artistsPage": {
+      "title": "Тату в Бейоглу",
+      "lead": "Тату-студия в Бейоглу, над Истикляль в Асмалы Месджит. Портрет открывает историю и листы."
+    },
+    "artistPage": {
+      "work": "Работы",
+      "request": "Запросить этого мастера",
+      "portfolio": "Существующее портфолио",
+      "untranslated": "Этот профиль ещё не переведён."
+    },
+    "eventsPage": {
+      "title": "Приглашённый тату-мастер в Стамбуле",
+      "lead": "Приглашённые тату-мастера в Стамбуле и фестиваль Marmari. На главной только отмеченные даты."
+    },
+    "eventPage": {
+      "request": "Запросить сеанс",
+      "all": "Все события",
+      "other": "Другие события",
+      "untranslated": "Это событие ещё не переведено."
+    },
+    "about": {
+      "title": "Тату на Истикляль",
+      "publicName": "Публичное имя",
+      "reach": "Связь",
+      "address": "Адрес",
+      "phone": "Телефон",
+      "also": "Также указан",
+      "email": "Почта",
+      "whatsapp": "WhatsApp",
+      "hours": "Часы",
+      "google": "Открыть карточку Google Business",
+      "booking": "Открыть форму записи",
+      "portfolio": "Существующее портфолио",
+      "story": "Vaso Vasiko, настоящее имя Vasil Kurakhchishvili, родился в Грузии в 1980 году. Профессионально татуирует с 2000 года. Карьера сложилась в основном в Турции: студия на проспекте İstiklal в Стамбуле и частые гостевые сессии в студиях Европы.\n\nЕго знают по японскому ирэдзуми и неотрадиции, а также по чёрно-серому, геометрии, реализму, олдскулу и нью-скулу. Крупные авторские работы — рукава, спины и ножные костюмы: драконы, хання, самураи, змеи, пионы и кои. Работа ложится по телу, с тяжёлым контрастом, жирной линией, динамичным фоном и цветом, который хорошо стареет. Спонсоры, названные с этой работой: Cheyenne Tattoo Equipment, Radiant Tattoo Ink и Aloe Tattoo.\n\nС начала 2000-х он принёс крупную авторскую японскую и неотрадиционную работу в турецкую среду, где преобладали мелкий трайбл и флэш. Он продвигал одноразовые иглы, более стойкие пигменты и европейскую гигиену. Студия на İstiklal, совместная работа с европейскими студиями и этот уровень сделали его ориентиром для молодых мастеров.\n\nAndrei Aivazian — мастер с большим стажем, база в Тбилиси, Грузия. Его связывают с Black Kiss Tattoo и с собственной студией. За плечами больше десяти лет конвенций, гостевых сессий и преподавания. Основа — реализм, портрет и чёрно-серое; рядом японская работа и цвет. Портреты гиперреалистичны: фактура, глубокий контраст, мягкие градиенты. Спонсоры, названные с его работой: Kwadron, World Famous Tattoo Ink и Dragon Tattoo Supply.\n\nВ Тбилиси он учил мастеров, в том числе Tatia Godibadze: машина, выбор игл, профессиональная этика. Его студии сдвигали местную среду к авторским портфолио и международным нормам гигиены. Гостевые сессии и уровень работы вывели Тбилиси к клиентам за пределами Грузии."
+    },
+    "book": {
+      "title": "Запись на тату",
+      "lead": "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp.",
+      "needAccount": "Запись отправляется только из аккаунта клиента, у которого подтверждены почта и телефон."
+    },
+    "styles": {
+      "title": "Японская татуировка в Стамбуле",
+      "lead": "В центре студии японская татуировка в Стамбуле: ирэдзуми и нью-традишнл, рядом чёрно-серые заказные вещи.",
+      "more": "Кто работает в этих стилях",
+      "items": [
+        {
+          "title": "Ирэдзуми",
+          "body": "Рукава и крупные композиции из кои, дракона, пиона, хання и волн. Это работа, которую Васо Васико держит впереди."
+        },
+        {
+          "title": "Нью-традишнл",
+          "body": "Плотный контур и узкая палитра, чтобы тату читалось и годы спустя."
+        },
+        {
+          "title": "Чёрно-серое",
+          "body": "Вес, пустое место и блэкворк, в том числе на шее."
+        },
+        {
+          "title": "Ещё в биографии",
+          "body": "Геометрия, цвет, нью-скул и олд-скул есть в публичной биографии. Впереди остаются японский стиль и нью-традишнл."
+        }
+      ]
+    },
+    "aftercare": {
+      "title": "Уход",
+      "intro": "Общий уход за свежей татуировкой, не медицинский совет. Если кожа горячая, идёт полосой или вам плохо, обратитесь к врачу.",
+      "call": "По обычным вопросам заживления звоните в студию.",
+      "sections": [
+        {
+          "title": "Первые дни",
+          "body": "Оставьте плёнку на сказанный срок. Мойте чистыми руками и мягким мылом без отдушки. Промокните. Тонкий слой выданной мази."
+        },
+        {
+          "title": "Пока садится",
+          "body": "Не мочите. Без бассейна, ванны и сауны, пока поверхность не закрылась. Берегите от солнца. Свободная одежда. Не сдирайте шелушение."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Вопросы",
+      "items": [
+        {
+          "q": "Как записаться на тату в Бейоглу?",
+          "a": "В форме напишите идею или референс, место и примерное время. По заметкам на существующем сайте студия отвечает почтой или в WhatsApp, обычно в течение пяти рабочих дней."
+        },
+        {
+          "q": "Есть задаток?",
+          "a": "На существующем сайте задаток 200 евро. Он идёт в стоимость, не возвращается и держит дату. О переносе просят сообщить за 72 часа."
+        },
+        {
+          "q": "Когда готов эскиз?",
+          "a": "После договорённости эскиз показывают примерно за 20 рабочих дней. Сеанс ставят, когда вы его принимаете."
+        },
+        {
+          "q": "Бывает приглашённый мастер?",
+          "a": "Да. Гостевые дни из других стран есть на странице событий. Отмеченные видны и на главной."
+        },
+        {
+          "q": "Что за фестиваль Marmari?",
+          "a": "Студия участвует в фестивале Marmari в Мармарисе. Последние объявленные даты — 3–5 октября 2025. Новые даты обновляют на странице событий."
+        },
+        {
+          "q": "Где студия?",
+          "a": "VasoAndrei — тату-студия заказной японской татуировки, включая ирэдзуми. Студия работает в Стамбуле и Дюссельдорфе. Адрес в Стамбуле: Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. Адрес в Дюссельдорфе: Königsallee 45-47, 40212 Düsseldorf, Germany. Телефон +90 533 203 67 40 или +49 163 787 99 67. Почта termini@vasovasiko.com. Часы: понедельник–суббота 10:00–20:00, воскресенье закрыто. Для записи используйте форму. Студия отвечает почтой или в WhatsApp."
+        }
+      ]
+    },
+    "form": {
+      "name": "Имя",
+      "email": "Почта",
+      "phone": "Телефон",
+      "artist": "Мастер",
+      "message": "Идея, место и примерное время",
+      "send": "Отправить запрос",
+      "sending": "Отправка…",
+      "ok": "Запрос получен. Студия ответит почтой или в WhatsApp.",
+      "preference": "Без предпочтения",
+      "error": "Сообщение не отправилось."
+    },
+    "notFound": {
+      "title": "Такой страницы нет",
+      "body": "Загляните к мастерам, в события или на главную.",
+      "home": "На главную"
+    },
+    "salon": {
+      "guestLead": "Приезжие мастера держат страницу здесь. Они не публикуют телефон, почту или социальную сеть. Клиенты пишут на сайте.",
+      "bookNote": "Эта форма для Vaso Vasiko и Andrei Aivazian. Переписка гостя её не заменяет.",
+      "hoursLine": "Понедельник–суббота 10:00–20:00",
+      "guestList": "Студия принимает приглашённых тату-мастеров. У каждого гостя есть страница и переписка на этом сайте. На этих страницах нет Instagram, Facebook, телефона, почты и WhatsApp.",
+      "guestListMeta": "Приглашённые тату-мастера VasoAndrei. Профили остаются на сайте, без телефона, почты и социальной сети.",
+      "writeHere": "Написать на этом сайте",
+      "chatEyebrow": "На этом сайте",
+      "chatLead": "Пишите здесь. На этой странице нет телефона, почты, Instagram, Facebook и WhatsApp. Запись к Vaso Vasiko или Andrei Aivazian — отдельная форма.",
+      "chatYou": "Вы",
+      "chatGuest": "Гость",
+      "chatName": "Ваше имя",
+      "chatMessage": "Сообщение",
+      "chatSend": "Отправить на этом сайте",
+      "chatError": "Сообщение не отправилось."
+    },
+    "seo": {
+      "homeTitle": "Васо Васико и Андрей Айвазян",
+      "homeDescription": "VasoAndrei — студия Васо Васико на Истикляль в Стамбуле и Андрея Айвазяна в Тбилиси.",
+      "artistsTitle": "Тату Бейоглу",
+      "artistsDescription": "Тату-студия в Бейоглу, на Истикляль в Асмалы Месджит. Мастера и портфолио.",
+      "aboutTitle": "Тату на Истикляль",
+      "aboutDescription": "VasoAndrei в Стамбуле и Дюссельдорфе: адреса, телефоны, termini@vasovasiko.com и часы.",
+      "bookTitle": "Запись на тату",
+      "bookDescription": "Запись на тату в Турции или Германии. Напишите идею, место и примерное время. Студия отвечает почтой или в WhatsApp.",
+      "stylesTitle": "Японская татуировка Стамбул",
+      "stylesDescription": "Японская татуировка в Стамбуле: ирэдзуми, нью-традишнл и чёрно-серые заказные вещи.",
+      "eventsTitle": "Приглашённый тату-мастер Стамбул",
+      "eventsDescription": "Приглашённые тату-мастера в Стамбуле и фестиваль Marmari.",
+      "aftercareTitle": "Уход",
+      "aftercareDescription": "Как ухаживать за свежей татуировкой и когда звонить в студию.",
+      "faqTitle": "Вопросы",
+      "faqDescription": "Где VasoAndrei работает в Стамбуле и Дюссельдорфе, и как записаться."
+    },
+    "register": {
+      "title": "Регистрация клиента",
+      "lead": "Аккаунт появляется только после подтверждения обоих кодов. Гостевые мастера входят на своей странице, не здесь.",
+      "name": "Имя",
+      "email": "Почта",
+      "phone": "Телефон",
+      "send": "Дальше",
+      "codesLead": "Введите код почты и код телефона. Неверный или просроченный код не создаёт аккаунт.",
+      "emailCode": "Код почты",
+      "phoneCode": "Код телефона",
+      "confirm": "Подтвердить коды",
+      "expired": "Срок кода истёк. Запросите новые коды.",
+      "wrong": "Код не совпал. Аккаунт не создан.",
+      "mismatch": "Эта почта уже привязана к другому телефону.",
+      "error": "Проверьте имя, почту и телефон."
+    },
+    "signIn": {
+      "title": "Вход",
+      "lead": "Войдите по почте или телефону, которые уже есть в аккаунте. Пароля нет. Одноразовый код подтверждает, что это вы.",
+      "identifier": "Почта или телефон",
+      "send": "Прислать код",
+      "code": "Одноразовый код",
+      "confirm": "Войти",
+      "unknown": "Нет готового аккаунта с этой почтой или телефоном.",
+      "wrong": "Код не совпал.",
+      "expired": "Срок кода истёк. Запросите новый.",
+      "error": "Введите почту или телефон аккаунта."
+    }
+  },
+  "ka": {
+    "nav": {
+      "home": "მთავარი",
+      "artists": "არტისტები",
+      "guests": "სტუმრები",
+      "styles": "სტილები",
+      "events": "მოვლენები",
+      "about": "სტუდიის შესახებ",
+      "faq": "კითხვები",
+      "register": "რეგისტრაცია",
+      "signIn": "შესვლა",
+      "signOut": "გამოსვლა",
+      "account": "შესული ხართ როგორც {name}",
+      "book": "ჩაწერა",
+      "menu": "მენიუ",
+      "close": "დახურვა",
+      "languages": "ენები",
+      "kicker": "İstiklal, Istanbul",
+      "skip": "შინაარსზე გადასვლა"
+    },
+    "footer": {
+      "hours": "საათები",
+      "reach": "სტუდიასთან კავშირი",
+      "note": "ამ საიტის პორტრეტები და ფირფიტები ორიგინალი ილუსტრაციებია.",
+      "google": "Google Business",
+      "portfolio": "არსებული პორტფოლიო",
+      "aftercare": "მოვლა",
+      "admin": "სტუდიის ადმინი",
+      "newTab": "იხსნება ახალ ჩანართში",
+      "location": "მდებარეობა",
+      "openMaps": "Google Maps-ში გახსნა",
+      "directions": "მარშრუტისთვის დააწკაპუნეთ",
+      "serviceArea": "მომსახურების ზონა",
+      "contact": "კონტაქტი",
+      "istanbul": "სტამბოლი",
+      "dusseldorf": "დიუსელდორფი",
+      "germany": "გერმანია",
+      "areaLine": "სტამბოლი • დიუსელდორფი"
+    },
+    "days": {
+      "Monday": "ორშაბათი",
+      "Tuesday": "სამშაბათი",
+      "Wednesday": "ოთხშაბათი",
+      "Thursday": "ხუთშაბათი",
+      "Friday": "პარასკევი",
+      "Saturday": "შაბათი",
+      "Sunday": "კვირა"
+    },
+    "closed": "დახურულია",
+    "status": {
+      "Upcoming": "მომავალი",
+      "Past": "წარსული",
+      "Now": "ახლა",
+      "featured": "მთავარ გვერდზე"
+    },
+    "home": {
+      "heroTitle": "ტატუს გაკეთებას გეგმავთ?",
+      "intro": "ამ სტუდიას ორი გრძელი კარიერა იზიარებს. Vaso Vasiko იაპონურ ირეზუმსა და ნეო-ტრადიციულს მუშაობს სტამბოლში, İstiklal-ის გამზირზე, და სტუმრად დადის ევროპის სტუდიებში. Andrei Aivazian რეალიზმს, პორტრეტსა და შავ-ნაცრისფერს მუშაობს თბილისიდან.",
+      "facts": "VasoAndrei არის ტატუ-სტუდია შეკვეთითი იაპონური ტატუსთვის, მათ შორის ირეზუმისთვის. სტუდია მუშაობს სტამბოლში და დიუსელდორფში. სტამბოლის მისამართია Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. დიუსელდორფის მისამართია Königsallee 45-47, 40212 Düsseldorf, Germany. ტელეფონი +90 533 203 67 40 ან +49 163 787 99 67. ელფოსტა termini@vasovasiko.com. საათებია ორშაბათიდან შაბათამდე, 10:00–20:00, კვირა დახურულია. ჩასაწერად გამოიყენეთ ფორმა. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.",
+      "eventsKicker": "განსაკუთრებული მოვლენები",
+      "eventsTitle": "სტუმრები და შეკრებები",
+      "eventsLead": "სხვა ქვეყნებიდან სტუმარი ოსტატები და დღეები, როგორიცაა Marmari Tattoo Festival.",
+      "allEvents": "ყველა მოვლენა",
+      "artistsKicker": "სკამი",
+      "artistsTitle": "არტისტები",
+      "artistsLead": "ვინ მუშაობს და რომელი სტილები იღებს.",
+      "allArtists": "ყველა ოსტატი",
+      "visitTitle": "მოგვწერეთ, დაგვირეკეთ ან ამოდით",
+      "online": "ასევე ონლაინ",
+      "listing": "Google-ის ბარათის გახსნა",
+      "heroAlt": "ტატუ-ოსტატი ზურგის ნამუშევარზე მუშაობს",
+      "permanence": "სხეულზე მუდმივი ნახატის გაკეთება ნიშნავს, რომ მას პროფესიონალები აკეთებენ.",
+      "meet": "გაიცანით ჩვენი ლეგენდარული ოსტატები:",
+      "short": "Vaso Vasiko, ნამდვილი სახელით Vasil Kurakhchishvili, 2000 წლიდან ტატუავს და ამ კარიერის დიდი ნაწილი თურქეთში გაიარა. 2000-იანი წლების დასაწყისიდან მან სტამბოლში აამაღლა დიდი ავტორული იაპონური და ნეოტრადიციული ნამუშევრის დონე, სცენაზე, სადაც მანამდე ძირითადად პატარა ტრაიბალი და ფლეში ჭარბობდა. Andrei Aivazian-მა იგივე გააკეთა თბილისში რეალიზმისა და პროფესიული სტუდიის სტანდარტისთვის: ავტორული პორტფოლიოები, სწავლება და ჰიგიენის ის სტანდარტი, რომელმაც თბილისი საქართველოს გარეთ მყოფ კლიენტებს წარუდგინა.",
+      "readMore": "წაიკითხეთ სრულად",
+      "legend": "გაიცანით ჩვენი ლეგენდარული ტატუ არტისტები:",
+      "vasoDeed": "Vaso Vasiko 2000 წლიდან ხატავს ტატუს. ის თურქეთსა და საქართველოში იაპონური სტილის წამყვანი ტატუ არტისტია. 2000-იანი წლების დასაწყისიდან მან თურქეთის ტატუ ინდუსტრიაში შემოიტანა დიდი ზომის იაპონური ირეზუმი და ნეო-ტრადიციული ნამუშევრები, რამაც ხელი შეუწყო იაპონური სტილის ნამუშევრების რეგიონალურ განვითარებას. მისი დამსახურებით თურქეთში არაერთი საერთაშორისო ტატუ კონვენცია იმართება ყოველწლიურად.",
+      "andreiDeed": "Andrei Aivazian ორ ათწლეულზე მეტია ხატავს ტატუს. ის იყო პირველი, ვინც საქართველოში რეალიზმის სტილი შემოიტანა. ის თბილისში ასწავლის რეალიზმს, პორტრეტსა და შავ-ნაცრისფერ სტილს. მისმა სტუდიამ კი ადგილობრივი სცენა საგრძნობლად განავითარა. მას მოპოვებული აქვს არაერთი ჯილდო საერთაშორისო ტატუ კონვენციებზე. ანდრეის მოსწავლეები დიდი პოპულარობით სარგებლობენ საქართველოში, ინგლისსა და ამერიკის შეერთებულ შტატებში."
+    },
+    "artistsPage": {
+      "title": "ტატუ Beyoğlu-ში",
+      "lead": "ტატუ-სტუდია Beyoğlu-ში, Asmalı Mescit-ში, İstiklal-ზე. პორტრეტი ხსნის ისტორიას და ფირფიტებს."
+    },
+    "artistPage": {
+      "work": "ნამუშევარი",
+      "request": "ამ ოსტატის მოთხოვნა",
+      "portfolio": "არსებული პორტფოლიო",
+      "untranslated": "ეს პროფილი ჯერ არ არის თარგმნილი."
+    },
+    "eventsPage": {
+      "title": "სტუმარი ტატუ-ოსტატი სტამბოლში",
+      "lead": "სტუმარი ტატუ-ოსტატები სტამბოლში და Marmari Tattoo Festival. მთავარ გვერდზე მხოლოდ გამოყოფილი თარიღებია."
+    },
+    "eventPage": {
+      "request": "სეანსის მოთხოვნა",
+      "all": "ყველა მოვლენა",
+      "other": "სხვა მოვლენები",
+      "untranslated": "ეს მოვლენა ჯერ არ არის თარგმნილი."
+    },
+    "about": {
+      "title": "ტატუ İstiklal-ზე",
+      "publicName": "საჯარო სახელი",
+      "reach": "კავშირი",
+      "address": "მისამართი",
+      "phone": "ტელეფონი",
+      "also": "ასევე მითითებულია",
+      "email": "ელფოსტა",
+      "whatsapp": "WhatsApp",
+      "hours": "საათები",
+      "google": "Google Business-ის ბარათის გახსნა",
+      "booking": "ჩაწერის ფორმის გახსნა",
+      "portfolio": "არსებული პორტფოლიო",
+      "story": "Vaso Vasiko, ნამდვილი სახელით Vasil Kurakhchishvili, 1980 წელს საქართველოში დაიბადა. პროფესიონალურად ტატუავს 2000 წლიდან. კარიერა ძირითადად თურქეთში აშენდა: სტუდია სტამბოლში, İstiklal-ის გამზირზე, და ხშირი სტუმრობა ევროპის სტუდიებში.\n\nცნობილია იაპონური ირეზუმითა და ნეოტრადიციული ნამუშევრით, აგრეთვე შავ-ნაცრისფრით, გეომეტრიით, რეალიზმით, ოლდ სკულითა და ნიუ სკულით. დიდი ავტორული სამუშაოა სახელოები, ზურგის კომპოზიციები და ფეხის კოსტიუმები: დრაკონები, ჰანია, სამურაი, გველები, პიონები და კოი. ნამუშევარი სხეულს მიჰყვება, მძიმე კონტრასტით, მკვეთრი ხაზით, მოძრავი ფონით და ფერით, რომელიც კარგად ბერდება. ამ ნამუშევართან დასახელებული სპონსორებია Cheyenne Tattoo Equipment, Radiant Tattoo Ink და Aloe Tattoo.\n\n2000-იანი წლების დასაწყისიდან მან თურქულ სცენაზე, სადაც უმეტესად პატარა ტრაიბალი და ფლეში იყო, დიდი ზომის ავტორული იაპონური და ნეოტრადიციული სამუშაო შემოიტანა. წინ წამოწია ერთჯერადი ნემსები, უკეთესი პიგმენტები და ევროპული ჰიგიენა. İstiklal-ზე სტუდია, ევროპულ სტუდიებთან თანამშრომლობა და ამ სამუშაოს დონე ახალგაზრდა ოსტატებისთვის მისაბაძი გახდა.\n\nAndrei Aivazian გამოცდილი ტატუ-ოსტატია თბილისში, საქართველოში. მას Black Kiss Tattoo-სთან და საკუთარ სტუდიასთან აკავშირებენ. უკან ათწლეულზე მეტი კონვენცია, სტუმრობა და სწავლება დგას. ბირთვია რეალიზმი, პორტრეტი და შავ-ნაცრისფერი; გვერდით იაპონური და ფერადი სამუშაოა. პორტრეტები ჰიპერრეალურია: ტექსტურა, ღრმა კონტრასტი და რბილი გადასვლები. მის ნამუშევართან დასახელებული სპონსორებია Kwadron, World Famous Tattoo Ink და Dragon Tattoo Supply.\n\nთბილისში ოსტატებს ასწავლიდა, მათ შორის Tatia Godibadze-ს, მანქანაზე მუშაობას, ნემსის არჩევას და პროფესიულ ეთიკას. მისმა სტუდიებმა ადგილობრივი სცენა ავტორული პორტფოლიოსა და საერთაშორისო ჰიგიენის სტანდარტისკენ წაიყვანა. სტუმრობამ და სამუშაოს დონემ თბილისი საქართველოს გარეთ მყოფ კლიენტებს წარუდგინა."
+    },
+    "book": {
+      "title": "ტატუზე ჩაწერა",
+      "lead": "ტატუზე ჩაწერის მოთხოვნა თურქეთში ან გერმანიაში. გამოგზავნეთ იდეა, ადგილი და სავარაუდო დრო. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.",
+      "needAccount": "ჩაწერა იგზავნება მხოლოდ კლიენტის ანგარიშიდან, რომლის ელფოსტა და ტელეფონი დადასტურებულია."
+    },
+    "styles": {
+      "title": "იაპონური ტატუ სტამბოლში",
+      "lead": "სტამბოლში იაპონური ტატუ სკამის ცენტრია: ირეზუმი და ნეო-ტრადიციული, და აქ შესრულებული შავ-ნაცრისფერი შეკვეთითი ნამუშევარი.",
+      "more": "ვინ მუშაობს ამ სტილებში",
+      "items": [
+        {
+          "title": "ირეზუმი",
+          "body": "სახელოები და უფრო დიდი კომპოზიციები koi-ს, დრაკონის, პიონის, hannya-სა და ტალღებისგან. ეს არის ნამუშევარი, რომელსაც Vaso Vasiko სტუდიის წინა პლანზე ტოვებს."
+        },
+        {
+          "title": "ნეო-ტრადიციული",
+          "body": "მკვეთრი კონტური და ვიწრო პალიტრა, ისე დაგეგმილი, რომ ტატუ წლების შემდეგაც იკითხებოდეს."
+        },
+        {
+          "title": "შავ-ნაცრისფერი",
+          "body": "წონა, ცარიელი სივრცე და შეკვეთითი blackwork, მათ შორის კისერზე."
+        },
+        {
+          "title": "ასევე ისტორიაში",
+          "body": "გეომეტრია, ფერი, new school და old school საჯარო ბიოგრაფიაში ჩანს. წინ რჩება იაპონური და ნეო-ტრადიციული."
+        }
+      ]
+    },
+    "aftercare": {
+      "title": "მოვლა",
+      "intro": "საერთო მოვლა ახალი ტატუსთვის, არა სამედიცინო რჩევა. თუ კანი ცხელია, ზოლი მიდის ან თავს ცუდად გრძნობთ, მიმართეთ ექიმს.",
+      "call": "ჩვეულებრივი შეხორცების კითხვებზე დაურეკეთ სტუდიას.",
+      "sections": [
+        {
+          "title": "პირველი დღეები",
+          "body": "დატოვეთ საფარი იმ დროით, რაც გითხრეს. დაიბანეთ სუფთა ხელებით და რბილი, უსუნო საპნით. მოშრეთ. წაუსვით თხელი ფენა იმ მალამოსი, რომელიც მოგცეს."
+        },
+        {
+          "title": "სანამ ჯდება",
+          "body": "ნუ დაასველებთ. აუზი, აბაზანა და საუნა გამოტოვეთ, სანამ ზედაპირი არ დაიხურება. მზეს მოარიდეთ. ფართო ტანსაცმელი ჩაიცვით. ქერცლს ნუ მოხსნით."
+        }
+      ]
+    },
+    "faq": {
+      "title": "კითხვები",
+      "items": [
+        {
+          "q": "როგორ ჩავეწერო ტატუზე Beyoğlu-ში?",
+          "a": "ფორმაში ჩაწერეთ იდეა ან რეფერენსი, ადგილი და სავარაუდო დრო. არსებული ჩანაწერების მიხედვით სტუდია პასუხობს ელფოსტით ან WhatsApp-ით, ჩვეულებრივ ხუთი სამუშაო დღის განმავლობაში."
+        },
+        {
+          "q": "არის წინასწარი გადახდა?",
+          "a": "არსებულ საიტზე წინასწარი გადახდა 200 ევროა. ის საბოლოო ღირებულებას აკლდება, არ ბრუნდება და თარიღს იჭერს. გადატანისთვის 72 საათით ადრე სთხოვენ შეტყობინებას."
+        },
+        {
+          "q": "როდის მზადდება ესკიზი?",
+          "a": "პროექტზე შეთანხმების შემდეგ ესკიზს დაახლოებით 20 სამუშაო დღეში აჩვენებენ. სეანსი იწერება მას შემდეგ, რაც დაამტკიცებთ."
+        },
+        {
+          "q": "მასპინძლობთ სტუმარ ტატუ-ოსტატს?",
+          "a": "დიახ. სხვა ქვეყნებიდან სტუმრობა მოვლენების გვერდზეა, გამოყოფილები კი მთავარ გვერდზეც ჩანს."
+        },
+        {
+          "q": "რა არის Marmari Tattoo Festival?",
+          "a": "სტუდია მონაწილეობს Marmari Tattoo Festival-ში, Marmaris-ში. ბოლოს გამოცხადებული გამოცემა იყო 3–5 ოქტომბერი, 2025. შემდეგი თარიღები ახლდება მოვლენების გვერდზე."
+        },
+        {
+          "q": "სად არის სტუდია?",
+          "a": "VasoAndrei არის ტატუ-სტუდია შეკვეთითი იაპონური ტატუსთვის, მათ შორის ირეზუმისთვის. სტუდია მუშაობს სტამბოლში და დიუსელდორფში. სტამბოლის მისამართია Asmalı Mescit Mahallesi, İstiklal Caddesi No:164, 34430 Beyoğlu/İstanbul, Türkiye. დიუსელდორფის მისამართია Königsallee 45-47, 40212 Düsseldorf, Germany. ტელეფონი +90 533 203 67 40 ან +49 163 787 99 67. ელფოსტა termini@vasovasiko.com. საათებია ორშაბათიდან შაბათამდე, 10:00–20:00, კვირა დახურულია. ჩასაწერად გამოიყენეთ ფორმა. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით."
+        }
+      ]
+    },
+    "form": {
+      "name": "სახელი",
+      "email": "ელფოსტა",
+      "phone": "ტელეფონი",
+      "artist": "სასურველი ოსტატი",
+      "message": "იდეა, ადგილი და სავარაუდო დრო",
+      "send": "მოთხოვნის გაგზავნა",
+      "sending": "იგზავნება…",
+      "ok": "მოთხოვნა მიღებულია. სტუდია უპასუხებს ელფოსტით ან WhatsApp-ით.",
+      "preference": "უპირატესობის გარეშე",
+      "error": "შეტყობინება ვერ გაიგზავნა."
+    },
+    "notFound": {
+      "title": "ეს გვერდი აქ არ არის",
+      "body": "ნახეთ არტისტები, მოვლენები ან მთავარი გვერდი.",
+      "home": "მთავარზე დაბრუნება"
+    },
+    "salon": {
+      "guestLead": "სტუმარი ოსტატები აქ ინახავენ გვერდს. ისინი არ აქვეყნებენ ტელეფონს, ელფოსტას ან სოციალურ ანგარიშს. კლიენტები წერენ საიტზე.",
+      "bookNote": "ეს ფორმა Vaso Vasiko-სა და Andrei Aivazian-ისთვისაა. სტუმრის მიმოწერა მის ადგილს არ იკავებს.",
+      "hoursLine": "ორშაბათი–შაბათი 10:00–20:00",
+      "guestList": "სტუდია მასპინძლობს სტუმარ ტატუ-ოსტატებს. თითოეულ სტუმარს ამ საიტზე აქვს გვერდი და საუბარი. არც ერთ ამ გვერდზე არ არის Instagram, Facebook, ტელეფონი, ელფოსტა ან WhatsApp.",
+      "guestListMeta": "სტუმარი ტატუ-ოსტატები VasoAndrei-ში. პროფილები რჩება ამ საიტზე, ტელეფონის, ელფოსტისა და სოციალური ანგარიშის გარეშე.",
+      "writeHere": "მიწერეთ ამ საიტზე",
+      "chatEyebrow": "ამ საიტზე",
+      "chatLead": "მიწერეთ აქ. ამ გვერდზე არ არის ტელეფონი, ელფოსტა, Instagram, Facebook ან WhatsApp. Vaso Vasiko-სა და Andrei Aivazian-თან ჩაწერა ცალკე ფორმაა.",
+      "chatYou": "თქვენ",
+      "chatGuest": "სტუმარი",
+      "chatName": "თქვენი სახელი",
+      "chatMessage": "შეტყობინება",
+      "chatSend": "გაგზავნა ამ საიტზე",
+      "chatError": "შეტყობინება ვერ გაიგზავნა."
+    },
+    "seo": {
+      "homeTitle": "Vaso Vasiko და Andrei Aivazian",
+      "homeDescription": "VasoAndrei არის Vaso Vasiko-ს სტუდია, İstiklal-ზე სტამბოლში, და Andrei Aivazian-ისა, თბილისში.",
+      "artistsTitle": "ტატუ Beyoğlu-ში",
+      "artistsDescription": "ტატუ-სტუდია Beyoğlu-ში, Asmalı Mescit-ში, İstiklal-ზე. არტისტები, სტილები და პორტფოლიო.",
+      "aboutTitle": "ტატუ İstiklal-ზე",
+      "aboutDescription": "VasoAndrei სტამბოლში და დიუსელდორფში: მისამართები, ტელეფონები, termini@vasovasiko.com და საათები.",
+      "bookTitle": "ტატუზე ჩაწერა",
+      "bookDescription": "ტატუზე ჩაწერის მოთხოვნა თურქეთში ან გერმანიაში. გამოგზავნეთ იდეა, ადგილი და სავარაუდო დრო. სტუდია პასუხობს ელფოსტით ან WhatsApp-ით.",
+      "stylesTitle": "იაპონური ტატუ სტამბოლი",
+      "stylesDescription": "იაპონური ტატუ სტამბოლში: ირეზუმი, ნეო-ტრადიციული და შავ-ნაცრისფერი შეკვეთითი ნამუშევარი.",
+      "eventsTitle": "სტუმარი ტატუ-ოსტატი სტამბოლი",
+      "eventsDescription": "სტუმარი ტატუ-ოსტატები სტამბოლში და Marmari Tattoo Festival.",
+      "aftercareTitle": "მოვლა",
+      "aftercareDescription": "როგორ მოუაროთ ახალ ტატუს და როდის დაურეკოთ სტუდიას.",
+      "faqTitle": "კითხვები",
+      "faqDescription": "სად მუშაობს VasoAndrei სტამბოლში და დიუსელდორფში, და როგორ ჩაიწეროთ."
+    },
+    "register": {
+      "title": "კლიენტის რეგისტრაცია",
+      "lead": "ანგარიში იქმნება მხოლოდ ორივე კოდის დადასტურების შემდეგ. სტუმარი ოსტატები თავიანთ გვერდზე შედიან, არა აქ.",
+      "name": "სახელი",
+      "email": "ელფოსტა",
+      "phone": "ტელეფონი",
+      "send": "გაგრძელება",
+      "codesLead": "შეიყვანეთ ელფოსტის კოდი და ტელეფონის კოდი. არასწორი ან ვადაგასული კოდი ანგარიშს არ ქმნის.",
+      "emailCode": "ელფოსტის კოდი",
+      "phoneCode": "ტელეფონის კოდი",
+      "confirm": "კოდების დადასტურება",
+      "expired": "ამ კოდს ვადა გაუვიდა. მოითხოვეთ ახალი კოდები.",
+      "wrong": "კოდი არ ემთხვევა. ანგარიში არ შეიქმნა.",
+      "mismatch": "ეს ელფოსტა უკვე სხვა ტელეფონზეა მიბმული.",
+      "error": "შეამოწმეთ სახელი, ელფოსტა და ტელეფონი."
+    },
+    "signIn": {
+      "title": "შესვლა",
+      "lead": "შედით ანგარიშზე უკვე მითითებული ელფოსტით ან ტელეფონით. პაროლი არ არის. ერთჯერადი კოდი ადასტურებს, რომ ეს თქვენ ხართ.",
+      "identifier": "ელფოსტა ან ტელეფონი",
+      "send": "კოდის გაგზავნა",
+      "code": "ერთჯერადი კოდი",
+      "confirm": "შესვლა",
+      "unknown": "ამ ელფოსტით ან ტელეფონით დასრულებული ანგარიში არ არის.",
+      "wrong": "კოდი არ ემთხვევა.",
+      "expired": "ამ კოდს ვადა გაუვიდა. მოითხოვეთ ახალი.",
+      "error": "შეიყვანეთ ანგარიშის ელფოსტა ან ტელეფონი."
+    }
+  }
+}
