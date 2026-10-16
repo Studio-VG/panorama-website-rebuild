@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Reopen the ByVasoVasiko studio preview for a browser that cannot use localhost.
-# Stdout is only the final https URL (including /en). A healthy dev server is left running.
+# Stdout is only the final https URL (including /ka). A healthy dev server is left running.
 
 set -euo pipefail
 
 STUDIO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PREVIEW_FILE="/cursor/stores/self/preview-url.txt"
-PORT=8080
-DEV_SESSION="studio-php"
+PORT=3001
+DEV_SESSION="studio-dev"
 TUNNEL_SESSION="studio-tunnel"
 
 tmux_cmd() {
@@ -31,11 +31,11 @@ http_code() {
 
 server_listening() {
   local code
-  code="$(http_code "http://127.0.0.1:${PORT}/en" 5)"
+  code="$(http_code "http://127.0.0.1:${PORT}/ka" 5)"
   if [[ "$code" != "000" ]]; then
     return 0
   fi
-  code="$(http_code "http://[::1]:${PORT}/en" 5)"
+  code="$(http_code "http://[::1]:${PORT}/ka" 5)"
   [[ "$code" != "000" ]]
 }
 
@@ -43,7 +43,7 @@ dev_session_busy() {
   local cmd pid
   cmd="$(tmux_cmd list-panes -t "$DEV_SESSION" -F '#{pane_current_command}' 2>/dev/null || true)"
   case "$cmd" in
-    php) return 0 ;;
+    node|next|next-server) return 0 ;;
   esac
   pid="$(tmux_cmd list-panes -t "$DEV_SESSION" -F '#{pane_pid}' 2>/dev/null | head -n 1 || true)"
   if [[ -n "${pid}" ]] && pgrep -P "$pid" >/dev/null 2>&1; then
@@ -66,7 +66,7 @@ ensure_dev_server() {
 
   if ! tmux_cmd has-session -t "$DEV_SESSION" 2>/dev/null; then
     tmux_cmd new-session -d -s "$DEV_SESSION" -c "$STUDIO_DIR" -- \
-      bash -lc "cd $(printf '%q' "$STUDIO_DIR") && exec php -d upload_max_filesize=48M -d post_max_size=50M -S 127.0.0.1:${PORT} -t public router.php"
+      bash -lc "cd $(printf '%q' "$STUDIO_DIR") && exec npx next dev --port ${PORT} --hostname ::"
   fi
 
   for i in $(seq 1 120); do
@@ -87,11 +87,11 @@ preview_url() {
   tr -d '[:space:]' < "$PREVIEW_FILE"
 }
 
-body_is_php() {
+body_is_georgian_home() {
   local url="$1"
   local body
   body="$(curl -fsS --connect-timeout 5 --max-time 20 "$url" 2>/dev/null || true)"
-  [[ "$body" == *"<!-- studio-php -->"* && "$body" == *"home-entry"* && "$body" == *"home-artists"* ]]
+  [[ "$body" == *'lang="ka"'* && "$body" == *"home-entry"* && "$body" == *"home-artists"* && "$body" == *"გაიცანით"* ]]
 }
 
 preview_ok() {
@@ -99,7 +99,7 @@ preview_ok() {
   local i
   [[ -n "$url" ]] || return 1
   for i in 1 2 3; do
-    if body_is_php "$url"; then
+    if body_is_georgian_home "$url"; then
       return 0
     fi
     sleep 1
@@ -155,8 +155,8 @@ start_tunnel() {
   for i in $(seq 1 90); do
     host="$(tunnel_hostname)"
     if [[ -n "$host" ]]; then
-      final="${host}/en"
-      if body_is_php "$final"; then
+      final="${host}/ka"
+      if body_is_georgian_home "$final"; then
         mkdir -p "$(dirname "$PREVIEW_FILE")"
         printf '%s\n' "$final" > "$PREVIEW_FILE"
         printf '%s\n' "$final"
